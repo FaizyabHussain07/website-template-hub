@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitLife 365 - Your Personal AI Fitness Coach</title>
+    <meta name="description" content="AI-powered personalized fitness coaching. Smart workouts that adapt to your progress, energy levels, and life.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'DM Sans', sans-serif;
+        }
+        .mono-font {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+        }
+        .gradient-blue {
+            background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-blue {
+            background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-blue:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(14, 165, 233, 0.35);
+        }
+        .pulse-ring {
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .nav-item {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #0EA5E9, #06B6D4);
+            transition: width 0.3s;
+        }
+        .nav-item:hover::before {
+            width: 100%;
+        }
+        .feature-card {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(14, 165, 233, 0.15);
+        }
+        .stat-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(14, 165, 233, 0.1), rgba(6, 182, 212, 0.1));
+            border: 2px solid #0EA5E9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+        .stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #0EA5E9 0%, #06B6D4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .tabs-wrapper {
+            border-bottom: 2px solid #E0F2FE;
+            display: flex;
+            gap: 0;
+            overflow-x: auto;
+        }
+        .tab-link {
+            padding: 16px 24px;
+            font-weight: 600;
+            color: #64748B;
+            border: none;
+            background: none;
+            cursor: pointer;
+            white-space: nowrap;
+            position: relative;
+            border-bottom: 3px solid transparent;
+            transition: color 0.3s;
+        }
+        .tab-link.active {
+            color: #0EA5E9;
+            border-bottom-color: #0EA5E9;
+        }
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.3s;
+        }
+        .tab-pane.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: scaleIn 0.3s ease;
+        }
+        @keyframes scaleIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white border-b border-cyan-100 fixed w-full top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-robot text-white"></i>
+                </div>
+                <span class="text-xl font-bold gradient-blue">FitLife 365</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#features" class="nav-item text-gray-700 hover:text-cyan-600">Features</a>
+                <a href="#ai" class="nav-item text-gray-700 hover:text-cyan-600">AI Coach</a>
+                <a href="#benefits" class="nav-item text-gray-700 hover:text-cyan-600">Benefits</a>
+                <a href="#pricing" class="nav-item text-gray-700 hover:text-cyan-600">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-blue text-white px-6 py-2 rounded-lg font-semibold">Get Started Free</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#features" class="text-gray-700 py-2">Features</a>
+            <a href="#ai" class="text-gray-700 py-2">AI Coach</a>
+            <a href="#benefits" class="text-gray-700 py-2">Benefits</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-blue text-white px-6 py-2 rounded-lg font-semibold mt-4 w-full">Get Started Free</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-cyan-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Your Personal AI Fitness Coach</h1>
+                    <p class="text-xl text-gray-600 mb-8">Intelligent workouts that adapt to YOU. Real-time form feedback, personalized recommendations, and progress that matters.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-blue text-white px-8 py-3 rounded-lg font-semibold text-lg">Start Free Trial</button>
+                        <button onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})" class="border-2 border-cyan-600 text-cyan-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-cyan-50 transition">See Features</button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="absolute -inset-8 bg-gradient-to-br from-cyan-200 to-blue-200 rounded-3xl opacity-20 blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=600&fit=crop" alt="AI Fitness" class="relative rounded-3xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Powered by Advanced AI</h2>
+                <p class="text-xl text-gray-600">Technology that understands your fitness journey</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Form Analysis</h3>
+                    <p class="text-gray-600">AI-powered camera feedback. Perfect your form with real-time corrections and detailed breakdowns.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Smart Adaptation</h3>
+                    <p class="text-gray-600">Workouts that evolve with you. AI adjusts intensity based on your performance and recovery.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart-pulse text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Biometric Tracking</h3>
+                    <p class="text-gray-600">Integrate with wearables. Monitor heart rate, sleep, and recovery for optimal training.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Progress Insights</h3>
+                    <p class="text-gray-600">Predictive analytics. See your 90-day progress forecast based on current trends.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-utensils text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Nutrition AI</h3>
+                    <p class="text-gray-600">Meal recommendations based on your workouts and body composition goals.</p>
+                </div>
+                <div class="feature-card bg-white rounded-2xl p-8 border border-cyan-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Offline Mode</h3>
+                    <p class="text-gray-600">Download workouts and train anywhere. Syncs automatically when connected.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Coach Section -->
+    <section id="ai" class="py-24 px-4 bg-gradient-to-b from-cyan-50 to-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Meet Your AI Coach</h2>
+                <p class="text-xl text-gray-600">Available 24/7 to guide and motivate you</p>
+            </div>
+            <div class="tabs-wrapper mb-8">
+                <button class="tab-link active" onclick="switchTab(event, 'workout')">Smart Workouts</button>
+                <button class="tab-link" onclick="switchTab(event, 'form')">Form Coaching</button>
+                <button class="tab-link" onclick="switchTab(event, 'voice')">Voice Commands</button>
+            </div>
+            <div id="workout" class="tab-pane active">
+                <div class="grid md:grid-cols-2 gap-12 mt-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Workouts Built for You</h3>
+                        <p class="text-gray-600 mb-6">Our AI analyzes thousands of variables to create the perfect workout for your goals, equipment, and fitness level.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Adaptive Difficulty</p>
+                                    <p class="text-gray-600 text-sm">Adjusts in real-time based on your performance</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Rest Period Optimization</p>
+                                    <p class="text-gray-600 text-sm">AI calculates perfect rest between sets</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Equipment Detection</p>
+                                    <p class="text-gray-600 text-sm">Works with any gym or home setup</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1535743686920-55e06d675560?w=500&h=500&fit=crop" alt="Smart Workouts" class="rounded-2xl shadow-lg">
+                </div>
+            </div>
+            <div id="form" class="tab-pane">
+                <div class="grid md:grid-cols-2 gap-12 mt-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Real-Time Form Feedback</h3>
+                        <p class="text-gray-600 mb-6">Our computer vision AI watches your form and provides instant corrections to prevent injury and maximize gains.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Joint Angle Analysis</p>
+                                    <p class="text-gray-600 text-sm">Precise angle measurements for perfect form</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Posture Correction</p>
+                                    <p class="text-gray-600 text-sm">Alerts you to alignment issues instantly</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Range of Motion</p>
+                                    <p class="text-gray-600 text-sm">Ensures full ROM for maximum effectiveness</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop" alt="Form Feedback" class="rounded-2xl shadow-lg">
+                </div>
+            </div>
+            <div id="voice" class="tab-pane">
+                <div class="grid md:grid-cols-2 gap-12 mt-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">Voice-Activated Coaching</h3>
+                        <p class="text-gray-600 mb-6">Control your workout with voice commands. No need to touch your phone. Just talk to your AI coach.</p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Voice Commands</p>
+                                    <p class="text-gray-600 text-sm">"Next exercise", "Give me tips", "How many reps?"</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Motivational Cues</p>
+                                    <p class="text-gray-600 text-sm">AI encouragement when you need it most</p>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i class="fas fa-check text-cyan-600 mt-1 flex-shrink-0"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Natural Conversations</p>
+                                    <p class="text-gray-600 text-sm">Talk to your coach like a real person</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1478719059408-592965723cbc?w=500&h=500&fit=crop" alt="Voice Commands" class="rounded-2xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-20 px-4 bg-gradient-to-r from-cyan-600 to-blue-600">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-circle">
+                        <div class="stat-value">500K+</div>
+                        <p class="text-xs text-gray-600 mt-2">Active Users</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-circle">
+                        <div class="stat-value">10M+</div>
+                        <p class="text-xs text-gray-600 mt-2">Workouts Done</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-circle">
+                        <div class="stat-value">4.8★</div>
+                        <p class="text-xs text-gray-600 mt-2">App Rating</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="stat-circle">
+                        <div class="stat-value">92%</div>
+                        <p class="text-xs text-gray-600 mt-2">Reach Goals</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits -->
+    <section id="benefits" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Why Choose FitLife 365</h2>
+                <p class="text-xl text-gray-600">The complete fitness solution</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="p-8 bg-cyan-50 rounded-2xl border border-cyan-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-bolt text-cyan-600"></i> Zero Setup Friction
+                    </h3>
+                    <p class="text-gray-600">Start immediately. No need to learn exercises or create routines. AI does it for you.</p>
+                </div>
+                <div class="p-8 bg-cyan-50 rounded-2xl border border-cyan-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-shield text-cyan-600"></i> Injury Prevention
+                    </h3>
+                    <p class="text-gray-600">Form feedback prevents injuries before they happen. Train safely and confidently.</p>
+                </div>
+                <div class="p-8 bg-cyan-50 rounded-2xl border border-cyan-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-trending-up text-cyan-600"></i> Guaranteed Progress
+                    </h3>
+                    <p class="text-gray-600">92% of users reach their goals in 90 days. The system works if you work it.</p>
+                </div>
+                <div class="p-8 bg-cyan-50 rounded-2xl border border-cyan-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-smile text-cyan-600"></i> Motivation Built-in
+                    </h3>
+                    <p class="text-gray-600">AI keeps you accountable and motivated. Never miss a workout without reason.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Results That Speak</h2>
+                <p class="text-xl text-gray-600">See what our AI has done for real people</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The form feedback changed everything. No more bad habits. Lost 35 lbs and gained strength I didn't think was possible."</p>
+                    <p class="font-bold text-gray-900">Alex Johnson</p>
+                    <p class="text-cyan-600 text-sm">3 months on FitLife</p>
+                </div>
+                <div class="bg-white rounded-xl p-8 border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Never thought I'd stick with fitness. The AI adaptation keeps it fresh. Best money I spent on health."</p>
+                    <p class="font-bold text-gray-900">Maria Santos</p>
+                    <p class="text-cyan-600 text-sm">6 months on FitLife</p>
+                </div>
+                <div class="bg-white rounded-xl p-8 border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a 50-year-old comeback story, this AI coach meets me where I am. Real strength gains in 4 months."</p>
+                    <p class="font-bold text-gray-900">David Miller</p>
+                    <p class="text-cyan-600 text-sm">4 months on FitLife</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
+                <p class="text-xl text-gray-600">Choose your fitness plan</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card bg-white border border-cyan-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Get started</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$10</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-cyan-600 text-cyan-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-cyan-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Basic AI workouts</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Progress tracking</li>
+                    </ul>
+                </div>
+                <div class="feature-card bg-gradient-to-br from-cyan-50 to-blue-50 border-2 border-cyan-600 rounded-2xl p-8 relative">
+                    <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-cyan-600 text-white px-4 py-1 rounded-full text-sm font-bold">BEST SELLER</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Everything you need</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-blue text-white w-full py-2 rounded-lg font-semibold mb-8">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> All Starter features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Form analysis</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Voice coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Nutrition AI</li>
+                    </ul>
+                </div>
+                <div class="feature-card bg-white border border-cyan-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Premium support</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$79</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-cyan-600 text-cyan-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-cyan-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> All Pro features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> 1-on-1 AI coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Priority support</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-cyan-600"></i> Exclusive features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-cyan-600 to-blue-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Your AI Coach Awaits</h2>
+            <p class="text-xl text-cyan-100 mb-10">30 days free. No credit card. Cancel anytime.</p>
+            <button onclick="openModal()" class="bg-white text-cyan-600 px-10 py-4 rounded-lg font-semibold text-lg hover:bg-cyan-50 transition inline-block">Start Free Trial Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-white font-bold text-lg mb-4">FitLife 365</div>
+                    <p class="text-sm">AI-powered fitness for everyone.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Features</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white">App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-youtube text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-cyan-600 transition"><i class="fab fa-twitter text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Start Your AI Fitness Journey</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-cyan-500" required>
+                    <option>Select Your Goal</option>
+                    <option>Lose Weight</option>
+                    <option>Build Muscle</option>
+                    <option>Get Stronger</option>
+                </select>
+                <button type="submit" class="btn-blue text-white w-full py-3 rounded-lg font-semibold">Start Free Trial</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">30 days free • No credit card • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Check your email to start your free trial!');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

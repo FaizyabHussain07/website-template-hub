@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenScape - Home & Garden Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        
+        code, pre {
+            font-family: 'Space Mono', monospace;
+        }
+
+        .gradient-emerald {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+        }
+
+        .gradient-emerald-light {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+        }
+
+        @keyframes gardenGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(16, 185, 129, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(16, 185, 129, 0.6);
+            }
+        }
+
+        @keyframes leafFloat {
+            0%, 100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-10px) rotate(5deg);
+            }
+        }
+
+        .garden-glow {
+            animation: gardenGlow 2s ease-in-out infinite;
+        }
+
+        .leaf-float {
+            animation: leafFloat 3s ease-in-out infinite;
+        }
+
+        .modal-hidden {
+            display: none !important;
+        }
+
+        .modal-hidden.show {
+            display: flex !important;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.show {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="header-fixed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 gradient-emerald rounded-lg flex items-center justify-center text-white font-bold">G</div>
+                <span class="text-2xl font-bold text-gray-900">GreenScape</span>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-emerald-600 transition">Home</a>
+                <a href="#products" class="text-gray-700 hover:text-emerald-600 transition">Products</a>
+                <a href="#why" class="text-gray-700 hover:text-emerald-600 transition">Why Us</a>
+                <a href="#faq" class="text-gray-700 hover:text-emerald-600 transition">FAQ</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <button onclick="openModal()" class="hidden md:block gradient-emerald text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
+                Shop Now
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden bg-gray-50 border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-emerald-600">Home</a>
+                <a href="#products" class="block text-gray-700 hover:text-emerald-600">Products</a>
+                <a href="#why" class="block text-gray-700 hover:text-emerald-600">Why Us</a>
+                <a href="#faq" class="block text-gray-700 hover:text-emerald-600">FAQ</a>
+                <button onclick="openModal()" class="w-full gradient-emerald text-white px-4 py-2 rounded-lg hover:shadow-lg transition">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-12 pb-20 bg-gradient-to-br from-emerald-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Transform Your <span class="gradient-emerald bg-clip-text text-transparent">Garden</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Premium plants, tools, and landscaping supplies for outdoor enthusiasts. Create your perfect green space today.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-emerald text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition leaf-float">
+                            Explore Collection
+                        </button>
+                        <button class="border-2 border-emerald-600 text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-emerald-50 transition">
+                            View Catalog
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="gradient-emerald-light w-full h-96 rounded-2xl flex items-center justify-center garden-glow">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4"><i class="fas fa-leaf text-6xl text-emerald-600"></i></div>
+                            <p class="text-emerald-900 font-semibold">Premium Garden Collection</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Featured Products</h2>
+            <p class="text-center text-gray-600 mb-12">Handpicked selections for every gardening need</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-emerald-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-leaf text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Organic Plant Starter Kit</h3>
+                    <p class="text-gray-600 mb-4">Complete set with seeds, soil, pots, and fertilizer for beginners</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-emerald-600">$49.99</span>
+                        <span class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Popular</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-emerald-100 text-emerald-700 py-2 rounded-lg hover:bg-emerald-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-emerald-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-screwdriver-wrench text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Professional Tool Set</h3>
+                    <p class="text-gray-600 mb-4">12-piece stainless steel gardening tool kit with ergonomic handles</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-emerald-600">$89.99</span>
+                        <span class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Best Seller</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-emerald-100 text-emerald-700 py-2 rounded-lg hover:bg-emerald-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-emerald-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-droplet text-5xl text-green-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Irrigation System</h3>
+                    <p class="text-gray-600 mb-4">WiFi-enabled automatic watering system for up to 8 zones</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-emerald-600">$199.99</span>
+                        <span class="text-sm bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">Premium</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-emerald-100 text-emerald-700 py-2 rounded-lg hover:bg-emerald-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-16 bg-emerald-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">Shop by Category</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-emerald-300">
+                    <i class="fas fa-flower text-4xl text-green-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Plants & Seeds</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-emerald-300">
+                    <i class="fas fa-vial text-4xl text-green-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Pots & Planters</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-emerald-300">
+                    <i class="fas fa-wheat text-4xl text-green-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Soil & Nutrients</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-emerald-300">
+                    <i class="fas fa-chair text-4xl text-green-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Outdoor Furniture</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">Why Choose GreenScape</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-emerald rounded-full text-white text-2xl mb-4"><i class="fas fa-check"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Premium Quality</h3>
+                    <p class="text-gray-600">All products tested and verified by expert gardeners for durability and performance</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-emerald rounded-full text-white text-2xl mb-4"><i class="fas fa-truck"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Free Shipping</h3>
+                    <p class="text-gray-600">Complimentary delivery on orders over $75. Fast and reliable shipping nationwide</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-emerald rounded-full text-white text-2xl mb-4"><i class="fas fa-heart"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Expert Support</h3>
+                    <p class="text-gray-600">24/7 customer service with gardening tips and product recommendations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Sale -->
+    <section class="py-20 gradient-emerald text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Limited Time Offer</span>
+            <h2 class="text-5xl font-bold mb-4">Spring Garden Sale</h2>
+            <p class="text-xl text-emerald-100 mb-8">Up to 40% off on select plants and outdoor furniture</p>
+            <button onclick="openModal()" class="bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                Shop Sale Now
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Frequently Asked Questions</h2>
+
+            <!-- FAQ Item 1 -->
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq1')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-emerald-50 transition flex justify-between items-center">
+                    <span>How do I care for my new plants?</span>
+                    <span id="faq1-icon">+</span>
+                </button>
+                <div id="faq1" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Each plant comes with detailed care instructions. Generally, ensure adequate sunlight (6-8 hours), water when soil is dry, and maintain room temperature between 65-75&deg;F. Our expert team is available 24/7 for guidance.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq2')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-emerald-50 transition flex justify-between items-center">
+                    <span>What is your return policy?</span>
+                    <span id="faq2-icon">+</span>
+                </button>
+                <div id="faq2" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>We offer a 30-day money-back guarantee on all products. If you're not satisfied, simply return the item in its original condition for a full refund. We also cover return shipping on defective items.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="border border-gray-200 rounded-lg">
+                <button onclick="toggleFAQ('faq3')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-emerald-50 transition flex justify-between items-center">
+                    <span>Do you offer bulk discounts?</span>
+                    <span id="faq3-icon">+</span>
+                </button>
+                <div id="faq3" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! Orders of 10+ items qualify for special bulk pricing. Contact our sales team for custom quotes on large orders. We also have a landscaping division for commercial projects.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Ready to Transform Your Garden?</h2>
+            <p class="text-emerald-100 mb-8">Join thousands of happy gardeners. Subscribe for exclusive deals and gardening tips.</p>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-emerald-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Plants & Seeds</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tools</a></li>
+                        <li><a href="#" class="hover:text-white transition">Soil & Nutrients</a></li>
+                        <li><a href="#" class="hover:text-white transition">Outdoor Furniture</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white transition">Track Order</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cookie Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Returns</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow Us</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full relative animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="p-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Join Our Newsletter</h3>
+                <p class="text-gray-600 mb-6">Get exclusive deals, gardening tips, and new product launches delivered to your inbox.</p>
+
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Your name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <input type="email" placeholder="Your email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                        <option value="">Select your interest</option>
+                        <option value="plants">Plants & Seeds</option>
+                        <option value="tools">Tools & Equipment</option>
+                        <option value="furniture">Outdoor Furniture</option>
+                        <option value="all">All Products</option>
+                    </select>
+                    <button type="submit" class="w-full gradient-emerald text-white font-bold py-3 rounded-lg hover:shadow-lg transition">
+                        Subscribe Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('show');
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            alert('Thank you for subscribing! Check your email for a 15% discount code.');
+            closeModal();
+        }
+
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        function toggleMobileMenu() {
+            document.querySelector('.mobile-menu').classList.toggle('show');
+        }
+
+        function toggleFAQ(id) {
+            const element = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            element.classList.toggle('show');
+            icon.textContent = element.classList.contains('show') ? '-' : '+';
+        }
+    </script>
+</body>
+</html>

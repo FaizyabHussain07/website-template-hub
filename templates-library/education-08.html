@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProfessionalHub - Professional certifications & advanced degrees. MBA, Project Management, Data Science.">
+    <meta name="keywords" content="professional certification, MBA, advanced degree, online courses, career development">
+    <title>ProfessionalHub - Advanced Certifications</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Work Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Lora', serif; }
+        .gradient-pro { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .prog-card { transition: all 0.3s ease; }
+        .prog-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(30, 60, 114, 0.15); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .timeline-dot { width: 16px; height: 16px; background: #1e3c72; border-radius: 50%; position: relative; }
+        .timeline-dot::after { content: ''; position: absolute; top: 16px; left: 50%; transform: translateX(-50%); width: 2px; height: 40px; background: #e5e7eb; }
+        .timeline-dot.last::after { display: none; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-pro rounded-lg flex items-center justify-center">
+                    <i class="fas fa-graduation-cap text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">ProfessionalHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#programs" class="text-gray-700 hover:text-blue-600 transition font-medium">Programs</a>
+                <a href="#outcomes" class="text-gray-700 hover:text-blue-600 transition font-medium">Outcomes</a>
+                <a href="#faculty" class="text-gray-700 hover:text-blue-600 transition font-medium">Faculty</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition font-medium">Testimonials</a>
+                <button onclick="openModal()" class="gradient-pro text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Apply Now</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#programs" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Programs</a>
+                <a href="#outcomes" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Outcomes</a>
+                <a href="#faculty" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Faculty</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Testimonials</a>
+                <button onclick="openModal()" class="w-full gradient-pro text-white py-2 rounded-lg font-bold">Apply Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold mb-6">Advance Your Career</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Professional
+                        <span class="gradient-pro bg-clip-text text-transparent"> Certifications</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Earn industry-recognized credentials from top business schools and certification bodies.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-pro text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Apply Today
+                        </button>
+                        <button class="border-2 border-blue-700 text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition text-lg">
+                            View Programs
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-blue-700 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">AACSB Accredited</p>
+                                <p class="text-sm text-gray-600">Top 5% of business schools</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-blue-700 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Globally Recognized</p>
+                                <p class="text-sm text-gray-600">Accepted by 10,000+ employers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Professional" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">Our Programs</h2>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">Choose from our portfolio of professional certifications designed for career advancement</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">MBA</h3>
+                    <p class="text-gray-600 mb-6">Master of Business Administration - Complete business education</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>2-year program (part-time)</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$45K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>Avg +$25K salary increase</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Project Management</h3>
+                    <p class="text-gray-600 mb-6">PMP & CAPM Certifications - Lead projects successfully</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>4-month program</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$3K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>90% pass rate</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Data Science</h3>
+                    <p class="text-gray-600 mb-6">Master data analytics and machine learning techniques</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>6-month program</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$5.5K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>Avg +$30K salary increase</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Cybersecurity</h3>
+                    <p class="text-gray-600 mb-6">CISSP & CEH Certifications - Secure critical systems</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>4-month program</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$4K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>Avg $95K salary</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Executive Leadership</h3>
+                    <p class="text-gray-600 mb-6">Advanced leadership and executive management skills</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>1-year program</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$12K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>C-level focus</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+
+                <div class="prog-card bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-600">
+                    <div class="w-14 h-14 gradient-pro rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-flask text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Product Management</h3>
+                    <p class="text-gray-600 mb-6">Master product strategy and agile methodologies</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>3-month program</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>$2.5K investment</li>
+                        <li><i class="fas fa-check text-blue-700 mr-2"></i>Avg $110K salary</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Learn More
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Career Outcomes</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 gradient-pro rounded-lg flex items-center justify-center text-white text-3xl font-bold">92%</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Graduate Employment</h3>
+                            <p class="text-gray-600">Within 6 months of graduation</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 gradient-pro rounded-lg flex items-center justify-center text-white text-3xl font-bold">+$28K</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Avg Salary Increase</h3>
+                            <p class="text-gray-600">First year after certification</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 gradient-pro rounded-lg flex items-center justify-center text-white text-3xl font-bold">8,500</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Hiring Partners</h3>
+                            <p class="text-gray-600">Companies actively recruiting</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 gradient-pro rounded-lg flex items-center justify-center text-white text-3xl font-bold">4.8★</div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Graduate Rating</h3>
+                            <p class="text-gray-600">Out of 5 stars</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-12 rounded-xl text-white">
+                <h3 class="text-2xl font-bold mb-6">Top Hiring Companies</h3>
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-6 text-center">
+                    <div class="text-lg font-bold opacity-90">Microsoft</div>
+                    <div class="text-lg font-bold opacity-90">Google</div>
+                    <div class="text-lg font-bold opacity-90">Amazon</div>
+                    <div class="text-lg font-bold opacity-90">Apple</div>
+                    <div class="text-lg font-bold opacity-90">Goldman Sachs</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Faculty Section -->
+    <section id="faculty" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Expert Faculty</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-blue-200 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Dr. James Wilson</h3>
+                    <p class="text-gray-600 text-sm mb-2">PhD, Harvard Business School</p>
+                    <p class="text-xs text-gray-500">30+ years finance industry</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-blue-300 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Prof. Sarah Anderson</h3>
+                    <p class="text-gray-600 text-sm mb-2">MBA, Stanford GSB</p>
+                    <p class="text-xs text-gray-500">Former Google VP</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-blue-400 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Dr. Michael Chen</h3>
+                    <p class="text-gray-600 text-sm mb-2">PhD, MIT Sloan</p>
+                    <p class="text-xs text-gray-500">AI & Data Science expert</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-blue-500 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Emma Thompson</h3>
+                    <p class="text-gray-600 text-sm mb-2">Executive Coach</p>
+                    <p class="text-xs text-gray-500">Coached 500+ leaders</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Graduate Testimonials</h2>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"The MBA completely changed my career trajectory. I went from mid-level manager to VP of Operations in 18 months. The network alone is worth the investment."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Robert Thompson</p>
+                            <p class="text-sm text-gray-600">VP Operations, Fortune 500</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"I completed the Data Science certification while working full-time. Now I lead a data team of 12 people and my salary increased by 45%. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-400 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Lisa Chen</p>
+                            <p class="text-sm text-gray-600">Head of Data, Tech Startup</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"The PMP certification accelerated my career. I got 3 job offers after graduating and chose one that increased my salary by $22K. The instructors were incredibly knowledgeable."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-500 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">David Martinez</p>
+                            <p class="text-sm text-gray-600">Senior Project Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-pro text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Advance Your Career?</h2>
+            <p class="text-xl mb-10 opacity-90">Start your professional development journey today.</p>
+            <button onclick="openModal()" class="bg-white text-blue-700 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Apply Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">ProfessionalHub</h4>
+                    <p class="text-sm">Advanced certifications for career growth.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">MBA</a></li>
+                        <li><a href="#" class="hover:text-white transition">Data Science</a></li>
+                        <li><a href="#" class="hover:text-white transition">Project Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 ProfessionalHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Modal -->
+    <div id="enrollModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Apply Now</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                    <option>Select Program</option>
+                    <option>MBA</option>
+                    <option>Data Science</option>
+                    <option>Project Management</option>
+                    <option>Cybersecurity</option>
+                </select>
+                <button type="submit" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Apply Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('enrollModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('enrollModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('enrollModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

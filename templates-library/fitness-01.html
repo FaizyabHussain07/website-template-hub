@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EliteFlow - Personal Training & Fitness Coaching</title>
+    <meta name="description" content="Transform your body with EliteFlow's personalized fitness coaching programs and expert training.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-text {
+            background: linear-gradient(135deg, #FF6B5B 0%, #FF8E72 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B5B 0%, #FF8E72 100%);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 91, 0.3);
+        }
+        .card-hover {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(135deg, #FF6B5B 0%, #FF8E72 100%);
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .accordion-item {
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .accordion-button {
+            background: #F9FAFB;
+            padding: 16px;
+            width: 100%;
+            text-align: left;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: none;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .accordion-button:hover {
+            background: #F3F4F6;
+        }
+        .accordion-button.active {
+            background: linear-gradient(135deg, #FF6B5B 0%, #FF8E72 100%);
+            color: white;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            background: #FFFFFF;
+        }
+        .accordion-content.active {
+            max-height: 300px;
+            padding: 16px;
+            border-top: 1px solid #E5E7EB;
+        }
+        .stat-box {
+            text-align: center;
+            padding: 24px;
+            border-radius: 12px;
+            background: #F9FAFB;
+        }
+        .stat-number {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #FF6B5B 0%, #FF8E72 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .testimonial-card {
+            background: white;
+            padding: 24px;
+            border-radius: 12px;
+            border-left: 4px solid #FF6B5B;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            animation: fadeIn 0.3s;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            animation: slideUp 0.3s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header & Navigation -->
+    <header class="bg-white shadow-md fixed w-full top-0 z-30">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-dumbbell text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold gradient-text">EliteFlow</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#features" class="nav-link text-gray-700 hover:text-orange-500">Features</a>
+                <a href="#programs" class="nav-link text-gray-700 hover:text-orange-500">Programs</a>
+                <a href="#testimonials" class="nav-link text-gray-700 hover:text-orange-500">Success Stories</a>
+                <a href="#pricing" class="nav-link text-gray-700 hover:text-orange-500">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-primary text-white px-6 py-2 rounded-lg font-semibold">Start Free Trial</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#features" class="text-gray-700 py-2">Features</a>
+            <a href="#programs" class="text-gray-700 py-2">Programs</a>
+            <a href="#testimonials" class="text-gray-700 py-2">Success Stories</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-primary text-white px-6 py-2 rounded-lg font-semibold mt-4 w-full">Start Free Trial</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-4 bg-gradient-to-br from-gray-50 to-orange-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="hero-title text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Transform Your Body, Elevate Your Life</h1>
+                    <p class="text-lg text-gray-600 mb-8">Get personalized training programs from certified coaches. Achieve your fitness goals in 12 weeks with guaranteed results.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-primary text-white px-8 py-3 rounded-lg font-semibold text-lg">Get Started Now</button>
+                        <button onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})" class="border-2 border-gray-900 text-gray-900 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-gray-900 hover:text-white transition">Watch Demo</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-gradient-to-br from-orange-400 to-red-400 rounded-2xl opacity-20 blur-2xl">
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80" alt="Fitness Image" class="rounded-2xl shadow-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose EliteFlow</h2>
+                <p class="text-xl text-gray-600">Everything you need to achieve your fitness transformation</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-person-hiking text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Personalized Plans</h3>
+                    <p class="text-gray-600">Custom workouts tailored to your fitness level, goals, and schedule.</p>
+                </div>
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Progress Tracking</h3>
+                    <p class="text-gray-600">Real-time analytics and detailed progress reports to monitor your transformation.</p>
+                </div>
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Video Guidance</h3>
+                    <p class="text-gray-600">High-definition exercise tutorials with expert form corrections.</p>
+                </div>
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-apple-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Nutrition Plans</h3>
+                    <p class="text-gray-600">Customized meal plans that complement your fitness goals.</p>
+                </div>
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">24/7 Support</h3>
+                    <p class="text-gray-600">Instant access to certified coaches for questions and guidance.</p>
+                </div>
+                <div class="card-hover p-8 bg-white rounded-2xl border border-gray-200">
+                    <div class="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Mobile App</h3>
+                    <p class="text-gray-600">Access your workouts anytime, anywhere with our iOS and Android apps.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Training Programs</h2>
+                <p class="text-xl text-gray-600">Choose the program that matches your goals</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Fat Loss Accelerator</h3>
+                        <p class="text-gray-600 mb-6">High-intensity workouts combined with metabolism-boosting nutrition.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> 4x weekly cardio</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Strength training</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Meal prep guide</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-primary text-white w-full py-2 rounded-lg font-semibold">Learn More</button>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg border-2 border-orange-500">
+                    <div class="h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center relative">
+                        <span class="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">Popular</span>
+                        <i class="fas fa-dumbbell text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Muscle Building Elite</h3>
+                        <p class="text-gray-600 mb-6">Build lean muscle mass with progressive strength training.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> 5x strength sessions</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Protein-focused diet</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Recovery protocols</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-primary text-white w-full py-2 rounded-lg font-semibold">Learn More</button>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-orange-400 to-red-400 flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Wellness & Tone</h3>
+                        <p class="text-gray-600 mb-6">Balance training for overall health and sustainable fitness.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> 3x workouts weekly</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Yoga & flexibility</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Mindfulness training</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-primary text-white w-full py-2 rounded-lg font-semibold">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ/Accordion Section -->
+    <section id="demo" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Your Questions Answered</h2>
+                <p class="text-xl text-gray-600">Everything you need to know about EliteFlow</p>
+            </div>
+            <div class="space-y-4">
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(event)">
+                        <span>How long before I see results?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Most clients see noticeable changes within 4 weeks with consistent effort. Significant transformations typically occur within 12 weeks. Results depend on your starting point, consistency, and adherence to nutrition guidance.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(event)">
+                        <span>Do I need gym equipment?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">No. We offer programs for home, gym, and hybrid setups. Choose what works for you. Our trainers create modifications for any environment you have available.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(event)">
+                        <span>Can I cancel my membership anytime?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Yes. We offer month-to-month memberships with no long-term contracts. You can cancel anytime from your account settings with one click.</p>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-button" onclick="toggleAccordion(event)">
+                        <span>Is there a money-back guarantee?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Absolutely. We're confident in our results. If you're not satisfied after 30 days, we'll refund your membership in full, no questions asked.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-orange-500 to-red-500">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="stat-box bg-white bg-opacity-10 backdrop-blur">
+                    <div class="stat-number">50K+</div>
+                    <p class="text-white text-lg mt-2">Active Members</p>
+                </div>
+                <div class="stat-box bg-white bg-opacity-10 backdrop-blur">
+                    <div class="stat-number">98%</div>
+                    <p class="text-white text-lg mt-2">Success Rate</p>
+                </div>
+                <div class="stat-box bg-white bg-opacity-10 backdrop-blur">
+                    <div class="stat-number">500+</div>
+                    <p class="text-white text-lg mt-2">Expert Coaches</p>
+                </div>
+                <div class="stat-box bg-white bg-opacity-10 backdrop-blur">
+                    <div class="stat-number">4.9★</div>
+                    <p class="text-white text-lg mt-2">Average Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
+                <p class="text-xl text-gray-600">Real transformations from real people</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="testimonial-card">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Lost 25 lbs in 12 weeks without feeling deprived. The nutrition guidance made all the difference. My confidence is at an all-time high!"</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop" alt="Sarah" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900">Sarah Mitchell</p>
+                            <p class="text-sm text-gray-600">Fat Loss Program</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Gained 15 lbs of muscle in 16 weeks. The progressive training approach and meal plans were perfectly designed. Best investment ever!"</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop" alt="James" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900">James Rodriguez</p>
+                            <p class="text-sm text-gray-600">Muscle Building</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Finally feel strong and healthy again. The balanced approach with yoga and mindfulness helped me stay consistent. Highly recommend!"</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop" alt="Emily" class="w-12 h-12 rounded-full">
+                        <div>
+                            <p class="font-bold text-gray-900">Emily Chen</p>
+                            <p class="text-sm text-gray-600">Wellness Program</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Flexible Plans for Everyone</h2>
+                <p class="text-xl text-gray-600">Choose the plan that fits your goals and budget</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white border border-gray-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6">Perfect for beginners</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-primary text-white w-full py-2 rounded-lg font-semibold mb-8">Get Started</button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Basic workouts</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Mobile app access</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Email support</li>
+                    </ul>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-orange-500 to-red-500 text-white rounded-2xl p-8 relative">
+                    <span class="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-sm font-bold">Best Value</span>
+                    <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                    <p class="mb-6 opacity-90">Most popular option</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold">$79</span>
+                        <span class="opacity-90">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="bg-white text-orange-500 font-semibold w-full py-2 rounded-lg mb-8 hover:bg-gray-100 transition">Get Started</button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-2"><i class="fas fa-check"></i> All Starter features</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check"></i> Personalized program</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check"></i> 24/7 coach support</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check"></i> Nutrition planning</li>
+                    </ul>
+                </div>
+                <div class="card-hover bg-white border border-gray-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+                    <p class="text-gray-600 mb-6">For serious transformation</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$199</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-primary text-white w-full py-2 rounded-lg font-semibold mb-8">Get Started</button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Everything in Pro</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> 1-on-1 coaching calls</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Video form check</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-orange-500"></i> Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 bg-gradient-to-r from-gray-900 to-gray-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-white mb-6">Ready to Transform?</h2>
+            <p class="text-xl text-gray-300 mb-8">Join 50,000+ people who've already achieved their fitness goals. Your first week is completely free.</p>
+            <button onclick="openModal()" class="btn-primary text-white px-10 py-4 rounded-lg font-semibold text-lg inline-block hover:scale-105 transition">Start Your Free Trial Today</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-red-500 rounded-lg"></div>
+                        <span class="text-white font-bold">EliteFlow</span>
+                    </div>
+                    <p class="text-sm">Transform your body, transform your life.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About Us</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white">Terms & Conditions</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-facebook-f text-white"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-instagram text-white"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-orange-500 transition"><i class="fab fa-twitter text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Start Your Free Trial</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-orange-500" required>
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-orange-500" required>
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-orange-500" required>
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-orange-500" required>
+                    <option>Select Your Goal</option>
+                    <option>Lose Weight</option>
+                    <option>Build Muscle</option>
+                    <option>Improve Fitness</option>
+                </select>
+                <button type="submit" class="btn-primary text-white w-full py-3 rounded-lg font-semibold">Get Free Trial Access</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">No credit card required • 7 days free • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function toggleAccordion(event) {
+            const button = event.currentTarget;
+            const content = button.nextElementSibling;
+            const isActive = content.classList.contains('active');
+            
+            document.querySelectorAll('.accordion-content.active').forEach(item => {
+                item.classList.remove('active');
+                item.previousElementSibling.classList.remove('active');
+            });
+            
+            if (!isActive) {
+                content.classList.add('active');
+                button.classList.add('active');
+            }
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Thank you! Check your email for your free trial access.');
+            closeModal();
+        }
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

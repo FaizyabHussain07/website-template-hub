@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DesignStudio - Creative digital agency. Web design, branding, UI/UX, digital marketing solutions.">
+    <meta name="keywords" content="digital agency, web design, branding, graphic design, digital marketing">
+    <title>DesignStudio - Creative Digital Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+        .gradient-design { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .portfolio-item { transition: all 0.3s ease; }
+        .portfolio-item:hover { transform: scale(1.05); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-design rounded-lg flex items-center justify-center">
+                    <i class="fas fa-palette text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">DesignStudio</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-purple-600 transition font-medium">Services</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-purple-600 transition font-medium">Portfolio</a>
+                <a href="#team" class="text-gray-700 hover:text-purple-600 transition font-medium">Team</a>
+                <a href="#clients" class="text-gray-700 hover:text-purple-600 transition font-medium">Clients</a>
+                <button onclick="openModal()" class="gradient-design text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Get Quote</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Services</a>
+                <a href="#portfolio" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Portfolio</a>
+                <a href="#team" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Team</a>
+                <a href="#clients" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Clients</a>
+                <button onclick="openModal()" class="w-full gradient-design text-white py-2 rounded-lg font-bold">Get Quote</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-6">Creative Excellence</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Design That
+                        <span class="gradient-design bg-clip-text text-transparent"> Converts</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Award-winning digital agency. We create beautiful, strategic design solutions that drive results.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-design text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Your Project
+                        </button>
+                        <button class="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-purple-50 transition text-lg">
+                            View Portfolio
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-purple-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">50+ Successful Projects</p>
+                                <p class="text-sm text-gray-600">Delivered across diverse industries</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-purple-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Award-Winning Team</p>
+                                <p class="text-sm text-gray-600">Design, development, strategy experts</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="Design" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">Our Services</h2>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">Comprehensive digital solutions for modern businesses</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Web Design & Development</h3>
+                    <p class="text-gray-600 mb-6">Custom websites that are beautiful, fast, and conversion-focused. Responsive design for all devices.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Responsive design</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>SEO optimized</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Fast loading</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Secure & maintained</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-paint-brush text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Branding & Identity</h3>
+                    <p class="text-gray-600 mb-6">Build a strong brand identity. Logo design, color schemes, brand guidelines, and more.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Logo design</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Brand guidelines</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Visual identity</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Packaging design</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Mobile App Design</h3>
+                    <p class="text-gray-600 mb-6">Beautiful, user-friendly mobile apps. iOS and Android design with perfect UX.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>UI/UX design</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Prototyping</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>User testing</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>App development</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Digital Marketing</h3>
+                    <p class="text-gray-600 mb-6">Strategic marketing campaigns. SEO, SEM, social media, content marketing, and analytics.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>SEO & SEM</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Social media marketing</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Content strategy</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Analytics & reporting</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Video Production</h3>
+                    <p class="text-gray-600 mb-6">Professional video content. Corporate videos, explainers, animations, and promotional content.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Corporate videos</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Motion graphics</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Animation</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Post-production</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-14 h-14 gradient-design rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Strategy Consulting</h3>
+                    <p class="text-gray-600 mb-6">Digital strategy, brand positioning, market research, and growth planning services.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Brand strategy</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Market research</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Growth planning</li>
+                        <li><i class="fas fa-check text-purple-600 mr-2"></i>Competitive analysis</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Featured Projects</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">E-commerce Platform</h3>
+                        <p class="text-gray-600 text-sm mb-4">Complete redesign & development for luxury goods retailer</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Web Design</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Development</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1522869635100-ce8e12434e5f?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Mobile Banking App</h3>
+                        <p class="text-gray-600 text-sm mb-4">UI/UX design & development for fintech startup</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">App Design</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Development</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1553531088-be3be8a56ddb?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Brand Rebranding</h3>
+                        <p class="text-gray-600 text-sm mb-4">Complete brand identity & visual language redesign</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Branding</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Strategy</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1518611505868-48510c2e022f?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">SaaS Marketing Site</h3>
+                        <p class="text-gray-600 text-sm mb-4">Marketing website with conversion optimization</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Web Design</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Marketing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1523821741446-edb429f67d0c?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Video Campaign</h3>
+                        <p class="text-gray-600 text-sm mb-4">Cinematic brand videos for tech company launch</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Video</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Motion</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Corporate Website</h3>
+                        <p class="text-gray-600 text-sm mb-4">Enterprise website redesign for Fortune 500</p>
+                        <div class="flex gap-2">
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">Web Design</span>
+                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-xs font-bold">CMS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Meet Our Team</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-purple-300 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Sarah Johnson</h3>
+                    <p class="text-purple-600 font-bold text-sm mb-2">Creative Director</p>
+                    <p class="text-gray-600 text-sm">12+ years in design & branding</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-purple-400 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Michael Chen</h3>
+                    <p class="text-purple-600 font-bold text-sm mb-2">Lead Developer</p>
+                    <p class="text-gray-600 text-sm">Full-stack web & mobile development</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-purple-500 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Emma Wilson</h3>
+                    <p class="text-purple-600 font-bold text-sm mb-2">UX/UI Designer</p>
+                    <p class="text-gray-600 text-sm">User-centered design specialist</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-purple-600 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">David Martinez</h3>
+                    <p class="text-purple-600 font-bold text-sm mb-2">Strategy Lead</p>
+                    <p class="text-gray-600 text-sm">Digital strategy & consulting</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Trusted by Leading Brands</h2>
+
+            <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-8">
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">TechCorp</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">FinanceHub</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">RetailCo</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">HealthPlus</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">TravelEase</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-2xl font-bold text-gray-400">EduSmart</div>
+                </div>
+            </div>
+
+            <div class="mt-16 grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"DesignStudio transformed our brand. The team was professional, creative, and delivered beyond expectations."</p>
+                    <p class="font-bold text-gray-900">CEO, TechCorp</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Our new website increased conversions by 45%. DesignStudio's strategic approach really made the difference."</p>
+                    <p class="font-bold text-gray-900">Marketing Director, RetailCo</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Best investment we made. The app design is beautiful and user feedback has been overwhelmingly positive."</p>
+                    <p class="font-bold text-gray-900">Product Manager, FinanceHub</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-design text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Transform Your Brand?</h2>
+            <p class="text-xl mb-10 opacity-90">Let's create something amazing together.</p>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Get Your Free Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">DesignStudio</h4>
+                    <p class="text-sm">Creative digital agency delivering exceptional results.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Web Design</a></li>
+                        <li><a href="#" class="hover:text-white transition">Branding</a></li>
+                        <li><a href="#" class="hover:text-white transition">Development</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 DesignStudio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Quote Modal -->
+    <div id="quoteModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get Your Quote</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                    <option>Select Service</option>
+                    <option>Web Design</option>
+                    <option>Branding</option>
+                    <option>App Design</option>
+                    <option>Marketing</option>
+                </select>
+                <button type="submit" class="w-full gradient-design text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Request Quote
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('quoteModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('quoteModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('quoteModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

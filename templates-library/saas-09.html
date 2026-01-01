@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VisionAI - Computer vision API for intelligent image analysis">
+    <meta name="keywords" content="SaaS, API, computer vision, image recognition">
+    <title>VisionAI - Intelligent Image Analysis API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; font-weight: 800; }
+        .gradient-blue { background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .modal-open { display: none; }
+        .modal-open.show { display: flex; }
+        .card-3d { transition: all 0.3s; perspective: 1000px; }
+        .card-3d:hover { transform: translateY(-8px) rotateX(5deg); box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2); }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
+    <header class="fixed top-0 w-full bg-slate-900/80 backdrop-blur z-50 border-b border-blue-500/20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center"><i class="fas fa-eye text-white"></i></div>
+                <span class="text-xl font-bold text-white">VisionAI</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center text-gray-300">
+                <a href="#capabilities" class="hover:text-cyan-400 transition">Capabilities</a>
+                <a href="#use-cases" class="hover:text-cyan-400 transition">Use Cases</a>
+                <a href="#pricing" class="hover:text-cyan-400 transition">Pricing</a>
+                <button onclick="openSignup()" class="bg-blue-600 text-white px-6 py-2.5 rounded-lg hover:bg-blue-700 transition">Get API Key</button>
+            </nav>
+            <button id="mob" class="lg:hidden text-gray-300" onclick="toggleNav()"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        <div id="nav" class="hidden lg:hidden border-t border-blue-500/20">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#capabilities" class="block text-gray-300 py-2 hover:text-cyan-400">Capabilities</a>
+                <a href="#use-cases" class="block text-gray-300 py-2 hover:text-cyan-400">Use Cases</a>
+                <a href="#pricing" class="block text-gray-300 py-2 hover:text-cyan-400">Pricing</a>
+                <button onclick="openSignup()" class="w-full bg-blue-600 text-white px-6 py-2.5 rounded-lg">Get API Key</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-blue-500/20 text-cyan-400 px-4 py-1.5 rounded-full text-sm font-bold mb-6">Computer Vision API</div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">See What<br/><span class="gradient-blue">Machines See</span></h1>
+                <p class="text-xl text-gray-400 mb-8">Powerful vision API for object detection, facial recognition, OCR, and more. Build with AI in minutes, not months.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openSignup()" class="bg-blue-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-600/50">Get Started Free</button>
+                    <button class="border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-lg font-bold hover:bg-cyan-500/10 transition">View Docs</button>
+                </div>
+            </div>
+            <div class="hidden lg:block bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-2xl p-8 border border-blue-500/30">
+                <div class="text-center"><i class="fas fa-image text-6xl text-cyan-400 opacity-50"></i></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="capabilities" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">Powerful API Capabilities</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-cube text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Object Detection</h3>
+                    <p class="text-gray-400">Identify and locate objects in images with high accuracy</p>
+                </div>
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-face-smile text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Face Recognition</h3>
+                    <p class="text-gray-400">Detect faces, age, emotion, and attributes instantly</p>
+                </div>
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-align-left text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">OCR (Text Detection)</h3>
+                    <p class="text-gray-400">Extract text from images with high accuracy</p>
+                </div>
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-tag text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Image Classification</h3>
+                    <p class="text-gray-400">Classify images into 1000+ categories</p>
+                </div>
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-magnifying-glass text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Visual Search</h3>
+                    <p class="text-gray-400">Find similar images across your database</p>
+                </div>
+                <div class="card-3d bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <div class="text-4xl mb-4"><i class="fas fa-palette text-cyan-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Color Analysis</h3>
+                    <p class="text-gray-400">Extract dominant colors and color palettes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="use-cases" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">Industry Solutions</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4"><i class="fas fa-shopping-bag mr-3"></i>E-Commerce</h3>
+                    <p class="text-gray-400">Product discovery, visual search, quality control automation</p>
+                </div>
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4"><i class="fas fa-shield-alt mr-3"></i>Security</h3>
+                    <p class="text-gray-400">Facial recognition, anomaly detection, surveillance analysis</p>
+                </div>
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4"><i class="fas fa-heart mr-3"></i>Healthcare</h3>
+                    <p class="text-gray-400">Medical imaging analysis, diagnostic support, patient monitoring</p>
+                </div>
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-4"><i class="fas fa-factory mr-3"></i>Manufacturing</h3>
+                    <p class="text-gray-400">Quality inspection, defect detection, process automation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">Flexible Pricing</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-2">Starter</h3>
+                    <p class="text-gray-400 mb-8">For prototypes</p>
+                    <div class="text-4xl font-bold text-white mb-8">Free</div>
+                    <button onclick="openSignup()" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition mb-8">Get Started</button>
+                    <ul class="space-y-2 text-gray-400 text-sm"><li><i class="fas fa-check text-green-600 mr-2"></i>10K API calls/month</li><li><i class="fas fa-check text-green-600 mr-2"></i>All features</li></ul>
+                </div>
+                <div class="bg-slate-800/50 border-2 border-cyan-500 rounded-xl p-8 relative">
+                    <div class="absolute -top-4 left-8 bg-cyan-500 text-slate-900 px-4 py-1 rounded-full text-sm font-bold">POPULAR</div>
+                    <h3 class="text-2xl font-bold text-white mb-2 mt-4">Pro</h3>
+                    <p class="text-gray-400 mb-8">For production</p>
+                    <div class="text-4xl font-bold text-white mb-8">$99<span class="text-lg text-gray-400">/mo</span></div>
+                    <button onclick="openSignup()" class="w-full bg-cyan-500 text-slate-900 px-6 py-3 rounded-lg hover:bg-cyan-600 transition font-bold mb-8">Get API Key</button>
+                    <ul class="space-y-2 text-gray-400 text-sm"><li><i class="fas fa-check text-green-600 mr-2"></i>1M API calls/month</li><li><i class="fas fa-check text-green-600 mr-2"></i>Priority support</li></ul>
+                </div>
+                <div class="bg-slate-800/50 border border-blue-500/30 rounded-xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-2">Enterprise</h3>
+                    <p class="text-gray-400 mb-8">Unlimited scale</p>
+                    <div class="text-4xl font-bold text-white mb-8">Custom</div>
+                    <button onclick="openSignup()" class="w-full bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition mb-8">Contact</button>
+                    <ul class="space-y-2 text-gray-400 text-sm"><li><i class="fas fa-check text-green-600 mr-2"></i>Unlimited calls</li><li><i class="fas fa-check text-green-600 mr-2"></i>Dedicated support</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-6">Ready to Build with Vision AI?</h2>
+            <button onclick="openSignup()" class="bg-gradient-to-r from-blue-600 to-cyan-500 text-white px-10 py-4 rounded-lg font-bold hover:shadow-lg hover:shadow-blue-600/50 transition">Get Free API Key</button>
+        </div>
+    </section>
+    
+    <footer class="border-t border-blue-500/20 bg-slate-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            <div class="flex gap-6"><a href="#" class="hover:text-cyan-400"><i class="fab fa-twitter"></i></a></div>
+        </div>
+    </footer>
+    
+    <div id="modal" class="modal-open fixed inset-0 bg-black/50 z-50 px-4">
+        <div class="bg-slate-900 rounded-2xl max-w-md w-full m-auto border border-blue-500/30">
+            <div class="flex justify-between items-center p-6 border-b border-blue-500/20">
+                <h3 class="text-2xl font-bold text-white">Get API Key</h3>
+                <button onclick="closeSignup()" class="text-gray-500 hover:text-gray-300"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6">
+                <form class="space-y-4">
+                    <input type="text" placeholder="Full name" class="w-full px-4 py-3 bg-slate-800 border border-blue-500/30 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-3 bg-slate-800 border border-blue-500/30 rounded-lg text-white placeholder-gray-600 focus:outline-none focus:border-cyan-500">
+                    <button type="button" onclick="closeSignup()" class="w-full bg-blue-600 text-white py-3 rounded-lg font-bold hover:bg-blue-700 transition">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleNav() { document.getElementById('nav').classList.toggle('hidden'); }
+        function openSignup() { document.getElementById('modal').classList.add('show'); document.body.style.overflow = 'hidden'; }
+        function closeSignup() { document.getElementById('modal').classList.remove('show'); document.body.style.overflow = 'auto'; }
+        window.onclick = function(e) { if (e.target === document.getElementById('modal')) closeSignup(); }
+    </script>
+</body>
+</html>

@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TutorConnect - Online tutoring platform for K-12 students. 1-on-1 lessons with certified tutors.">
+    <meta name="keywords" content="online tutoring, K-12, homework help, test prep, math tutor, english tutor">
+    <title>TutorConnect - Online Tutoring Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Nunito', sans-serif; }
+        h1, h2, h3 { font-family: 'Crimson Text', serif; font-weight: 600; }
+        .gradient-tutor { background: linear-gradient(135deg, #10b981 0%, #059669 100%); }
+        .tutor-card { transition: all 0.3s ease; }
+        .tutor-card:hover { transform: translateY(-8px); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .subject-btn { transition: all 0.3s ease; }
+        .subject-btn.active { background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-tutor rounded-lg flex items-center justify-center">
+                    <i class="fas fa-book-reader text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">TutorConnect</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#subjects" class="text-gray-700 hover:text-green-600 transition font-medium">Subjects</a>
+                <a href="#tutors" class="text-gray-700 hover:text-green-600 transition font-medium">Find a Tutor</a>
+                <a href="#pricing" class="text-gray-700 hover:text-green-600 transition font-medium">Pricing</a>
+                <a href="#results" class="text-gray-700 hover:text-green-600 transition font-medium">Results</a>
+                <button onclick="openModal()" class="gradient-tutor text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Book Now</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#subjects" class="block text-gray-700 hover:text-green-600 py-2 font-medium">Subjects</a>
+                <a href="#tutors" class="block text-gray-700 hover:text-green-600 py-2 font-medium">Find a Tutor</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-green-600 py-2 font-medium">Pricing</a>
+                <a href="#results" class="block text-gray-700 hover:text-green-600 py-2 font-medium">Results</a>
+                <button onclick="openModal()" class="w-full gradient-tutor text-white py-2 rounded-lg font-bold">Book Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-bold mb-6">Expert Online Tutoring</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Get Expert Help
+                        <span class="gradient-tutor bg-clip-text text-transparent"> Anytime</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Connect with certified tutors for K-12 subjects. 1-on-1 personalized learning at your pace.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-tutor text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Book First Lesson
+                        </button>
+                        <button class="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-green-50 transition text-lg">
+                            Find a Tutor
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Certified Tutors</p>
+                                <p class="text-sm text-gray-600">Qualified professionals with backgrounds</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-green-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Flexible Scheduling</p>
+                                <p class="text-sm text-gray-600">Book lessons whenever it works for you</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1427504494938-7dde8b1d6e74?w=500&h=400&fit=crop" alt="Tutoring" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Subjects Section -->
+    <section id="subjects" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">Tutoring for All Subjects</h2>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">From elementary through high school, we cover all major subjects</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">📐</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Mathematics</h3>
+                    <p class="text-gray-600 mb-6">Algebra, Geometry, Calculus, SAT/ACT Math</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 3-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Test prep</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>250+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">📚</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">English & Writing</h3>
+                    <p class="text-gray-600 mb-6">Literature, Essays, Grammar, SAT/ACT English</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 3-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Essay coaching</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>200+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">🧪</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Science</h3>
+                    <p class="text-gray-600 mb-6">Biology, Chemistry, Physics, AP Sciences</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 3-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Lab help</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>180+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Languages</h3>
+                    <p class="text-gray-600 mb-6">Spanish, French, German, Chinese, Japanese</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 3-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Conversational</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>150+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">📜</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">History & Social Studies</h3>
+                    <p class="text-gray-600 mb-6">World History, US History, AP exams</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 3-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Essay help</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>120+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">💻</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Computer Science</h3>
+                    <p class="text-gray-600 mb-6">Programming, Python, Java, Web Development</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Grade 6-12</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Project help</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>100+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">🎨</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Arts & Music</h3>
+                    <p class="text-gray-600 mb-6">Visual Arts, Music Theory, Piano, Guitar</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>All ages</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Instrument lessons</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>80+ tutors</li>
+                    </ul>
+                </div>
+
+                <div class="tutor-card bg-white p-6 rounded-xl shadow-md border border-gray-200 hover:border-green-500">
+                    <div class="text-4xl mb-4">🎯</div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Test Prep</h3>
+                    <p class="text-gray-600 mb-6">SAT, ACT, GRE, GMAT, AP Exams</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Expert coaches</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Score guarantee</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>160+ tutors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutors Section -->
+    <section id="tutors" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Meet Our Expert Tutors</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <div class="w-20 h-20 bg-green-300 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 text-center mb-2">Maria Rodriguez</h3>
+                    <p class="text-sm text-green-600 text-center mb-4 font-bold">Math & Science Specialist</p>
+                    <p class="text-gray-600 text-sm mb-4">
+                        5+ years teaching experience. Specializes in SAT/ACT prep. 98% of students improve their scores.
+                    </p>
+                    <div class="flex justify-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <button onclick="openModal()" class="w-full gradient-tutor text-white py-2 rounded-lg font-bold hover:shadow-lg transition">Book Lesson</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <div class="w-20 h-20 bg-green-400 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 text-center mb-2">David Chen</h3>
+                    <p class="text-sm text-green-600 text-center mb-4 font-bold">Computer Science Expert</p>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Software engineer teaching coding to K-12. 200+ students taught. Expert in Python & Java.
+                    </p>
+                    <div class="flex justify-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <button onclick="openModal()" class="w-full gradient-tutor text-white py-2 rounded-lg font-bold hover:shadow-lg transition">Book Lesson</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <div class="w-20 h-20 bg-green-500 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 text-center mb-2">Jessica Martinez</h3>
+                    <p class="text-sm text-green-600 text-center mb-4 font-bold">English & Essay Coach</p>
+                    <p class="text-gray-600 text-sm mb-4">
+                        Published author. Helps students with essays, creative writing & SAT/ACT reading.
+                    </p>
+                    <div class="flex justify-center gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <button onclick="openModal()" class="w-full gradient-tutor text-white py-2 rounded-lg font-bold hover:shadow-lg transition">Book Lesson</button>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button class="border-2 border-green-600 text-green-600 px-8 py-3 rounded-lg font-bold hover:bg-green-50 transition text-lg">
+                    View All 1,200+ Tutors
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Simple Pricing</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Pay Per Lesson</h3>
+                    <p class="text-4xl font-bold text-green-600 mb-2">$25-50</p>
+                    <p class="text-gray-600 mb-6">per 50-minute lesson</p>
+                    <ul class="space-y-3 mb-8 text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>No subscription</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Choose any tutor</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Flexible scheduling</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Money-back guarantee</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-tutor text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Book Now
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-600 to-emerald-600 p-8 rounded-xl shadow-lg text-white relative">
+                    <div class="absolute top-4 right-4 bg-yellow-300 text-gray-900 px-3 py-1 rounded-full font-bold text-sm">Popular</div>
+                    <h3 class="text-2xl font-bold mb-4">Monthly Subscription</h3>
+                    <p class="text-4xl font-bold mb-2">$199</p>
+                    <p class="text-green-100 mb-6">8 lessons/month</p>
+                    <ul class="space-y-3 mb-8 text-green-50">
+                        <li><i class="fas fa-check mr-2"></i>$24.88 per lesson</li>
+                        <li><i class="fas fa-check mr-2"></i>$100 discount annually</li>
+                        <li><i class="fas fa-check mr-2"></i>Dedicated tutor</li>
+                        <li><i class="fas fa-check mr-2"></i>Priority booking</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-white text-green-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                        Get Started
+                    </button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Intensive Prep</h3>
+                    <p class="text-4xl font-bold text-green-600 mb-2">$699</p>
+                    <p class="text-gray-600 mb-6">SAT/ACT Prep (10 weeks)</p>
+                    <ul class="space-y-3 mb-8 text-gray-700">
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>20 lessons included</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Expert test coach</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Full study materials</li>
+                        <li><i class="fas fa-check text-green-600 mr-2"></i>Score improvement guarantee</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full gradient-tutor text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Book Package
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Results Section -->
+    <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Proven Results</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2">92%</div>
+                    <p class="text-gray-600">Student satisfaction rate</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2">+2.1</div>
+                    <p class="text-gray-600">Average GPA improvement</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2">+150</div>
+                    <p class="text-gray-600">Average SAT score increase</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-green-600 mb-2">500K+</div>
+                    <p class="text-gray-600">Lessons completed</p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"My SAT score jumped from 1200 to 1380 in just 8 weeks! The tutors here are amazing and really know how to explain difficult concepts. Highly recommend!"</p>
+                    <p class="font-bold text-gray-900">Alex Johnson, High School Junior</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a parent, I love how flexible TutorConnect is. My daughter can book lessons around her soccer schedule. She went from a C to an A in algebra!"</p>
+                    <p class="font-bold text-gray-900">Sarah Williams, Parent</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-tutor text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Improve Your Grades?</h2>
+            <p class="text-xl mb-10 opacity-90">Book your first lesson today and see the difference expert tutoring can make.</p>
+            <button onclick="openModal()" class="bg-white text-green-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Book First Lesson
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">TutorConnect</h4>
+                    <p class="text-sm">Expert online tutoring for K-12 students.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Subjects</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Math</a></li>
+                        <li><a href="#" class="hover:text-white transition">Science</a></li>
+                        <li><a href="#" class="hover:text-white transition">English</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 TutorConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="enrollModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Book Your First Lesson</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Student Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                <input type="email" placeholder="Parent Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                    <option>Select Subject</option>
+                    <option>Mathematics</option>
+                    <option>Science</option>
+                    <option>English</option>
+                    <option>Test Prep</option>
+                </select>
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-1 focus:ring-green-600">
+                    <option>Select Grade Level</option>
+                    <option>Elementary (3-5)</option>
+                    <option>Middle School (6-8)</option>
+                    <option>High School (9-12)</option>
+                </select>
+                <button type="submit" class="w-full gradient-tutor text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Book Lesson
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('enrollModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('enrollModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('enrollModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

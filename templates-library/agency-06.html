@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GrowthLab - Growth marketing agency. Conversion optimization, funnel design, analytics, growth strategy.">
+    <meta name="keywords" content="growth marketing, conversion optimization, funnel optimization, analytics, growth strategy">
+    <title>GrowthLab - Growth Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'IBM Plex Serif', serif; }
+        .gradient-growth { background: linear-gradient(135deg, #8b5cf6 0%, #d946ef 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-growth rounded-lg flex items-center justify-center">
+                    <i class="fas fa-chart-line text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">GrowthLab</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-purple-600 transition font-medium">Services</a>
+                <a href="#methodology" class="text-gray-700 hover:text-purple-600 transition font-medium">Methodology</a>
+                <a href="#case-studies" class="text-gray-700 hover:text-purple-600 transition font-medium">Case Studies</a>
+                <a href="#pricing" class="text-gray-700 hover:text-purple-600 transition font-medium">Pricing</a>
+                <button onclick="openModal()" class="gradient-growth text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Book Call</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Services</a>
+                <a href="#methodology" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Methodology</a>
+                <a href="#case-studies" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Case Studies</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-purple-600 py-2 font-medium">Pricing</a>
+                <button onclick="openModal()" class="w-full gradient-growth text-white py-2 rounded-lg font-bold">Book Call</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-pink-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm font-bold mb-6">Data-Driven Growth</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Accelerate Your
+                        <span class="gradient-growth bg-clip-text text-transparent"> Revenue Growth</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Growth marketing specialists. Conversion optimization, funnel design, data analytics, and growth strategy.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-growth text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Schedule Free Audit
+                        </button>
+                        <button class="border-2 border-purple-600 text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-purple-50 transition text-lg">
+                            View Case Studies
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-purple-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Avg 3.2x ROI</p>
+                                <p class="text-sm text-gray-600">On growth marketing spend</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-purple-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">50+ Companies</p>
+                                <p class="text-sm text-gray-600">From startups to enterprise</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop" alt="Growth" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Growth Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-funnel text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Funnel Optimization</h3>
+                    <p class="text-gray-600 mb-6">Analyze and optimize your entire conversion funnel. Identify bottlenecks and increase conversions.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-flask text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">A/B Testing</h3>
+                    <p class="text-gray-600 mb-6">Data-driven experimentation. Test, measure, optimize. Continuous improvement.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-bar text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Analytics & Reporting</h3>
+                    <p class="text-gray-600 mb-6">Advanced analytics setup and monthly reporting. Understand your growth metrics.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users-cog text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Growth Strategy</h3>
+                    <p class="text-gray-600 mb-6">Custom growth roadmap and strategy. Align teams around growth objectives.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-money-bill-wave text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Pricing Optimization</h3>
+                    <p class="text-gray-600 mb-6">Maximize revenue through strategic pricing. Tier optimization and testing.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-purple-500 transition">
+                    <div class="w-12 h-12 gradient-growth rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Product-Led Growth</h3>
+                    <p class="text-gray-600 mb-6">Build growth into your product. Viral mechanics, onboarding, retention.</p>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="methodology" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Growth Framework</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border-l-4 border-purple-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Audit & Discovery</h3>
+                    <p class="text-gray-600">Comprehensive analysis of your growth metrics, funnel, and competitive landscape.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-purple-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Strategy Development</h3>
+                    <p class="text-gray-600">Create a data-driven growth strategy aligned with your business goals.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-purple-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Implementation</h3>
+                    <p class="text-gray-600">Execute experiments, optimizations, and strategic initiatives with your team.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-purple-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Monitoring & Optimization</h3>
+                    <p class="text-gray-600">Continuous measurement, analysis, and optimization for sustained growth.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="case-studies" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Case Studies</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">SaaS Company</h3>
+                    <div class="space-y-3 mb-6">
+                        <div>
+                            <p class="text-sm text-gray-600">MRR Growth</p>
+                            <p class="text-3xl font-bold text-purple-600">+180%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Conversion Rate</p>
+                            <p class="text-3xl font-bold text-purple-600">3.2% → 7.8%</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Read Full Case →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">E-Commerce</h3>
+                    <div class="space-y-3 mb-6">
+                        <div>
+                            <p class="text-sm text-gray-600">Revenue Growth</p>
+                            <p class="text-3xl font-bold text-purple-600">+240%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">AOV Increase</p>
+                            <p class="text-3xl font-bold text-purple-600">+45%</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Read Full Case →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">B2B SaaS</h3>
+                    <div class="space-y-3 mb-6">
+                        <div>
+                            <p class="text-sm text-gray-600">Pipeline Growth</p>
+                            <p class="text-3xl font-bold text-purple-600">+165%</p>
+                        </div>
+                        <div>
+                            <p class="text-sm text-gray-600">Sales Cycle</p>
+                            <p class="text-3xl font-bold text-purple-600">-30 days</p>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="text-purple-600 font-bold hover:text-purple-700 transition">Read Full Case →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Pricing</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Audit & Strategy</h3>
+                    <p class="text-3xl font-bold text-purple-600 mb-6">$3,000</p>
+                    <p class="text-gray-600 mb-6">One-time comprehensive growth audit and strategy</p>
+                    <button onclick="openModal()" class="w-full gradient-growth text-white py-2 rounded-lg font-bold hover:shadow-lg transition">Get Started</button>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-600 to-pink-600 p-8 rounded-xl shadow-lg text-white">
+                    <div class="absolute top-4 right-4 bg-yellow-300 text-gray-900 px-3 py-1 rounded-full font-bold text-sm">Popular</div>
+                    <h3 class="text-xl font-bold mb-2">Growth Services</h3>
+                    <p class="text-3xl font-bold mb-6">$8,000/mo</p>
+                    <p class="opacity-90 mb-6">Ongoing optimization and growth execution</p>
+                    <button onclick="openModal()" class="w-full bg-white text-purple-600 py-2 rounded-lg font-bold hover:bg-gray-100 transition">Start Now</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-3xl font-bold text-purple-600 mb-6">Custom</p>
+                    <p class="text-gray-600 mb-6">Dedicated growth team and custom solutions</p>
+                    <button onclick="openModal()" class="w-full gradient-growth text-white py-2 rounded-lg font-bold hover:shadow-lg transition">Contact Us</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-growth text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Accelerate Growth?</h2>
+            <p class="text-xl mb-10 opacity-90">Get your free growth audit today.</p>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Schedule Audit
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">GrowthLab</h4>
+                    <p class="text-sm">Growth marketing for ambitious companies.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Funnel Opt</a></li>
+                        <li><a href="#" class="hover:text-white transition">A/B Testing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Strategy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Reports</a></li>
+                        <li><a href="#" class="hover:text-white transition">Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-linkedin text-white"></i></a>
+                        <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-twitter text-white"></i></a>
+                        <a href="#" class="hover:text-purple-400 transition"><i class="fab fa-facebook text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 GrowthLab. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="auditModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Book Your Audit</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <input type="url" placeholder="Website" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-1 focus:ring-purple-600">
+                <button type="submit" class="w-full gradient-growth text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Schedule Audit
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('auditModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('auditModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('auditModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

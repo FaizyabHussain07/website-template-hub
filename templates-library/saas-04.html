@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AnalyticsHub - Advanced analytics platform for data-driven insights">
+    <meta name="keywords" content="SaaS, analytics, data insights, business intelligence">
+    <title>AnalyticsHub - Real-time Analytics & Insights Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+        }
+        
+        .gradient-indigo {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glow-pulse {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+        
+        @keyframes glowPulse {
+            0%, 100% {
+                box-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 60px rgba(99, 102, 241, 0.6);
+            }
+        }
+        
+        .slide-right {
+            animation: slideRight 0.8s ease-out;
+        }
+        
+        @keyframes slideRight {
+            from {
+                opacity: 0;
+                transform: translateX(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .pricing-toggle {
+            display: flex;
+            background: #f3f4f6;
+            border-radius: 10px;
+            padding: 6px;
+            width: fit-content;
+            margin: 0 auto;
+        }
+        
+        .pricing-toggle button {
+            padding: 8px 20px;
+            border: none;
+            background: transparent;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            color: #6b7280;
+        }
+        
+        .pricing-toggle button.active {
+            background: white;
+            color: #6366f1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(99, 102, 241, 0.1);
+        }
+        
+        .modal-backdrop {
+            display: none;
+            animation: fadeIn 0.3s ease-out;
+        }
+        
+        .modal-backdrop.show {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .accordion-content.open {
+            max-height: 300px;
+        }
+        
+        .chart-bar {
+            height: 100%;
+            background: linear-gradient(180deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 6px 6px 0 0;
+            transition: all 0.3s;
+        }
+        
+        .chart-bar:hover {
+            filter: brightness(1.1);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center shadow-lg">
+                    <i class="fas fa-chart-bar text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">AnalyticsHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#capabilities" class="text-gray-700 font-medium hover:text-indigo-600 transition">Capabilities</a>
+                <a href="#solutions" class="text-gray-700 font-medium hover:text-indigo-600 transition">Solutions</a>
+                <a href="#pricing" class="text-gray-700 font-medium hover:text-indigo-600 transition">Pricing</a>
+                <button onclick="openModal()" class="bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition shadow-md">
+                    Try Free
+                </button>
+            </nav>
+            
+            <button id="mobileBtn" class="lg:hidden text-gray-700" onclick="toggleMobile()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileNav" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#capabilities" class="block text-gray-700 font-medium py-2 hover:text-indigo-600">Capabilities</a>
+                <a href="#solutions" class="block text-gray-700 font-medium py-2 hover:text-indigo-600">Solutions</a>
+                <a href="#pricing" class="block text-gray-700 font-medium py-2 hover:text-indigo-600">Pricing</a>
+                <button onclick="openModal()" class="w-full bg-indigo-600 text-white px-6 py-2.5 rounded-lg font-semibold">Try Free</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div class="slide-right">
+                <div class="inline-block bg-indigo-100 text-indigo-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-rocket text-indigo-600"></i> Advanced Analytics Platform
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+                    Unlock Data<br/><span class="gradient-indigo">Intelligence</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Transform raw data into actionable insights. Real-time dashboards, predictive analytics, and AI-powered recommendations for smarter business decisions.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openModal()" class="bg-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-indigo-700 transition shadow-lg">
+                        Start Free Trial
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-indigo-600 hover:text-indigo-600 transition">
+                        View Demo
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-6"><i class="fas fa-check text-green-600 mr-1"></i> No credit card required &bull; <i class="fas fa-check text-green-600 mr-1"></i> Full access for 30 days</p>
+            </div>
+            
+            <div class="hidden lg:block">
+                <div class="glow-pulse p-8 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-3xl">
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div class="h-32 bg-gray-200 rounded-lg flex items-end justify-center pb-2">
+                            <div class="chart-bar" style="height: 60%;"></div>
+                        </div>
+                        <div class="h-32 bg-gray-200 rounded-lg flex items-end justify-center pb-2">
+                            <div class="chart-bar" style="height: 75%;"></div>
+                        </div>
+                        <div class="h-32 bg-gray-200 rounded-lg flex items-end justify-center pb-2">
+                            <div class="chart-bar" style="height: 45%;"></div>
+                        </div>
+                    </div>
+                    <div class="flex items-center justify-between text-xs text-gray-600">
+                        <span>Q1</span>
+                        <span>Q2</span>
+                        <span>Q3</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Capabilities -->
+    <section id="capabilities" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Powerful Capabilities</h2>
+                <p class="text-xl text-gray-600">Everything you need to analyze and understand your data</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-tachometer-alt text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Real-time Dashboards</h3>
+                    <p class="text-gray-600">Live dashboards that update every second. Monitor KPIs and metrics as they happen.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">AI Predictions</h3>
+                    <p class="text-gray-600">Machine learning models predict trends. Stay ahead of the curve with predictive insights.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-database text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Data Integration</h3>
+                    <p class="text-gray-600">Connect 300+ data sources. Consolidate data from all your business tools.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Custom Reports</h3>
+                    <p class="text-gray-600">Build reports with drag-and-drop. No coding required. Export in any format.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-share-alt text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Team Sharing</h3>
+                    <p class="text-gray-600">Share dashboards and reports instantly. Collaborate with your entire organization.</p>
+                </div>
+                
+                <div class="feature-card bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-14 h-14 bg-cyan-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-cyan-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600">Bank-level encryption. SOC 2 compliant. Role-based access control.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Solutions with Accordion -->
+    <section id="solutions" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Solutions by Industry</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Tailored for your business needs</p>
+            
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="bg-white rounded-xl border border-gray-200">
+                    <button onclick="toggleAccordion(0)" class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition font-bold text-lg text-gray-900">
+                        <span><i class="fas fa-store mr-3 text-indigo-600"></i>E-Commerce</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-0"></i>
+                    </button>
+                    <div id="accordion-0" class="accordion-content">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600 space-y-3">
+                            <p>Track customer behavior, conversion funnels, and product performance metrics.</p>
+                            <ul class="space-y-2 ml-4">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Sales & Revenue Tracking</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Customer Lifetime Value</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Inventory Analytics</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Churn Prediction</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 2 -->
+                <div class="bg-white rounded-xl border border-gray-200">
+                    <button onclick="toggleAccordion(1)" class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition font-bold text-lg text-gray-900">
+                        <span><i class="fas fa-hospital mr-3 text-indigo-600"></i>Healthcare</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-1"></i>
+                    </button>
+                    <div id="accordion-1" class="accordion-content">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600 space-y-3">
+                            <p>Analyze patient data, treatment outcomes, and operational efficiency.</p>
+                            <ul class="space-y-2 ml-4">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Patient Analytics</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Treatment Outcomes</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Resource Utilization</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Compliance Reporting</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 3 -->
+                <div class="bg-white rounded-xl border border-gray-200">
+                    <button onclick="toggleAccordion(2)" class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition font-bold text-lg text-gray-900">
+                        <span><i class="fas fa-building mr-3 text-indigo-600"></i>Finance</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-2"></i>
+                    </button>
+                    <div id="accordion-2" class="accordion-content">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600 space-y-3">
+                            <p>Monitor financial performance, risk metrics, and investment analytics.</p>
+                            <ul class="space-y-2 ml-4">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Revenue & Expense Tracking</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Portfolio Analysis</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Risk Management</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Audit Ready Reports</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 4 -->
+                <div class="bg-white rounded-xl border border-gray-200">
+                    <button onclick="toggleAccordion(3)" class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-gray-50 transition font-bold text-lg text-gray-900">
+                        <span><i class="fas fa-cogs mr-3 text-indigo-600"></i>Manufacturing</span>
+                        <i class="fas fa-chevron-down transition-transform duration-300" id="icon-3"></i>
+                    </button>
+                    <div id="accordion-3" class="accordion-content">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600 space-y-3">
+                            <p>Track production efficiency, quality metrics, and supply chain performance.</p>
+                            <ul class="space-y-2 ml-4">
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Production Analytics</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Quality Control</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Supply Chain Visibility</li>
+                                <li><i class="fas fa-check text-green-600 mr-2"></i>Predictive Maintenance</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-6">Simple, Transparent Pricing</h2>
+                
+                <div class="pricing-toggle">
+                    <button onclick="togglePricing('monthly')" class="active" id="monthlyBtn">Monthly</button>
+                    <button onclick="togglePricing('annual')" id="annualBtn">Annual (Save 25%)</button>
+                </div>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 feature-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-8">For small teams</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900" id="starter-price">$199</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Up to 5 users</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Basic dashboards</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">2 data sources</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Email support</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="bg-white rounded-2xl border-2 border-indigo-600 p-8 feature-card relative shadow-lg">
+                    <div class="absolute -top-4 left-8 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-4">Professional</h3>
+                    <p class="text-gray-600 mb-8">For growing businesses</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900" id="professional-price">$599</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-indigo-700 transition mb-8">
+                        Start Trial
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Up to 50 users</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Advanced dashboards</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Unlimited data sources</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">AI predictions</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Priority support</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 feature-card">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-8">For large organizations</p>
+                    <div class="mb-8">
+                        <span class="text-3xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Sales
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Everything in Pro</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">Dedicated support</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">SSO & custom integrations</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-indigo-600"></i> <span class="text-gray-700">SLA guarantee</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-indigo-600 to-purple-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Transform Your Analytics?</h2>
+            <p class="text-2xl text-indigo-100 mb-10">Join 5,000+ companies making data-driven decisions with AnalyticsHub.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-indigo-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Start Free Trial
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    Schedule Demo
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center">
+                            <i class="fas fa-chart-bar text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">AnalyticsHub</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Data intelligence platform</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-indigo-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-indigo-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-indigo-400 transition">Docs</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-indigo-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-indigo-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-indigo-400 transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Trial Modal -->
+    <div id="trialModal" class="modal-backdrop fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-900">Start Free Trial</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100" placeholder="Your name">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Work Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100" placeholder="you@company.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Company</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-indigo-600 focus:ring-2 focus:ring-indigo-100" placeholder="Your company">
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-bold hover:bg-indigo-700 transition">
+                        Start Trial
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-500">30-day free trial. No credit card required.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobile() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('trialModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('trialModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleAccordion(index) {
+            const content = document.getElementById(`accordion-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            content.classList.toggle('open');
+            icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+        }
+        
+        function togglePricing(period) {
+            const monthlyBtn = document.getElementById('monthlyBtn');
+            const annualBtn = document.getElementById('annualBtn');
+            const starterPrice = document.getElementById('starter-price');
+            const professionalPrice = document.getElementById('professional-price');
+            
+            if (period === 'annual') {
+                monthlyBtn.classList.remove('active');
+                annualBtn.classList.add('active');
+                starterPrice.textContent = '$149';
+                professionalPrice.textContent = '$449';
+            } else {
+                monthlyBtn.classList.add('active');
+                annualBtn.classList.remove('active');
+                starterPrice.textContent = '$199';
+                professionalPrice.textContent = '$599';
+            }
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('trialModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

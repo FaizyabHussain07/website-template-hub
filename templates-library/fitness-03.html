@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IronHub - Professional Strength Training & Bodybuilding</title>
+    <meta name="description" content="World-class strength training programs for competitive athletes and dedicated bodybuilders.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&family=Courier+Prime:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+        .badge-font {
+            font-family: 'Courier Prime', monospace;
+            font-weight: 700;
+        }
+        .gradient-purple {
+            background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-purple {
+            background: linear-gradient(135deg, #7C3AED 0%, #5B21B6 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-purple:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.4);
+        }
+        .hero-line {
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #7C3AED, transparent);
+            animation: slideIn 1s ease-out;
+        }
+        @keyframes slideIn {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .card-scale {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+        }
+        .card-scale:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 50px rgba(124, 58, 237, 0.2);
+        }
+        .progress-bar {
+            height: 6px;
+            background: linear-gradient(90deg, #7C3AED, #5B21B6);
+            border-radius: 3px;
+            animation: progress 2s ease-out;
+        }
+        @keyframes progress {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.1), rgba(91, 33, 182, 0.1));
+            border: 2px solid #7C3AED;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #7C3AED;
+            font-size: 32px;
+        }
+        .tabs-nav {
+            border-bottom: 2px solid #E9D5FF;
+            display: flex;
+            gap: 0;
+        }
+        .tab-btn {
+            padding: 16px 24px;
+            font-weight: 600;
+            color: #6B7280;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+            border-bottom: 3px solid transparent;
+        }
+        .tab-btn.active {
+            color: #7C3AED;
+            border-bottom-color: #7C3AED;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            animation: fadeInBg 0.3s;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 48px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            animation: zoomIn 0.3s ease;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.95); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+        @keyframes fadeInBg {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .stat-card {
+            text-align: center;
+            padding: 32px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(124, 58, 237, 0.08);
+        }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100">
+    <!-- Header -->
+    <header class="bg-gray-900 border-b border-purple-900 fixed w-full top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-900 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-dumbbell text-white text-lg"></i>
+                </div>
+                <span class="text-2xl font-bold badge-font gradient-purple">IRONHUB</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#programs" class="text-gray-300 hover:text-purple-400 transition">Programs</a>
+                <a href="#features" class="text-gray-300 hover:text-purple-400 transition">Features</a>
+                <a href="#elite" class="text-gray-300 hover:text-purple-400 transition">Elite Athletes</a>
+                <a href="#pricing" class="text-gray-300 hover:text-purple-400 transition">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-purple text-white px-6 py-2 rounded-lg font-bold text-sm">GET STARTED</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-purple-400">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#programs" class="text-gray-300 py-2">Programs</a>
+            <a href="#features" class="text-gray-300 py-2">Features</a>
+            <a href="#elite" class="text-gray-300 py-2">Elite Athletes</a>
+            <a href="#pricing" class="text-gray-300 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-purple text-white px-6 py-2 rounded-lg font-bold text-sm mt-4 w-full">GET STARTED</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-gray-900 to-gray-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="badge-font text-5xl md:text-6xl text-white mb-6 leading-tight">BUILD UNMATCHED STRENGTH</h1>
+                    <div class="hero-line mb-6"></div>
+                    <p class="text-xl text-gray-400 mb-8">Competition-grade training programs designed for athletes who demand excellence. Transform into your most powerful self.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-purple text-white px-8 py-4 rounded-lg font-bold text-lg">START FREE TRIAL</button>
+                        <button onclick="document.getElementById('programs').scrollIntoView({behavior: 'smooth'})" class="border-2 border-purple-600 text-purple-400 px-8 py-4 rounded-lg font-bold text-lg hover:bg-purple-900 hover:bg-opacity-20 transition">EXPLORE PROGRAMS</button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="absolute -inset-8 bg-gradient-to-br from-purple-900 to-purple-950 rounded-2xl blur-3xl opacity-40"></div>
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=600&fit=crop" alt="Strength Training" class="relative rounded-2xl shadow-2xl border border-purple-700">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-24 px-4 bg-gray-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="badge-font text-5xl text-white mb-4">SPECIALIZED PROGRAMS</h2>
+                <p class="text-xl text-gray-400">Choose your path to dominance</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-scale bg-gray-900 border border-purple-800 rounded-2xl overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center">
+                        <i class="fas fa-dumbbell text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="badge-font text-2xl text-white mb-3">HYPERTROPHY ELITE</h3>
+                        <p class="text-gray-400 mb-6">Maximum muscle growth through progressive overload and strategic periodization.</p>
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">4-5x/week training</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Macro optimization</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Recovery protocols</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="btn-purple text-white w-full py-2 rounded-lg font-bold text-sm">LEARN MORE</button>
+                    </div>
+                </div>
+                <div class="card-scale bg-gray-900 border-2 border-purple-500 rounded-2xl overflow-hidden relative">
+                    <div class="absolute top-0 right-0 bg-purple-600 text-white px-4 py-2 badge-font text-sm">MOST POPULAR</div>
+                    <div class="h-40 bg-gradient-to-br from-purple-700 to-purple-950 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="badge-font text-2xl text-white mb-3">POWER ATHLETE</h3>
+                        <p class="text-gray-400 mb-6">Explosive strength and athletic performance for competitive athletes.</p>
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Olympic lifts focus</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Sport-specific training</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Performance testing</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="btn-purple text-white w-full py-2 rounded-lg font-bold text-sm">LEARN MORE</button>
+                    </div>
+                </div>
+                <div class="card-scale bg-gray-900 border border-purple-800 rounded-2xl overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-purple-600 to-purple-900 flex items-center justify-center">
+                        <i class="fas fa-heart-pulse text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="badge-font text-2xl text-white mb-3">FUNCTIONAL BEAST</h3>
+                        <p class="text-gray-400 mb-6">Functional strength with metabolic conditioning for real-world power.</p>
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Compound movements</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Conditioning work</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                                <span class="text-gray-300">Injury prevention</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="btn-purple text-white w-full py-2 rounded-lg font-bold text-sm">LEARN MORE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features with Tabs -->
+    <section id="features" class="py-24 px-4 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="badge-font text-5xl text-white mb-4">WHY IRONHUB DOMINATES</h2>
+                <p class="text-xl text-gray-400">The technology that separates winners from the rest</p>
+            </div>
+            <div class="tabs-nav mb-8">
+                <button class="tab-btn active" onclick="switchTab(event, 'training')">Training Science</button>
+                <button class="tab-btn" onclick="switchTab(event, 'analytics')">Performance Analytics</button>
+                <button class="tab-btn" onclick="switchTab(event, 'community')">Community</button>
+            </div>
+            <div id="training" class="tab-content active">
+                <div class="grid md:grid-cols-2 gap-12 mt-12">
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Progressive Overload System</h3>
+                        <p class="text-gray-400 mb-4">Evidence-based periodization that automatically adjusts your workload for continuous gains without plateaus.</p>
+                        <div class="mb-4">
+                            <p class="text-sm text-gray-500 mb-2">Performance Gain</p>
+                            <div class="progress-bar w-full"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-laptop"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">AI Form Recognition</h3>
+                        <p class="text-gray-400 mb-4">Real-time feedback on your lifting form using advanced computer vision. Never lift with improper technique again.</p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Posture analysis</li>
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> ROM tracking</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="analytics" class="tab-content">
+                <div class="grid md:grid-cols-2 gap-12 mt-12">
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Smart Recovery Insights</h3>
+                        <p class="text-gray-400 mb-4">Data-driven recovery recommendations based on your training load, sleep quality, and recovery metrics.</p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Sleep monitoring</li>
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> HRV tracking</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-target"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Strength Testing</h3>
+                        <p class="text-gray-400 mb-4">Automated 1RM testing protocols and strength standards that show you exactly where you rank against elite athletes.</p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Weekly testing</li>
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Leaderboards</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="community" class="tab-content">
+                <div class="grid md:grid-cols-2 gap-12 mt-12">
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Elite Athlete Network</h3>
+                        <p class="text-gray-400 mb-4">Train alongside pro athletes and coaches. Get live form feedback from champions in your sport.</p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Live Q&A sessions</li>
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Expert coaching</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <div class="feature-icon mb-6">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-3">Competitions & Challenges</h3>
+                        <p class="text-gray-400 mb-4">Monthly strength competitions with real prizes. Challenge friends and track your climb through the rankings.</p>
+                        <ul class="space-y-2">
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Weekly challenges</li>
+                            <li class="text-gray-400"><i class="fas fa-check text-purple-500 mr-2"></i> Prize pool</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Elite Athletes Section -->
+    <section id="elite" class="py-24 px-4 bg-gradient-to-b from-gray-950 to-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="badge-font text-5xl text-white mb-4">TRUSTED BY ELITE ATHLETES</h2>
+                <p class="text-xl text-gray-400">Professional strength coaches and competitive bodybuilders</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="stat-card">
+                    <div class="text-5xl font-bold gradient-purple mb-2">1000+</div>
+                    <p class="text-gray-600">Professional Athletes</p>
+                </div>
+                <div class="stat-card">
+                    <div class="text-5xl font-bold gradient-purple mb-2">50M+</div>
+                    <p class="text-gray-600">Total Reps Tracked</p>
+                </div>
+                <div class="stat-card">
+                    <div class="text-5xl font-bold gradient-purple mb-2">4.9★</div>
+                    <p class="text-gray-600">App Rating</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 px-4 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="badge-font text-5xl text-white mb-4">CHAMPIONSHIP RESULTS</h2>
+                <p class="text-xl text-gray-400">Real athletes. Real strength gains.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 border border-purple-800 rounded-xl p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6">"Went from 315 to 405 lb bench in 6 months. The form feedback system alone is worth it. Best investment I've made for my training."</p>
+                    <div class="border-t border-purple-800 pt-4">
+                        <p class="font-bold text-white">Marcus Thompson</p>
+                        <p class="text-purple-400 text-sm">Pro Bodybuilder</p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 border border-purple-800 rounded-xl p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6">"The AI-driven periodization changed everything. I'm stronger, healthier, and actually enjoy training more. This is elite level stuff."</p>
+                    <div class="border-t border-purple-800 pt-4">
+                        <p class="font-bold text-white">Sofia Rodriguez</p>
+                        <p class="text-purple-400 text-sm">Olympic Athlete</p>
+                    </div>
+                </div>
+                <div class="bg-gray-900 border border-purple-800 rounded-xl p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                        <i class="fas fa-star text-yellow-500 text-sm"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6">"Squatted 600 lbs for the first time at age 42. IronHub's recovery insights made the difference. Incredible coaching team too."</p>
+                    <div class="border-t border-purple-800 pt-4">
+                        <p class="font-bold text-white">David Chen</p>
+                        <p class="text-purple-400 text-sm">Masters Athlete</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="badge-font text-5xl text-white mb-4">SIMPLE PRICING</h2>
+                <p class="text-xl text-gray-400">Invest in your strength</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-scale bg-gray-800 border border-purple-800 rounded-2xl p-8">
+                    <h3 class="badge-font text-2xl text-white mb-2">STARTER</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Get started with the basics</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-white">$9</span>
+                        <span class="text-gray-400">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-purple-600 text-purple-400 w-full py-3 rounded-lg font-bold mb-8 hover:bg-purple-900 hover:bg-opacity-20 transition">GET STARTED</button>
+                    <ul class="space-y-4">
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> Basic workout library</li>
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> Progress tracking</li>
+                        <li class="text-gray-400 opacity-50"><i class="fas fa-times text-gray-600 mr-3"></i> AI form feedback</li>
+                    </ul>
+                </div>
+                <div class="card-scale bg-gradient-to-br from-purple-900 to-purple-950 border-2 border-purple-500 rounded-2xl p-8 relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 badge-font bg-purple-600 text-white px-4 py-1 rounded-full text-sm">MOST POPULAR</div>
+                    <h3 class="badge-font text-2xl text-white mb-2">PROFESSIONAL</h3>
+                    <p class="text-gray-300 mb-6 text-sm">Everything for serious gains</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-white">$29</span>
+                        <span class="text-gray-300">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-purple text-white w-full py-3 rounded-lg font-bold mb-8">GET STARTED</button>
+                    <ul class="space-y-4">
+                        <li class="text-white"><i class="fas fa-check text-purple-300 mr-3"></i> All Starter features</li>
+                        <li class="text-white"><i class="fas fa-check text-purple-300 mr-3"></i> AI form feedback</li>
+                        <li class="text-white"><i class="fas fa-check text-purple-300 mr-3"></i> Performance analytics</li>
+                        <li class="text-white"><i class="fas fa-check text-purple-300 mr-3"></i> Athlete network</li>
+                    </ul>
+                </div>
+                <div class="card-scale bg-gray-800 border border-purple-800 rounded-2xl p-8">
+                    <h3 class="badge-font text-2xl text-white mb-2">ELITE</h3>
+                    <p class="text-gray-400 mb-6 text-sm">Championship level support</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-white">$79</span>
+                        <span class="text-gray-400">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-purple-600 text-purple-400 w-full py-3 rounded-lg font-bold mb-8 hover:bg-purple-900 hover:bg-opacity-20 transition">GET STARTED</button>
+                    <ul class="space-y-4">
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> All Professional features</li>
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> 1-on-1 coaching</li>
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> Priority form review</li>
+                        <li class="text-gray-300"><i class="fas fa-check text-purple-500 mr-3"></i> Exclusive events</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-purple-900 to-purple-950">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="badge-font text-4xl md:text-5xl text-white mb-6">READY TO DOMINATE?</h2>
+            <p class="text-xl text-gray-300 mb-10">14 days free. No credit card required. Cancel anytime.</p>
+            <button onclick="openModal()" class="btn-purple text-white px-10 py-4 rounded-lg font-bold text-lg inline-block">START YOUR FREE TRIAL</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-950 border-t border-purple-900 py-12 px-4 text-gray-400">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="badge-font text-lg text-purple-400 mb-4">IRONHUB</div>
+                    <p class="text-sm">Where strength becomes obsession.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400">Programs</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Analytics</a></li>
+                        <li><a href="#" class="hover:text-purple-400">App</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400">About</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-400">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Social</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-purple-900 rounded flex items-center justify-center hover:bg-purple-800"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-purple-900 rounded flex items-center justify-center hover:bg-purple-800"><i class="fab fa-youtube text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-purple-900 rounded flex items-center justify-center hover:bg-purple-800"><i class="fab fa-twitter text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-purple-900 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="badge-font text-2xl text-gray-900">START YOUR FREE TRIAL</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-600" required>
+                    <option>Select Program</option>
+                    <option>Hypertrophy Elite</option>
+                    <option>Power Athlete</option>
+                    <option>Functional Beast</option>
+                </select>
+                <button type="submit" class="btn-purple text-white w-full py-3 rounded-lg font-bold">START FREE TRIAL</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">14 days free • No credit card • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Check your email to start your free trial!');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

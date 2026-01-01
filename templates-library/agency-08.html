@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StartupBoost - Startup consulting and growth advisory. Business strategy, fundraising, product-market fit.">
+    <meta name="keywords" content="startup consulting, fundraising advice, business strategy, growth advisory, startup mentor">
+    <title>StartupBoost - Startup Consulting & Growth</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Source Sans Pro', sans-serif; }
+        h1, h2, h3 { font-family: 'Lora', serif; }
+        .gradient-startup { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-startup rounded-lg flex items-center justify-center">
+                    <i class="fas fa-rocket text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">StartupBoost</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-cyan-600 transition font-medium">Services</a>
+                <a href="#focus-areas" class="text-gray-700 hover:text-cyan-600 transition font-medium">Focus Areas</a>
+                <a href="#success-stories" class="text-gray-700 hover:text-cyan-600 transition font-medium">Success Stories</a>
+                <a href="#team" class="text-gray-700 hover:text-cyan-600 transition font-medium">Team</a>
+                <button onclick="openModal()" class="gradient-startup text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Book Consultation</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Services</a>
+                <a href="#focus-areas" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Focus Areas</a>
+                <a href="#success-stories" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Success Stories</a>
+                <a href="#team" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Team</a>
+                <button onclick="openModal()" class="w-full gradient-startup text-white py-2 rounded-lg font-bold">Book Now</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cyan-50 to-blue-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-bold mb-6">Startup Mentorship</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Build &
+                        <span class="gradient-startup bg-clip-text text-transparent"> Scale</span>
+                        Your Startup
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Expert startup consulting. Business strategy, fundraising, product-market fit, growth scaling, and startup mentorship.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-startup text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Book Consultation
+                        </button>
+                        <button class="border-2 border-cyan-600 text-cyan-600 px-8 py-4 rounded-lg font-bold hover:bg-cyan-50 transition text-lg">
+                            View Success Stories
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-cyan-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">$2.5B+ Funded</p>
+                                <p class="text-sm text-gray-600">Startups we've advised</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-cyan-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">150+ Exits</p>
+                                <p class="text-sm text-gray-600">Successful acquisitions & IPOs</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Startup" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Consulting Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-lightbulb text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Ideation & Validation</h3>
+                    <p class="text-gray-600 mb-6">Validate your startup idea. Market research, product-market fit analysis, competitive landscape.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-pie text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Business Planning</h3>
+                    <p class="text-gray-600 mb-6">Create your business plan. Financial modeling, go-to-market strategy, unit economics.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-money-bill-wave text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Fundraising Prep</h3>
+                    <p class="text-gray-600 mb-6">Prepare for fundraising. Pitch deck, deck review, investor relations strategy.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users-cog text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Team Building</h3>
+                    <p class="text-gray-600 mb-6">Build the right team. Hiring strategy, company culture, organizational structure.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-rocket text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Growth Scaling</h3>
+                    <p class="text-gray-600 mb-6">Scale your startup. Growth hacking, acquisition strategies, retention optimization.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-startup rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-gavel text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Legal & Compliance</h3>
+                    <p class="text-gray-600 mb-6">Navigate legalities. Equity, compliance, corporate structure, investor agreements.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="focus-areas" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Industries We Focus On</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-mobile-alt text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">SaaS & Apps</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-shopping-cart text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">E-Commerce</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-coins text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">FinTech</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-hospital text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">HealthTech</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-robot text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">AI/ML</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-globe text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">MarketPlace</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-dumbbell text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">Wellness</h4>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-md text-center">
+                    <i class="fas fa-graduation-cap text-cyan-600 text-4xl mb-4"></i>
+                    <h4 class="text-lg font-bold text-gray-900">EdTech</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="success-stories" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Success Stories</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">CloudApp Inc.</h3>
+                    <p class="text-cyan-600 font-semibold mb-4">Series A → Unicorn (2 years)</p>
+                    <p class="text-gray-600 mb-4">From pre-seed to $1B valuation through strategic scaling and fundraising guidance.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Read Case Study →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">DataFlow Systems</h3>
+                    <p class="text-cyan-600 font-semibold mb-4">Acquired by Google → $450M</p>
+                    <p class="text-gray-600 mb-4">Consulted on product-market fit, scaling strategy, and successful acquisition negotiations.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Read Case Study →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">MediCare AI</h3>
+                    <p class="text-cyan-600 font-semibold mb-4">$50M Series C Funding</p>
+                    <p class="text-gray-600 mb-4">Strategic guidance on go-to-market, healthcare compliance, and investor relations.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Read Case Study →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">PayFlow Fintech</h3>
+                    <p class="text-cyan-600 font-semibold mb-4">IPO Listed → NASDAQ</p>
+                    <p class="text-gray-600 mb-4">Guided company from Series A through IPO preparation and market listing.</p>
+                    <button onclick="openModal()" class="text-cyan-600 font-bold hover:text-cyan-700 transition">Read Case Study →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Meet Our Advisors</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Advisor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Robert Chen</h4>
+                    <p class="text-cyan-600 font-semibold mb-2">Co-Founder</p>
+                    <p class="text-sm text-gray-600">Founded 3 startups, 2 exits</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Advisor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Sarah Williams</h4>
+                    <p class="text-cyan-600 font-semibold mb-2">Venture Capital</p>
+                    <p class="text-sm text-gray-600">Ex-Sequoia Capital partner</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Advisor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Michael Park</h4>
+                    <p class="text-cyan-600 font-semibold mb-2">Operations</p>
+                    <p class="text-sm text-gray-600">Scaled 5 companies to $100M+</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Advisor" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Emily Rodriguez</h4>
+                    <p class="text-cyan-600 font-semibold mb-2">Product Strategy</p>
+                    <p class="text-sm text-gray-600">Built products at Uber & Airbnb</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-startup text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Build Your Startup?</h2>
+            <p class="text-xl mb-10 opacity-90">Book a consultation with one of our experienced startup advisors.</p>
+            <button onclick="openModal()" class="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Book Consultation
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">StartupBoost</h4>
+                    <p class="text-sm">Build and scale your startup with expert advisors.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Consulting</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mentorship</a></li>
+                        <li><a href="#" class="hover:text-white transition">Fundraising</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition">Case Studies</a></li>
+                        <li><a href="#" class="hover:text-white transition">Tools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin text-white"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-twitter text-white"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-facebook text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 StartupBoost. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="consultationModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Book Consultation</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                    <option>Select Topic</option>
+                    <option>Business Planning</option>
+                    <option>Fundraising</option>
+                    <option>Growth Strategy</option>
+                    <option>Team Building</option>
+                    <option>Other</option>
+                </select>
+                <button type="submit" class="w-full gradient-startup text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Book Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('consultationModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('consultationModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('consultationModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

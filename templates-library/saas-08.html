@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BrainCode - AI code generation and debugging platform for developers">
+    <meta name="keywords" content="SaaS, AI, code generation, developer tools">
+    <title>BrainCode - AI-Powered Code Generation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Rubik', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'JetBrains Mono', monospace; }
+        .gradient-purple { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .code-glow { box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
+        .modal-bg { display: none; }
+        .modal-bg.open { display: flex; }
+    </style>
+</head>
+<body class="bg-gray-950">
+    <header class="fixed top-0 w-full bg-gray-950 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-purple-600 rounded-lg flex items-center justify-center"><i class="fas fa-code text-white"></i></div>
+                <span class="text-xl font-bold text-white">BrainCode</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center text-gray-300">
+                <a href="#features" class="hover:text-purple-400 transition">Features</a>
+                <a href="#benefits" class="hover:text-purple-400 transition">Benefits</a>
+                <a href="#pricing" class="hover:text-purple-400 transition">Pricing</a>
+                <button onclick="openModal()" class="bg-purple-600 text-white px-6 py-2.5 rounded-lg hover:bg-purple-700 transition">Try Free</button>
+            </nav>
+            <button id="mobile-btn" class="lg:hidden text-gray-300" onclick="toggleMobile()"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        <div id="mobile-nav" class="hidden lg:hidden border-t border-gray-800">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-gray-300 py-2 hover:text-purple-400">Features</a>
+                <a href="#benefits" class="block text-gray-300 py-2 hover:text-purple-400">Benefits</a>
+                <a href="#pricing" class="block text-gray-300 py-2 hover:text-purple-400">Pricing</a>
+                <button onclick="openModal()" class="w-full bg-purple-600 text-white px-6 py-2.5 rounded-lg">Try Free</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-purple-900 text-purple-300 px-4 py-1.5 rounded-full text-sm font-bold mb-6">Code in seconds, not hours</div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">Write Code<br/><span class="gradient-purple">10x Faster</span></h1>
+                <p class="text-xl text-gray-400 mb-8">AI that understands your codebase. Auto-complete, debug, refactor. Write code like you've never written before.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openModal()" class="bg-purple-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-purple-700 transition shadow-lg shadow-purple-600/50">Get Started Free</button>
+                    <button class="border-2 border-purple-600 text-purple-400 px-8 py-4 rounded-lg font-bold hover:bg-purple-600/10 transition">View Demo</button>
+                </div>
+            </div>
+            <div class="hidden lg:block code-glow bg-gray-900 rounded-xl p-6 border border-purple-600/30">
+                <div class="space-y-2 font-mono text-sm"><div class="text-green-400">// Generate function in seconds</div><div class="text-purple-400">const searchUsers = async (query) => {</div><div class="text-gray-400 ml-4">return await db.users.filter(...)</div><div class="text-purple-400">}</div></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">Intelligent Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-sparkles text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Smart Completion</h3>
+                    <p class="text-gray-400">AI-powered code completion for all languages</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-bug text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Auto Debug</h3>
+                    <p class="text-gray-400">Find and fix bugs automatically</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-recycle text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Refactoring</h3>
+                    <p class="text-gray-400">Optimize code automatically</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-file-contract text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Doc Generation</h3>
+                    <p class="text-gray-400">Auto-generate documentation</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-shield text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">Security Check</h3>
+                    <p class="text-gray-400">Detect vulnerabilities in code</p>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-purple-600/30 hover:border-purple-600/60 transition">
+                    <div class="w-12 h-12 bg-purple-600/20 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-plug text-purple-400"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-2">IDE Integration</h3>
+                    <p class="text-gray-400">Works with VS Code, IntelliJ, more</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-16">Why Developers Choose BrainCode</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-900 rounded-xl p-8 border border-purple-600/30">
+                    <div class="text-5xl font-bold gradient-purple mb-4">90%</div>
+                    <p class="text-gray-400">Time saved on boilerplate</p>
+                </div>
+                <div class="bg-gray-900 rounded-xl p-8 border border-purple-600/30">
+                    <div class="text-5xl font-bold gradient-purple mb-4">50K+</div>
+                    <p class="text-gray-400">Developers already using</p>
+                </div>
+                <div class="bg-gray-900 rounded-xl p-8 border border-purple-600/30">
+                    <div class="text-5xl font-bold gradient-purple mb-4">15+</div>
+                    <p class="text-gray-400">Languages supported</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-white mb-16">Affordable Plans</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-2">Free</h3>
+                    <div class="text-4xl font-bold text-white mb-8">$0</div>
+                    <button onclick="openModal()" class="w-full bg-gray-700 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-600 transition mb-8">Get Started</button>
+                    <ul class="space-y-3 text-gray-400"><li><i class="fas fa-check text-green-600 mr-2"></i>100 completions/month</li><li><i class="fas fa-check text-green-600 mr-2"></i>Basic features</li></ul>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border-2 border-purple-600 relative">
+                    <div class="absolute -top-4 left-8 bg-purple-600 text-white px-4 py-1 rounded-full text-sm font-bold">PRO</div>
+                    <h3 class="text-2xl font-bold text-white mb-2 mt-4">Pro</h3>
+                    <div class="text-4xl font-bold text-white mb-8">$19<span class="text-lg text-gray-400">/mo</span></div>
+                    <button onclick="openModal()" class="w-full bg-purple-600 text-white px-6 py-3 rounded-lg hover:bg-purple-700 transition mb-8">Try Free</button>
+                    <ul class="space-y-3 text-gray-400"><li><i class="fas fa-check text-green-600 mr-2"></i>Unlimited completions</li><li><i class="fas fa-check text-green-600 mr-2"></i>All features</li><li><i class="fas fa-check text-green-600 mr-2"></i>Priority support</li></ul>
+                </div>
+                <div class="bg-gray-800 rounded-xl p-8 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-2">Team</h3>
+                    <div class="text-4xl font-bold text-white mb-8">$99<span class="text-lg text-gray-400">/mo</span></div>
+                    <button onclick="openModal()" class="w-full bg-gray-700 text-gray-300 px-6 py-3 rounded-lg hover:bg-gray-600 transition mb-8">Contact Us</button>
+                    <ul class="space-y-3 text-gray-400"><li><i class="fas fa-check text-green-600 mr-2"></i>Everything in Pro</li><li><i class="fas fa-check text-green-600 mr-2"></i>Team analytics</li><li><i class="fas fa-check text-green-600 mr-2"></i>Dedicated support</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-6">Code Faster, Build Better</h2>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold hover:bg-gray-100 transition">Start Coding in 60 Seconds</button>
+        </div>
+    </section>
+    
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            <div class="flex gap-6"><a href="#" class="hover:text-purple-400"><i class="fab fa-twitter"></i></a><a href="#" class="hover:text-purple-400"><i class="fab fa-github"></i></a></div>
+        </div>
+    </footer>
+    
+    <div id="modal" class="modal-bg fixed inset-0 bg-black/50 z-50 px-4">
+        <div class="bg-gray-900 rounded-2xl max-w-md w-full m-auto border border-purple-600/30">
+            <div class="flex justify-between items-center p-6 border-b border-gray-800">
+                <h3 class="text-2xl font-bold text-white">Get Started Free</h3>
+                <button onclick="closeModal()" class="text-gray-500 hover:text-gray-300"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6">
+                <form class="space-y-4">
+                    <input type="text" placeholder="Full name" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-600">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-purple-600">
+                    <button type="button" onclick="closeModal()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-bold hover:bg-purple-700 transition">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobile() { document.getElementById('mobile-nav').classList.toggle('hidden'); }
+        function openModal() { document.getElementById('modal').classList.add('open'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal').classList.remove('open'); document.body.style.overflow = 'auto'; }
+        window.onclick = function(e) { if (e.target === document.getElementById('modal')) closeModal(); }
+    </script>
+</body>
+</html>

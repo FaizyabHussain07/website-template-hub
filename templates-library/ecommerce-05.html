@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuminaBeauty - Premium Cosmetics & Skincare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Raleway', sans-serif;
+        }
+        
+        code, pre {
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .gradient-purple {
+            background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);
+        }
+
+        .gradient-purple-light {
+            background: linear-gradient(135deg, #f3e8ff 0%, #e9d5ff 100%);
+        }
+
+        @keyframes beautyGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(168, 85, 247, 0.6);
+            }
+        }
+
+        @keyframes shimmer {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        .beauty-glow {
+            animation: beautyGlow 2s ease-in-out infinite;
+        }
+
+        .shimmer {
+            animation: shimmer 2s ease-in-out infinite;
+        }
+
+        .modal-hidden {
+            display: none !important;
+        }
+
+        .modal-hidden.show {
+            display: flex !important;
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(168, 85, 247, 0.2);
+        }
+
+        .header-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        body {
+            padding-top: 80px;
+        }
+
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .mobile-menu.show {
+            max-height: 400px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="header-fixed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 gradient-purple rounded-lg flex items-center justify-center text-white font-bold">L</div>
+                <span class="text-2xl font-bold text-gray-900">LuminaBeauty</span>
+            </div>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-purple-600 transition">Home</a>
+                <a href="#products" class="text-gray-700 hover:text-purple-600 transition">Products</a>
+                <a href="#why" class="text-gray-700 hover:text-purple-600 transition">Why Us</a>
+                <a href="#faq" class="text-gray-700 hover:text-purple-600 transition">FAQ</a>
+            </nav>
+
+            <!-- Mobile Menu Toggle -->
+            <button class="md:hidden" onclick="toggleMobileMenu()">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+
+            <button onclick="openModal()" class="hidden md:block gradient-purple text-white px-6 py-2 rounded-lg hover:shadow-lg transition">
+                Shop Now
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu md:hidden bg-gray-50 border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-purple-600">Home</a>
+                <a href="#products" class="block text-gray-700 hover:text-purple-600">Products</a>
+                <a href="#why" class="block text-gray-700 hover:text-purple-600">Why Us</a>
+                <a href="#faq" class="block text-gray-700 hover:text-purple-600">FAQ</a>
+                <button onclick="openModal()" class="w-full gradient-purple text-white px-4 py-2 rounded-lg hover:shadow-lg transition">
+                    Shop Now
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-12 pb-20 bg-gradient-to-br from-purple-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">
+                        Reveal Your <span class="gradient-purple bg-clip-text text-transparent">Natural Beauty</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8">Premium skincare and cosmetics crafted with natural ingredients. Enhance your radiance with our luxury collection.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-purple text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition shimmer">
+                            Discover Collection
+                        </button>
+                        <button class="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-lg font-semibold hover:bg-purple-50 transition">
+                            View Catalog
+                        </button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="gradient-purple-light w-full h-96 rounded-2xl flex items-center justify-center beauty-glow">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4"><i class="fas fa-wand-magic-sparkles text-6xl text-purple-600"></i></div>
+                            <p class="text-purple-900 font-semibold">Luxury Beauty Essentials</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Best Sellers</h2>
+            <p class="text-center text-gray-600 mb-12">Trusted by beauty enthusiasts worldwide</p>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                        <div class="gradient-purple-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-spray-can text-5xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Hydration Serum Complex</h3>
+                    <p class="text-gray-600 mb-4">Hyaluronic acid + vitamin C for plump, glowing skin. 30ml premium formula</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-purple-600">$68.00</span>
+                        <span class="text-sm bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Best Seller</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-purple-100 text-purple-700 py-2 rounded-lg hover:bg-purple-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-purple-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-palette text-5xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Luxe Lip & Cheek Tint</h3>
+                    <p class="text-gray-600 mb-4">Multi-use stain in 6 shades. Long-lasting, natural pigmentation with SPF 15</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-purple-600">$39.99</span>
+                        <span class="text-sm bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Popular</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-purple-100 text-purple-700 py-2 rounded-lg hover:bg-purple-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-purple-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-eye text-5xl text-purple-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Eye Contour Cream</h3>
+                    <p class="text-gray-600 mb-4">Reduces fine lines and dark circles. Caffeine + retinol blend, 15ml</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-purple-600">$54.00</span>
+                        <span class="text-sm bg-purple-100 text-purple-800 px-3 py-1 rounded-full">Premium</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-purple-100 text-purple-700 py-2 rounded-lg hover:bg-purple-200 transition font-semibold">
+                        Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Categories -->
+    <section class="py-16 bg-purple-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">Shop by Category</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-purple-300">
+                    <i class="fas fa-spa text-4xl text-purple-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Skincare</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-purple-300">
+                    <i class="fas fa-hand-fist text-4xl text-purple-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Makeup</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-purple-300">
+                    <i class="fas fa-spray-can text-4xl text-purple-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Body Care</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-purple-300">
+                    <i class="fas fa-leaf text-4xl text-purple-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Natural Treatments</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">Why Choose LuminaBeauty</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-purple rounded-full text-white text-2xl mb-4"><i class="fas fa-microscope"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Dermatologist Tested</h3>
+                    <p class="text-gray-600">All formulas clinically proven safe for all skin types including sensitive skin</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-purple rounded-full text-white text-2xl mb-4"><i class="fas fa-leaf"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Natural Ingredients</h3>
+                    <p class="text-gray-600">100% paraben-free, cruelty-free, and sustainably sourced plant extracts</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-purple rounded-full text-white text-2xl mb-4"><i class="fas fa-box"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Luxury Packaging</h3>
+                    <p class="text-gray-600">Premium presentation with complimentary gift wrapping for special occasions</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seasonal Sale -->
+    <section class="py-20 gradient-purple text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">New Year Glow Up</span>
+            <h2 class="text-5xl font-bold mb-4">Winter Wellness Collection</h2>
+            <p class="text-xl text-purple-100 mb-8">Exclusive skincare bundles at 35% off. Nourish and rejuvenate your skin</p>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                Shop Winter Special
+            </button>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">Frequently Asked Questions</h2>
+
+            <!-- FAQ Item 1 -->
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq1')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-purple-50 transition flex justify-between items-center">
+                    <span>Are your products suitable for sensitive skin?</span>
+                    <span id="faq1-icon">+</span>
+                </button>
+                <div id="faq1" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! All LuminaBeauty products are hypoallergenic and dermatologist-tested. We avoid harsh chemicals, parabens, and sulfates. If you have specific allergies, our customer service team can recommend suitable products.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 2 -->
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq2')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-purple-50 transition flex justify-between items-center">
+                    <span>How long does it take to see results?</span>
+                    <span id="faq2-icon">+</span>
+                </button>
+                <div id="faq2" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Most customers notice improvements within 2-4 weeks of consistent use. For deeper transformations like reducing fine lines, allow 6-8 weeks. Results vary based on individual skin types and routines.</p>
+                </div>
+            </div>
+
+            <!-- FAQ Item 3 -->
+            <div class="border border-gray-200 rounded-lg">
+                <button onclick="toggleFAQ('faq3')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-purple-50 transition flex justify-between items-center">
+                    <span>Do you offer beauty consultations?</span>
+                    <span id="faq3-icon">+</span>
+                </button>
+                <div id="faq3" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Absolutely! Our beauty experts provide free virtual consultations via email or live chat. We'll assess your skin type and recommend personalized routines. Book a consultation with our team anytime.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 bg-gradient-to-r from-purple-500 to-purple-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Unlock Your Best Skin</h2>
+            <p class="text-purple-100 mb-8">Subscribe to receive exclusive beauty tips, new product launches, and 20% off your first order.</p>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">
+                    Subscribe
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Skincare</a></li>
+                        <li><a href="#" class="hover:text-white transition">Makeup</a></li>
+                        <li><a href="#" class="hover:text-white transition">Body Care</a></li>
+                        <li><a href="#" class="hover:text-white transition">Best Sellers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Our Story</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Shade Finder</a></li>
+                        <li><a href="#" class="hover:text-white transition">Shipping Info</a></li>
+                        <li><a href="#" class="hover:text-white transition">Track Order</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition">Refund Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ingredients</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">TikTok</a></li>
+                        <li><a href="#" class="hover:text-white transition">YouTube</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full relative animate-fade-in">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="p-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Beauty VIP Access</h3>
+                <p class="text-gray-600 mb-6">Join our beauty club and receive exclusive previews, birthday gifts, and VIP-only sales.</p>
+
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Your name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <input type="email" placeholder="Your email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                        <option value="">Select your skin type</option>
+                        <option value="dry">Dry</option>
+                        <option value="oily">Oily</option>
+                        <option value="combination">Combination</option>
+                        <option value="sensitive">Sensitive</option>
+                    </select>
+                    <button type="submit" class="w-full gradient-purple text-white font-bold py-3 rounded-lg hover:shadow-lg transition">
+                        Join VIP Club
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('productModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').classList.remove('show');
+        }
+
+        function submitForm(e) {
+            e.preventDefault();
+            alert('Welcome to LuminaBeauty VIP! Check your email for exclusive perks.');
+            closeModal();
+        }
+
+        document.getElementById('productModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        function toggleMobileMenu() {
+            document.querySelector('.mobile-menu').classList.toggle('show');
+        }
+
+        function toggleFAQ(id) {
+            const element = document.getElementById(id);
+            const icon = document.getElementById(id + '-icon');
+            element.classList.toggle('show');
+            icon.textContent = element.classList.contains('show') ? '-' : '+';
+        }
+    </script>
+</body>
+</html>

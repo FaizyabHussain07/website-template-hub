@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SyncTeam - Real-time team collaboration and file sync platform">
+    <meta name="keywords" content="SaaS, collaboration, file sync, team productivity">
+    <title>SyncTeam - Team Collaboration & File Sync</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Lexend:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Lexend', sans-serif; font-weight: 700; }
+        .gradient-teal { background: linear-gradient(135deg, #14b8a6 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .pulse-glow { animation: pulseGlow 2s ease-in-out infinite; }
+        @keyframes pulseGlow { 0%, 100% { filter: drop-shadow(0 0 20px rgba(20,184,166,0.3)); } 50% { filter: drop-shadow(0 0 40px rgba(20,184,166,0.6)); } }
+        .modal-hidden { display: none; }
+        .modal-hidden.visible { display: flex; }
+        .feature-hover { transition: all 0.3s; }
+        .feature-hover:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(20,184,166,0.15); }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-teal-500 rounded-lg flex items-center justify-center"><i class="fas fa-sync text-white"></i></div>
+                <span class="text-xl font-bold text-gray-900">SyncTeam</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#features" class="text-gray-700 hover:text-teal-600 font-medium transition">Features</a>
+                <a href="#benefits" class="text-gray-700 hover:text-teal-600 font-medium transition">Benefits</a>
+                <a href="#pricing" class="text-gray-700 hover:text-teal-600 font-medium transition">Pricing</a>
+                <button onclick="openModal()" class="bg-teal-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-teal-600 transition">Get Started</button>
+            </nav>
+            <button id="mb" class="lg:hidden text-gray-700" onclick="toggleMobile()"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+        <div id="mobile" class="hidden lg:hidden border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-gray-700 py-2 hover:text-teal-600">Features</a>
+                <a href="#benefits" class="block text-gray-700 py-2 hover:text-teal-600">Benefits</a>
+                <a href="#pricing" class="block text-gray-700 py-2 hover:text-teal-600">Pricing</a>
+                <button onclick="openModal()" class="w-full bg-teal-500 text-white px-6 py-2.5 rounded-lg">Get Started</button>
+            </div>
+        </div>
+    </header>
+    
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-teal-100 text-teal-700 px-4 py-1.5 rounded-full text-sm font-bold mb-6">Instant Sync &bull; Zero Conflicts</div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">Work Together,<br/><span class="gradient-teal">Perfectly Synced</span></h1>
+                <p class="text-xl text-gray-600 mb-8">Real-time file sync for distributed teams. Edit simultaneously, never lose work, stay in perfect sync across devices.</p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openModal()" class="bg-teal-500 text-white px-8 py-4 rounded-lg font-bold hover:bg-teal-600 transition shadow-lg">Start Free</button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-teal-500 hover:text-teal-600 transition">Learn More</button>
+                </div>
+            </div>
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="pulse-glow w-80 h-80 bg-gradient-to-br from-teal-100 to-cyan-100 rounded-3xl flex items-center justify-center"><i class="fas fa-cloud text-7xl text-teal-300"></i></div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Powerful Features</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-bolt text-teal-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Real-time Sync</h3>
+                    <p class="text-gray-600">Changes appear instantly across all devices. No waiting, no delays.</p>
+                </div>
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-lock text-cyan-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">End-to-End Encryption</h3>
+                    <p class="text-gray-600">Your files are protected with military-grade encryption.</p>
+                </div>
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-history text-teal-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Version History</h3>
+                    <p class="text-gray-600">Restore any previous version in seconds. Full audit trail.</p>
+                </div>
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-users text-cyan-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Team Permissions</h3>
+                    <p class="text-gray-600">Fine-grained controls. Share securely with your team.</p>
+                </div>
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-teal-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-plug text-teal-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">50+ Integrations</h3>
+                    <p class="text-gray-600">Works with your favorite tools. Slack, Teams, GitHub, and more.</p>
+                </div>
+                <div class="feature-hover bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center mb-4"><i class="fas fa-mobile-alt text-cyan-600"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Mobile Access</h3>
+                    <p class="text-gray-600">Access files anywhere. Full iOS and Android support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Why Teams Love SyncTeam</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="text-4xl font-bold gradient-teal mb-4">95%</div>
+                    <p class="text-gray-600">Time saved on file management tasks</p>
+                </div>
+                <div class="bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="text-4xl font-bold gradient-teal mb-4">10x</div>
+                    <p class="text-gray-600">Faster collaboration than email</p>
+                </div>
+                <div class="bg-white rounded-xl p-8 border border-gray-100">
+                    <div class="text-4xl font-bold gradient-teal mb-4">99.9%</div>
+                    <p class="text-gray-600">Uptime SLA guaranteed</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Simple Pricing</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl p-8 border border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic</h3>
+                    <div class="text-4xl font-bold text-gray-900 mb-8">$9.99<span class="text-lg text-gray-600">/mo</span></div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">Get Started</button>
+                    <ul class="space-y-3"><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> 100GB storage</li><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> Up to 3 users</li></ul>
+                </div>
+                <div class="bg-white rounded-xl p-8 border-2 border-teal-500 relative shadow-lg">
+                    <div class="absolute -top-4 left-8 bg-teal-500 text-white px-4 py-1 rounded-full text-sm font-bold">POPULAR</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-4">Pro</h3>
+                    <div class="text-4xl font-bold text-gray-900 mb-8">$29.99<span class="text-lg text-gray-600">/mo</span></div>
+                    <button onclick="openModal()" class="w-full bg-teal-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-teal-600 transition mb-8">Start Free</button>
+                    <ul class="space-y-3"><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> 2TB storage</li><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> Unlimited users</li><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> Priority support</li></ul>
+                </div>
+                <div class="bg-white rounded-xl p-8 border border-gray-100">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <div class="text-4xl font-bold text-gray-900 mb-8">Custom</div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">Contact Us</button>
+                    <ul class="space-y-3"><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> Unlimited everything</li><li class="flex gap-2"><i class="fas fa-check text-teal-600"></i> Dedicated support</li></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-teal-500 to-cyan-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-6">Ready to Sync with Your Team?</h2>
+            <button onclick="openModal()" class="bg-white text-teal-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">Start Free Today</button>
+        </div>
+    </section>
+    
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-teal-500 rounded-lg flex items-center justify-center"><i class="fas fa-sync text-white text-sm"></i></div>
+                        <span class="text-lg font-bold text-white">SyncTeam</span>
+                    </div>
+                    <p class="text-sm text-gray-400">File sync for teams</p>
+                </div>
+                <div><h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-teal-400 transition">Features</a></li><li><a href="#" class="hover:text-teal-400 transition">Pricing</a></li></ul></div>
+                <div><h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-teal-400 transition">About</a></li><li><a href="#" class="hover:text-teal-400 transition">Blog</a></li></ul></div>
+                <div><h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-teal-400 transition">Help</a></li><li><a href="#" class="hover:text-teal-400 transition">Support</a></li></ul></div>
+                <div><h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4><ul class="space-y-2 text-sm"><li><a href="#" class="hover:text-teal-400 transition">Privacy</a></li><li><a href="#" class="hover:text-teal-400 transition">Terms</a></li></ul></div>
+            </div>
+            <div class="border-t border-gray-800 pt-8">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+    
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-900">Get Started Free</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-xl"></i></button>
+            </div>
+            <div class="p-6">
+                <form class="space-y-4">
+                    <input type="text" placeholder="Full name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
+                    <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-500 focus:ring-2 focus:ring-teal-100">
+                    <button type="button" onclick="closeModal()" class="w-full bg-teal-500 text-white py-3 rounded-lg font-bold hover:bg-teal-600 transition">Create Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobile() { document.getElementById('mobile').classList.toggle('hidden'); }
+        function openModal() { document.getElementById('modal').classList.add('visible'); document.body.style.overflow = 'hidden'; }
+        function closeModal() { document.getElementById('modal').classList.remove('visible'); document.body.style.overflow = 'auto'; }
+        window.onclick = function(e) { const m = document.getElementById('modal'); if (e.target === m) closeModal(); }
+    </script>
+</body>
+</html>

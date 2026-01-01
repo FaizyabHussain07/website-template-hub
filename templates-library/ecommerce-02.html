@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FashionHub - Online fashion store for trendy clothes and accessories">
+    <meta name="keywords" content="fashion, clothing, online store, apparel, accessories">
+    <title>FashionHub - Trendy Fashion Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .gradient-fashion { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .fashion-glow { box-shadow: 0 0 50px rgba(245, 158, 11, 0.3); animation: fashionGlow 2.3s ease-in-out infinite; }
+        @keyframes fashionGlow { 0%, 100% { box-shadow: 0 0 50px rgba(245, 158, 11, 0.3); } 50% { box-shadow: 0 0 70px rgba(217, 119, 6, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .fashion-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .fashion-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(245, 158, 11, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-amber-700 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-shirt text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">FashionHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#collections" class="text-gray-700 font-medium hover:text-amber-600 transition">Collections</a>
+                <a href="#trends" class="text-gray-700 font-medium hover:text-amber-600 transition">Trending</a>
+                <a href="#sale" class="text-gray-700 font-medium hover:text-amber-600 transition">Sale</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-amber-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-amber-500 to-amber-700 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Shop</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#collections" class="block text-gray-700 font-medium py-2">Collections</a>
+                <a href="#trends" class="block text-gray-700 font-medium py-2">Trending</a>
+                <a href="#sale" class="block text-gray-700 font-medium py-2">Sale</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-amber-500 to-amber-700 text-white px-6 py-3 rounded-lg font-bold">Shop</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-sparkles"></i> New Collection
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Elevate Your<br/><span class="gradient-fashion">Style Game</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Premium fashion. Affordable prices. Exclusive designs. Shop the latest trends.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-amber-500 to-amber-700 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Explore Now
+                    </button>
+                    <button class="border-2 border-amber-300 text-amber-600 px-8 py-4 rounded-lg font-bold hover:bg-amber-50 transition">
+                        View Collections
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-amber-600">50K+</p>
+                        <p class="text-gray-600">Items</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-amber-600">500K+</p>
+                        <p class="text-gray-600">Shoppers</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="fashion-glow w-80 h-80 bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-hanger text-7xl text-amber-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Collections -->
+    <section id="collections" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Shop Collections</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="fashion-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-orange-200 flex items-center justify-center">
+                        <i class="fas fa-user-tie text-amber-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Men's Wear</h3>
+                        <p class="text-gray-600 mb-4">Shirts, pants, jackets. Premium quality fabrics.</p>
+                        <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg font-bold hover:bg-amber-200 transition">Browse</button>
+                    </div>
+                </div>
+                
+                <div class="fashion-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-orange-200 flex items-center justify-center">
+                        <i class="fas fa-user-dress text-amber-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Women's Wear</h3>
+                        <p class="text-gray-600 mb-4">Dresses, tops, bottoms. Stylish & comfortable.</p>
+                        <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg font-bold hover:bg-amber-200 transition">Browse</button>
+                    </div>
+                </div>
+                
+                <div class="fashion-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-amber-200 to-orange-200 flex items-center justify-center">
+                        <i class="fas fa-ring text-amber-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Accessories</h3>
+                        <p class="text-gray-600 mb-4">Bags, belts, watches. Complement any look.</p>
+                        <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg font-bold hover:bg-amber-200 transition">Browse</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trending -->
+    <section id="trends" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">This Season's Trends</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-star text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Sustainable Fashion</h3>
+                            <p class="text-gray-600">Eco-friendly materials. Ethical manufacturing.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-palette text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Bold Colors</h3>
+                            <p class="text-gray-600">Vibrant hues. Express yourself.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-infinity text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Minimalist Design</h3>
+                            <p class="text-gray-600">Less is more. Timeless elegance.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-person-hiking text-amber-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Athleisure</h3>
+                            <p class="text-gray-600">Comfort meets style. Perfect for all occasions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Sale -->
+    <section id="sale" class="py-24 px-4 sm:px-6 lg:px-8 bg-amber-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Seasonal Sale</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gradient-to-br from-amber-600 to-amber-800 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-3xl font-bold mb-2">60% Off</h3>
+                    <p class="text-amber-100 mb-4">Men's Collection</p>
+                    <button onclick="openModal()" class="bg-white text-amber-600 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition">Shop Now</button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-orange-600 to-orange-800 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-3xl font-bold mb-2">50% Off</h3>
+                    <p class="text-orange-100 mb-4">Women's Collection</p>
+                    <button onclick="openModal()" class="bg-white text-orange-600 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition">Shop Now</button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-amber-500 to-orange-700 rounded-2xl p-8 text-white text-center">
+                    <h3 class="text-3xl font-bold mb-2">40% Off</h3>
+                    <p class="text-amber-100 mb-4">Accessories</p>
+                    <button onclick="openModal()" class="bg-white text-amber-600 px-6 py-2 rounded-lg font-bold hover:bg-gray-100 transition">Shop Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>What sizes do you offer?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        We offer sizes XS to 5XL. Detailed size charts available for each product.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>How can I track my order?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Track via email or login to your account. Real-time updates on your shipment.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>Are items imported?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Mix of local and international brands. All authentic. Warranty honored.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-amber-500 to-amber-700">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Discover Your Style</h2>
+            <p class="text-xl text-amber-100 mb-10">Premium fashion. Unbeatable prices</p>
+            <button onclick="openModal()" class="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Shop Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-amber-700 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shirt text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">FashionHub</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Shop</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-amber-400 transition">Men</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Women</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-amber-400 transition">About</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-amber-400 transition">Help</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-amber-400 transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-amber-400 transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Browse Collections</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Category</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-100">
+                            <option>Men's Wear</option>
+                            <option>Women's Wear</option>
+                            <option>Accessories</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-amber-500 to-amber-700 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Explore Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

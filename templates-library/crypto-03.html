@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="NFTGallery - Create, trade, and collect digital NFTs">
+    <meta name="keywords" content="NFT, digital art, blockchain, NFT marketplace">
+    <title>NFTGallery - Create & Trade Digital NFTs</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Space Grotesk', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
+        .gradient-nft { background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nft-glow { box-shadow: 0 0 50px rgba(0, 212, 255, 0.35); animation: nftGlow 2.5s ease-in-out infinite; }
+        @keyframes nftGlow { 0%, 100% { box-shadow: 0 0 50px rgba(0, 212, 255, 0.35); } 50% { box-shadow: 0 0 70px rgba(0, 153, 255, 0.5); } }
+        .nft-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); position: relative; }
+        .nft-card:hover { transform: translateY(-20px) rotateZ(-2deg); box-shadow: 0 30px 80px rgba(0, 153, 255, 0.3); }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .nft-border { border: 2px solid; border-image: linear-gradient(135deg, #00d4ff, #0099ff) 1; }
+        .stat-number { font-size: 2.5rem; font-weight: 700; background: linear-gradient(135deg, #00d4ff, #0099ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    </style>
+</head>
+<body class="bg-black text-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-black z-50 border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-palette text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-white">NFTGallery</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#gallery" class="text-gray-300 font-medium hover:text-cyan-400 transition">Gallery</a>
+                <a href="#trending" class="text-gray-300 font-medium hover:text-cyan-400 transition">Trending</a>
+                <a href="#create" class="text-gray-300 font-medium hover:text-cyan-400 transition">Create</a>
+                <a href="#faq" class="text-gray-300 font-medium hover:text-cyan-400 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-xl transition shadow-lg">Connect Wallet</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-300" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t border-gray-800 bg-black">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#gallery" class="block text-gray-300 font-medium py-2 hover:text-cyan-400">Gallery</a>
+                <a href="#trending" class="block text-gray-300 font-medium py-2 hover:text-cyan-400">Trending</a>
+                <a href="#create" class="block text-gray-300 font-medium py-2 hover:text-cyan-400">Create</a>
+                <a href="#faq" class="block text-gray-300 font-medium py-2 hover:text-cyan-400">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold">Connect Wallet</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-slate-900 via-black to-slate-900">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-cyan-900 text-cyan-300 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-gem"></i> Digital Collectibles
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                    Own Digital<br/><span class="gradient-nft">Art Forever</span>
+                </h1>
+                <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+                    Create, buy, and sell unique digital artworks on the blockchain. NFTGallery is the premier marketplace for creators and collectors worldwide. Full ownership, transparent transactions, infinite possibilities.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition">
+                        Start Trading
+                    </button>
+                    <button class="border-2 border-cyan-500 text-cyan-400 px-8 py-4 rounded-lg font-bold hover:bg-cyan-500 hover:bg-opacity-10 transition">
+                        Learn More
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-cyan-400">2.5M+</p>
+                        <p class="text-gray-500">NFTs Listed</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-cyan-400">$8.2B</p>
+                        <p class="text-gray-500">Trading Volume</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="nft-glow w-80 h-80 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-image text-8xl text-cyan-200 opacity-30"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured NFTs -->
+    <section id="gallery" class="py-24 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-white mb-4">Featured Collections</h2>
+            <p class="text-xl text-gray-400 mb-16">Curated masterpieces from top artists</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="nft-card bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500">
+                    <div class="h-64 bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center relative">
+                        <i class="fas fa-image text-6xl text-cyan-200 opacity-40"></i>
+                        <div class="absolute top-4 right-4 bg-black px-3 py-1 rounded-full text-xs font-bold text-cyan-400">
+                            Top Bid: 2.5 ETH
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Cosmic Dreams #1</h3>
+                        <p class="text-gray-400 text-sm mb-4">By Luna Rivera &bull; 156 editions</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-gray-500">Floor Price</p>
+                                <p class="text-lg font-bold text-cyan-400">3.2 ETH</p>
+                            </div>
+                            <button class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">
+                                Bid
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nft-card bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500">
+                    <div class="h-64 bg-gradient-to-br from-blue-600 to-indigo-600 flex items-center justify-center relative">
+                        <i class="fas fa-cube text-6xl text-blue-200 opacity-40"></i>
+                        <div class="absolute top-4 right-4 bg-black px-3 py-1 rounded-full text-xs font-bold text-cyan-400">
+                            On Sale
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Digital Genesis</h3>
+                        <p class="text-gray-400 text-sm mb-4">By Alex Khan &bull; 512 editions</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-gray-500">Floor Price</p>
+                                <p class="text-lg font-bold text-cyan-400">1.8 ETH</p>
+                            </div>
+                            <button class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">
+                                Buy
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="nft-card bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-cyan-500">
+                    <div class="h-64 bg-gradient-to-br from-indigo-600 to-purple-600 flex items-center justify-center relative">
+                        <i class="fas fa-star text-6xl text-purple-200 opacity-40"></i>
+                        <div class="absolute top-4 right-4 bg-black px-3 py-1 rounded-full text-xs font-bold text-cyan-400">
+                            Auction
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Ethereal Visions</h3>
+                        <p class="text-gray-400 text-sm mb-4">By Maria Chen &bull; 88 editions</p>
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <p class="text-xs text-gray-500">Highest Bid</p>
+                                <p class="text-lg font-bold text-cyan-400">5.1 ETH</p>
+                            </div>
+                            <button class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">
+                                Bid
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Trending Stats -->
+    <section id="trending" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-black to-gray-950">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-white mb-16 text-center">Marketplace Trends</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
+                    <p class="text-gray-400 text-sm mb-2 uppercase">Total Floor Value</p>
+                    <p class="stat-number mb-2">$12.4B</p>
+                    <p class="text-green-400 text-sm flex items-center gap-2">
+                        <i class="fas fa-arrow-up"></i> +24% this month
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
+                    <p class="text-gray-400 text-sm mb-2 uppercase">Active Creators</p>
+                    <p class="stat-number mb-2">450K+</p>
+                    <p class="text-green-400 text-sm flex items-center gap-2">
+                        <i class="fas fa-arrow-up"></i> +18% growth
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
+                    <p class="text-gray-400 text-sm mb-2 uppercase">Daily Volume</p>
+                    <p class="stat-number mb-2">$145M</p>
+                    <p class="text-green-400 text-sm flex items-center gap-2">
+                        <i class="fas fa-arrow-up"></i> +35% vs last week
+                    </p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl p-8 border border-gray-800">
+                    <p class="text-gray-400 text-sm mb-2 uppercase">Collections</p>
+                    <p class="stat-number mb-2">85K+</p>
+                    <p class="text-green-400 text-sm flex items-center gap-2">
+                        <i class="fas fa-arrow-up"></i> +500 new today
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Create Section -->
+    <section id="create" class="py-24 px-4 sm:px-6 lg:px-8 bg-black">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-white mb-6">Create Your NFT</h2>
+            <p class="text-xl text-gray-400 mb-12">
+                Get started with our simple creator tools. No coding required.
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+                    <div class="text-5xl font-bold text-cyan-400 mb-4">1</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Upload Art</h3>
+                    <p class="text-gray-400">Upload your digital artwork in any format - images, videos, 3D models, and more.</p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+                    <div class="text-5xl font-bold text-cyan-400 mb-4">2</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Add Details</h3>
+                    <p class="text-gray-400">Add metadata, descriptions, royalties, and collection info to make your NFT unique.</p>
+                </div>
+                
+                <div class="bg-gray-900 rounded-2xl p-8 border border-gray-800">
+                    <div class="text-5xl font-bold text-cyan-400 mb-4">3</div>
+                    <h3 class="text-2xl font-bold text-white mb-3">Mint & Sell</h3>
+                    <p class="text-gray-400">Mint your NFT and list it for sale or auction. Get paid directly in crypto.</p>
+                </div>
+            </div>
+            
+            <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                Create Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-950">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-white text-center mb-16">Frequently Asked Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-gray-900 rounded-xl border border-gray-800 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-white hover:text-cyan-400 transition">
+                        <span>What is an NFT?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-400 leading-relaxed border-t border-gray-700 pt-4">
+                        An NFT (Non-Fungible Token) is a unique digital asset verified on blockchain. Each NFT has proof of ownership and authenticity, making it impossible to counterfeit or duplicate.
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl border border-gray-800 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-white hover:text-cyan-400 transition">
+                        <span>How do I buy NFTs?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-400 leading-relaxed border-t border-gray-700 pt-4">
+                        Connect your crypto wallet, browse the gallery, and place bids or buy directly. You can pay with ETH, SOL, or other supported cryptocurrencies.
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl border border-gray-800 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-white hover:text-cyan-400 transition">
+                        <span>Are transactions secure?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-400 leading-relaxed border-t border-gray-700 pt-4">
+                        Yes, all transactions are verified on blockchain. Smart contracts ensure authenticity and ownership transfer. Your wallet private keys remain secure.
+                    </div>
+                </div>
+                
+                <div class="bg-gray-900 rounded-xl border border-gray-800 p-8">
+                    <button onclick="toggleFaq(3)" class="w-full text-left flex justify-between items-center font-bold text-lg text-white hover:text-cyan-400 transition">
+                        <span>What are royalties?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden mt-4 text-gray-400 leading-relaxed border-t border-gray-700 pt-4">
+                        Royalties are automatic payments creators receive when their NFTs are resold. Set them at creation time (typically 5-10%) and earn perpetually.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-cyan-600 via-blue-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Enter the NFT World?</h2>
+            <p class="text-xl text-cyan-100 mb-10">Join millions of creators and collectors on NFTGallery</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Connect Wallet
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    Explore Gallery
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-black border-t border-gray-800 text-gray-400 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-palette text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">NFTGallery</span>
+                    </div>
+                    <p class="text-sm">Premier NFT marketplace for creators and collectors</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Marketplace</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Explore</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Create</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Collections</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Discord</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-instagram text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-4">
+        <div class="bg-gray-900 rounded-2xl shadow-2xl max-w-md w-full border border-gray-800">
+            <div class="flex justify-between items-center p-6 border-b border-gray-800">
+                <h3 class="text-2xl font-bold text-white">Connect Wallet</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-200">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg font-bold transition flex items-center justify-center gap-3">
+                    <i class="fab fa-ethereum text-2xl"></i>
+                    <span>MetaMask</span>
+                </button>
+                
+                <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg font-bold transition flex items-center justify-center gap-3">
+                    <i class="fas fa-wallet text-2xl"></i>
+                    <span>WalletConnect</span>
+                </button>
+                
+                <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg font-bold transition flex items-center justify-center gap-3">
+                    <i class="fas fa-key text-2xl"></i>
+                    <span>Coinbase Wallet</span>
+                </button>
+                
+                <button class="w-full bg-gray-800 hover:bg-gray-700 text-white py-3 rounded-lg font-bold transition flex items-center justify-center gap-3">
+                    <i class="fas fa-shield-alt text-2xl"></i>
+                    <span>Ledger</span>
+                </button>
+                
+                <p class="text-xs text-gray-400 text-center mt-4">
+                    We never have access to your private keys. Always review transaction details before confirming.
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

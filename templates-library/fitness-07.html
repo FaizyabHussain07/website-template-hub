@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PilatesPro - Core Strength & Body Sculpting</title>
+    <meta name="description" content="Expert Pilates training for core strength, flexibility, and elegant body sculpting. Transform your posture and fitness.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;600;700;800&family=Cormorant:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        .serif { font-family: 'Cormorant', serif; }
+        .gradient-indigo { background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .btn-indigo { background: linear-gradient(135deg, #6366F1 0%, #4F46E5 100%); transition: all 0.3s; }
+        .btn-indigo:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(99, 102, 241, 0.35); }
+        .nav-line { position: relative; }
+        .nav-line::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #6366F1, #4F46E5); transition: width 0.3s; }
+        .nav-line:hover::after { width: 100%; }
+        .card-hover { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(99, 102, 241, 0.15); }
+        .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 16px; max-width: 500px; width: 90%; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2); }
+        .mobile-menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); z-index: 40; }
+        .mobile-menu.active { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="bg-white shadow-sm fixed w-full top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-indigo-600 to-indigo-800 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-person-hiking text-white text-lg"></i>
+                </div>
+                <span class="text-2xl font-bold serif gradient-indigo">PilatesPro</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#classes" class="nav-line text-gray-700 hover:text-indigo-600">Classes</a>
+                <a href="#why" class="nav-line text-gray-700 hover:text-indigo-600">Why Pilates</a>
+                <a href="#results" class="nav-line text-gray-700 hover:text-indigo-600">Results</a>
+                <a href="#pricing" class="nav-line text-gray-700 hover:text-indigo-600">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-indigo text-white px-6 py-2 rounded-full font-semibold">Begin Free Trial</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#classes" class="text-gray-700 py-2">Classes</a>
+            <a href="#why" class="text-gray-700 py-2">Why Pilates</a>
+            <a href="#results" class="text-gray-700 py-2">Results</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-indigo text-white px-6 py-2 rounded-full font-semibold mt-4 w-full">Begin Free Trial</button>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-indigo-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="serif text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Sculpt. Strengthen. Transform.</h1>
+                    <p class="text-xl text-gray-600 mb-8">Master Pilates with expert instructors. Build a powerful core, improve posture, and create the body you've always wanted.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-indigo text-white px-8 py-3 rounded-full font-semibold text-lg">Start Free Class</button>
+                        <button onclick="document.getElementById('classes').scrollIntoView({behavior: 'smooth'})" class="border-2 border-indigo-600 text-indigo-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-indigo-50 transition">Browse Classes</button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop" alt="Pilates Class" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="classes" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif text-5xl font-bold text-gray-900 mb-4">Pilates Classes</h2>
+                <p class="text-xl text-gray-600">Find your perfect class level</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-indigo-100 shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-indigo-300 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-user text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Beginner</h3>
+                        <p class="text-gray-600 mb-6">Perfect for newcomers. Learn fundamentals with patience and care.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> 30-minute classes</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Core foundation</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Posture focus</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-indigo text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border-2 border-indigo-600 shadow-lg relative">
+                    <span class="absolute top-4 right-4 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-bold">POPULAR</span>
+                    <div class="h-40 bg-gradient-to-br from-indigo-400 to-indigo-600 flex items-center justify-center">
+                        <i class="fas fa-star text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Intermediate</h3>
+                        <p class="text-gray-600 mb-6">Build strength and control. Challenge yourself safely.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> 45-minute classes</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Progressive intensity</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Flexibility work</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-indigo text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                    </div>
+                </div>
+                <div class="card-hover bg-white rounded-2xl overflow-hidden border border-indigo-100 shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-indigo-300 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Advanced</h3>
+                        <p class="text-gray-600 mb-6">Master advanced techniques. Push your limits.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> 60-minute classes</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Complex sequences</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Equipment variations</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-indigo text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="py-24 px-4 bg-indigo-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif text-5xl font-bold text-gray-900 mb-4">The Pilates Difference</h2>
+                <p class="text-xl text-gray-600">Proven benefits backed by science</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-heart text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Core Strength</h3>
+                    <p class="text-gray-600">Develop a powerful core that supports your entire body and improves daily function.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-align-left text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Better Posture</h3>
+                    <p class="text-gray-600">Correct alignment and strengthen postural muscles for elegant, confident movement.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-leaf text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Low Impact</h3>
+                    <p class="text-gray-600">Safe on joints while still providing excellent strength and conditioning benefits.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border border-indigo-200">
+                    <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-smile text-indigo-600 text-xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Mind-Body Connection</h3>
+                    <p class="text-gray-600">Develop awareness and control through focused breathing and mindful movement.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif text-5xl font-bold text-gray-900 mb-4">Transformation Stories</h2>
+                <p class="text-xl text-gray-600">See the power of consistent practice</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-indigo-50 rounded-2xl p-8 border border-indigo-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"My posture is completely different. People comment on how much more confident I look. Pilates changes everything."</p>
+                    <p class="font-bold text-gray-900">Rachel Anderson</p>
+                    <p class="text-indigo-600 text-sm">3 months</p>
+                </div>
+                <div class="bg-indigo-50 rounded-2xl p-8 border border-indigo-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Back pain is gone. I feel stronger, longer, leaner. The instructors are amazing and so supportive."</p>
+                    <p class="font-bold text-gray-900">Michelle Brown</p>
+                    <p class="text-indigo-600 text-sm">4 months</p>
+                </div>
+                <div class="bg-indigo-50 rounded-2xl p-8 border border-indigo-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The definition in my arms and core is incredible. Finally fitness that works for my body type."</p>
+                    <p class="font-bold text-gray-900">Jennifer Lee</p>
+                    <p class="text-indigo-600 text-sm">5 months</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-4 bg-indigo-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif text-5xl font-bold text-gray-900 mb-4">Flexible Plans</h2>
+                <p class="text-xl text-gray-600">Choose what fits your lifestyle</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-white border border-indigo-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Monthly</h3>
+                    <p class="text-gray-600 mb-6 text-sm">No commitment</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$19</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-indigo-600 text-indigo-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-indigo-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Unlimited classes</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> All levels</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Cancel anytime</li>
+                    </ul>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-indigo-50 to-indigo-100 border-2 border-indigo-600 rounded-2xl p-8 relative">
+                    <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-4 py-1 rounded-full text-sm font-bold">BEST VALUE</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Quarterly</h3>
+                    <p class="text-gray-600 mb-6 text-sm">3 months</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$49</span>
+                        <span class="text-gray-600">/3 months</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-indigo text-white w-full py-2 rounded-lg font-semibold mb-8">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> All Monthly features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Save 14%</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Priority support</li>
+                    </ul>
+                </div>
+                <div class="card-hover bg-white border border-indigo-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Annual</h3>
+                    <p class="text-gray-600 mb-6 text-sm">12 months</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$180</span>
+                        <span class="text-gray-600">/year</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-indigo-600 text-indigo-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-indigo-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> All features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> Save 21%</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-indigo-600"></i> VIP support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-r from-indigo-600 to-indigo-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="serif text-4xl md:text-5xl font-bold text-white mb-6">Ready to Sculpt?</h2>
+            <p class="text-xl text-indigo-100 mb-10">30 days free. Your first class is on us.</p>
+            <button onclick="openModal()" class="bg-white text-indigo-600 px-10 py-4 rounded-full font-semibold text-lg hover:bg-indigo-50 transition inline-block">Start Free Trial</button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="serif text-2xl text-white font-bold mb-4">PilatesPro</div>
+                    <p class="text-sm">Master the art of movement.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Classes</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Beginner</a></li>
+                        <li><a href="#" class="hover:text-white">Intermediate</a></li>
+                        <li><a href="#" class="hover:text-white">Advanced</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-youtube text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-indigo-600 transition"><i class="fab fa-facebook text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="serif text-2xl font-bold text-gray-900">Begin Your Pilates Journey</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+                    <option>Select Class Level</option>
+                    <option>Beginner</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                </select>
+                <button type="submit" class="btn-indigo text-white w-full py-3 rounded-lg font-semibold">Start Free Trial</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">30 days free • No credit card • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('modal').classList.add('active'); }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome to PilatesPro! Check your email for your free trial access.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

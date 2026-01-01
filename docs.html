@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Documentation & Guide | Web Templates Hub</title>
+    <meta name="description"
+        content="Learn how to use, customize, and deploy our free one-page HTML templates. Detailed guide on Tailwind CSS integration and licensing.">
+
+    <!-- OG / Twitter -->
+    <meta property="og:title" content="Template Documentation | Web Templates Hub">
+    <meta property="og:description" content="Step-by-step guide to using our free professional templates.">
+    <meta property="twitter:title" content="Template Documentation | Web Templates Hub">
+    <link rel="canonical" href="https://webtemplateshub.com/docs.html">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                    <i data-lucide="layout" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">WebTemplates<span
+                        class="text-blue-600">Hub</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Templates</a>
+                <a href="categories.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Categories</a>
+                <a href="pricing.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a>
+                <a href="contact.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="index.html"
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">
+                    Download Free
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 flex-col gap-4 animate-in slide-in-from-top-4 duration-300">
+            <a href="index.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Templates</a>
+            <a href="categories.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Categories</a>
+            <a href="pricing.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Pricing</a>
+            <a href="contact.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Contact</a>
+            <a href="index.html"
+                class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold mt-2 shadow-lg shadow-blue-500/25 text-center">
+                Download Free
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="text-4xl font-bold text-slate-900 mb-8">Documentation</h1>
+
+            <div class="space-y-12">
+                <!-- Getting Started -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <i data-lucide="play" class="w-6 h-6 text-blue-600"></i> Getting Started
+                    </h2>
+                    <div class="prose prose-slate max-w-none text-slate-600 space-y-4">
+                        <p>Welcome to Web Templates Hub. Our templates are designed to be as simple as possible—single
+                            HTML files with embedded styling or CDN links.</p>
+                        <ol class="list-decimal list-inside space-y-2">
+                            <li>Browse our library and find a template you like.</li>
+                            <li>Click **Live Preview** to see it in action.</li>
+                            <li>Download the **ZIP file**.</li>
+                            <li>Open the `.html` file in your text editor and start customizing.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Customization -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <i data-lucide="edit-3" class="w-6 h-6 text-blue-600"></i> Customization
+                    </h2>
+                    <div class="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
+                        <p class="text-slate-600 mb-4">Most templates use **Tailwind CSS**. You can change the
+                            appearance using utility classes directly in the HTML.</p>
+                        <pre class="bg-slate-900 text-slate-300 p-4 rounded-xl text-sm overflow-x-auto">
+&lt;!-- Change background color --&gt;
+&lt;div class="bg-blue-600"&gt;...&lt;/div&gt;
+
+&lt;!-- Change font size --&gt;
+&lt;h1 class="text-5xl font-bold"&gt;...&lt;/h1&gt;
+                        </pre>
+                    </div>
+                </section>
+
+                <!-- Licensing -->
+                <section>
+                    <h2 class="text-2xl font-bold text-slate-900 mb-4 flex items-center gap-3">
+                        <i data-lucide="shield" class="w-6 h-6 text-blue-600"></i> Licensing
+                    </h2>
+                    <p class="text-slate-600">All templates are available under the **MIT License**. You can use them
+                        for personal or commercial projects—100% free of charge.</p>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                            <i data-lucide="layout" class="text-white w-6 h-6"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">WebTemplatesHub</span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm">
+                        Curating the world's best single-page HTML templates for developers and entrepreneurs. 100% Free
+                        Forever.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Product</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="categories.html" class="hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="terms.html" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="help.html" class="hover:text-white transition-colors">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                &copy; 2026 Web Templates Hub. All rights reserved. Free for everyone.
+            </div>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

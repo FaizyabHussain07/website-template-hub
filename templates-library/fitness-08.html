@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoxMaster - Boxing & Combat Fitness</title>
+    <meta name="description" content="Learn boxing, Muay Thai, and kickboxing from professional coaches. Full-body conditioning and self-defense skills.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous:wght@400&family=Oxygen:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Oxygen', sans-serif; }
+        .title-font { font-family: 'Righteous', cursive; }
+        .gradient-red { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .btn-red { background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); transition: all 0.3s; }
+        .btn-red:hover { transform: scale(1.05); box-shadow: 0 12px 30px rgba(239, 68, 68, 0.4); }
+        .link-hover { position: relative; }
+        .link-hover::after { content: ''; position: absolute; bottom: -3px; left: 0; width: 0; height: 3px; background: linear-gradient(90deg, #EF4444, #DC2626); transition: width 0.3s; }
+        .link-hover:hover::after { width: 100%; }
+        .card-punch { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card-punch:hover { transform: translateY(-10px); box-shadow: 0 20px 50px rgba(239, 68, 68, 0.15); }
+        .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 16px; max-width: 500px; width: 90%; }
+        .mobile-menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); z-index: 40; }
+        .mobile-menu.active { display: flex; }
+        .badge-red { display: inline-block; background: linear-gradient(135deg, #EF4444 0%, #DC2626 100%); color: white; padding: 6px 14px; border-radius: 50px; font-weight: 700; font-size: 12px; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="bg-white border-b border-red-200 fixed w-full top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-red-600 to-red-800 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-hand-fist text-white text-lg"></i>
+                </div>
+                <span class="title-font text-2xl gradient-red">BoxMaster</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#programs" class="link-hover text-gray-700 hover:text-red-600">Programs</a>
+                <a href="#benefits" class="link-hover text-gray-700 hover:text-red-600">Benefits</a>
+                <a href="#testimonials" class="link-hover text-gray-700 hover:text-red-600">Reviews</a>
+                <a href="#pricing" class="link-hover text-gray-700 hover:text-red-600">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-red text-white px-6 py-2 rounded-lg font-bold text-sm">PUNCH FREE</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-red-600">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#programs" class="text-gray-700 py-2">Programs</a>
+            <a href="#benefits" class="text-gray-700 py-2">Benefits</a>
+            <a href="#testimonials" class="text-gray-700 py-2">Reviews</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-red text-white px-6 py-2 rounded-lg font-bold text-sm mt-4 w-full">PUNCH FREE</button>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-red-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="title-font text-5xl md:text-6xl text-gray-900 mb-6 leading-tight">UNLEASH YOUR INNER FIGHTER</h1>
+                    <p class="text-xl text-gray-600 mb-8">Learn authentic boxing, Muay Thai, and kickboxing from pro coaches. Get fit, learn self-defense, and feel powerful.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-red text-white px-8 py-3 rounded-lg font-bold text-lg">JOIN FREE CLASS</button>
+                        <button onclick="document.getElementById('programs').scrollIntoView({behavior: 'smooth'})" class="border-2 border-red-600 text-red-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-red-50 transition">EXPLORE CLASSES</button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1517836357463-d25ddfcbf042?w=600&h=600&fit=crop" alt="Boxing Training" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="programs" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-5xl text-gray-900 mb-4">FIGHT PROGRAMS</h2>
+                <p class="text-xl text-gray-600">Choose your combat style</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-punch bg-white rounded-2xl overflow-hidden border-2 border-red-200">
+                    <div class="h-40 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-boxing-glove text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-red mb-3">CLASSIC</div>
+                        <h3 class="title-font text-2xl text-gray-900 mb-3">BOXING BASICS</h3>
+                        <p class="text-gray-600 mb-6">Learn proper stance, footwork, and punching technique from professional boxers.</p>
+                        <ul class="space-y-2 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Technique foundation</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Mitt work</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Heavy bag training</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-red text-white w-full py-2 rounded-lg font-bold text-sm">TRY FREE</button>
+                    </div>
+                </div>
+                <div class="card-punch bg-white rounded-2xl overflow-hidden border-2 border-red-600 relative">
+                    <div class="badge-red absolute top-4 right-4">MOST POPULAR</div>
+                    <div class="h-40 bg-gradient-to-br from-red-500 to-red-700 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-red mb-3">INTENSE</div>
+                        <h3 class="title-font text-2xl text-gray-900 mb-3">KICKBOXING POWER</h3>
+                        <p class="text-gray-600 mb-6">Full-body conditioning with punches and kicks. Maximum cardio and strength.</p>
+                        <ul class="space-y-2 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Kicks & punches</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> HIIT conditioning</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Fat burning</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-red text-white w-full py-2 rounded-lg font-bold text-sm">TRY FREE</button>
+                    </div>
+                </div>
+                <div class="card-punch bg-white rounded-2xl overflow-hidden border-2 border-red-200">
+                    <div class="h-40 bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center">
+                        <i class="fas fa-crown text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-red mb-3">ADVANCED</div>
+                        <h3 class="title-font text-2xl text-gray-900 mb-3">MUAY THAI</h3>
+                        <p class="text-gray-600 mb-6">The art of eight limbs. Master throws, clinch work, and elbow strikes.</p>
+                        <ul class="space-y-2 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Full-body technique</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Clinch mastery</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Competition prep</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-red text-white w-full py-2 rounded-lg font-bold text-sm">TRY FREE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="py-24 px-4 bg-red-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-5xl text-gray-900 mb-4">WHY BOXMASTER DOMINATES</h2>
+                <p class="text-xl text-gray-600">More than just a workout</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-heart text-red-600 text-xl"></i> Full-Body Strength
+                    </h3>
+                    <p class="text-gray-600">Every punch, kick, and block engages multiple muscle groups. Total conditioning.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-bolt text-red-600 text-xl"></i> Extreme Cardio
+                    </h3>
+                    <p class="text-gray-600">High-intensity training burns serious calories and builds cardio endurance fast.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-shield text-red-600 text-xl"></i> Self-Defense Skills
+                    </h3>
+                    <p class="text-gray-600">Learn real techniques that build confidence and keep you safe in any situation.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-brain text-red-600 text-xl"></i> Mental Toughness
+                    </h3>
+                    <p class="text-gray-600">Boxing builds discipline, focus, and confidence that carries into daily life.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-group text-red-600 text-xl"></i> Fight Community
+                    </h3>
+                    <p class="text-gray-600">Train with passionate fighters. Build friendships in our energetic gym community.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-red-600">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-star text-red-600 text-xl"></i> Pro Coaching
+                    </h3>
+                    <p class="text-gray-600">Learn from fighters with real experience. Expert instruction at every level.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-red-600 to-red-800">
+        <div class="max-w-6xl mx-auto text-center text-white">
+            <h2 class="title-font text-4xl mb-4">100K+ FIGHTERS TRAINED</h2>
+            <p class="text-lg text-red-100">Join the community. Get in the ring.</p>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-5xl text-gray-900 mb-4">FIGHTER STORIES</h2>
+                <p class="text-xl text-gray-600">Real results from real fighters</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-red-50 rounded-2xl p-8 border border-red-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"Dropped 40 lbs and found my confidence. Boxing saved my life. The coaches genuinely care about your success."</p>
+                    <p class="font-bold text-gray-900">Marcus Johnson</p>
+                    <p class="text-red-600 text-sm">6 months</p>
+                </div>
+                <div class="bg-red-50 rounded-2xl p-8 border border-red-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"Never thought I'd compete. Now I'm training for my first amateur fight. Best decision ever. Pure energy here!"</p>
+                    <p class="font-bold text-gray-900">Sarah Martinez</p>
+                    <p class="text-red-600 text-sm">8 months</p>
+                </div>
+                <div class="bg-red-50 rounded-2xl p-8 border border-red-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"Stress relief at its finest. Bag work is therapy. Strong community. Worth every punch. Highly recommend."</p>
+                    <p class="font-bold text-gray-900">David Chen</p>
+                    <p class="text-red-600 text-sm">4 months</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-4 bg-red-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-5xl text-gray-900 mb-4">MEMBERSHIP TIERS</h2>
+                <p class="text-xl text-gray-600">Flexible options for fighters</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-punch bg-white border border-red-200 rounded-2xl p-8">
+                    <h3 class="title-font text-2xl text-gray-900 mb-2">STARTER</h3>
+                    <p class="text-gray-600 mb-6">4 classes/month</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$49</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-red-600 text-red-600 w-full py-2 rounded-lg font-bold mb-8 hover:bg-red-50 transition">GET STARTED</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> 4 classes</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Community access</li>
+                    </ul>
+                </div>
+                <div class="card-punch bg-red-50 border-2 border-red-600 rounded-2xl p-8 relative">
+                    <div class="badge-red absolute -top-3 left-1/2 -translate-x-1/2">BEST</div>
+                    <h3 class="title-font text-2xl text-gray-900 mb-2">FIGHTER</h3>
+                    <p class="text-gray-600 mb-6">Unlimited</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-red text-white w-full py-2 rounded-lg font-bold mb-8">JOIN FIGHT CAMP</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Unlimited classes</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Personal coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Sparring access</li>
+                    </ul>
+                </div>
+                <div class="card-punch bg-white border border-red-200 rounded-2xl p-8">
+                    <h3 class="title-font text-2xl text-gray-900 mb-2">PRO</h3>
+                    <p class="text-gray-600 mb-6">Elite training</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$199</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-red-600 text-red-600 w-full py-2 rounded-lg font-bold mb-8 hover:bg-red-50 transition">BECOME PRO</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> All Fighter benefits</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> 1-on-1 coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-red-600"></i> Competition prep</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-r from-red-600 to-red-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="title-font text-4xl md:text-5xl text-white mb-6">GET IN THE RING</h2>
+            <p class="text-xl text-red-100 mb-10">7 days free. First class on us. No commitment.</p>
+            <button onclick="openModal()" class="bg-white text-red-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-red-50 transition inline-block">JOIN NOW</button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="title-font text-2xl text-red-500 mb-4">BoxMaster</div>
+                    <p class="text-sm">Fight. Sweat. Succeed.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Classes</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Boxing</a></li>
+                        <li><a href="#" class="hover:text-white">Kickboxing</a></li>
+                        <li><a href="#" class="hover:text-white">Muay Thai</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Gym</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fab fa-youtube text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-red-600 transition"><i class="fab fa-facebook text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="title-font text-2xl text-gray-900">JOIN THE FIGHT</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-red-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                    <option>Select Program</option>
+                    <option>Boxing Basics</option>
+                    <option>Kickboxing Power</option>
+                    <option>Muay Thai</option>
+                </select>
+                <button type="submit" class="btn-red text-white w-full py-3 rounded-lg font-bold">GET YOUR FREE CLASS</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">7 days free • No card required • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('modal').classList.add('active'); }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome to BoxMaster! Your free class awaits. Check your email!');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="WellVital - Track your health metrics and wellness journey">
+    <meta name="keywords" content="health tracking, wellness app, fitness, activity monitor">
+    <title>WellVital - Your Health Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .gradient-vital { background: linear-gradient(135deg, #10b981 0%, #059669 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .vital-glow { box-shadow: 0 0 55px rgba(16, 185, 129, 0.35); animation: vitalGlow 2.4s ease-in-out infinite; }
+        @keyframes vitalGlow { 0%, 100% { box-shadow: 0 0 55px rgba(16, 185, 129, 0.35); } 50% { box-shadow: 0 0 75px rgba(5, 150, 105, 0.5); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .metric-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .metric-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(16, 185, 129, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-heart-pulse text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">WellVital</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#features" class="text-gray-700 font-medium hover:text-green-600 transition">Features</a>
+                <a href="#metrics" class="text-gray-700 font-medium hover:text-green-600 transition">Track</a>
+                <a href="#pricing" class="text-gray-700 font-medium hover:text-green-600 transition">Plans</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-green-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Get Started</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#features" class="block text-gray-700 font-medium py-2">Features</a>
+                <a href="#metrics" class="block text-gray-700 font-medium py-2">Track</a>
+                <a href="#pricing" class="block text-gray-700 font-medium py-2">Plans</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg font-bold">Get Started</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-chart-line"></i> Health Intelligence
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Track Your<br/><span class="gradient-vital">Health Journey</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Monitor heart rate, sleep, steps, calories, blood pressure, and stress. Get AI-powered insights and personalized recommendations.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-green-500 to-emerald-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Start Tracking
+                    </button>
+                    <button class="border-2 border-green-300 text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-green-50 transition">
+                        See Demo
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-green-600">2M+</p>
+                        <p class="text-gray-600">Active Users</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-green-600">500M</p>
+                        <p class="text-gray-600">Data Points</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="vital-glow w-80 h-80 bg-gradient-to-br from-green-100 to-emerald-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-heart-pulse text-7xl text-green-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Health Metrics -->
+    <section id="metrics" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">What We Track</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Complete health monitoring in one app</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-red-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-heart text-red-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Heart Health</h3>
+                    <p class="text-gray-600 mb-4">Real-time heart rate monitoring with daily trends</p>
+                    <p class="text-green-600 font-bold text-sm">Syncs with Apple Watch, Fitbit</p>
+                </div>
+                
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-bed text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Sleep Quality</h3>
+                    <p class="text-gray-600 mb-4">Track sleep cycles and get recovery insights</p>
+                    <p class="text-green-600 font-bold text-sm">8-hour average = Optimal health</p>
+                </div>
+                
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-shoe-prints text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Activity & Steps</h3>
+                    <p class="text-gray-600 mb-4">10K daily steps goal with progress tracking</p>
+                    <p class="text-green-600 font-bold text-sm">Earn badges & rewards</p>
+                </div>
+                
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-yellow-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-flame text-yellow-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Calories Burned</h3>
+                    <p class="text-gray-600 mb-4">AI calculates personalized calorie targets</p>
+                    <p class="text-green-600 font-bold text-sm">Nutrition integration included</p>
+                </div>
+                
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-brain text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Stress Level</h3>
+                    <p class="text-gray-600 mb-4">Real-time stress detection and management tips</p>
+                    <p class="text-green-600 font-bold text-sm">Meditation guides included</p>
+                </div>
+                
+                <div class="metric-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="w-14 h-14 bg-green-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-droplet text-green-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Hydration</h3>
+                    <p class="text-gray-600 mb-4">Smart reminders to drink water throughout day</p>
+                    <p class="text-green-600 font-bold text-sm">2L daily goal tracking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Powerful Features</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-robot text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">AI Insights</h3>
+                            <p class="text-gray-600">Machine learning analyzes patterns and predicts health risks before they happen.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-share-nodes text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Doctor Sharing</h3>
+                            <p class="text-gray-600">Share health data with your doctor for better consultations and faster diagnosis.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-people-group text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Community Support</h3>
+                            <p class="text-gray-600">Join health challenges with friends and stay motivated together.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Privacy First</h3>
+                            <p class="text-gray-600">Your data is encrypted and never shared without your explicit permission.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Simple Pricing</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Choose your plan</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                    <p class="text-gray-600 mb-6">Perfect to start</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">$0<span class="text-lg text-gray-600">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Step tracking</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Heart rate basics</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Weekly reports</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gray-100 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Get Free</button>
+                </div>
+                
+                <div class="bg-white rounded-2xl border-2 border-green-500 p-8 shadow-lg">
+                    <div class="inline-block bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold mb-4">POPULAR</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Plus</h3>
+                    <p class="text-gray-600 mb-6">Most features</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">$9.99<span class="text-lg text-gray-600">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">All Free features</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Advanced analytics</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Sleep tracking</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">AI coaching</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Start Free Trial</button>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-600 mb-6">Complete health</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">$19.99<span class="text-lg text-gray-600">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">All Plus features</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Doctor consultation</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Personalized diet plan</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-green-600 mt-1"></i> <span class="text-gray-700">Priority support</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gray-100 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Upgrade Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-green-600 transition">
+                        <span>Is my data safe?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, all data is AES-256 encrypted and stored on secure HIPAA-compliant servers. We never sell your data.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-green-600 transition">
+                        <span>Which devices are compatible?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        WellVital syncs with Apple Health, Google Fit, Fitbit, Oura Ring, Garmin, and most wearables via API.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-green-600 transition">
+                        <span>Can I cancel anytime?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, cancel your subscription anytime with no penalties or hidden fees. Simple process in settings.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-green-600 to-emerald-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Take Control of Your Health</h2>
+            <p class="text-xl text-green-100 mb-10">Start free today. No credit card needed.</p>
+            <button onclick="openModal()" class="bg-white text-green-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Download App
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-heart-pulse text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">WellVital</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-green-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Download</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-green-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-green-400 transition">Help</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Community</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-green-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-green-400 transition">Terms</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition"><i class="fab fa-instagram text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-green-400 transition"><i class="fab fa-linkedin text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Get Started</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100" placeholder="you@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Choose Plan</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 focus:ring-2 focus:ring-green-100">
+                            <option>Free Plan</option>
+                            <option>Plus Plan - $9.99/mo</option>
+                            <option>Premium Plan - $19.99/mo</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-green-500 to-emerald-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

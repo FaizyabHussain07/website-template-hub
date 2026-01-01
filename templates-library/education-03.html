@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LinguaFlow - Learn any language in 90 days with AI-powered personalized lessons. Native speakers, proven method.">
+    <meta name="keywords" content="language learning, online courses, AI tutoring, language app">
+    <title>LinguaFlow - Learn Languages Fast</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Lora', serif; }
+        .gradient-flow { background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); }
+        .gradient-accent { background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 100%); }
+        .language-card { transition: all 0.3s ease; }
+        .language-card:hover { transform: rotateY(5deg); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .progress-ring { stroke-dasharray: 339.29; stroke-dashoffset: 0; transition: stroke-dashoffset 0.3s ease; }
+        .lang-flag { font-size: 3rem; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-flow rounded-lg flex items-center justify-center">
+                    <i class="fas fa-globe text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">LinguaFlow</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#languages" class="text-gray-700 hover:text-pink-600 transition font-medium">Languages</a>
+                <a href="#method" class="text-gray-700 hover:text-pink-600 transition font-medium">Our Method</a>
+                <a href="#pricing" class="text-gray-700 hover:text-pink-600 transition font-medium">Pricing</a>
+                <a href="#success" class="text-gray-700 hover:text-pink-600 transition font-medium">Success</a>
+                <button onclick="openModal()" class="gradient-flow text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Start Free</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#languages" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Languages</a>
+                <a href="#method" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Our Method</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Pricing</a>
+                <a href="#success" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Success</a>
+                <button onclick="openModal()" class="w-full gradient-flow text-white py-2 rounded-lg font-bold">Start Free</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50 via-purple-50 to-blue-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-bold mb-6">Learn in 90 Days</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Speak Like
+                        <span class="gradient-flow bg-clip-text text-transparent">A Native</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Personalized AI tutoring with native speakers. Proven method used by 2M+ learners worldwide.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-flow text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Free Trial
+                        </button>
+                        <button class="border-2 border-pink-600 text-pink-600 px-8 py-4 rounded-lg font-bold hover:bg-pink-50 transition text-lg">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <div class="relative">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Language Learning" class="rounded-xl shadow-2xl">
+                        <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-xl shadow-lg border border-gray-200">
+                            <p class="text-sm text-gray-600 mb-2">Learn 25 Languages</p>
+                            <div class="flex gap-2 text-2xl">
+                                <span>🇪🇸 🇫🇷 🇩🇪 🇯🇵 🇮🇹</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section id="languages" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Learn Any Language</h2>
+
+            <div class="grid md:grid-cols-3 lg:grid-cols-5 gap-4">
+                <div class="language-card bg-gradient-to-br from-pink-100 to-rose-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-pink-500 cursor-pointer">
+                    <p class="lang-flag">🇪🇸</p>
+                    <h3 class="font-bold text-gray-900">Spanish</h3>
+                    <p class="text-sm text-gray-600">500M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-blue-100 to-cyan-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-blue-500 cursor-pointer">
+                    <p class="lang-flag">🇫🇷</p>
+                    <h3 class="font-bold text-gray-900">French</h3>
+                    <p class="text-sm text-gray-600">300M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-amber-100 to-orange-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-amber-500 cursor-pointer">
+                    <p class="lang-flag">🇩🇪</p>
+                    <h3 class="font-bold text-gray-900">German</h3>
+                    <p class="text-sm text-gray-600">130M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-red-100 to-pink-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-red-500 cursor-pointer">
+                    <p class="lang-flag">🇯🇵</p>
+                    <h3 class="font-bold text-gray-900">Japanese</h3>
+                    <p class="text-sm text-gray-600">125M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-green-100 to-teal-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-green-500 cursor-pointer">
+                    <p class="lang-flag">🇨🇳</p>
+                    <h3 class="font-bold text-gray-900">Chinese</h3>
+                    <p class="text-sm text-gray-600">1.1B+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-purple-100 to-blue-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-purple-500 cursor-pointer">
+                    <p class="lang-flag">🇮🇹</p>
+                    <h3 class="font-bold text-gray-900">Italian</h3>
+                    <p class="text-sm text-gray-600">70M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-pink-100 to-orange-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-pink-500 cursor-pointer">
+                    <p class="lang-flag">🇵🇹</p>
+                    <h3 class="font-bold text-gray-900">Portuguese</h3>
+                    <p class="text-sm text-gray-600">230M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-red-100 to-orange-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-red-500 cursor-pointer">
+                    <p class="lang-flag">🇷🇺</p>
+                    <h3 class="font-bold text-gray-900">Russian</h3>
+                    <p class="text-sm text-gray-600">260M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-blue-100 to-purple-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-blue-500 cursor-pointer">
+                    <p class="lang-flag">🇰🇷</p>
+                    <h3 class="font-bold text-gray-900">Korean</h3>
+                    <p class="text-sm text-gray-600">82M+ speakers</p>
+                </div>
+                <div class="language-card bg-gradient-to-br from-green-100 to-blue-100 p-6 rounded-xl text-center hover:shadow-lg transition border-2 border-transparent hover:border-green-500 cursor-pointer">
+                    <p class="lang-flag">🇸🇦</p>
+                    <h3 class="font-bold text-gray-900">Arabic</h3>
+                    <p class="text-sm text-gray-600">400M+ speakers</p>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <p class="text-gray-600 mb-6">... and 15 more languages available</p>
+                <button onclick="openModal()" class="gradient-flow text-white px-8 py-4 rounded-lg font-bold hover:shadow-lg transition text-lg">
+                    Explore All Languages
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Method Section -->
+    <section id="method" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">The LinguaFlow Method</h2>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-16">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1491466424936-e304919aada7?w=500&h=400&fit=crop" alt="AI Learning" class="rounded-xl shadow-lg">
+                </div>
+                <div class="space-y-8">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">AI-Powered Personalization</h3>
+                            <p class="text-gray-600">Smart algorithms adapt to your learning pace and style for maximum retention.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Native Speaker Tutors</h3>
+                            <p class="text-gray-600">Real conversations with vetted native speakers. Unlimited speaking practice.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-gamepad text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Gamified Learning</h3>
+                            <p class="text-gray-600">Make learning fun with streaks, challenges, and achievements that keep you motivated.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 gradient-accent rounded-lg flex items-center justify-center flex-shrink-0">
+                            <i class="fas fa-award text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-lg font-bold text-gray-900 mb-2">Certified Progress</h3>
+                            <p class="text-gray-600">Official certificates recognized by employers and universities worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-pink-50 to-purple-50 p-12 rounded-xl border border-pink-200">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8 text-center">90-Day Language Journey</h3>
+                <div class="grid md:grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border-4 border-pink-500">
+                            <i class="fas fa-book text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Days 1-30</h4>
+                        <p class="text-sm text-gray-600">Foundations & basics. Daily 15-min lessons.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border-4 border-pink-500">
+                            <i class="fas fa-microphone text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Days 31-60</h4>
+                        <p class="text-sm text-gray-600">Conversation & speaking. Tutor sessions.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border-4 border-pink-500">
+                            <i class="fas fa-comments text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Days 61-90</h4>
+                        <p class="text-sm text-gray-600">Fluency & mastery. Real-world scenarios.</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="w-20 h-20 mx-auto bg-white rounded-full flex items-center justify-center mb-4 border-4 border-pink-500">
+                            <i class="fas fa-certificate text-pink-600 text-2xl"></i>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Certification</h4>
+                        <p class="text-sm text-gray-600">Earn official language proficiency cert.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Simple, Transparent Pricing</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl border-2 border-gray-200 hover:border-pink-500 transition">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6">For casual learners</p>
+                    <p class="text-4xl font-bold mb-6">$9.99<span class="text-lg text-gray-600">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>5 lessons per week</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>AI tutor only</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>Basic exercises</span></li>
+                        <li class="flex gap-2"><i class="fas fa-times text-gray-400"></i><span>Native tutors</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-pink-600 text-pink-600 py-3 rounded-lg font-bold hover:bg-pink-50 transition">Start Free</button>
+                </div>
+
+                <div class="bg-gradient-flow text-white p-8 rounded-xl relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-gray-900 px-4 py-1 rounded-full font-bold text-sm">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-2">Plus</h3>
+                    <p class="text-white text-opacity-90 mb-6">For serious learners</p>
+                    <p class="text-4xl font-bold mb-6">$19.99<span class="text-lg text-white text-opacity-90">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>Unlimited lessons</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>AI + 4 tutors/mo</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>All exercises</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>Certification</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-white text-pink-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Get Started</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-gray-200 hover:border-pink-500 transition">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                    <p class="text-gray-600 mb-6">For professional learners</p>
+                    <p class="text-4xl font-bold mb-6">$39.99<span class="text-lg text-gray-600">/mo</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>Everything in Plus</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>20 tutors/month</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>Priority support</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-pink-600"></i><span>Custom curriculum</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-pink-600 text-pink-600 py-3 rounded-lg font-bold hover:bg-pink-50 transition">Start Free</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Section -->
+    <section id="success" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Success Stories</h2>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:border-pink-500 transition">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"Went from zero Spanish to conversational in 90 days! The native tutors made all the difference. Now I'm negotiating with Spanish clients at work!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-pink-400 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Jennifer Martinez</p>
+                            <p class="text-sm text-gray-600">Business Professional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:border-pink-500 transition">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"The gamification keeps me motivated every day. I love the streaks and achievements. Learning feels like playing a game, not studying!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-400 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">David Chen</p>
+                            <p class="text-sm text-gray-600">Student</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 hover:border-pink-500 transition">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"Best investment ever. Tripled my fluency in 3 months. Got promoted because I can now lead international team meetings in French!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-purple-400 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Sophie Dubois</p>
+                            <p class="text-sm text-gray-600">Corporate Manager</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-flow text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Speak Like a Native?</h2>
+            <p class="text-xl mb-10 opacity-90">Start your 7-day free trial today. No credit card required.</p>
+            <button onclick="openModal()" class="bg-white text-pink-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Start Free Trial
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">LinguaFlow</h4>
+                    <p class="text-sm">Learn any language in 90 days.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Learn</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Languages</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Press</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 LinguaFlow. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Trial Modal -->
+    <div id="trialModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Start Your Free Trial</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                    <option>Select Language</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Japanese</option>
+                </select>
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <input type="password" placeholder="Create Password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <label class="flex items-center gap-2 text-sm text-gray-600">
+                    <input type="checkbox" class="w-4 h-4 border-gray-300 rounded">
+                    <span>Send me learning tips and updates</span>
+                </label>
+                <button type="submit" class="w-full gradient-flow text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Start 7-Day Free Trial
+                </button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">No credit card required. Cancel anytime.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('trialModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('trialModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('trialModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

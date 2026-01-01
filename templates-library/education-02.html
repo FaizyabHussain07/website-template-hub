@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SkillForge - Intensive coding bootcamps and technical training for career switchers. 100% job placement guarantee.">
+    <meta name="keywords" content="coding bootcamp, web development, software engineering, job placement">
+    <title>SkillForge - Coding Bootcamp & Career Path</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        code, pre { font-family: 'Courier Prime', monospace; }
+        .gradient-forge { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); }
+        .gradient-dark { background: linear-gradient(135deg, #1f2937 0%, #111827 100%); }
+        .card-hover { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 20px 25px -5px rgba(249, 115, 22, 0.15); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .testimonial-slide { opacity: 0; position: absolute; }
+        .testimonial-slide.active { opacity: 1; position: relative; animation: fadeIn 0.5s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .success-badge { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-forge rounded-lg flex items-center justify-center">
+                    <i class="fas fa-hammer text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">SkillForge</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#programs" class="text-gray-700 hover:text-orange-600 transition font-medium">Programs</a>
+                <a href="#outcomes" class="text-gray-700 hover:text-orange-600 transition font-medium">Outcomes</a>
+                <a href="#curriculum" class="text-gray-700 hover:text-orange-600 transition font-medium">Curriculum</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-orange-600 transition font-medium">Testimonials</a>
+                <button onclick="openModal()" class="gradient-forge text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Apply Now</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#programs" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Programs</a>
+                <a href="#outcomes" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Outcomes</a>
+                <a href="#curriculum" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Curriculum</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Testimonials</a>
+                <button onclick="openModal()" class="w-full gradient-forge text-white py-2 rounded-lg font-bold">Apply Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 gradient-dark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute -top-40 -right-40 w-80 h-80 bg-orange-500 rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-orange-500 bg-opacity-20 border border-orange-500 rounded-full text-sm font-bold mb-6">12-Week Intensive Program</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Launch Your Tech Career
+                    </h1>
+                    <p class="text-xl mb-10 text-gray-300 leading-relaxed">
+                        Go from zero to hired in 12 weeks. Our job-focused bootcamp has 95% employment rate within 6 months.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-forge text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Application
+                        </button>
+                        <button class="border-2 border-orange-500 text-orange-500 px-8 py-4 rounded-lg font-bold hover:bg-orange-500 hover:bg-opacity-10 transition text-lg">
+                            Attend Info Session
+                        </button>
+                    </div>
+                    
+                    <div class="flex gap-8 mt-12 text-sm">
+                        <div>
+                            <p class="text-2xl font-bold text-orange-500">95%</p>
+                            <p class="text-gray-400">Job Placement</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-orange-500">$65K+</p>
+                            <p class="text-gray-400">Avg Salary</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-orange-500">500+</p>
+                            <p class="text-gray-400">Graduates</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <div class="relative bg-gray-800 p-8 rounded-xl border border-gray-700">
+                        <div class="aspect-video bg-gray-700 rounded-lg overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=600&h=400&fit=crop" alt="Bootcamp" class="w-full h-full object-cover">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Bootcamp Programs</h2>
+                <p class="text-xl text-gray-600">Choose your path to employment</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover border border-gray-200">
+                    <div class="h-2 gradient-forge"></div>
+                    <div class="p-8">
+                        <div class="w-16 h-16 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-code text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Full Stack Web</h3>
+                        <p class="text-gray-600 mb-6">Master frontend and backend with React, Node.js, and databases. Build 5+ real-world projects.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">12 weeks intensive</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Job guarantee</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Career coaching</span>
+                            </li>
+                        </ul>
+                        <p class="text-3xl font-bold text-gray-900 mb-4">$9,999</p>
+                        <button onclick="openModal()" class="w-full gradient-forge text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover border border-gray-200 relative">
+                    <div class="absolute -top-3 right-6 gradient-forge text-white px-4 py-1 rounded-full text-sm font-bold">Most Popular</div>
+                    <div class="h-2 gradient-forge"></div>
+                    <div class="p-8">
+                        <div class="w-16 h-16 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-mobile-alt text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Mobile Development</h3>
+                        <p class="text-gray-600 mb-6">Build iOS and Android apps using React Native and native technologies. 8 portfolio apps.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">12 weeks intensive</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Job guarantee</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Career coaching</span>
+                            </li>
+                        </ul>
+                        <p class="text-3xl font-bold text-gray-900 mb-4">$10,999</p>
+                        <button onclick="openModal()" class="w-full gradient-forge text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover border border-gray-200">
+                    <div class="h-2 gradient-forge"></div>
+                    <div class="p-8">
+                        <div class="w-16 h-16 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                            <i class="fas fa-cloud text-white text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Cloud & DevOps</h3>
+                        <p class="text-gray-600 mb-6">Master AWS, Docker, Kubernetes. Become a cloud infrastructure expert.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">12 weeks intensive</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Job guarantee</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-orange-600 font-bold"></i>
+                                <span class="text-sm text-gray-700">Career coaching</span>
+                            </li>
+                        </ul>
+                        <p class="text-3xl font-bold text-gray-900 mb-4">$10,499</p>
+                        <button onclick="openModal()" class="w-full gradient-forge text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                            Apply
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Outcomes Section -->
+    <section id="outcomes" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Graduate Outcomes</h2>
+
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-xl border border-orange-200">
+                    <div class="w-14 h-14 gradient-forge rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Job Placement</h3>
+                    <p class="text-4xl font-bold text-orange-600 mb-2">95%</p>
+                    <p class="text-gray-600">of graduates employed within 6 months</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-xl border border-orange-200">
+                    <div class="w-14 h-14 gradient-forge rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Average Salary</h3>
+                    <p class="text-4xl font-bold text-orange-600 mb-2">$65,000+</p>
+                    <p class="text-gray-600">starting salary in first year</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-50 to-white p-8 rounded-xl border border-orange-200">
+                    <div class="w-14 h-14 gradient-forge rounded-lg flex items-center justify-center mb-4">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Career Growth</h3>
+                    <p class="text-4xl font-bold text-orange-600 mb-2">3.5x</p>
+                    <p class="text-gray-600">average salary growth in 3 years</p>
+                </div>
+            </div>
+
+            <div class="bg-gradient-to-r from-orange-50 via-white to-orange-50 p-12 rounded-xl border border-orange-200">
+                <h3 class="text-2xl font-bold text-gray-900 mb-8">Top Hiring Companies</h3>
+                <div class="grid md:grid-cols-5 gap-8 items-center">
+                    <div class="text-center">
+                        <i class="fas fa-briefcase text-4xl text-orange-600 mb-2"></i>
+                        <p class="font-bold text-gray-700">Google</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-briefcase text-4xl text-orange-600 mb-2"></i>
+                        <p class="font-bold text-gray-700">Microsoft</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-briefcase text-4xl text-orange-600 mb-2"></i>
+                        <p class="font-bold text-gray-700">Amazon</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-briefcase text-4xl text-orange-600 mb-2"></i>
+                        <p class="font-bold text-gray-700">Apple</p>
+                    </div>
+                    <div class="text-center">
+                        <i class="fas fa-briefcase text-4xl text-orange-600 mb-2"></i>
+                        <p class="font-bold text-gray-700">Meta</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Curriculum Section -->
+    <section id="curriculum" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">What You'll Learn</h2>
+                <p class="text-xl text-gray-600">Comprehensive curriculum covering industry standards</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-orange-500 transition cursor-pointer">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3">
+                        <span class="w-8 h-8 gradient-forge rounded-full flex items-center justify-center text-white font-bold text-sm">1</span>
+                        Foundations (Weeks 1-2)
+                    </h3>
+                    <p class="text-gray-600 ml-11">HTML, CSS, JavaScript fundamentals. Git workflows. Development environment setup.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-orange-500 transition cursor-pointer">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3">
+                        <span class="w-8 h-8 gradient-forge rounded-full flex items-center justify-center text-white font-bold text-sm">2</span>
+                        Frontend Mastery (Weeks 3-5)
+                    </h3>
+                    <p class="text-gray-600 ml-11">React, state management, responsive design. Build 2 complete single-page applications.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-orange-500 transition cursor-pointer">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3">
+                        <span class="w-8 h-8 gradient-forge rounded-full flex items-center justify-center text-white font-bold text-sm">3</span>
+                        Backend Intensive (Weeks 6-8)
+                    </h3>
+                    <p class="text-gray-600 ml-11">Node.js, Express, databases, APIs. Authentication, security best practices.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-orange-500 transition cursor-pointer">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3">
+                        <span class="w-8 h-8 gradient-forge rounded-full flex items-center justify-center text-white font-bold text-sm">4</span>
+                        Advanced Topics (Weeks 9-10)
+                    </h3>
+                    <p class="text-gray-600 ml-11">Testing, deployment, CI/CD pipelines, performance optimization.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl border border-gray-200 hover:border-orange-500 transition cursor-pointer">
+                    <h3 class="text-lg font-bold text-gray-900 mb-2 flex items-center gap-3">
+                        <span class="w-8 h-8 gradient-forge rounded-full flex items-center justify-center text-white font-bold text-sm">5</span>
+                        Capstone & Career (Weeks 11-12)
+                    </h3>
+                    <p class="text-gray-600 ml-11">Build final capstone project. Interview prep, resume coaching, job search support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Success Stories</h2>
+
+            <div class="relative bg-gradient-to-r from-orange-50 to-white p-10 rounded-xl border border-orange-200">
+                <div class="testimonial-slide active">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-lg text-gray-700 mb-6 italic">"SkillForge completely changed my career trajectory. I went from restaurant manager to software engineer earning $75K. The job guarantee and career support made all the difference."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-orange-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Marcus Johnson</p>
+                            <p class="text-sm text-gray-600">Software Engineer @ Google</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-lg text-gray-700 mb-6 italic">"The instructors are industry professionals who care about your success. They pushed me to my limits but supported me every step of the way."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-orange-400 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Sarah Chen</p>
+                            <p class="text-sm text-gray-600">Full Stack Developer @ Stripe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-lg text-gray-700 mb-6 italic">"Best investment I've made. The bootcamp taught me everything I needed to know AND connected me with companies. Landed a job 2 weeks after graduation."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-orange-200 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Alex Rodriguez</p>
+                            <p class="text-sm text-gray-600">Mobile Developer @ Meta</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-3 mt-8">
+                    <button onclick="prevTestimonial()" class="w-12 h-12 gradient-forge rounded-full flex items-center justify-center text-white hover:shadow-lg transition">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextTestimonial()" class="w-12 h-12 gradient-forge rounded-full flex items-center justify-center text-white hover:shadow-lg transition">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-forge text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Launch Your Tech Career?</h2>
+            <p class="text-xl mb-10 opacity-90">Apply today. Our next cohort starts in 4 weeks.</p>
+            <button onclick="openModal()" class="bg-white text-orange-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Apply Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">SkillForge</h4>
+                    <p class="text-sm">Launching tech careers since 2020.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Full Stack</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mobile Dev</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cloud & DevOps</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Email</a></li>
+                        <li><a href="#" class="hover:text-white transition">Phone</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 SkillForge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Application Modal -->
+    <div id="applyModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Apply to SkillForge</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                    <option>Select Program</option>
+                    <option>Full Stack Web</option>
+                    <option>Mobile Development</option>
+                    <option>Cloud & DevOps</option>
+                </select>
+                <button type="submit" class="w-full gradient-forge text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let testimonialIndex = 0;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('applyModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('applyModal').classList.remove('open');
+        }
+
+        function showTestimonial(index) {
+            const slides = document.querySelectorAll('.testimonial-slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index % slides.length].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            testimonialIndex++;
+            showTestimonial(testimonialIndex);
+        }
+
+        function prevTestimonial() {
+            testimonialIndex--;
+            const slides = document.querySelectorAll('.testimonial-slide');
+            showTestimonial((testimonialIndex % slides.length + slides.length) % slides.length);
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('applyModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

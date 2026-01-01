@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SocialVibe - Social media marketing agency. Instagram, TikTok, LinkedIn, Twitter, YouTube strategies.">
+    <meta name="keywords" content="social media marketing, Instagram marketing, TikTok marketing, social strategy, content creation">
+    <title>SocialVibe - Social Media Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Crimson Text', serif; }
+        .gradient-social { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-social rounded-lg flex items-center justify-center">
+                    <i class="fas fa-share-alt text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">SocialVibe</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-pink-600 transition font-medium">Services</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-pink-600 transition font-medium">Portfolio</a>
+                <a href="#results" class="text-gray-700 hover:text-pink-600 transition font-medium">Results</a>
+                <a href="#team" class="text-gray-700 hover:text-pink-600 transition font-medium">Team</a>
+                <button onclick="openModal()" class="gradient-social text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Get Proposal</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Services</a>
+                <a href="#portfolio" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Portfolio</a>
+                <a href="#results" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Results</a>
+                <a href="#team" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Team</a>
+                <button onclick="openModal()" class="w-full gradient-social text-white py-2 rounded-lg font-bold">Get Proposal</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50 to-rose-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-bold mb-6">Social-First Strategy</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Your Brand's
+                        <span class="gradient-social bg-clip-text text-transparent"> Social Superpower</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Instagram, TikTok, LinkedIn, YouTube strategies. Viral content, community growth, engagement.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-social text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Get Social Strategy
+                        </button>
+                        <button class="border-2 border-pink-600 text-pink-600 px-8 py-4 rounded-lg font-bold hover:bg-pink-50 transition text-lg">
+                            View Portfolio
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-pink-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">250M+ Impressions</p>
+                                <p class="text-sm text-gray-600">Generated for our clients</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-pink-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">40+ Brand Partnerships</p>
+                                <p class="text-sm text-gray-600">From startups to Fortune 500</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Social Media" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Social Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-film text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Content Production</h3>
+                    <p class="text-gray-600 mb-6">Professional video, photography, and design. Optimized for Instagram, TikTok, Reels, Shorts.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Community Management</h3>
+                    <p class="text-gray-600 mb-6">24/7 engagement, response management, community growth, and relationship building.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-megaphone text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Influencer Partnerships</h3>
+                    <p class="text-gray-600 mb-6">Authentic collaborations with relevant creators and influencers. Campaign management.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-bullseye text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Social Ads</h3>
+                    <p class="text-gray-600 mb-6">Strategic paid campaigns. Targeting, creative optimization, and conversion tracking.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Analytics & Reporting</h3>
+                    <p class="text-gray-600 mb-6">Deep insights into performance. Monthly reports and actionable recommendations.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-social rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-crown text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Brand Strategy</h3>
+                    <p class="text-gray-600 mb-6">Define your social brand voice, aesthetic, and strategic positioning.</p>
+                    <button onclick="openModal()" class="text-pink-600 font-bold hover:text-pink-700 transition">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Portfolio</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1579321288371-8202d5cd3dd4?w=400&h=300&fit=crop" alt="Fashion Brand" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Fashion Brand Growth</h4>
+                        <p class="text-gray-600 text-sm">300K followers, +850% engagement in 6 months</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1493857671505-72967e2e2760?w=400&h=300&fit=crop" alt="Tech Startup" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">Tech Startup Launch</h4>
+                        <p class="text-gray-600 text-sm">From zero to 100K followers in 90 days</p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?w=400&h=300&fit=crop" alt="E-Commerce" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2">E-Commerce Revenue</h4>
+                        <p class="text-gray-600 text-sm">+$500K revenue through social commerce</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Proven Results</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <p class="text-4xl font-bold gradient-social bg-clip-text text-transparent mb-2">250M+</p>
+                    <p class="text-gray-600 font-medium">Total Impressions</p>
+                </div>
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <p class="text-4xl font-bold gradient-social bg-clip-text text-transparent mb-2">15M+</p>
+                    <p class="text-gray-600 font-medium">Combined Followers</p>
+                </div>
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <p class="text-4xl font-bold gradient-social bg-clip-text text-transparent mb-2">680%</p>
+                    <p class="text-gray-600 font-medium">Avg Engagement Lift</p>
+                </div>
+                <div class="text-center p-8 bg-gray-50 rounded-xl">
+                    <p class="text-4xl font-bold gradient-social bg-clip-text text-transparent mb-2">98%</p>
+                    <p class="text-gray-600 font-medium">Client Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Team</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop" alt="Team" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Olivia Chen</h4>
+                    <p class="text-pink-600 font-semibold mb-2">Creative Director</p>
+                    <p class="text-sm text-gray-600">12+ years social expertise</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop" alt="Team" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Marcus Johnson</h4>
+                    <p class="text-pink-600 font-semibold mb-2">Content Producer</p>
+                    <p class="text-sm text-gray-600">Video & creative production</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop" alt="Team" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">Emma Wilson</h4>
+                    <p class="text-pink-600 font-semibold mb-2">Strategist</p>
+                    <p class="text-sm text-gray-600">Growth & brand strategy</p>
+                </div>
+                <div class="text-center">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop" alt="Team" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover">
+                    <h4 class="text-xl font-bold text-gray-900">David Park</h4>
+                    <p class="text-pink-600 font-semibold mb-2">Analytics Lead</p>
+                    <p class="text-sm text-gray-600">Data & performance analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-social text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Go Viral?</h2>
+            <p class="text-xl mb-10 opacity-90">Get your custom social media strategy today.</p>
+            <button onclick="openModal()" class="bg-white text-pink-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Request Proposal
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">SocialVibe</h4>
+                    <p class="text-sm">Your brand's social superpower.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Content</a></li>
+                        <li><a href="#" class="hover:text-white transition">Ads</a></li>
+                        <li><a href="#" class="hover:text-white transition">Strategy</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 SocialVibe. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="proposalModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get Proposal</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Brand Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                    <option>Select Service</option>
+                    <option>Content Production</option>
+                    <option>Community Management</option>
+                    <option>Influencer Partnerships</option>
+                    <option>Social Ads</option>
+                    <option>Full Service</option>
+                </select>
+                <button type="submit" class="w-full gradient-social text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Send Proposal
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('proposalModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('proposalModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('proposalModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

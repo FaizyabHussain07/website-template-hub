@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DAOHub - Decentralized Autonomous Organization governance platform">
+    <meta name="keywords" content="DAO, governance, voting, blockchain, decentralized">
+    <title>DAOHub - Build & Govern Your DAO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; font-weight: 800; }
+        .gradient-dao { background: linear-gradient(135deg, #0ea5e9 0%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .dao-glow { box-shadow: 0 0 60px rgba(14, 165, 233, 0.3); animation: daoGlow 2.5s ease-in-out infinite; }
+        @keyframes daoGlow { 0%, 100% { box-shadow: 0 0 60px rgba(14, 165, 233, 0.3); } 50% { box-shadow: 0 0 80px rgba(6, 182, 212, 0.5); } }
+        .dao-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .dao-card:hover { transform: translateY(-16px); box-shadow: 0 30px 80px rgba(14, 165, 233, 0.2); }
+        .voting-bar { height: 8px; border-radius: 4px; background: linear-gradient(90deg, #0ea5e9, #06b6d4); }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-sky-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-users text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">DAOHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#daos" class="text-gray-700 font-medium hover:text-sky-600 transition">Explore DAOs</a>
+                <a href="#governance" class="text-gray-700 font-medium hover:text-sky-600 transition">Governance</a>
+                <a href="#treasury" class="text-gray-700 font-medium hover:text-sky-600 transition">Treasury</a>
+                <a href="#resources" class="text-gray-700 font-medium hover:text-sky-600 transition">Resources</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-sky-500 to-cyan-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Create DAO</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#daos" class="block text-gray-700 font-medium py-2 hover:text-sky-600">Explore DAOs</a>
+                <a href="#governance" class="block text-gray-700 font-medium py-2 hover:text-sky-600">Governance</a>
+                <a href="#treasury" class="block text-gray-700 font-medium py-2 hover:text-sky-600">Treasury</a>
+                <a href="#resources" class="block text-gray-700 font-medium py-2 hover:text-sky-600">Resources</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-sky-500 to-cyan-600 text-white px-6 py-3 rounded-lg font-bold">Create DAO</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-cyan-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-sky-100 text-sky-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-network-wired"></i> Decentralized Governance
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Build Your<br/><span class="gradient-dao">Decentralized DAO</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Create and manage decentralized autonomous organizations with full governance control. Token-based voting, treasury management, and community-driven decisions on DAOHub.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-sky-500 to-cyan-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Launch DAO Now
+                    </button>
+                    <button class="border-2 border-sky-300 text-sky-600 px-8 py-4 rounded-lg font-bold hover:bg-sky-50 transition">
+                        View Examples
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-sky-600">12.5K</p>
+                        <p class="text-gray-600">Active DAOs</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-sky-600">$125B</p>
+                        <p class="text-gray-600">Treasury Value</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="dao-glow w-80 h-80 bg-gradient-to-br from-sky-100 to-cyan-100 rounded-3xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-network-wired text-7xl text-sky-200 opacity-40"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popular DAOs -->
+    <section id="daos" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Top DAOs on DAOHub</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Join thriving decentralized communities</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="dao-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-sky-500 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-hand-holding-heart text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">MetaGov DAO</h3>
+                    <p class="text-gray-600 mb-6">Community-driven governance for metaverse protocols</p>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-2">Voting Power Distribution</p>
+                            <div class="voting-bar w-full"></div>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Treasury:</span>
+                            <span class="font-bold text-gray-900">$8.2M</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Members:</span>
+                            <span class="font-bold text-sky-600">4,250+</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full border-2 border-sky-500 text-sky-600 py-2 rounded-lg font-bold hover:bg-sky-50 transition">
+                        Join DAO
+                    </button>
+                </div>
+                
+                <div class="dao-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-coins text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">TreasuryVault DAO</h3>
+                    <p class="text-gray-600 mb-6">Decentralized investment fund management</p>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-2">Voting Power Distribution</p>
+                            <div class="voting-bar w-full"></div>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Treasury:</span>
+                            <span class="font-bold text-gray-900">$45.8M</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Members:</span>
+                            <span class="font-bold text-sky-600">12,890+</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full border-2 border-sky-500 text-sky-600 py-2 rounded-lg font-bold hover:bg-sky-50 transition">
+                        Join DAO
+                    </button>
+                </div>
+                
+                <div class="dao-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-sky-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                        </div>
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-bold">Active</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">LearnDAO</h3>
+                    <p class="text-gray-600 mb-6">Educational content and scholarship governance</p>
+                    <div class="space-y-4 mb-6">
+                        <div>
+                            <p class="text-xs text-gray-500 mb-2">Voting Power Distribution</p>
+                            <div class="voting-bar w-full"></div>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Treasury:</span>
+                            <span class="font-bold text-gray-900">$12.4M</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Members:</span>
+                            <span class="font-bold text-sky-600">8,340+</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full border-2 border-sky-500 text-sky-600 py-2 rounded-lg font-bold hover:bg-sky-50 transition">
+                        Join DAO
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Governance Features -->
+    <section id="governance" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Governance Features</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-sky-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-vote-yea text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Flexible Voting</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Implement any voting mechanism: token-based, quadratic, multi-sig, or custom. Set voting periods, proposal thresholds, and quorum requirements.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-teal-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-lock-open text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Smart Contracts</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Automated proposal execution through smart contracts. Set time locks, execute treasury transfers, and manage protocol upgrades transparently.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-sky-500 to-blue-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-chart-pie text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Treasury Analytics</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Track all treasury transactions in real-time. Multi-sig wallets, spending limits, and budget allocations for responsible fund management.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-teal-500 to-cyan-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-comments text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Community Forums</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Built-in discussion boards for proposals and ideas. Connect with other DAO members, share research, and debate direction together.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Treasury Section -->
+    <section id="treasury" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-gray-900 mb-6">DAO Treasury Dashboard</h2>
+            <p class="text-xl text-gray-600 mb-12">
+                Complete transparency and control over your DAO's finances
+            </p>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <p class="text-gray-600 text-sm mb-2 uppercase">Total Assets</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-2">$125M</p>
+                    <p class="text-green-600 text-sm flex items-center justify-center gap-2">
+                        <i class="fas fa-arrow-up"></i> +18% YoY
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <p class="text-gray-600 text-sm mb-2 uppercase">Active Proposals</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-2">24</p>
+                    <p class="text-sky-600 text-sm">Voting in progress</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <p class="text-gray-600 text-sm mb-2 uppercase">Members</p>
+                    <p class="text-4xl font-bold text-gray-900 mb-2">15K+</p>
+                    <p class="text-cyan-600 text-sm">Active governance</p>
+                </div>
+            </div>
+            
+            <button onclick="openModal()" class="bg-gradient-to-r from-sky-500 to-cyan-600 text-white px-12 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                Create Your DAO
+            </button>
+        </div>
+    </section>
+    
+    <!-- Resources Section -->
+    <section id="resources" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Resources & Tools</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <div class="text-3xl mb-4"><i class="fas fa-book text-sky-600"></i></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Documentation</h3>
+                    <p class="text-gray-600 text-sm">Complete guides for DAO creation and management</p>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <div class="text-3xl mb-4"><i class="fas fa-code text-sky-600"></i></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Developer API</h3>
+                    <p class="text-gray-600 text-sm">Integrate DAO functionality into your app</p>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <div class="text-3xl mb-4"><i class="fas fa-graduation-cap text-sky-600"></i></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Courses</h3>
+                    <p class="text-gray-600 text-sm">Learn DAO governance best practices</p>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-6">
+                    <div class="text-3xl mb-4"><i class="fas fa-users text-sky-600"></i></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Community</h3>
+                    <p class="text-gray-600 text-sm">Connect with other DAO creators</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-sky-600 to-cyan-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Start Your DAO Journey?</h2>
+            <p class="text-xl text-blue-100 mb-10">Join thousands of communities governing Web3 together</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-sky-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Create DAO Free
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    Explore Docs
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-sky-500 to-cyan-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-users text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">DAOHub</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Decentralized organization platform</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400 transition">Create DAO</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Explore</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Governance</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Developers</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400 transition">Docs</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">GitHub</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400 transition">Discord</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Forums</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-sky-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-sky-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-sky-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-sky-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-sky-400 transition"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Create Your DAO</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">DAO Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" placeholder="e.g., MetaGov DAO">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Token Symbol</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100" placeholder="e.g., MGT">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Voting Type</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-sky-600 focus:ring-2 focus:ring-sky-100">
+                            <option>Token-Based Voting</option>
+                            <option>Multi-Signature</option>
+                            <option>Quadratic Voting</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 accent-sky-600">
+                            <span class="text-sm text-gray-700">I agree to Terms of Service</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-sky-500 to-cyan-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Create DAO
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

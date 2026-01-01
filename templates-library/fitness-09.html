@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlowSpace - Dance & Movement Studios</title>
+    <meta name="description" content="Transform your body with hip-hop, contemporary, and Zumba classes. Dance your way to fitness with a vibrant community.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Fredoka', sans-serif; }
+        .script-font { font-family: 'Caveat', cursive; font-size: 1.2em; }
+        .gradient-pink { background: linear-gradient(135deg, #EC4899 0%, #F97316 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .btn-pink { background: linear-gradient(135deg, #EC4899 0%, #F97316 100%); transition: all 0.3s ease; }
+        .btn-pink:hover { transform: translateY(-3px); box-shadow: 0 16px 40px rgba(236, 72, 153, 0.3); }
+        .card-groove { perspective: 1000px; transition: transform 0.4s cubic-bezier(0.23, 1, 0.320, 1); }
+        .card-groove:hover { transform: rotateY(5deg) translateZ(10px); }
+        .link-underline { position: relative; }
+        .link-underline::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: linear-gradient(90deg, #EC4899, #F97316); transition: width 0.3s; }
+        .link-underline:hover::after { width: 100%; }
+        .modal { display: none; position: fixed; z-index: 50; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); }
+        .modal.active { display: flex; align-items: center; justify-content: center; }
+        .modal-content { background: white; padding: 40px; border-radius: 16px; max-width: 500px; width: 90%; }
+        .mobile-menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; padding: 20px; box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); z-index: 40; }
+        .mobile-menu.active { display: flex; }
+        .badge-pink { display: inline-block; background: linear-gradient(135deg, #EC4899 0%, #F97316 100%); color: white; padding: 6px 14px; border-radius: 50px; font-weight: 600; font-size: 12px; }
+        .pulse-icon { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="bg-white border-b border-pink-200 fixed w-full top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-pink-500 to-orange-500 rounded-full flex items-center justify-center">
+                    <i class="fas fa-music text-white text-lg"></i>
+                </div>
+                <span class="text-2xl gradient-pink font-bold">FlowSpace</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#classes" class="link-underline text-gray-700 hover:text-pink-600">Classes</a>
+                <a href="#vibe" class="link-underline text-gray-700 hover:text-pink-600">Vibe</a>
+                <a href="#community" class="link-underline text-gray-700 hover:text-pink-600">Community</a>
+                <a href="#pricing" class="link-underline text-gray-700 hover:text-pink-600">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-pink text-white px-6 py-2 rounded-lg font-bold text-sm">FREE TRIAL</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-pink-500">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#classes" class="text-gray-700 py-2">Classes</a>
+            <a href="#vibe" class="text-gray-700 py-2">Vibe</a>
+            <a href="#community" class="text-gray-700 py-2">Community</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-pink text-white px-6 py-2 rounded-lg font-bold text-sm mt-4 w-full">FREE TRIAL</button>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-pink-50 via-orange-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-6xl md:text-7xl text-gray-900 mb-6 leading-tight font-bold">DANCE. GROOVE. TRANSFORM.</h1>
+                    <p class="text-xl text-gray-600 mb-8">Join vibrant dance classes where fitness meets fun. Hip-hop, contemporary, Zumba, and more. Move with amazing people.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-pink text-white px-8 py-3 rounded-lg font-bold text-lg">START FREE TRIAL</button>
+                        <button onclick="document.getElementById('classes').scrollIntoView({behavior: 'smooth'})" class="border-2 border-pink-500 text-pink-500 px-8 py-3 rounded-lg font-bold text-lg hover:bg-pink-50 transition">EXPLORE CLASSES</button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1544367567-0d6fcffe7f1f?w=600&h=600&fit=crop" alt="Dance Classes" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="classes" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">OUR DANCE CLASSES</h2>
+                <p class="text-xl text-gray-600">Find your rhythm. Find your energy.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-groove bg-white border-2 border-pink-200 rounded-2xl overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-pink-400 to-orange-400 flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-microphone-alt pulse-icon"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-pink mb-3">ENERGY HIGH</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">HIP-HOP BEATS</h3>
+                        <p class="text-gray-600 mb-6">Explosive moves to the hottest hip-hop tracks. Build confidence and attitude.</p>
+                        <ul class="space-y-2 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> High-energy cardio</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Cool choreography</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Beginner-friendly</li>
+                        </ul>
+                        <button onclick="openModal()" class="border-2 border-pink-500 text-pink-500 w-full py-2 rounded-lg font-bold text-sm hover:bg-pink-50 transition">TRY FREE</button>
+                    </div>
+                </div>
+                <div class="card-groove bg-gradient-to-br from-pink-50 to-orange-50 border-2 border-pink-500 rounded-2xl overflow-hidden relative">
+                    <div class="badge-pink absolute top-4 right-4">TRENDING</div>
+                    <div class="h-40 bg-gradient-to-br from-pink-500 to-orange-500 flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-heart pulse-icon"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-pink mb-3">POPULAR</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">ZUMBA PARTY</h3>
+                        <p class="text-gray-600 mb-6">Latin-inspired dance fitness that feels like a party. Fun cardio, serious fitness.</p>
+                        <ul class="space-y-2 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Full-body conditioning</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Incredible community</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Maximum fun factor</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-pink text-white w-full py-2 rounded-lg font-bold text-sm">GROOVE NOW</button>
+                    </div>
+                </div>
+                <div class="card-groove bg-white border-2 border-pink-200 rounded-2xl overflow-hidden">
+                    <div class="h-40 bg-gradient-to-br from-pink-400 to-orange-400 flex items-center justify-center text-white text-5xl">
+                        <i class="fas fa-person-hiking pulse-icon"></i>
+                    </div>
+                    <div class="p-8">
+                        <div class="badge-pink mb-3">ARTISTIC</div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">CONTEMPORARY FLOW</h3>
+                        <p class="text-gray-600 mb-6">Express yourself through fluid movement and artistic expression. Strength meets grace.</p>
+                        <ul class="space-y-2 mb-8 text-sm">
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Expressive movement</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Core strength</li>
+                            <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Creative freedom</li>
+                        </ul>
+                        <button onclick="openModal()" class="border-2 border-pink-500 text-pink-500 w-full py-2 rounded-lg font-bold text-sm hover:bg-pink-50 transition">TRY FREE</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vibe" class="py-24 px-4 bg-pink-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">THE FLOWSPACE VIBE</h2>
+                <p class="text-xl text-gray-600">More than classes. It's a lifestyle.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-star text-pink-500"></i> Professional Instructors
+                    </h3>
+                    <p class="text-gray-700">Trained dancers who are passionate about sharing their love of movement.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-users text-pink-500"></i> Supportive Community
+                    </h3>
+                    <p class="text-gray-700">Inclusive space where every body is welcome. No judgment. Pure acceptance.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-music text-pink-500"></i> Killer Playlists
+                    </h3>
+                    <p class="text-gray-700">Curated songs that energize and motivate. The perfect soundtrack to your transformation.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-smile text-pink-500"></i> Pure Joy
+                    </h3>
+                    <p class="text-gray-700">Working out doesn't feel like work. You'll leave smiling. That's our promise.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-bolt text-pink-500"></i> Results That Matter
+                    </h3>
+                    <p class="text-gray-700">Burn serious calories. Build strength. Improve flexibility. See real changes.</p>
+                </div>
+                <div class="bg-white p-8 rounded-2xl border-l-4 border-pink-500 shadow-md">
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 flex items-center gap-2">
+                        <i class="fas fa-heart text-pink-500"></i> Mental Health Benefits
+                    </h3>
+                    <p class="text-gray-700">Stress relief through movement. Boost your mood. Find your inner peace.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-16 px-4 bg-gradient-to-r from-pink-500 to-orange-500">
+        <div class="max-w-6xl mx-auto text-center text-white">
+            <h2 class="text-4xl font-bold mb-4">1000+ HAPPY DANCERS</h2>
+            <p class="text-lg text-pink-100">Our community grows every single day</p>
+        </div>
+    </section>
+
+    <section id="community" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">DANCER TRANSFORMATIONS</h2>
+                <p class="text-xl text-gray-600">Real people. Real joy. Real results.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-pink-50 rounded-2xl p-8 border border-pink-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"I started completely uncoordinated. Now I'm confident on the dance floor! The energy here is absolutely infectious. Love this place!"</p>
+                    <p class="font-bold text-gray-900">Jasmine Lee</p>
+                    <p class="text-pink-500 text-sm">3 months</p>
+                </div>
+                <div class="bg-pink-50 rounded-2xl p-8 border border-pink-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"This is the only exercise I've stuck with because it doesn't feel like exercise! I've made best friends here. Highly recommend!"</p>
+                    <p class="font-bold text-gray-900">Aisha Thompson</p>
+                    <p class="text-pink-500 text-sm">5 months</p>
+                </div>
+                <div class="bg-pink-50 rounded-2xl p-8 border border-pink-200">
+                    <p class="text-gray-700 mb-6 leading-relaxed">"Found my people! The instructors are incredible and supportive. My confidence shot through the roof. 10/10 would recommend!"</p>
+                    <p class="font-bold text-gray-900">Sofia Rodriguez</p>
+                    <p class="text-pink-500 text-sm">4 months</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="py-24 px-4 bg-pink-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">FLEXIBLE MEMBERSHIPS</h2>
+                <p class="text-xl text-gray-600">Dance at your own pace</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-groove bg-white border border-pink-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">CASUAL</h3>
+                    <p class="text-gray-600 mb-6">Drop-in classes</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$25</span>
+                        <span class="text-gray-600">/class</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-pink-500 text-pink-500 w-full py-2 rounded-lg font-bold mb-8 hover:bg-pink-50 transition">BOOK CLASS</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Any class</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> No commitment</li>
+                    </ul>
+                </div>
+                <div class="card-groove bg-pink-50 border-2 border-pink-500 rounded-2xl p-8 relative">
+                    <div class="badge-pink absolute -top-3 left-1/2 -translate-x-1/2">BEST VALUE</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">UNLIMITED</h3>
+                    <p class="text-gray-600 mb-6">Unlimited classes</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$89</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-pink text-white w-full py-2 rounded-lg font-bold mb-8">GROOVE UNLIMITED</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> All classes unlimited</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Community events</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Discounts on merch</li>
+                    </ul>
+                </div>
+                <div class="card-groove bg-white border border-pink-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">CLASS PACK</h3>
+                    <p class="text-gray-600 mb-6">8 classes/month</p>
+                    <div class="mb-8">
+                        <span class="text-5xl font-bold text-gray-900">$59</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-pink-500 text-pink-500 w-full py-2 rounded-lg font-bold mb-8 hover:bg-pink-50 transition">TRY NOW</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> 8 classes/month</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-pink-500"></i> Flexible schedule</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 bg-gradient-to-r from-pink-600 to-orange-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl text-white font-bold mb-6">READY TO GROOVE?</h2>
+            <p class="text-xl text-pink-100 mb-10">7 days free. First class on us. All levels welcome.</p>
+            <button onclick="openModal()" class="bg-white text-pink-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-pink-50 transition inline-block">START YOUR FREE TRIAL</button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-2xl gradient-pink font-bold mb-4">FlowSpace</div>
+                    <p class="text-sm">Dance. Groove. Live.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Classes</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Hip-Hop</a></li>
+                        <li><a href="#" class="hover:text-white">Zumba</a></li>
+                        <li><a href="#" class="hover:text-white">Contemporary</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Studio</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Schedule</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-tiktok text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-pink-600 transition"><i class="fab fa-youtube text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">JOIN FLOWSPACE</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-pink-500" required>
+                    <option>Select Class Style</option>
+                    <option>Hip-Hop Beats</option>
+                    <option>Zumba Party</option>
+                    <option>Contemporary Flow</option>
+                </select>
+                <button type="submit" class="btn-pink text-white w-full py-3 rounded-lg font-bold">GET YOUR FREE CLASS</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">7 days free • No card required • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('modal').classList.add('active'); }
+        function closeModal() { document.getElementById('modal').classList.remove('active'); }
+        function toggleMobileMenu() { document.getElementById('mobileMenu').classList.toggle('active'); }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome to FlowSpace! Get ready to groove. Check your email!');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

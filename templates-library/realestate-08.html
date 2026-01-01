@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="VacationPalace - Luxury vacation rentals and holiday homes worldwide">
+    <meta name="keywords" content="vacation rentals, holiday homes, luxury retreats, short-term rentals, vacation property">
+    <title>VacationPalace - Luxury Holiday Homes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Lora:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Lora', serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cinzel', serif; font-weight: 700; }
+        .gradient-teal { background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%); }
+        .gradient-gold { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .accent-gold { color: #f59e0b; }
+        .luxury-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); perspective: 1000px; }
+        .luxury-card:hover { transform: translateY(-15px) rotateX(2deg); box-shadow: 0 30px 60px rgba(13, 148, 136, 0.25); }
+        .modal-off { display: none; }
+        .modal-off.active { display: flex; }
+        .gallery-item { cursor: pointer; transition: all 0.3s ease; }
+        .gallery-item:hover { transform: scale(1.05); }
+        .amenity-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .star-rating { color: #f59e0b; letter-spacing: 2px; }
+        .slide { display: none; }
+        .slide.active { display: block; animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-teal rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sun text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">VacationPalace</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#destinations" class="text-gray-700 font-medium hover:accent-gold transition">Destinations</a>
+                <a href="#properties" class="text-gray-700 font-medium hover:accent-gold transition">Properties</a>
+                <a href="#amenities" class="text-gray-700 font-medium hover:accent-gold transition">Amenities</a>
+                <a href="#reviews" class="text-gray-700 font-medium hover:accent-gold transition">Reviews</a>
+                <button onclick="openModal()" class="bg-gradient-teal text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition">Book Now</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#destinations" class="block text-gray-700 font-medium py-2">Destinations</a>
+                <a href="#properties" class="block text-gray-700 font-medium py-2">Properties</a>
+                <a href="#amenities" class="block text-gray-700 font-medium py-2">Amenities</a>
+                <a href="#reviews" class="block text-gray-700 font-medium py-2">Reviews</a>
+                <button onclick="openModal()" class="w-full bg-gradient-teal text-white py-3 rounded-lg font-semibold">Book Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section with Image Slider -->
+    <section class="pt-20 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-teal-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-teal-100 rounded-full text-teal-700 font-semibold text-sm mb-6">Luxury Holiday Rentals</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Your Dream
+                        <span class="accent-gold"> Vacation</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Discover luxury vacation homes in the world's most desirable destinations. From beachfront villas to mountain retreats, find your perfect getaway.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-teal text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Book Your Stay
+                        </button>
+                        <button class="border-2 border-teal-600 text-teal-600 px-8 py-4 rounded-lg font-bold hover:bg-teal-50 transition text-lg">
+                            Explore Collection
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div id="imageSlider" class="aspect-square bg-gray-300 rounded-2xl overflow-hidden shadow-2xl relative">
+                        <div class="slide active">
+                            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700&h=700&fit=crop" alt="Beach villa" class="w-full h-full object-cover">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1512917774080-9bf461a86d90?w=700&h=700&fit=crop" alt="Mountain house" class="w-full h-full object-cover">
+                        </div>
+                        <div class="slide">
+                            <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=700&h=700&fit=crop" alt="City penthouse" class="w-full h-full object-cover">
+                        </div>
+                        <button onclick="prevSlide()" class="absolute left-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 w-12 h-12 rounded-full flex items-center justify-center transition">
+                            <i class="fas fa-chevron-left text-gray-900"></i>
+                        </button>
+                        <button onclick="nextSlide()" class="absolute right-4 top-1/2 -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 w-12 h-12 rounded-full flex items-center justify-center transition">
+                            <i class="fas fa-chevron-right text-gray-900"></i>
+                        </button>
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl">
+                        <p class="text-3xl font-bold accent-gold">1000+</p>
+                        <p class="text-sm text-gray-600">Properties</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Popular Destinations</h2>
+                <p class="text-xl text-gray-600">Curated vacation homes in the world's most desired locations</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gray-300 rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=300&h=300&fit=crop" alt="Bali" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition flex items-end">
+                            <div class="text-white p-6 w-full">
+                                <h3 class="text-2xl font-bold mb-2">Bali</h3>
+                                <p class="text-sm opacity-90">250+ Properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gray-300 rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1471922694560-32a5a3514c1d?w=300&h=300&fit=crop" alt="Maldives" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition flex items-end">
+                            <div class="text-white p-6 w-full">
+                                <h3 class="text-2xl font-bold mb-2">Maldives</h3>
+                                <p class="text-sm opacity-90">180+ Properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gray-300 rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1501621667575-af81f1f0bacc?w=300&h=300&fit=crop" alt="Santorini" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition flex items-end">
+                            <div class="text-white p-6 w-full">
+                                <h3 class="text-2xl font-bold mb-2">Santorini</h3>
+                                <p class="text-sm opacity-90">320+ Properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gray-300 rounded-xl overflow-hidden mb-4 relative">
+                        <img src="https://images.unsplash.com/photo-1488462694445-7bf8f00b7ce8?w=300&h=300&fit=crop" alt="Swiss Alps" class="w-full h-full object-cover group-hover:scale-110 transition duration-300">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black to-transparent opacity-0 group-hover:opacity-100 transition flex items-end">
+                            <div class="text-white p-6 w-full">
+                                <h3 class="text-2xl font-bold mb-2">Swiss Alps</h3>
+                                <p class="text-sm opacity-90">215+ Properties</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Properties</h2>
+                <p class="text-xl text-gray-600">Handpicked luxury vacation homes for unforgettable experiences</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg luxury-card border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9bf461a86d90?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-gradient-gold text-white px-3 py-1 rounded-full text-sm font-bold">Featured</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Malibu Beach Villa</h3>
+                        <p class="text-gray-600 mb-4 text-sm">California, USA</p>
+                        <div class="flex gap-2 mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <span class="text-sm text-gray-600 ml-2">(428 reviews)</span>
+                        </div>
+                        <div class="space-y-2 mb-6 py-4 border-y border-gray-200">
+                            <p class="text-sm text-gray-700"><i class="fas fa-door-open text-teal-600 mr-2"></i>4 Bedrooms</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-users text-teal-600 mr-2"></i>Sleeps 8 Guests</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-water text-teal-600 mr-2"></i>Ocean View</p>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-900">$1,250<span class="text-lg text-gray-600">/night</span></span>
+                            <button onclick="openModal()" class="bg-gradient-teal text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Book</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg luxury-card border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-gradient-gold text-white px-3 py-1 rounded-full text-sm font-bold">Luxury</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Santorini Clifftop Villa</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Greece</p>
+                        <div class="flex gap-2 mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <span class="text-sm text-gray-600 ml-2">(612 reviews)</span>
+                        </div>
+                        <div class="space-y-2 mb-6 py-4 border-y border-gray-200">
+                            <p class="text-sm text-gray-700"><i class="fas fa-door-open text-teal-600 mr-2"></i>5 Bedrooms</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-users text-teal-600 mr-2"></i>Sleeps 10 Guests</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-infinity text-teal-600 mr-2"></i>Infinity Pool</p>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-909">$2,500<span class="text-lg text-gray-600">/night</span></span>
+                            <button onclick="openModal()" class="bg-gradient-teal text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Book</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-lg luxury-card border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1488462694445-7bf8f00b7ce8?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover">
+                        <span class="absolute top-4 right-4 bg-gradient-gold text-white px-3 py-1 rounded-full text-sm font-bold">Alpine Chalet</span>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Alpine Luxury Chalet</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Swiss Alps</p>
+                        <div class="flex gap-2 mb-4">
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <i class="fas fa-star star-rating"></i>
+                            <span class="text-sm text-gray-600 ml-2">(385 reviews)</span>
+                        </div>
+                        <div class="space-y-2 mb-6 py-4 border-y border-gray-200">
+                            <p class="text-sm text-gray-700"><i class="fas fa-door-open text-teal-600 mr-2"></i>6 Bedrooms</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-users text-teal-600 mr-2"></i>Sleeps 12 Guests</p>
+                            <p class="text-sm text-gray-700"><i class="fas fa-mountain text-teal-600 mr-2"></i>Mountain Views</p>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-2xl font-bold text-gray-909">$1,800<span class="text-lg text-gray-600">/night</span></span>
+                            <button onclick="openModal()" class="bg-gradient-teal text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Book</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Amenities Section -->
+    <section id="amenities" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-909 mb-4">Luxury Amenities</h2>
+                <p class="text-xl text-gray-600">Premium features in our featured vacation homes</p>
+            </div>
+
+            <div class="amenity-grid">
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-swimming-pool text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">Private Pools</h3>
+                    <p class="text-gray-600">Infinity pools, heated pools, and hot tubs with stunning views</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-spa text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">Spa Facilities</h3>
+                    <p class="text-gray-600">Professional sauna, steam room, and massage services available</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-utensils text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">Chef Services</h3>
+                    <p class="text-gray-600">Private chefs and full kitchen facilities for culinary experiences</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-film text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">Home Cinema</h3>
+                    <p class="text-gray-600">State-of-the-art entertainment systems and projection rooms</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-concierge-bell text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">24/7 Concierge</h3>
+                    <p class="text-gray-600">Dedicated concierge for reservations and special requests</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-l-4 border-teal-600">
+                    <i class="fas fa-lock text-3xl accent-gold mb-4"></i>
+                    <h3 class="text-lg font-bold text-gray-909 mb-3">Smart Security</h3>
+                    <p class="text-gray-600">Advanced security systems and privacy protection</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-909 mb-4">Guest Reviews</h2>
+                <p class="text-xl text-gray-600">Experiences from our satisfied guests</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"Absolutely magnificent! Our stay at the Malibu villa was beyond expectations. Every detail was perfect."</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-teal-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">Amanda Thompson</p>
+                            <p class="text-sm text-gray-600">Verified Guest</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"The Santorini villa with its sunset views was the most romantic experience of my life. Highly recommended!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amber-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">James & Isabella</p>
+                            <p class="text-sm text-gray-600">Honeymoon Guests</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50 p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 italic">"The Swiss Alpine chalet was perfect for our family reunion. World-class amenities and impeccable service!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-red-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">Robert Chen</p>
+                            <p class="text-sm text-gray-600">Family Vacation</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-teal text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Plan Your Perfect Getaway</h2>
+            <p class="text-xl mb-10 opacity-90">Book your luxury vacation home today and create unforgettable memories.</p>
+            <button onclick="openModal()" class="bg-white text-teal-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Book Now
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">VacationPalace</h4>
+                    <p class="text-sm">Luxury vacation homes worldwide.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Destinations</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Beach Villas</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mountain Chalets</a></li>
+                        <li><a href="#" class="hover:text-white transition">City Penthouses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 VacationPalace. Luxury Vacation Rentals.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Booking Modal -->
+    <div id="bookingModal" class="modal-off fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-909">Book Your Stay</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-909">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600 bg-white">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600 bg-white">
+                <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600 bg-white">
+                <input type="date" placeholder="Check-out Date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600 bg-white">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal-600 bg-white">
+                    <option>Select Property</option>
+                    <option>Malibu Beach Villa</option>
+                    <option>Santorini Clifftop Villa</option>
+                    <option>Alpine Luxury Chalet</option>
+                </select>
+                <button type="submit" class="w-full bg-gradient-teal text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Continue Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('bookingModal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('bookingModal').classList.remove('active');
+        }
+
+        function nextSlide() {
+            const slides = document.querySelectorAll('.slide');
+            currentSlide = (currentSlide + 1) % slides.length;
+            updateSlide();
+        }
+
+        function prevSlide() {
+            const slides = document.querySelectorAll('.slide');
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            updateSlide();
+        }
+
+        function updateSlide() {
+            document.querySelectorAll('.slide').forEach((slide, index) => {
+                slide.classList.toggle('active', index === currentSlide);
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('bookingModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

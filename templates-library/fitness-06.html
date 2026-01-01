@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrossFlex - Functional Fitness Anywhere</title>
+    <meta name="description" content="No equipment needed. Train anywhere. Functional fitness for real strength and mobility.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600;700&family=IBM+Plex+Mono:wght@600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Josefin Sans', sans-serif;
+        }
+        .mono-font {
+            font-family: 'IBM Plex Mono', monospace;
+            font-weight: 600;
+        }
+        .gradient-amber {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-amber {
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            transition: all 0.3s;
+        }
+        .btn-amber:hover {
+            transform: scale(1.05);
+            box-shadow: 0 12px 30px rgba(245, 158, 11, 0.35);
+        }
+        .link-animate {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .link-animate::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #F59E0B, #D97706);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+        }
+        .link-animate:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        .flip-card {
+            perspective: 1000px;
+            transition: transform 0.6s;
+        }
+        .flip-card:hover {
+            transform: rotateY(5deg) translateY(-5px);
+        }
+        .card-modern {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            border: 1px solid #FCD34D;
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s;
+        }
+        .card-modern:hover {
+            box-shadow: 0 20px 50px rgba(245, 158, 11, 0.15);
+            transform: translateY(-8px);
+        }
+        .timer-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .workout-box {
+            border-left: 4px solid #F59E0B;
+            padding: 16px;
+            background: #FFFBEB;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white border-b border-amber-200 fixed w-full top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-wind text-white"></i>
+                </div>
+                <span class="text-xl font-bold gradient-amber">CrossFlex</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#workouts" class="link-animate text-gray-700 hover:text-amber-600">Workouts</a>
+                <a href="#features" class="link-animate text-gray-700 hover:text-amber-600">Features</a>
+                <a href="#plans" class="link-animate text-gray-700 hover:text-amber-600">Plans</a>
+                <a href="#testimonials" class="link-animate text-gray-700 hover:text-amber-600">Results</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-amber text-white px-6 py-2 rounded-lg font-semibold text-sm">Unlock Free Trial</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl">
+                <i class="fas fa-bars text-amber-600"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#workouts" class="text-gray-700 py-2">Workouts</a>
+            <a href="#features" class="text-gray-700 py-2">Features</a>
+            <a href="#plans" class="text-gray-700 py-2">Plans</a>
+            <a href="#testimonials" class="text-gray-700 py-2">Results</a>
+            <button onclick="openModal()" class="btn-amber text-white px-6 py-2 rounded-lg font-semibold text-sm mt-4 w-full">Unlock Free Trial</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-amber-50 via-yellow-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Functional Strength Without the Gym</h1>
+                    <p class="text-xl text-gray-600 mb-8">Real exercises. Real results. No equipment. Train at home, office, or park. Build power that translates to life.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-amber text-white px-8 py-3 rounded-lg font-semibold text-lg">Start Free</button>
+                        <button onclick="document.getElementById('workouts').scrollIntoView({behavior: 'smooth'})" class="border-2 border-amber-600 text-amber-600 px-8 py-3 rounded-lg font-semibold text-lg hover:bg-amber-50 transition">Browse Workouts</button>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop" alt="Functional Training" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workouts Section -->
+    <section id="workouts" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Functional Workouts</h2>
+                <p class="text-xl text-gray-600">Choose your style. Achieve real strength.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-modern flip-card">
+                    <div class="timer-badge"><i class="fas fa-clock mr-2"></i> 20 mins</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Bodyweight Power</h3>
+                    <p class="text-gray-700 mb-6">Explosive strength using nothing but your body. Build athletic power.</p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Push-ups variation</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Jump training</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Core work</li>
+                    </ul>
+                    <button onclick="openModal()" class="btn-amber text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                </div>
+                <div class="card-modern flip-card">
+                    <div class="timer-badge"><i class="fas fa-clock mr-2"></i> 30 mins</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Mobility & Flexibility</h3>
+                    <p class="text-gray-700 mb-6">Functional movement and range. Stay mobile for life.</p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Dynamic stretching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Joint mobility</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Injury prevention</li>
+                    </ul>
+                    <button onclick="openModal()" class="btn-amber text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                </div>
+                <div class="card-modern flip-card">
+                    <div class="timer-badge"><i class="fas fa-clock mr-2"></i> 25 mins</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">HIIT & Cardio</h3>
+                    <p class="text-gray-700 mb-6">High-intensity intervals for conditioning. Fat loss + power.</p>
+                    <ul class="space-y-2 mb-8">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Metabolic conditioning</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Tabata training</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Endurance building</li>
+                    </ul>
+                    <button onclick="openModal()" class="btn-amber text-white w-full py-2 rounded-lg font-semibold text-sm">Try Free</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose -->
+    <section id="features" class="py-24 px-4 bg-amber-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Why CrossFlex Wins</h2>
+                <p class="text-xl text-gray-600">Functional fitness reimagined for modern life</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-location-dot text-amber-600"></i> Train Anywhere
+                    </h3>
+                    <p class="text-gray-700">Home, office, park, hotel room. Your workout is always with you.</p>
+                </div>
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-ban text-amber-600"></i> Zero Equipment
+                    </h3>
+                    <p class="text-gray-700">No dumbbells, no machines, no gym fees. Just you and progress.</p>
+                </div>
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-bolt text-amber-600"></i> Real Strength
+                    </h3>
+                    <p class="text-gray-700">Functional movements that translate to everyday life. True power.</p>
+                </div>
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-clock text-amber-600"></i> Time Efficient
+                    </h3>
+                    <p class="text-gray-700">20-40 minute sessions. Perfect for busy schedules. Maximum results.</p>
+                </div>
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-shield text-amber-600"></i> Safe Training
+                    </h3>
+                    <p class="text-gray-700">Expert-designed progressions. Proper form guidance. Injury prevention.</p>
+                </div>
+                <div class="workout-box">
+                    <h3 class="text-xl font-bold text-gray-900 mb-2 flex items-center gap-2">
+                        <i class="fas fa-users text-amber-600"></i> Community
+                    </h3>
+                    <p class="text-gray-700">Join thousands training the functional way. Motivation built-in.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 px-4 bg-gradient-to-r from-amber-500 to-orange-600">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-3 md:grid-cols-4 gap-8 text-center text-white">
+                <div>
+                    <div class="text-4xl font-bold mb-2">300K+</div>
+                    <p class="text-amber-100 text-sm">Members</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">1000+</div>
+                    <p class="text-amber-100 text-sm">Workouts</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold mb-2">4.9★</div>
+                    <p class="text-amber-100 text-sm">Rating</p>
+                </div>
+                <div class="hidden md:block">
+                    <div class="text-4xl font-bold mb-2">95%</div>
+                    <p class="text-amber-100 text-sm">Retention</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Real Results</h2>
+                <p class="text-xl text-gray-600">See what functional fitness delivers</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-amber-50 rounded-2xl p-8 border border-amber-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Finally strong in ways that matter. Can carry groceries, play with kids, and feel powerful. Best investment in health."</p>
+                    <p class="font-bold text-gray-900">John Williams</p>
+                    <p class="text-amber-600 text-sm">5 months</p>
+                </div>
+                <div class="bg-amber-50 rounded-2xl p-8 border border-amber-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Traveling constantly for work. This is my solution. Full workouts in hotel rooms. Zero excuses. Total game changer."</p>
+                    <p class="font-bold text-gray-900">Lisa Chen</p>
+                    <p class="text-amber-600 text-sm">3 months</p>
+                </div>
+                <div class="bg-amber-50 rounded-2xl p-8 border border-amber-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"After 60, I needed something sustainable. This is it. Functional strength, mobility, energy. Recommend to everyone."</p>
+                    <p class="font-bold text-gray-900">Robert Garcia</p>
+                    <p class="text-amber-600 text-sm">6 months</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="plans" class="py-24 px-4 bg-amber-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Plans Made Simple</h2>
+                <p class="text-xl text-gray-600">Pick your path to functional strength</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-modern">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Always free</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$0</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-amber-600 text-amber-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-amber-50 transition">Get Access</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> 50+ sample workouts</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Community access</li>
+                    </ul>
+                </div>
+                <div class="card-modern border-2 border-amber-600 relative">
+                    <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-600 text-white px-4 py-1 rounded-full text-sm font-bold">POPULAR</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-600 mb-6 text-sm">All features</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$12</span>
+                        <span class="text-gray-600">/mo</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-amber text-white w-full py-2 rounded-lg font-semibold mb-8">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> 1000+ workouts</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Personalized plans</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Progress tracking</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Offline access</li>
+                    </ul>
+                </div>
+                <div class="card-modern">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Elite support</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$39</span>
+                        <span class="text-gray-600">/mo</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-amber-600 text-amber-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-amber-50 transition">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> All Premium features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> 1-on-1 coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Custom programs</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-amber-600"></i> Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-amber-500 to-orange-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Get Functionally Strong Today</h2>
+            <p class="text-xl text-amber-100 mb-10">7-day free trial. No credit card. Train anywhere.</p>
+            <button onclick="openModal()" class="bg-white text-amber-600 px-10 py-4 rounded-lg font-semibold text-lg hover:bg-amber-50 transition inline-block">Start Your Free Trial</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-white font-bold text-lg mb-4">CrossFlex</div>
+                    <p class="text-sm">Functional strength for real life.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">App</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Workouts</a></li>
+                        <li><a href="#" class="hover:text-white">Programs</a></li>
+                        <li><a href="#" class="hover:text-white">Download</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">FAQ</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Social</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition"><i class="fab fa-youtube text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-amber-600 transition"><i class="fab fa-tiktok text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Unlock Your Free Trial</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500" required>
+                    <option>Select Workout Style</option>
+                    <option>Bodyweight Power</option>
+                    <option>Mobility</option>
+                    <option>HIIT & Cardio</option>
+                </select>
+                <button type="submit" class="btn-amber text-white w-full py-3 rounded-lg font-semibold">Unlock Free Trial</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">7 days free • No credit card • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome! Check your email for your free trial access.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

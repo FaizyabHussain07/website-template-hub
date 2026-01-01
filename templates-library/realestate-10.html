@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Elite Realty Group - Top real estate agents and brokerage services. Find your perfect home or agent today.">
+    <meta name="keywords" content="real estate agents, broker services, property sales, real estate company, home buying">
+    <title>Elite Realty Group - Top Real Estate Brokerage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Crimson+Text:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Sora', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Crimson Text', serif; font-weight: 700; }
+        .gradient-rose { background: linear-gradient(135deg, #e11d48 0%, #f43f5e 100%); }
+        .gradient-slate { background: linear-gradient(135deg, #475569 0%, #64748b 100%); }
+        .agent-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .agent-card:hover { transform: translateY(-12px); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .testimonial-slider { position: relative; }
+        .testimonial-item { display: none; }
+        .testimonial-item.active { display: block; animation: slideIn 0.5s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+        .badge-rose { background: linear-gradient(135deg, #ffe4e6 0%, #fce7f3 100%); color: #be185d; }
+        .stat-card { border-top: 3px solid #e11d48; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-rose rounded-lg flex items-center justify-center">
+                    <i class="fas fa-handshake text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">Elite Realty Group</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#properties" class="text-gray-700 font-medium hover:text-rose-600 transition">Properties</a>
+                <a href="#agents" class="text-gray-700 font-medium hover:text-rose-600 transition">Our Agents</a>
+                <a href="#testimonials" class="text-gray-700 font-medium hover:text-rose-600 transition">Testimonials</a>
+                <a href="#contact" class="text-gray-700 font-medium hover:text-rose-600 transition">Contact</a>
+                <button onclick="openModal()" class="bg-gradient-rose text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition">Connect with Us</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#properties" class="block text-gray-700 font-medium py-2">Properties</a>
+                <a href="#agents" class="block text-gray-700 font-medium py-2">Our Agents</a>
+                <a href="#testimonials" class="block text-gray-700 font-medium py-2">Testimonials</a>
+                <a href="#contact" class="block text-gray-700 font-medium py-2">Contact</a>
+                <button onclick="openModal()" class="w-full bg-gradient-rose text-white py-3 rounded-lg font-semibold">Connect with Us</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-rose-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 badge-rose rounded-full font-semibold text-sm mb-6">Top Rated Real Estate Group</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Your Trusted
+                        <span class="text-rose-600"> Real Estate Partner</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        With 20+ years of experience and hundreds of successful transactions, our expert agents help you buy, sell, or invest with confidence.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-rose text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Schedule Consultation
+                        </button>
+                        <button class="border-2 border-rose-600 text-rose-600 px-8 py-4 rounded-lg font-bold hover:bg-rose-50 transition text-lg">
+                            View Listings
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-rose-100 to-pink-50 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=700&fit=crop" alt="Team" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-rose-100">
+                        <p class="text-3xl font-bold text-rose-600">$2.5B+</p>
+                        <p class="text-sm text-gray-600">Sales Volume</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="stat-card bg-rose-50 p-8 rounded-xl text-center">
+                    <p class="text-4xl font-bold text-rose-600 mb-2">50+</p>
+                    <p class="text-gray-600">Expert Agents</p>
+                </div>
+                <div class="stat-card bg-rose-50 p-8 rounded-xl text-center">
+                    <p class="text-4xl font-bold text-rose-600 mb-2">2,000+</p>
+                    <p class="text-gray-600">Homes Sold</p>
+                </div>
+                <div class="stat-card bg-rose-50 p-8 rounded-xl text-center">
+                    <p class="text-4xl font-bold text-rose-600 mb-2">95%</p>
+                    <p class="text-gray-600">Client Satisfaction</p>
+                </div>
+                <div class="stat-card bg-rose-50 p-8 rounded-xl text-center">
+                    <p class="text-4xl font-bold text-rose-600 mb-2">20+</p>
+                    <p class="text-gray-600">Years Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-909 mb-4">Featured Properties</h2>
+                <p class="text-xl text-gray-600">Handpicked listings from our current portfolio</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45201003c6b7?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-rose px-3 py-1 rounded-full text-sm font-bold">New Listing</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Elegant Family Home</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Riverside District • 2,500 sq ft</p>
+                        <div class="flex gap-4 text-sm text-gray-600 mb-4">
+                            <span><i class="fas fa-door-open text-rose-600 mr-1"></i>4 Beds</span>
+                            <span><i class="fas fa-bath text-rose-600 mr-1"></i>3 Baths</span>
+                            <span><i class="fas fa-car text-rose-600 mr-1"></i>2 Car</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4 py-4 border-y border-gray-200">
+                            <span class="text-2xl font-bold text-gray-909">$725K</span>
+                            <button onclick="openModal()" class="bg-gradient-rose text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Contact</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-rose px-3 py-1 rounded-full text-sm font-bold">Hot Property</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Modern Downtown Loft</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Urban Center • 1,800 sq ft</p>
+                        <div class="flex gap-4 text-sm text-gray-600 mb-4">
+                            <span><i class="fas fa-door-open text-rose-600 mr-1"></i>2 Beds</span>
+                            <span><i class="fas fa-bath text-rose-600 mr-1"></i>2 Baths</span>
+                            <span><i class="fas fa-infinity text-rose-600 mr-1"></i>Rooftop</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4 py-4 border-y border-gray-200">
+                            <span class="text-2xl font-bold text-gray-909">$450K</span>
+                            <button onclick="openModal()" class="bg-gradient-rose text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Contact</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9bf461a86d90?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-rose px-3 py-1 rounded-full text-sm font-bold">Luxury</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Waterfront Mansion</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Beachfront • 5,000 sq ft</p>
+                        <div class="flex gap-4 text-sm text-gray-600 mb-4">
+                            <span><i class="fas fa-door-open text-rose-600 mr-1"></i>5 Beds</span>
+                            <span><i class="fas fa-bath text-rose-600 mr-1"></i>4 Baths</span>
+                            <span><i class="fas fa-water text-rose-600 mr-1"></i>Pool</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4 py-4 border-y border-gray-200">
+                            <span class="text-2xl font-bold text-gray-909">$1.8M</span>
+                            <button onclick="openModal()" class="bg-gradient-rose text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Contact</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="openModal()" class="bg-gradient-rose text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                    View All Listings
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Agents Section -->
+    <section id="agents" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-909 mb-4">Meet Our Agents</h2>
+                <p class="text-xl text-gray-600">Expert professionals ready to serve you</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md agent-card border border-gray-200">
+                    <div class="aspect-square bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=300&h=300&fit=crop" alt="Agent" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-gray-909 mb-1">Sarah Mitchell</h3>
+                        <p class="text-sm text-rose-600 font-semibold mb-4">Senior Agent</p>
+                        <p class="text-sm text-gray-600 mb-4">15+ years experience in residential sales</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md agent-card border border-gray-200">
+                    <div class="aspect-square bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop" alt="Agent" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-gray-909 mb-1">James Chen</h3>
+                        <p class="text-sm text-rose-600 font-semibold mb-4">Luxury Specialist</p>
+                        <p class="text-sm text-gray-600 mb-4">Expert in high-end properties and investments</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md agent-card border border-gray-200">
+                    <div class="aspect-square bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop" alt="Agent" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-gray-909 mb-1">Maria Garcia</h3>
+                        <p class="text-sm text-rose-600 font-semibold mb-4">First-Time Buyer Specialist</p>
+                        <p class="text-sm text-gray-600 mb-4">Helping first-time buyers achieve their dreams</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md agent-card border border-gray-200">
+                    <div class="aspect-square bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop" alt="Agent" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-lg font-bold text-gray-909 mb-1">David Thompson</h3>
+                        <p class="text-sm text-rose-600 font-semibold mb-4">Commercial Specialist</p>
+                        <p class="text-sm text-gray-600 mb-4">Commercial and investment property expert</p>
+                        <div class="flex justify-center gap-3">
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-facebook"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-twitter"></i></a>
+                            <a href="#" class="text-gray-400 hover:text-rose-600 transition"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-rose-50 to-pink-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-909 mb-4">What Our Clients Say</h2>
+                <p class="text-xl text-gray-600">Real stories from satisfied clients</p>
+            </div>
+
+            <div class="relative">
+                <div class="testimonial-item active bg-white p-10 rounded-xl shadow-lg border border-rose-100">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 text-lg italic">"Sarah helped us find our dream home. Her professionalism, knowledge, and dedication made the entire process smooth and enjoyable. Highly recommend Elite Realty Group!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-rose-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">The Johnson Family</p>
+                            <p class="text-sm text-gray-600">First-time homebuyers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item bg-white p-10 rounded-xl shadow-lg border border-rose-100">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 text-lg italic">"James sold our property faster than expected and got us an excellent price. His market expertise and negotiation skills are outstanding!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-amber-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">Robert & Linda Chen</p>
+                            <p class="text-sm text-gray-600">Property sellers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-item bg-white p-10 rounded-xl shadow-lg border border-rose-100">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-8 text-lg italic">"Maria made investing in real estate simple and confident. Her guidance on market trends and property selection was invaluable!"</p>
+                    <div class="flex items-center gap-4">
+                        <div class="w-16 h-16 bg-pink-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-909">Michael Rodriguez</p>
+                            <p class="text-sm text-gray-600">Real estate investor</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-center gap-4 mt-8">
+                    <button onclick="prevTestimonial()" class="bg-gradient-rose text-white w-12 h-12 rounded-full flex items-center justify-center hover:shadow-lg transition">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="nextTestimonial()" class="bg-gradient-rose text-white w-12 h-12 rounded-full flex items-center justify-center hover:shadow-lg transition">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-rose text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Work with Us?</h2>
+            <p class="text-xl mb-10 opacity-90">Let our expert agents help you achieve your real estate goals.</p>
+            <button onclick="openModal()" class="bg-white text-rose-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Contact an Agent Today
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Elite Realty Group</h4>
+                    <p class="text-sm">Your trusted real estate partner since 2004.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Browse</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Properties</a></li>
+                        <li><a href="#" class="hover:text-white transition">Agents</a></li>
+                        <li><a href="#" class="hover:text-white transition">Testimonials</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 Elite Realty Group. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-909">Connect with Us</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-909">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-600 bg-white">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-600 bg-white">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-600 bg-white">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-600 bg-white">
+                    <option value="">I'm interested in...</option>
+                    <option value="buy">Buying a home</option>
+                    <option value="sell">Selling a home</option>
+                    <option value="invest">Investment property</option>
+                </select>
+                <textarea placeholder="Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-rose-600 bg-white"></textarea>
+                <button type="submit" class="w-full bg-gradient-rose text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        let testimonialIndex = 0;
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('contactModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('open');
+        }
+
+        function showTestimonial(index) {
+            const items = document.querySelectorAll('.testimonial-item');
+            items.forEach(item => item.classList.remove('active'));
+            items[index % items.length].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            testimonialIndex++;
+            showTestimonial(testimonialIndex);
+        }
+
+        function prevTestimonial() {
+            testimonialIndex--;
+            const items = document.querySelectorAll('.testimonial-item');
+            showTestimonial((testimonialIndex % items.length + items.length) % items.length);
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

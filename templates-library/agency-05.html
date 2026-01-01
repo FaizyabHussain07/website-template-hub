@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="PixelForce - UI/UX design agency. Digital product design, user experience, interface design.">
+    <meta name="keywords" content="UI UX design, user experience design, product design, interface design, digital design">
+    <title>PixelForce - UI/UX Design Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3 { font-family: 'Lora', serif; }
+        .gradient-pixel { background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-pixel rounded-lg flex items-center justify-center">
+                    <i class="fas fa-square text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">PixelForce</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#approach" class="text-gray-700 hover:text-cyan-600 transition font-medium">Approach</a>
+                <a href="#work" class="text-gray-700 hover:text-cyan-600 transition font-medium">Work</a>
+                <a href="#team" class="text-gray-700 hover:text-cyan-600 transition font-medium">Team</a>
+                <a href="#clients" class="text-gray-700 hover:text-cyan-600 transition font-medium">Clients</a>
+                <button onclick="openModal()" class="gradient-pixel text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Contact Us</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#approach" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Approach</a>
+                <a href="#work" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Work</a>
+                <a href="#team" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Team</a>
+                <a href="#clients" class="block text-gray-700 hover:text-cyan-600 py-2 font-medium">Clients</a>
+                <button onclick="openModal()" class="w-full gradient-pixel text-white py-2 rounded-lg font-bold">Contact Us</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cyan-50 to-blue-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full text-sm font-bold mb-6">Human-Centered Design</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Design That
+                        <span class="gradient-pixel bg-clip-text text-transparent"> Delights Users</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Award-winning UI/UX design agency creating seamless digital experiences for global brands.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-pixel text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Project
+                        </button>
+                        <button class="border-2 border-cyan-600 text-cyan-600 px-8 py-4 rounded-lg font-bold hover:bg-cyan-50 transition text-lg">
+                            View Portfolio
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-cyan-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">75+ Products Designed</p>
+                                <p class="text-sm text-gray-600">Web, mobile, and desktop apps</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-cyan-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">International Awards</p>
+                                <p class="text-sm text-gray-600">Recognized for design excellence</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="UI/UX" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Design Approach</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-users text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">User Research</h3>
+                    <p class="text-gray-600 mb-6">Deep dive into user behavior, needs, and pain points. Understanding your audience.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>User interviews</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Personas & journey maps</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Competitive analysis</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-pencil-ruler text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Wireframing & Prototyping</h3>
+                    <p class="text-gray-600 mb-6">Structuring information architecture. Creating interactive prototypes for testing.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Information architecture</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Interactive prototypes</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>User flows</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-palette text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Visual Design</h3>
+                    <p class="text-gray-600 mb-6">Creating beautiful, accessible interfaces. Design systems and component libraries.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Visual styling</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Design systems</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Accessibility</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-flask text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Testing & Validation</h3>
+                    <p class="text-gray-600 mb-6">Usability testing, user feedback, and iterative improvements.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Usability testing</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>A/B testing</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Analytics</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-code text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Hand-Off & Support</h3>
+                    <p class="text-gray-600 mb-6">Design specifications, component documentation, and developer support.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Specs & guidelines</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Design tokens</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Dev support</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-cyan-500 transition">
+                    <div class="w-12 h-12 gradient-pixel rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Post-Launch Analysis</h3>
+                    <p class="text-gray-600 mb-6">Monitoring performance, user behavior analysis, and optimization recommendations.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Performance tracking</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>User analytics</li>
+                        <li><i class="fas fa-check text-cyan-600 mr-2"></i>Iterations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Recent Projects</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">FinTech App Redesign</h3>
+                        <p class="text-gray-600 mb-4">Complete UX overhaul for banking app. Increased user engagement by 65%.</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700"><strong>Challenge:</strong> Complex workflows, security concerns</p>
+                            <p class="text-sm text-gray-700"><strong>Solution:</strong> Streamlined interface, biometric auth</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1522869635100-ce8e12434e5f?w=500&h=300&fit=crop" alt="Project" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">E-Commerce Platform</h3>
+                        <p class="text-gray-600 mb-4">Designed for global luxury retailer. 40% increase in conversion rate.</p>
+                        <div class="space-y-2">
+                            <p class="text-sm text-gray-700"><strong>Challenge:</strong> High traffic, inventory complexity</p>
+                            <p class="text-sm text-gray-700"><strong>Solution:</strong> Advanced filtering, personalization</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Team</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-cyan-300 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Elena Rodriguez</h3>
+                    <p class="text-cyan-600 font-bold text-sm mb-2">Design Director</p>
+                    <p class="text-gray-600 text-sm">18+ years UX design</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-cyan-400 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Jason Kim</h3>
+                    <p class="text-cyan-600 font-bold text-sm mb-2">Lead UI Designer</p>
+                    <p class="text-gray-600 text-sm">Interface & systems</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-cyan-500 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Sophia Chen</h3>
+                    <p class="text-cyan-600 font-bold text-sm mb-2">Research Lead</p>
+                    <p class="text-gray-600 text-sm">User research specialist</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-cyan-600 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Marcus Thompson</h3>
+                    <p class="text-cyan-600 font-bold text-sm mb-2">Design Ops</p>
+                    <p class="text-gray-600 text-sm">Systems & processes</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="clients" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Trusted by Leading Companies</h2>
+            <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-8 mb-16">
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">TechCorp</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">FinServe</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">RetailPlus</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">HealthFlow</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">TravelHub</div>
+                </div>
+                <div class="flex items-center justify-center">
+                    <div class="text-lg font-bold text-gray-400">EduTech</div>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"PixelForce designed our entire product from scratch. Their user-centered approach resulted in a platform loved by our users. Exceptional team!"</p>
+                    <p class="font-bold text-gray-900">Product VP, TechCorp</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Best design partner we've worked with. Their research-driven approach and design thinking transformed our product. Highly recommended!"</p>
+                    <p class="font-bold text-gray-900">CEO, FinServe</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-pixel text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Let's Design Something Incredible</h2>
+            <p class="text-xl mb-10 opacity-90">Create a digital experience your users will love.</p>
+            <button onclick="openModal()" class="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Get In Touch
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">PixelForce</h4>
+                    <p class="text-sm">UI/UX design agency creating exceptional digital products.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">UI Design</a></li>
+                        <li><a href="#" class="hover:text-white transition">UX Design</a></li>
+                        <li><a href="#" class="hover:text-white transition">Research</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-white transition">Dribbble</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 PixelForce. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="contactModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get In Touch</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600">
+                <textarea placeholder="Project details" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-1 focus:ring-cyan-600"></textarea>
+                <button type="submit" class="w-full gradient-pixel text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Send Message
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('contactModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('contactModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

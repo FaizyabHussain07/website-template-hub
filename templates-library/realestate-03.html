@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ElevateHomes - Premium luxury real estate with exclusive properties and white-glove service">
+    <meta name="keywords" content="luxury homes, premium properties, exclusive real estate, high-end properties">
+    <title>ElevateHomes - Luxury Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        .gradient-luxury { background: linear-gradient(135deg, #0f766e 0%, #164e63 100%); }
+        .accent-gold { color: #d4af37; }
+        .border-gold { border-color: #d4af37; }
+        .hover-lift { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .hover-lift:hover { transform: translateY(-15px); }
+        .modal-hidden { display: none; }
+        .modal-hidden.open { display: flex; }
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .line-accent { height: 3px; width: 50px; background: #d4af37; }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-gray-950 z-50 border-b border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-luxury rounded-lg flex items-center justify-center border border-yellow-500">
+                    <i class="fas fa-crown text-yellow-400 text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold accent-gold">ElevateHomes</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#portfolio" class="text-gray-300 font-medium hover:accent-gold transition">Portfolio</a>
+                <a href="#services" class="text-gray-300 font-medium hover:accent-gold transition">Services</a>
+                <a href="#experience" class="text-gray-300 font-medium hover:accent-gold transition">Experience</a>
+                <a href="#contact" class="text-gray-300 font-medium hover:accent-gold transition">Contact</a>
+                <button onclick="openModal()" class="bg-gradient-luxury text-yellow-400 px-6 py-3 rounded font-bold hover:shadow-2xl transition border border-yellow-500">Schedule Viewing</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-300" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-6 space-y-4">
+                <a href="#portfolio" class="block text-gray-300 font-medium py-2">Portfolio</a>
+                <a href="#services" class="block text-gray-300 font-medium py-2">Services</a>
+                <a href="#experience" class="block text-gray-300 font-medium py-2">Experience</a>
+                <a href="#contact" class="block text-gray-300 font-medium py-2">Contact</a>
+                <button onclick="openModal()" class="w-full bg-gradient-luxury text-yellow-400 py-3 rounded font-bold border border-yellow-500">Schedule Viewing</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-950">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="line-accent mb-6"></div>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                        Exceptional Homes for
+                        <span class="accent-gold"> Discerning Tastes</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 mb-10 leading-relaxed font-light">
+                        Access the world's most exclusive properties. White-glove service, personalized attention, and unparalleled luxury experiences.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-luxury text-yellow-400 px-8 py-4 rounded font-bold hover:shadow-2xl transition border border-yellow-500 text-lg">
+                            View Collection
+                        </button>
+                        <button class="border-2 border-yellow-500 text-yellow-400 px-8 py-4 rounded font-bold hover:bg-yellow-500 hover:bg-opacity-10 transition text-lg">
+                            Schedule Consultation
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square relative overflow-hidden rounded-lg border-2 border-yellow-500">
+                        <img src="https://images.unsplash.com/photo-1613612528443-7d8254621184?w=700&h=700&fit=crop" alt="Luxury property" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-8 -left-8 bg-gradient-luxury p-6 rounded border border-yellow-500 text-center">
+                        <p class="text-yellow-400 text-3xl font-bold">$50M+</p>
+                        <p class="text-gray-300 text-sm mt-2">Avg Portfolio Value</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="line-accent mx-auto mb-6"></div>
+                <h2 class="text-5xl font-bold text-white mb-6">Bespoke Services</h2>
+                <p class="text-xl text-gray-400 max-w-2xl mx-auto">Tailored solutions for the most discerning clientele</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-gray-800 p-8 rounded border border-gray-700 hover-lift">
+                    <div class="accent-gold text-4xl mb-6"><i class="fas fa-binoculars"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Exclusive Viewings</h3>
+                    <p class="text-gray-400 text-sm">Private showings arranged at your convenience with dedicated agents.</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded border border-gray-700 hover-lift">
+                    <div class="accent-gold text-4xl mb-6"><i class="fas fa-key"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Portfolio Curation</h3>
+                    <p class="text-gray-400 text-sm">Hand-selected properties matching your exact specifications.</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded border border-gray-700 hover-lift">
+                    <div class="accent-gold text-4xl mb-6"><i class="fas fa-handshake"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Concierge Service</h3>
+                    <p class="text-gray-400 text-sm">Complete transaction management from discovery to ownership.</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded border border-gray-700 hover-lift">
+                    <div class="accent-gold text-4xl mb-6"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-bold text-white mb-4">Verified Listings</h3>
+                    <p class="text-gray-400 text-sm">All properties authenticated and thoroughly vetted.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Portfolio -->
+    <section id="portfolio" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="line-accent mx-auto mb-6"></div>
+                <h2 class="text-5xl font-bold text-white mb-6">Featured Portfolio</h2>
+                <p class="text-xl text-gray-400">Curated selection from our exclusive collection</p>
+            </div>
+
+            <div class="space-y-8">
+                <div class="grid lg:grid-cols-3 gap-8 items-center hover-lift">
+                    <div class="lg:col-span-2">
+                        <div class="aspect-video bg-gray-800 rounded border border-gray-700 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=600&h=400&fit=crop" alt="Luxury penthouse" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700">
+                        <span class="accent-gold text-sm font-bold">SIGNATURE COLLECTION</span>
+                        <h3 class="text-3xl font-bold text-white my-4">Manhattan Penthouse</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">360-degree city views, private elevator, spa facilities, and climate-controlled wine cellar. Epitome of urban luxury.</p>
+                        <div class="space-y-3 mb-6">
+                            <p class="text-gray-300"><span class="accent-gold font-bold">5</span> Bedrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">6</span> Bathrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">8,500</span> Sq Ft</p>
+                        </div>
+                        <p class="text-4xl font-bold accent-gold mb-6">$45.5M</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-luxury text-yellow-400 py-3 rounded font-bold border border-yellow-500 hover:shadow-lg transition">Schedule Viewing</button>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 items-center hover-lift">
+                    <div class="aspect-video bg-gray-800 rounded border border-gray-700 overflow-hidden lg:order-2">
+                        <img src="https://images.unsplash.com/photo-1512917774080-9bf461a86d90?w=600&h=400&fit=crop" alt="Beachfront villa" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700 lg:order-1">
+                        <span class="accent-gold text-sm font-bold">WATERFRONT ESTATES</span>
+                        <h3 class="text-3xl font-bold text-white my-4">Malibu Beachfront Villa</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Mediterranean-inspired architecture with private beach access, infinity pool, and smart home automation throughout.</p>
+                        <div class="space-y-3 mb-6">
+                            <p class="text-gray-300"><span class="accent-gold font-bold">6</span> Bedrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">7</span> Bathrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">9,200</span> Sq Ft</p>
+                        </div>
+                        <p class="text-4xl font-bold accent-gold mb-6">$67.8M</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-luxury text-yellow-400 py-3 rounded font-bold border border-yellow-500 hover:shadow-lg transition">Schedule Viewing</button>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-3 gap-8 items-center hover-lift">
+                    <div class="lg:col-span-2">
+                        <div class="aspect-video bg-gray-800 rounded border border-gray-700 overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1578605113536-8aa1fe636bd4?w=600&h=400&fit=crop" alt="Modern villa" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        </div>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700">
+                        <span class="accent-gold text-sm font-bold">CONTEMPORARY LUXURY</span>
+                        <h3 class="text-3xl font-bold text-white my-4">Beverly Hills Estate</h3>
+                        <p class="text-gray-400 mb-6 leading-relaxed">Ultra-modern architecture with smart tech integration, movie theater, fitness center, and championship tennis court.</p>
+                        <div class="space-y-3 mb-6">
+                            <p class="text-gray-300"><span class="accent-gold font-bold">7</span> Bedrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">8</span> Bathrooms</p>
+                            <p class="text-gray-300"><span class="accent-gold font-bold">12,000</span> Sq Ft</p>
+                        </div>
+                        <p class="text-4xl font-bold accent-gold mb-6">$89.2M</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-luxury text-yellow-400 py-3 rounded font-bold border border-yellow-500 hover:shadow-lg transition">Schedule Viewing</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="experience" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="line-accent mb-6"></div>
+                    <h2 class="text-5xl font-bold text-white mb-6 leading-tight">Unmatched Expertise & Discretion</h2>
+                    <p class="text-gray-300 mb-8 leading-relaxed">With over 30 years in luxury real estate, we understand the unique needs of high-net-worth individuals. Complete confidentiality guaranteed.</p>
+                    
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="accent-gold text-2xl mt-1"><i class="fas fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">Global Network</h4>
+                                <p class="text-gray-400">Access to exclusive international properties and investment opportunities.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="accent-gold text-2xl mt-1"><i class="fas fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">Personalized Concierge</h4>
+                                <p class="text-gray-400">Dedicated agent available 24/7 for your real estate needs.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="accent-gold text-2xl mt-1"><i class="fas fa-check-circle"></i></div>
+                            <div>
+                                <h4 class="text-lg font-bold text-white mb-2">Legal & Financial Advisory</h4>
+                                <p class="text-gray-400">Connected with top legal and financial professionals worldwide.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-2 gap-6">
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700 text-center">
+                        <p class="text-4xl font-bold accent-gold mb-3">500+</p>
+                        <p class="text-gray-300">Premium Properties</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700 text-center">
+                        <p class="text-4xl font-bold accent-gold mb-3">$2B+</p>
+                        <p class="text-gray-300">Portfolio Value</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700 text-center">
+                        <p class="text-4xl font-bold accent-gold mb-3">95%</p>
+                        <p class="text-gray-300">Client Satisfaction</p>
+                    </div>
+                    <div class="bg-gray-800 p-8 rounded border border-gray-700 text-center">
+                        <p class="text-4xl font-bold accent-gold mb-3">30+</p>
+                        <p class="text-gray-300">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <div class="line-accent mx-auto mb-6"></div>
+                <h2 class="text-5xl font-bold text-white mb-6">Trusted by Industry Leaders</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-gray-800 p-8 rounded border border-gray-700">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"ElevateHomes provided exceptional service in acquiring our Aspen estate. The discretion and expertise were unparalleled."</p>
+                    <p class="font-bold text-white">Victoria Sterling</p>
+                    <p class="text-sm text-gray-400">CEO, Sterling Capital</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded border border-gray-700">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"Found the perfect investment portfolio through ElevateHomes. Their market insight is second to none."</p>
+                    <p class="font-bold text-white">Marcus Thompson</p>
+                    <p class="text-sm text-gray-400">Real Estate Investor</p>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded border border-gray-700">
+                    <div class="flex gap-1 mb-6">
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                        <i class="fas fa-star accent-gold"></i>
+                    </div>
+                    <p class="text-gray-300 mb-6 italic">"Their concierge service is worth every penny. Truly white-glove treatment from start to finish."</p>
+                    <p class="font-bold text-white">Catherine Liu</p>
+                    <p class="text-sm text-gray-400">Entrepreneur</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-luxury">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="line-accent mx-auto mb-8"></div>
+            <h2 class="text-5xl font-bold text-white mb-6">Begin Your Journey</h2>
+            <p class="text-xl text-gray-200 mb-10">Discover properties that match your discerning tastes and investment goals.</p>
+            <button onclick="openModal()" class="bg-yellow-500 text-gray-950 px-10 py-4 rounded font-bold hover:shadow-2xl transition text-lg hover:bg-yellow-400">
+                Schedule Private Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-16 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="accent-gold font-bold mb-4">ElevateHomes</h4>
+                    <p class="text-sm">Premium luxury real estate for the world's most discerning clients.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Properties</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:accent-gold transition">Luxury Homes</a></li>
+                        <li><a href="#" class="hover:accent-gold transition">Penthouses</a></li>
+                        <li><a href="#" class="hover:accent-gold transition">Estates</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:accent-gold transition">About Us</a></li>
+                        <li><a href="#" class="hover:accent-gold transition">Our Team</a></li>
+                        <li><a href="#" class="hover:accent-gold transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:accent-gold transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:accent-gold transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:accent-gold transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:accent-gold transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 ElevateHomes. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal-hidden fixed inset-0 bg-black bg-opacity-70 z-50 items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-gray-800 rounded border-2 border-yellow-500 shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-white">Schedule Consultation</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500">
+                <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded text-white focus:outline-none focus:border-yellow-500">
+                    <option value="">Select Interest</option>
+                    <option value="buy">Looking to Buy</option>
+                    <option value="sell">Looking to Sell</option>
+                    <option value="invest">Investment Inquiry</option>
+                </select>
+                <textarea placeholder="Additional Details" rows="4" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded text-white placeholder-gray-500 focus:outline-none focus:border-yellow-500"></textarea>
+                <button type="submit" class="w-full bg-gradient-luxury text-yellow-400 py-3 rounded font-bold hover:shadow-lg transition border border-yellow-500">Send Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('consultationModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('consultationModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('consultationModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

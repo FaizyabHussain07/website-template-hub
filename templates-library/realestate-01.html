@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="LuxeLand - Find your perfect home with top real estate marketplace">
+    <meta name="keywords" content="real estate, homes for sale, apartments, properties">
+    <title>LuxeLand - Property Marketplace</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700;900&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Lato', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Lato', sans-serif; font-weight: 900; }
+        .gradient-land { background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .land-glow { box-shadow: 0 0 50px rgba(3, 105, 161, 0.3); animation: landGlow 2.3s ease-in-out infinite; }
+        @keyframes landGlow { 0%, 100% { box-shadow: 0 0 50px rgba(3, 105, 161, 0.3); } 50% { box-shadow: 0 0 70px rgba(2, 132, 199, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .property-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .property-card:hover { transform: translateY(-10px); box-shadow: 0 25px 70px rgba(3, 105, 161, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-house text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">LuxeLand</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#properties" class="text-gray-700 font-medium hover:text-blue-600 transition">Buy</a>
+                <a href="#featured" class="text-gray-700 font-medium hover:text-blue-600 transition">Featured</a>
+                <a href="#services" class="text-gray-700 font-medium hover:text-blue-600 transition">Services</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-blue-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Search Now</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#properties" class="block text-gray-700 font-medium py-2">Buy</a>
+                <a href="#featured" class="block text-gray-700 font-medium py-2">Featured</a>
+                <a href="#services" class="block text-gray-700 font-medium py-2">Services</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold">Search Now</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cyan-50 to-blue-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-check"></i> Premium Listings
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Find Your<br/><span class="gradient-land">Dream Home</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Browse 100K+ properties. Expert agents. Secure transactions. Your perfect home awaits.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Start Search
+                    </button>
+                    <button class="border-2 border-blue-300 text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition">
+                        Browse Listings
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-blue-600">100K+</p>
+                        <p class="text-gray-600">Properties</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-blue-600">500K+</p>
+                        <p class="text-gray-600">Users</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="land-glow w-80 h-80 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-building text-7xl text-blue-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Properties -->
+    <section id="featured" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Featured Properties</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="property-card bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-blue-200 to-blue-300 flex items-center justify-center">
+                        <i class="fas fa-home text-6xl text-blue-400 opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Modern Downtown Condo</h3>
+                                <p class="text-gray-600 text-sm">Mumbai, IN</p>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Active</span>
+                        </div>
+                        <div class="flex gap-6 mb-6 text-sm text-gray-600">
+                            <span><i class="fas fa-bed mr-1"></i> 3 Beds</span>
+                            <span><i class="fas fa-bath mr-1"></i> 2 Bath</span>
+                            <span><i class="fas fa-ruler mr-1"></i> 1,250 sqft</span>
+                        </div>
+                            <p class="text-3xl font-bold text-blue-600 mb-4">&#8377;1,200,000</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-bold hover:shadow-lg transition text-sm">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="property-card bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-green-200 to-green-300 flex items-center justify-center">
+                        <i class="fas fa-tree text-6xl text-green-400 opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Luxury Villa with Garden</h3>
+                                <p class="text-gray-600 text-sm">Bengaluru, IN</p>
+                            </div>
+                            <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-sm font-bold">Active</span>
+                        </div>
+                        <div class="flex gap-6 mb-6 text-sm text-gray-600">
+                            <span><i class="fas fa-bed mr-1"></i> 5 Beds</span>
+                            <span><i class="fas fa-bath mr-1"></i> 4 Bath</span>
+                            <span><i class="fas fa-ruler mr-1"></i> 4,500 sqft</span>
+                        </div>
+                        <p class="text-3xl font-bold text-blue-600 mb-4">&#8377;3,800,000</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-bold hover:shadow-lg transition text-sm">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="property-card bg-white rounded-2xl overflow-hidden border border-gray-200 shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-purple-200 to-purple-300 flex items-center justify-center">
+                        <i class="fas fa-city text-6xl text-purple-400 opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h3 class="text-xl font-bold text-gray-900">Penthouse with View</h3>
+                                <p class="text-gray-600 text-sm">Goa, IN</p>
+                            </div>
+                            <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-sm font-bold">New</span>
+                        </div>
+                        <div class="flex gap-6 mb-6 text-sm text-gray-600">
+                            <span><i class="fas fa-bed mr-1"></i> 4 Beds</span>
+                            <span><i class="fas fa-bath mr-1"></i> 3 Bath</span>
+                            <span><i class="fas fa-ruler mr-1"></i> 3,200 sqft</span>
+                        </div>
+                        <p class="text-3xl font-bold text-blue-600 mb-4">&#8377;2,500,000</p>
+                        <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-2 rounded-lg font-bold hover:shadow-lg transition text-sm">
+                            View Details
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Our Services</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-200 to-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Property Search</h3>
+                    <p class="text-gray-600">Advanced filters. Virtual tours. AI-powered recommendations.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-200 to-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Expert Agents</h3>
+                    <p class="text-gray-600">Licensed professionals. Local market experts. 24/7 support.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 shadow-sm">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-200 to-blue-400 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-contract text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Easy Transactions</h3>
+                    <p class="text-gray-600">Secure closing. Document management. Legal support included.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Us & Agent -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h3 class="text-2xl font-semibold mb-4">Why LuxeLand</h3>
+            <p class="text-gray-600">Trusted listings, verified agents, and a secure end-to-end buying experience. We support buyers every step of the way.</p>
+
+            <div class="mt-6 grid md:grid-cols-3 gap-6">
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <i class="fas fa-check-circle text-2xl text-blue-600 mb-3"></i>
+                    <h4 class="font-bold">Verified Listings</h4>
+                    <p class="text-sm text-gray-600 mt-2">All properties are verified with updated photos, title checks and local inspections.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <i class="fas fa-user-check text-2xl text-blue-600 mb-3"></i>
+                    <h4 class="font-bold">Trusted Agents</h4>
+                    <p class="text-sm text-gray-600 mt-2">Licensed local agents ready to schedule viewings and assist with paperwork.</p>
+                </div>
+
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <i class="fas fa-shield-alt text-2xl text-blue-600 mb-3"></i>
+                    <h4 class="font-bold">Secure Transactions</h4>
+                    <p class="text-sm text-gray-600 mt-2">Secure document handling and guidance throughout closing and payments.</p>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-white p-6 rounded-lg border border-gray-200 flex items-center gap-4">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=80&q=60" alt="Agent Priya Sharma" class="w-16 h-16 object-cover rounded-full">
+                <div>
+                    <p class="font-bold">Priya Sharma — Senior Agent</p>
+                    <p class="text-sm text-gray-600">Coastal & City specialist • <a href="mailto:priya@luxeland.example" class="text-blue-600">priya@luxeland.example</a></p>
+                </div>
+                <a href="mailto:priya@luxeland.example" class="ml-auto bg-blue-600 text-white px-4 py-2 rounded-md text-sm">Contact</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions Answered</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>How do virtual tours work?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Virtual tours use 360&deg; photography and HD video. Explore properties from home. Schedule live video tours with agents anytime.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>What are your commission fees?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Standard 5% seller commission split between buyer and seller agents. Flat-fee options available for certain properties.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>How long does closing take?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Typically 30-45 days from offer acceptance. We expedite the process with digital document handling and quick verifications.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-cyan-600 to-blue-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Start Your Home Search</h2>
+            <p class="text-xl text-cyan-100 mb-10">100K+ verified properties. Expert agents. Secure transactions.</p>
+            <button onclick="openModal()" class="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Search Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-house text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">LuxeLand</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Premium real estate</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Browse</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Buy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Sell</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Rent</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Help</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">FAQ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-facebook text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-instagram text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Search Properties</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Location</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100" placeholder="City or ZIP code">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Property Type</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100">
+                            <option>House</option>
+                            <option>Condo</option>
+                            <option>Apartment</option>
+                            <option>Townhouse</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Budget Range</label>
+                        <input type="range" min="0" max="5000000" step="50000" class="w-full" />
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Find Properties
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

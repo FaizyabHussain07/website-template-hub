@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CryptoVault - Secure crypto wallet and asset management platform">
+    <meta name="keywords" content="Cryptocurrency, wallet, blockchain, crypto management">
+    <title>CryptoVault - Secure Cryptocurrency Management Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        .gradient-crypto { background: linear-gradient(135deg, #f7931a 0%, #f1a007 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .crypto-glow { box-shadow: 0 0 40px rgba(247, 147, 26, 0.3); animation: cryptoGlow 2s ease-in-out infinite; }
+        @keyframes cryptoGlow { 0%, 100% { box-shadow: 0 0 40px rgba(247, 147, 26, 0.3); } 50% { box-shadow: 0 0 60px rgba(247, 147, 26, 0.6); } }
+        .card-lift { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card-lift:hover { transform: translateY(-12px); box-shadow: 0 30px 60px rgba(247, 147, 26, 0.2); }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .feature-icon { width: 60px; height: 60px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-shield-alt text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">CryptoVault</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#features" class="text-gray-700 font-medium hover:text-amber-600 transition">Features</a>
+                <a href="#security" class="text-gray-700 font-medium hover:text-amber-600 transition">Security</a>
+                <a href="#pricing" class="text-gray-700 font-medium hover:text-amber-600 transition">Pricing</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-amber-600 transition">FAQ</a>
+                <button onclick="openModal()" class="bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-amber-700 transition shadow-md">Create Wallet</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#features" class="block text-gray-700 font-medium py-2 hover:text-amber-600">Features</a>
+                <a href="#security" class="block text-gray-700 font-medium py-2 hover:text-amber-600">Security</a>
+                <a href="#pricing" class="block text-gray-700 font-medium py-2 hover:text-amber-600">Pricing</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2 hover:text-amber-600">FAQ</a>
+                <button onclick="openModal()" class="w-full bg-amber-600 text-white px-6 py-3 rounded-lg font-semibold">Create Wallet</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-gray-100">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-amber-100 text-amber-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-lock-open"></i> Bank-Level Security
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Secure Your Crypto<br/><span class="gradient-crypto">Assets Today</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Military-grade encryption. Multi-signature wallets. Hardware wallet integration. Store, manage, and trade cryptocurrencies with complete confidence and security.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-amber-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-amber-700 transition shadow-lg">
+                        Get Started Free
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-amber-600 hover:text-amber-600 transition">
+                        Watch Demo
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500"><i class="fas fa-check text-amber-600 mr-1"></i> No KYC required to start &bull; <i class="fas fa-check text-amber-600 mr-1"></i> Non-custodial wallet &bull; <i class="fas fa-check text-amber-600 mr-1"></i> 24/7 support</p>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="crypto-glow w-80 h-80 bg-gradient-to-br from-amber-100 to-orange-100 rounded-3xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-coins text-7xl text-amber-300 opacity-40"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Powerful Features</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Everything you need to manage crypto assets professionally</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-amber-100 text-amber-600 mb-6">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Multi-Wallet Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Create and manage unlimited wallets for different cryptocurrencies. Organize your portfolio by account, purpose, or anything else.
+                    </p>
+                </div>
+                
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-orange-100 text-orange-600 mb-6">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Instant Exchanges</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Swap between 500+ cryptocurrencies with the best rates. Integration with top DEXs and CEXs for seamless trading.
+                    </p>
+                </div>
+                
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-yellow-100 text-yellow-600 mb-6">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Real-Time Analytics</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Track your portfolio performance with advanced charts and analytics. Get insights into your trading patterns and gains/losses.
+                    </p>
+                </div>
+                
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-amber-100 text-amber-600 mb-6">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Smart Notifications</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Set custom price alerts, transaction notifications, and security warnings. Never miss important market movements.
+                    </p>
+                </div>
+                
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-orange-100 text-orange-600 mb-6">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Mobile First</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Full-featured iOS and Android apps. Manage your crypto on the go with biometric authentication.
+                    </p>
+                </div>
+                
+                <div class="card-lift bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="feature-icon bg-yellow-100 text-yellow-600 mb-6">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Tax Reports</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Auto-generate comprehensive tax reports for all exchanges. Export in formats compatible with tax software.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Security Section -->
+    <section id="security" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Enterprise-Grade Security</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Your assets are protected with military-grade encryption</p>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8">
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-16 h-16 bg-amber-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-lock text-amber-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">End-to-End Encryption</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                AES-256 encryption for all sensitive data. Your private keys never leave your device. Zero-knowledge architecture means we can't access your funds.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-16 h-16 bg-orange-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-code text-orange-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Multi-Signature Wallets</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Require multiple signatures for transactions. Distribute control across different devices or team members for maximum security.
+                            </p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-6">
+                        <div class="flex-shrink-0 w-16 h-16 bg-yellow-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-3">Hardware Wallet Integration</h3>
+                            <p class="text-gray-600 leading-relaxed">
+                                Compatible with Ledger, Trezor, and other hardware wallets. Keep your private keys completely offline for maximum protection.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-12 shadow-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Security Certifications</h3>
+                    <ul class="space-y-6">
+                        <li class="flex items-start gap-4">
+                            <span class="text-amber-600 font-bold text-xl mt-1"><i class="fas fa-check"></i></span>
+                            <div>
+                                <p class="font-bold text-gray-900">SOC 2 Type II Certified</p>
+                                <p class="text-gray-600 text-sm">Annual security audits and compliance verification</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-amber-600 font-bold text-xl mt-1"><i class="fas fa-check"></i></span>
+                            <div>
+                                <p class="font-bold text-gray-900">Bug Bounty Program</p>
+                                <p class="text-gray-600 text-sm">Rewards for responsible security researchers</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-amber-600 font-bold text-xl mt-1"><i class="fas fa-check"></i></span>
+                            <div>
+                                <p class="font-bold text-gray-900">Cold Storage</p>
+                                <p class="text-gray-600 text-sm">95% of user assets stored offline in secure vaults</p>
+                            </div>
+                        </li>
+                        <li class="flex items-start gap-4">
+                            <span class="text-amber-600 font-bold text-xl mt-1"><i class="fas fa-check"></i></span>
+                            <div>
+                                <p class="font-bold text-gray-900">Insurance Coverage</p>
+                                <p class="text-gray-600 text-sm">$100M+ coverage for digital asset protection</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Transparent Pricing</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Choose the plan that fits your needs</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Free Plan -->
+                <div class="card-lift bg-white rounded-2xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                    <p class="text-gray-600 mb-8">For getting started</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$0</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Basic wallet functionality</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Single wallet</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Basic price alerts</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Email support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Pro Plan -->
+                <div class="card-lift bg-white rounded-2xl border-2 border-amber-600 p-8 relative shadow-xl">
+                    <div class="absolute -top-4 left-8 bg-amber-600 text-white px-4 py-1.5 rounded-full text-sm font-bold">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-6">Pro</h3>
+                    <p class="text-gray-600 mb-8">For active traders</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$9.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-amber-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-amber-700 transition mb-8">
+                        Start Free Trial
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Everything in Free</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Unlimited wallets</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Advanced analytics</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Tax reports</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Priority support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="card-lift bg-white rounded-2xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-8">For institutions</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Sales
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Everything in Pro</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Custom integrations</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">Dedicated account manager</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i class="fas fa-check text-amber-600 mt-1"></i>
+                            <span class="text-gray-700">24/7 phone support</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Frequently Asked Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>Is CryptoVault safe to use?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, CryptoVault uses military-grade AES-256 encryption and zero-knowledge architecture. Your private keys never leave your device, and we undergo regular third-party security audits.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>Can I access my wallet offline?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        You can store your private keys offline using our hardware wallet integration. Your wallet is always accessible on-device, even without internet.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>What cryptocurrencies are supported?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        We support 500+ cryptocurrencies including Bitcoin, Ethereum, Litecoin, and all major altcoins. New coins are added regularly.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(3)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-amber-600 transition">
+                        <span>Is there a fee to use CryptoVault?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        The basic wallet is completely free. We offer Pro features starting at $9.99/month for advanced trading tools and analytics.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-amber-600 to-orange-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Secure Your Crypto Assets Today</h2>
+            <p class="text-xl text-amber-100 mb-10">Join 1 million+ users who trust CryptoVault with their digital assets</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Create Wallet Free
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    Download App
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">CryptoVault</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Secure cryptocurrency management for everyone</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Security</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">API Docs</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Security Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-linkedin text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Create Your Wallet</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-100" placeholder="you@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Create Password</label>
+                        <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-2 focus:ring-amber-100" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 accent-amber-600">
+                            <span class="text-sm text-gray-700">I agree to Terms of Service and Privacy Policy</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-amber-600 text-white py-3 rounded-lg font-bold hover:bg-amber-700 transition">
+                        Create Wallet
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-500">Your wallet will be encrypted and secured locally</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

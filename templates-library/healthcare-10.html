@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HealthCare+ - Premium subscription health insurance and wellness benefits">
+    <meta name="keywords" content="health insurance, wellness, medical coverage, family health plan">
+    <title>HealthCare+ - Premium Health Insurance</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; font-weight: 800; }
+        .gradient-health { background: linear-gradient(135deg, #3b82f6 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .health-glow { box-shadow: 0 0 50px rgba(59, 130, 246, 0.3); animation: healthGlow 2.4s ease-in-out infinite; }
+        @keyframes healthGlow { 0%, 100% { box-shadow: 0 0 50px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 70px rgba(30, 64, 175, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .plan-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .plan-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(59, 130, 246, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-shield-heart text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">HealthCare+</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#plans" class="text-gray-700 font-medium hover:text-blue-600 transition">Plans</a>
+                <a href="#coverage" class="text-gray-700 font-medium hover:text-blue-600 transition">Coverage</a>
+                <a href="#benefits" class="text-gray-700 font-medium hover:text-blue-600 transition">Benefits</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-blue-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Get Quote</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#plans" class="block text-gray-700 font-medium py-2">Plans</a>
+                <a href="#coverage" class="block text-gray-700 font-medium py-2">Coverage</a>
+                <a href="#benefits" class="block text-gray-700 font-medium py-2">Benefits</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white px-6 py-3 rounded-lg font-bold">Get Quote</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-blue-100 text-blue-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-star"></i> Trusted by 2M+
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Complete Health<br/><span class="gradient-health">Protection</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Comprehensive coverage for you and your family. Affordable plans. 10,000+ network hospitals.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Get Quote Now
+                    </button>
+                    <button class="border-2 border-blue-300 text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition">
+                        Compare Plans
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-blue-600">2M+</p>
+                        <p class="text-gray-600">Members</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-blue-600">50+</p>
+                        <p class="text-gray-600">Years Legacy</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="health-glow w-80 h-80 bg-gradient-to-br from-blue-100 to-indigo-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-shield-heart text-7xl text-blue-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Plans -->
+    <section id="plans" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Insurance Plans</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Flexible coverage options for every need</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="plan-card bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Basic</h3>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">&#8377;299<span class="text-lg text-gray-600">/month</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>&#8377;5 Lakh coverage</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>500+ hospitals</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Cashless claims</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gray-100 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Get Quote</button>
+                </div>
+                
+                <div class="plan-card bg-white rounded-2xl border-2 border-blue-600 p-8 shadow-lg">
+                    <div class="inline-block bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold mb-4">POPULAR</div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">&#8377;599<span class="text-lg text-gray-600">/month</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>&#8377;15 Lakh coverage</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>5,000+ hospitals</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Ambulance service</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>OPD coverage</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Get Quote</button>
+                </div>
+                
+                <div class="plan-card bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+                    <p class="text-4xl font-bold text-gray-900 mb-6">&#8377;999<span class="text-lg text-gray-600">/month</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>&#8377;50 Lakh coverage</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>10,000+ hospitals</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Wellness benefits</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600 mt-1"></i> <span>24/7 support</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gray-100 text-gray-900 py-3 rounded-lg font-bold hover:bg-gray-200 transition">Get Quote</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Coverage -->
+    <section id="coverage" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">What's Covered</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-hospital text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Hospitalization</h3>
+                            <p class="text-gray-600">Room charges, surgery, medicines. Pre & post-treatment care.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-stethoscope text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Doctor Consultations</h3>
+                            <p class="text-gray-600">OPD visits, specialists, emergency care. Free annual checkup.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-flask-vial text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Diagnostic Tests</h3>
+                            <p class="text-gray-600">Lab tests, X-rays, ultrasound. 20% discount on pathology.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-pills text-blue-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Medications</h3>
+                            <p class="text-gray-600">Prescribed medicines covered. Generic & branded options.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits -->
+    <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8 bg-blue-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Why HealthCare+</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+                    <i class="fas fa-bolt text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Instant Claims</h3>
+                    <p class="text-sm text-gray-600">Claim processed in 24 hours. Cashless at network hospitals.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+                    <i class="fas fa-phone text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">24/7 Support</h3>
+                    <p class="text-sm text-gray-600">Customer service available always. Multi-language support.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center">
+                    <i class="fas fa-lock text-blue-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Secure & Safe</h3>
+                    <p class="text-sm text-gray-600">Data encrypted. Privacy guaranteed. ISO certified.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>What's the waiting period?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        30 days waiting period for general claims. Accidents covered from day 1. Pre-existing diseases after 2 years.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>Can I increase coverage later?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, you can upgrade your plan anytime. No penalties. Changes effective from next month.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-blue-600 transition">
+                        <span>Is family coverage available?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, add spouse, children, and parents. Family floater plans available with special discounts.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-blue-600 to-blue-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Secure Your Family's Future</h2>
+            <p class="text-xl text-blue-100 mb-10">Get comprehensive health insurance today</p>
+            <button onclick="openModal()" class="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Get Free Quote
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-blue-800 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-shield-heart text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">HealthCare+</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Plans</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-blue-400 transition">Individual</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Family</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-blue-400 transition">Claims</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Help Center</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-blue-400 transition">About</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-blue-400 transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-blue-400 transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Get Free Quote</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100" placeholder="you@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Family Size</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100">
+                            <option>Individual</option>
+                            <option>Family (2-3)</option>
+                            <option>Family (4-6)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Coverage Needed</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100">
+                            <option>&#8377;5 Lakh</option>
+                            <option>&#8377;15 Lakh</option>
+                            <option>&#8377;50 Lakh</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-blue-600 to-blue-800 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Get Quote
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

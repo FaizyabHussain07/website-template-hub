@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BrandForge - Full-service marketing agency. Digital marketing, content, social media, SEO, paid ads.">
+    <meta name="keywords" content="marketing agency, digital marketing, SEO, social media marketing, content marketing">
+    <title>BrandForge - Full-Service Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Sora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3 { font-family: 'Sora', sans-serif; }
+        .gradient-forge { background: linear-gradient(135deg, #f97316 0%, #fb923c 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-forge rounded-lg flex items-center justify-center">
+                    <i class="fas fa-fire text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">BrandForge</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-orange-600 transition font-medium">Services</a>
+                <a href="#results" class="text-gray-700 hover:text-orange-600 transition font-medium">Results</a>
+                <a href="#team" class="text-gray-700 hover:text-orange-600 transition font-medium">Team</a>
+                <a href="#contact" class="text-gray-700 hover:text-orange-600 transition font-medium">Contact</a>
+                <button onclick="openModal()" class="gradient-forge text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Get Proposal</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Services</a>
+                <a href="#results" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Results</a>
+                <a href="#team" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Team</a>
+                <a href="#contact" class="block text-gray-700 hover:text-orange-600 py-2 font-medium">Contact</a>
+                <button onclick="openModal()" class="w-full gradient-forge text-white py-2 rounded-lg font-bold">Get Proposal</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-orange-50 to-amber-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-orange-100 text-orange-700 rounded-full text-sm font-bold mb-6">Growth Marketing Experts</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Grow Your
+                        <span class="gradient-forge bg-clip-text text-transparent"> Brand</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Data-driven marketing strategies that increase leads, sales, and brand awareness.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-forge text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Get Free Strategy
+                        </button>
+                        <button class="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-lg font-bold hover:bg-orange-50 transition text-lg">
+                            View Case Studies
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-orange-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">80+ Successful Campaigns</p>
+                                <p class="text-sm text-gray-600">Delivered across all industries</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-orange-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Avg 3.5x ROI</p>
+                                <p class="text-sm text-gray-600">On marketing investments</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop" alt="Marketing" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-search text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">SEO & Content</h3>
+                    <p class="text-gray-600 mb-6">Organic search optimization. Keyword research, content strategy, link building.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Technical SEO</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Content marketing</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Link building</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-ad text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Paid Advertising</h3>
+                    <p class="text-gray-600 mb-6">Google Ads, Facebook, Instagram, LinkedIn campaigns. Optimized for conversions.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Google Ads</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Social ads</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Retargeting</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-share-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Social Media</h3>
+                    <p class="text-gray-600 mb-6">Content creation, community management, influencer partnerships. Brand growth.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Content calendar</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Community mgmt</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Analytics</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-envelope text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Email Marketing</h3>
+                    <p class="text-gray-600 mb-6">Campaigns, automation, segmentation. High conversion rates and engagement.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Campaign design</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Automation</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>A/B testing</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-bar text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Analytics & Reporting</h3>
+                    <p class="text-gray-600 mb-6">Data analysis, performance tracking, insights, and strategic recommendations.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>GA4 setup</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Monthly reports</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Optimization</li>
+                    </ul>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-orange-500 transition">
+                    <div class="w-12 h-12 gradient-forge rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-strategy text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Strategy & Consulting</h3>
+                    <p class="text-gray-600 mb-6">Market analysis, competitor research, growth planning, brand positioning.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Market analysis</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Strategy planning</li>
+                        <li><i class="fas fa-check text-orange-600 mr-2"></i>Roadmapping</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Results We Deliver</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">350%</div>
+                    <p class="text-gray-600">Avg lead increase</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">2.8x</div>
+                    <p class="text-gray-600">Avg ROI within 6 months</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">80+</div>
+                    <p class="text-gray-600">Successful campaigns</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl shadow-md text-center">
+                    <div class="text-4xl font-bold text-orange-600 mb-2">98%</div>
+                    <p class="text-gray-600">Client retention rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Meet Our Team</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-orange-300 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Lisa Chen</h3>
+                    <p class="text-orange-600 font-bold text-sm mb-2">Founder & CEO</p>
+                    <p class="text-gray-600 text-sm">15+ years in marketing</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-orange-400 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">David Park</h3>
+                    <p class="text-orange-600 font-bold text-sm mb-2">SEO & Content Lead</p>
+                    <p class="text-gray-600 text-sm">Organic growth specialist</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-orange-500 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Jennifer Lee</h3>
+                    <p class="text-orange-600 font-bold text-sm mb-2">Paid Ads Strategist</p>
+                    <p class="text-gray-600 text-sm">PPC & conversion expert</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-24 h-24 bg-orange-600 rounded-full mx-auto mb-4"></div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-1">Marcus Brown</h3>
+                    <p class="text-orange-600 font-bold text-sm mb-2">Analytics Manager</p>
+                    <p class="text-gray-600 text-sm">Data-driven insights</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 gradient-forge text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Grow?</h2>
+            <p class="text-xl mb-10 opacity-90">Get your free marketing strategy proposal today.</p>
+            <button onclick="openModal()" class="bg-white text-orange-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Get Free Proposal
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">BrandForge</h4>
+                    <p class="text-sm">Growth marketing agency. Data-driven results.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">SEO</a></li>
+                        <li><a href="#" class="hover:text-white transition">Paid Ads</a></li>
+                        <li><a href="#" class="hover:text-white transition">Social</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Email</a></li>
+                        <li><a href="#" class="hover:text-white transition">Phone</a></li>
+                        <li><a href="#" class="hover:text-white transition">Address</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 BrandForge. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="proposalModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get Your Proposal</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-orange-600 focus:ring-1 focus:ring-orange-600">
+                    <option>Primary Interest</option>
+                    <option>SEO</option>
+                    <option>Paid Ads</option>
+                    <option>Social Media</option>
+                    <option>Full Service</option>
+                </select>
+                <button type="submit" class="w-full gradient-forge text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Get Proposal
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('proposalModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('proposalModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('proposalModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

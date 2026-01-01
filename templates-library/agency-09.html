@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ContentWorks - Content marketing agency. Blog writing, content strategy, copywriting, SEO content, video scripts.">
+    <meta name="keywords" content="content marketing, content strategy, copywriting, SEO writing, blog writing, content creation">
+    <title>ContentWorks - Content Marketing Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3 { font-family: 'Merriweather', serif; }
+        .gradient-content { background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-content rounded-lg flex items-center justify-center">
+                    <i class="fas fa-feather text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">ContentWorks</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-amber-600 transition font-medium">Services</a>
+                <a href="#approach" class="text-gray-700 hover:text-amber-600 transition font-medium">Approach</a>
+                <a href="#portfolio" class="text-gray-700 hover:text-amber-600 transition font-medium">Portfolio</a>
+                <a href="#results" class="text-gray-700 hover:text-amber-600 transition font-medium">Results</a>
+                <button onclick="openModal()" class="gradient-content text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Get Strategy</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-amber-600 py-2 font-medium">Services</a>
+                <a href="#approach" class="block text-gray-700 hover:text-amber-600 py-2 font-medium">Approach</a>
+                <a href="#portfolio" class="block text-gray-700 hover:text-amber-600 py-2 font-medium">Portfolio</a>
+                <a href="#results" class="block text-gray-700 hover:text-amber-600 py-2 font-medium">Results</a>
+                <button onclick="openModal()" class="w-full gradient-content text-white py-2 rounded-lg font-bold">Get Strategy</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-amber-50 to-orange-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-amber-100 text-amber-700 rounded-full text-sm font-bold mb-6">Content That Converts</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Stories That
+                        <span class="gradient-content bg-clip-text text-transparent"> Drive Results</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Content marketing that builds authority, attracts customers, and drives measurable growth. Blog strategy, copywriting, and SEO content.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-content text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Get Content Strategy
+                        </button>
+                        <button class="border-2 border-amber-600 text-amber-600 px-8 py-4 rounded-lg font-bold hover:bg-amber-50 transition text-lg">
+                            View Portfolio
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-amber-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">500M+ Views</p>
+                                <p class="text-sm text-gray-600">Client content across platforms</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-amber-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">100+ Writers</p>
+                                <p class="text-sm text-gray-600">Expert content team</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop" alt="Content" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Content Services</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-newspaper text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Blog Content</h3>
+                    <p class="text-gray-600 mb-6">SEO-optimized blog posts that attract organic traffic and establish authority in your industry.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-pen text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Copywriting</h3>
+                    <p class="text-gray-600 mb-6">High-converting sales copy, landing pages, email sequences, and ad copy that drives action.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-film text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Video Scripts</h3>
+                    <p class="text-gray-600 mb-6">Compelling scripts for YouTube, TikTok, Instagram Reels, product demos, and explainers.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-book text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Long-Form Content</h3>
+                    <p class="text-gray-600 mb-6">In-depth guides, whitepapers, ebooks, case studies that showcase expertise and drive leads.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">SEO Strategy</h3>
+                    <p class="text-gray-600 mb-6">Keyword research, content optimization, technical SEO guidance for maximum organic visibility.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-amber-500 transition">
+                    <div class="w-12 h-12 gradient-content rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-microphone text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Content Planning</h3>
+                    <p class="text-gray-600 mb-6">Comprehensive content strategy, editorial calendar, and distribution planning aligned with goals.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition">Learn More →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="approach" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Approach</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border-l-4 border-amber-600 shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 gradient-content rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">1</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Research & Strategy</h3>
+                            <p class="text-gray-600">Deep dive into your audience, market, competitors, and business goals.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-amber-600 shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 gradient-content rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">2</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Content Creation</h3>
+                            <p class="text-gray-600">Write compelling, well-researched content optimized for search and conversions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-amber-600 shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 gradient-content rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">3</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Optimization</h3>
+                            <p class="text-gray-600">Test, measure, and refine based on performance data and user engagement.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-amber-600 shadow-md">
+                    <div class="flex items-start gap-4">
+                        <div class="w-8 h-8 gradient-content rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">4</div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Distribution</h3>
+                            <p class="text-gray-600">Strategic distribution across channels to maximize reach and impact.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Client Portfolio</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">SaaS Company</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Created content marketing engine generating 50K organic monthly visits within 6 months.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">E-Commerce Brand</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Blog content driving 25% of new customer acquisitions through organic search.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">B2B Service Firm</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Thought leadership content positioning founder as industry authority, generating enterprise deals.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Tech Startup</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Educational content strategy generating viral awareness and community engagement.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Personal Brand</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Newsletter strategy helping founder reach 100K subscribers and secure book deals.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+
+                <div class="bg-white p-6 rounded-xl shadow-md border border-gray-200">
+                    <h4 class="text-lg font-bold text-gray-900 mb-2">Finance Company</h4>
+                    <p class="text-gray-600 mb-4 text-sm">Compliance-friendly financial content reaching 500K+ monthly engaged readers.</p>
+                    <button onclick="openModal()" class="text-amber-600 font-bold hover:text-amber-700 transition text-sm">View Case Study →</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="results" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Proven Impact</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center p-8 bg-white rounded-xl shadow-md">
+                    <p class="text-4xl font-bold gradient-content bg-clip-text text-transparent mb-2">500M+</p>
+                    <p class="text-gray-600 font-medium">Total Content Views</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-xl shadow-md">
+                    <p class="text-4xl font-bold gradient-content bg-clip-text text-transparent mb-2">12M+</p>
+                    <p class="text-gray-600 font-medium">Organic Leads Generated</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-xl shadow-md">
+                    <p class="text-4xl font-bold gradient-content bg-clip-text text-transparent mb-2">850%</p>
+                    <p class="text-gray-600 font-medium">Avg ROI on Content</p>
+                </div>
+                <div class="text-center p-8 bg-white rounded-xl shadow-md">
+                    <p class="text-4xl font-bold gradient-content bg-clip-text text-transparent mb-2">95%</p>
+                    <p class="text-gray-600 font-medium">Client Retention Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-content text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Tell Your Story?</h2>
+            <p class="text-xl mb-10 opacity-90">Get your custom content strategy and start attracting customers.</p>
+            <button onclick="openModal()" class="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Get Content Strategy
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">ContentWorks</h4>
+                    <p class="text-sm">Content that tells your story and drives growth.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog Content</a></li>
+                        <li><a href="#" class="hover:text-white transition">Copywriting</a></li>
+                        <li><a href="#" class="hover:text-white transition">Video Scripts</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Guides</a></li>
+                        <li><a href="#" class="hover:text-white transition">Podcast</a></li>
+                        <li><a href="#" class="hover:text-white transition">Newsletter</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="hover:text-amber-400 transition"><i class="fab fa-linkedin text-white"></i></a>
+                        <a href="#" class="hover:text-amber-400 transition"><i class="fab fa-twitter text-white"></i></a>
+                        <a href="#" class="hover:text-amber-400 transition"><i class="fab fa-facebook text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 ContentWorks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="strategyModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get Content Strategy</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
+                <input type="url" placeholder="Website" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600">
+                <textarea placeholder="Tell us about your content needs" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-600 focus:ring-1 focus:ring-amber-600"></textarea>
+                <button type="submit" class="w-full gradient-content text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Get Strategy
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('strategyModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('strategyModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('strategyModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="seo-title">Template Preview | Web Templates Hub</title>
+    <meta name="description" id="seo-description"
+        content="Preview and download this professional one-page HTML template from Web Templates Hub. MIT licensed and fully responsive.">
+    <link rel="canonical" id="seo-canonical" href="https://webtemplateshub.com/template.html">
+
+    <!-- OG / Twitter placeholders -->
+    <meta property="og:title" id="og-title" content="Template Preview | Web Templates Hub">
+    <meta property="og:description" id="og-description" content="Preview this free professional HTML template.">
+    <meta property="twitter:title" id="tw-title" content="Template Preview | Web Templates Hub">
+
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-gray-900 overflow-hidden h-screen flex flex-col">
+
+    <!-- Top Navigation -->
+    <header class="h-16 bg-white flex items-center justify-between px-6 z-50 shadow-sm">
+        <div class="flex items-center gap-6">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <i data-lucide="arrow-left"
+                    class="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors"></i>
+                <span class="text-sm font-semibold text-gray-700 group-hover:text-blue-600">Back to Hub</span>
+            </a>
+            <div class="h-6 w-px bg-gray-200"></div>
+            <div class="flex items-center gap-3">
+                <h1 id="template-title" class="font-bold text-gray-900">Loading Template...</h1>
+                <span id="template-badge"
+                    class="hidden md:block text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded">...</span>
+            </div>
+        </div>
+
+        <div class="flex items-center gap-4">
+            <div class="hidden lg:flex items-center gap-2 mr-6 text-gray-400">
+                <button id="view-mobile" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Mobile Mode"><i
+                        data-lucide="smartphone" class="w-5 h-5"></i></button>
+                <button id="view-tablet" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Tablet Mode"><i
+                        data-lucide="tablet" class="w-5 h-5"></i></button>
+                <button id="view-desktop" class="p-2 bg-blue-50 text-blue-600 rounded transition-colors"
+                    title="Desktop Mode"><i data-lucide="monitor" class="w-5 h-5"></i></button>
+                <div class="h-4 w-px bg-gray-200 mx-2"></div>
+                <button id="reload-btn"
+                    class="p-2 hover:bg-gray-100 rounded transition-colors text-gray-400 hover:text-blue-600"
+                    title="Reload Preview"><i data-lucide="rotate-cw" class="w-5 h-5"></i></button>
+            </div>
+            <a id="download-btn" href="#"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
+                download>
+                <i data-lucide="download" class="w-4 h-4"></i>
+                Download Free
+            </a>
+        </div>
+    </header>
+
+    <!-- Main Content (Iframe Preview) -->
+    <main class="flex-1 relative bg-slate-800 flex justify-center">
+        <!-- Loader Screen -->
+        <div id="preview-loader"
+            class="absolute inset-0 z-40 bg-gray-900 flex flex-col items-center justify-center text-white space-y-4">
+            <div class="w-12 h-12 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+            <p class="text-gray-400 font-medium animate-pulse">Initializing live preview...</p>
+        </div>
+
+        <!-- The Iframe Wrapper for Resizing -->
+        <div id="iframe-container"
+            class="w-full h-full flex justify-center items-start transition-all duration-500 pt-4 px-4">
+            <iframe id="preview-frame"
+                class="w-full h-full bg-white opacity-0 transition-all duration-1000 shadow-2xl rounded-t-xl lg:rounded-t-2xl border border-gray-100"
+                frameborder="0"></iframe>
+        </div>
+
+        <!-- Error Message (Hidden by default) -->
+        <div id="error-screen"
+            class="hidden absolute inset-0 z-50 bg-gray-900 flex flex-col items-center justify-center text-center p-6">
+            <div class="w-20 h-20 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-6">
+                <i data-lucide="alert-circle" class="w-10 h-10"></i>
+            </div>
+            <h2 class="text-2xl font-bold text-white mb-2">Template Not Found</h2>
+            <p class="text-gray-400 max-w-sm mb-8">The template you are looking for might have been moved or doesn't
+                exist.</p>
+            <a href="index.html"
+                class="bg-white text-gray-900 px-8 py-3 rounded-full font-bold hover:bg-gray-100 transition-colors">Return
+                Home</a>
+        </div>
+    </main>
+
+    <script>
+        // Detail page logic
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const templateId = urlParams.get('id');
+            const titleEl = document.getElementById('template-title');
+            const badgeEl = document.getElementById('template-badge');
+            const frame = document.getElementById('preview-frame');
+            const loader = document.getElementById('preview-loader');
+            const errorScreen = document.getElementById('error-screen');
+            const downloadBtn = document.getElementById('download-btn');
+            const iframeContainer = document.getElementById('iframe-container');
+            const viewMobile = document.getElementById('view-mobile');
+            const viewTablet = document.getElementById('view-tablet');
+            const viewDesktop = document.getElementById('view-desktop');
+            const reloadBtn = document.getElementById('reload-btn');
+
+            if (!templateId) {
+                showError();
+                return;
+            }
+
+            // Responsive Controls Logic
+            const setView = (mode) => {
+                [viewMobile, viewTablet, viewDesktop].forEach(btn => btn.classList.remove('bg-blue-50', 'text-blue-600'));
+
+                if (mode === 'mobile') {
+                    iframeContainer.style.maxWidth = '400px';
+                    viewMobile.classList.add('bg-blue-50', 'text-blue-600');
+                } else if (mode === 'tablet') {
+                    iframeContainer.style.maxWidth = '800px';
+                    viewTablet.classList.add('bg-blue-50', 'text-blue-600');
+                } else {
+                    iframeContainer.style.maxWidth = '100%';
+                    viewDesktop.classList.add('bg-blue-50', 'text-blue-600');
+                }
+            };
+
+            viewMobile.addEventListener('click', () => setView('mobile'));
+            viewTablet.addEventListener('click', () => setView('tablet'));
+            viewDesktop.addEventListener('click', () => setView('desktop'));
+
+            reloadBtn.addEventListener('click', () => {
+                const currentSrc = frame.src;
+                frame.src = '';
+                setTimeout(() => frame.src = currentSrc, 50);
+                loader.classList.remove('hidden');
+                frame.classList.add('opacity-0');
+            });
+
+            // Fetch template data to verify and get details
+            fetch('data/templates.json')
+                .then(res => res.json())
+                .then(templates => {
+                    const template = templates.find(t => t.id === templateId);
+                    if (template) {
+                        displayTemplate(template);
+                    } else {
+                        showError();
+                    }
+                })
+                .catch(err => {
+                    console.error('Fetch error:', err);
+                    showError();
+                });
+
+            function displayTemplate(template) {
+                titleEl.textContent = template.name;
+                badgeEl.textContent = template.industry;
+                badgeEl.classList.remove('hidden');
+                downloadBtn.href = template.zipUrl;
+
+                // Dynamic SEO Updates
+                document.title = `${template.name} - Free ${template.industry} Template | Web Templates Hub`;
+                const metaDesc = document.getElementById('seo-description');
+                if (metaDesc) metaDesc.content = `Download ${template.name}, a professional ${template.industry} one-page HTML template. MIT licensed, responsive, and 100% free for commercial use.`;
+
+                const ogTitle = document.getElementById('og-title');
+                if (ogTitle) ogTitle.content = `${template.name} - Free ${template.industry} Template`;
+
+                const twTitle = document.getElementById('tw-title');
+                if (twTitle) twTitle.content = `${template.name} - Free ${template.industry} Template`;
+
+                const canonical = document.getElementById('seo-canonical');
+                if (canonical) canonical.href = `https://webtemplateshub.com/template.html?id=${template.id}`;
+
+                // Set iframe src
+                frame.src = template.previewUrl;
+
+                frame.onload = () => {
+                    loader.classList.add('hidden');
+                    frame.classList.remove('opacity-0');
+                    // Inject a small back-to-hub button into the iframe if possible (same-origin only)
+                    try {
+                        // This usually works if files are in the same folder structure
+                    } catch (e) { }
+                };
+            }
+
+            function showError() {
+                loader.classList.add('hidden');
+                errorScreen.classList.remove('hidden');
+                titleEl.textContent = 'Project Not Found';
+            }
+        });
+    </script>
+</body>
+
+</html>

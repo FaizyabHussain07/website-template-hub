@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeHome - Premium Furniture Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        code, pre { font-family: 'JetBrains Mono', monospace; }
+        .gradient-slate { background: linear-gradient(135deg, #475569 0%, #334155 100%); }
+        .gradient-slate-light { background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 100%); }
+        @keyframes homeGlow { 0%, 100% { box-shadow: 0 0 20px rgba(71, 85, 105, 0.3); } 50% { box-shadow: 0 0 40px rgba(71, 85, 105, 0.6); } }
+        @keyframes slideIn { 0% { transform: translateX(-10px); } 100% { transform: translateX(0); } }
+        .home-glow { animation: homeGlow 2s ease-in-out infinite; }
+        .slide-in { animation: slideIn 1s ease-out; }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(71, 85, 105, 0.2); }
+        .header-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        body { padding-top: 80px; }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .mobile-menu.show { max-height: 400px; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="header-fixed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 gradient-slate rounded-lg flex items-center justify-center text-white font-bold"><i class="fas fa-sofa"></i></div>
+                <span class="text-2xl font-bold text-gray-900">LuxeHome</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-slate-600 transition">Home</a>
+                <a href="#furniture" class="text-gray-700 hover:text-slate-600 transition">Furniture</a>
+                <a href="#design" class="text-gray-700 hover:text-slate-600 transition">Design Service</a>
+                <a href="#faq" class="text-gray-700 hover:text-slate-600 transition">FAQ</a>
+            </nav>
+            <button class="md:hidden" onclick="toggleMobileMenu()"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            <button onclick="openModal()" class="hidden md:block gradient-slate text-white px-6 py-2 rounded-lg hover:shadow-lg transition">Shop Now</button>
+        </div>
+        <div class="mobile-menu md:hidden bg-gray-50 border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-slate-600">Home</a>
+                <a href="#furniture" class="block text-gray-700 hover:text-slate-600">Furniture</a>
+                <a href="#design" class="block text-gray-700 hover:text-slate-600">Design Service</a>
+                <a href="#faq" class="block text-gray-700 hover:text-slate-600">FAQ</a>
+                <button onclick="openModal()" class="w-full gradient-slate text-white px-4 py-2 rounded-lg hover:shadow-lg transition">Shop Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="pt-12 pb-20 bg-gradient-to-br from-slate-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Create Your <span class="gradient-slate bg-clip-text text-transparent">Dream Space</span></h1>
+                    <p class="text-xl text-gray-600 mb-8">Handcrafted furniture and interior decor for modern living. Premium materials, timeless designs, and expert craftsmanship.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-slate text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition slide-in">Explore Collection</button>
+                        <button class="border-2 border-slate-600 text-slate-600 px-8 py-3 rounded-lg font-semibold hover:bg-slate-50 transition">View Catalog</button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="gradient-slate-light w-full h-96 rounded-2xl flex items-center justify-center home-glow">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4"><i class="fas fa-home text-slate-600"></i></div>
+                            <p class="text-slate-900 font-semibold">Premium Furniture Design</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Collections -->
+    <section id="furniture" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Signature Collections</h2>
+            <p class="text-center text-gray-600 mb-12">Curated furniture sets for every room and style</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-slate-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-sofa text-5xl text-slate-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Modern Living Sets</h3>
+                    <p class="text-gray-600 mb-4">Contemporary sofas, sectionals, and accent pieces. Clean lines and premium fabrics</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-slate-600">$1,299-$3,999</span>
+                        <span class="text-sm bg-slate-100 text-slate-800 px-3 py-1 rounded-full">In Stock</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-slate-100 text-slate-700 py-2 rounded-lg hover:bg-slate-200 transition font-semibold">Browse</button>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-slate-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-bed text-5xl text-slate-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Bedroom Collections</h3>
+                    <p class="text-gray-600 mb-4">Luxury bed frames, nightstands, and bedroom suites. Comfort meets elegance</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-slate-600">$899-$2,499</span>
+                        <span class="text-sm bg-slate-100 text-slate-800 px-3 py-1 rounded-full">Popular</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-slate-100 text-slate-700 py-2 rounded-lg hover:bg-slate-200 transition font-semibold">Browse</button>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-slate-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-chair text-5xl text-slate-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Dining & Workspace</h3>
+                    <p class="text-gray-600 mb-4">Dining tables, chairs, and desks. Functional pieces with exceptional design</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-slate-600">$599-$1,999</span>
+                        <span class="text-sm bg-slate-100 text-slate-800 px-3 py-1 rounded-full">Premium</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-slate-100 text-slate-700 py-2 rounded-lg hover:bg-slate-200 transition font-semibold">Browse</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-16 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">Shop by Room</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-slate-300">
+                    <i class="fas fa-sofa text-4xl text-slate-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Living Room</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-slate-300">
+                    <i class="fas fa-bed text-4xl text-slate-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Bedroom</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-slate-300">
+                    <i class="fas fa-utensils text-4xl text-slate-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Dining</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-slate-300">
+                    <i class="fas fa-laptop text-4xl text-slate-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Office</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Design Service -->
+    <section id="design" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">Why Choose LuxeHome</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-slate rounded-full text-white text-2xl mb-4"><i class="fas fa-palette"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Interior Design</h3>
+                    <p class="text-gray-600">Free design consultation with our expert interior designers</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-slate rounded-full text-white text-2xl mb-4"><i class="fas fa-truck"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">White Glove Service</h3>
+                    <p class="text-gray-600">Professional delivery, assembly, and interior placement included</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-slate rounded-full text-white text-2xl mb-4"><i class="fas fa-check"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Quality Guarantee</h3>
+                    <p class="text-gray-600">10-year warranty on all pieces. Lifetime support and repairs</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sale -->
+    <section class="py-20 gradient-slate text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">Limited Collection</span>
+            <h2 class="text-5xl font-bold mb-4">Home Renovation Event</h2>
+            <p class="text-xl text-slate-200 mb-8">Save up to 35% on complete room packages this season</p>
+            <button onclick="openModal()" class="bg-white text-slate-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Shop Now</button>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">FAQ</h2>
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq1')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-slate-50 transition flex justify-between items-center">
+                    <span>Is delivery and assembly included?</span>
+                    <span id="faq1-icon">+</span>
+                </button>
+                <div id="faq1" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! Free white-glove delivery and professional assembly on all purchases. Our team will position furniture exactly where you want it.</p>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq2')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-slate-50 transition flex justify-between items-center">
+                    <span>Can you customize furniture?</span>
+                    <span id="faq2-icon">+</span>
+                </button>
+                <div id="faq2" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Absolutely! We offer custom fabrics, colors, sizes, and finishes. Our craftsmen can personalize any piece to match your vision.</p>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg">
+                <button onclick="toggleFAQ('faq3')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-slate-50 transition flex justify-between items-center">
+                    <span>Do you offer financing?</span>
+                    <span id="faq3-icon">+</span>
+                </button>
+                <div id="faq3" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! 0% financing available on purchases over $2000. Flexible payment plans up to 36 months with approved credit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gradient-to-r from-slate-500 to-slate-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Get Your Free Design Consultation</h2>
+            <p class="text-slate-200 mb-8">Schedule a virtual or in-home design session with our experts</p>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-slate-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Schedule</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Living Room</a></li>
+                        <li><a href="#" class="hover:text-white transition">Bedroom</a></li>
+                        <li><a href="#" class="hover:text-white transition">Dining</a></li>
+                        <li><a href="#" class="hover:text-white transition">Office</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About Us</a></li>
+                        <li><a href="#" class="hover:text-white transition">Design Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Showrooms</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Help</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition">Installation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-white transition">Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition">Warranty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Follow</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">Pinterest</a></li>
+                        <li><a href="#" class="hover:text-white transition">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition">YouTube</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="p-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Free Design Session</h3>
+                <p class="text-gray-600 mb-6">Let our interior designers help you create the perfect space. 60-minute consultation included.</p>
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Your name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-slate-500">
+                    <input type="email" placeholder="Your email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-slate-500">
+                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-slate-500">
+                        <option value="">Select room type</option>
+                        <option value="living">Living Room</option>
+                        <option value="bedroom">Bedroom</option>
+                        <option value="dining">Dining</option>
+                        <option value="office">Office</option>
+                        <option value="all">Multiple Rooms</option>
+                    </select>
+                    <button type="submit" class="w-full gradient-slate text-white font-bold py-3 rounded-lg hover:shadow-lg transition">Book Consultation</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('productModal').classList.add('show'); }
+        function closeModal() { document.getElementById('productModal').classList.remove('show'); }
+        function submitForm(e) { e.preventDefault(); alert('Consultation booked! We\'ll contact you shortly.'); closeModal(); }
+        document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        function toggleMobileMenu() { document.querySelector('.mobile-menu').classList.toggle('show'); }
+        function toggleFAQ(id) { const element = document.getElementById(id); const icon = document.getElementById(id + '-icon'); element.classList.toggle('show'); icon.textContent = element.classList.contains('show') ? '-' : '+'; }
+    </script>
+</body>
+</html>

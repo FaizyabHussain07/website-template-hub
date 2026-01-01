@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="StakeVault - Earn rewards by staking cryptocurrency">
+    <meta name="keywords" content="Staking, crypto rewards, cryptocurrency, passive income">
+    <title>StakeVault - Earn Crypto Through Staking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .gradient-stake { background: linear-gradient(135deg, #00d97e 0%, #00a85f 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .stake-glow { box-shadow: 0 0 60px rgba(0, 217, 126, 0.35); animation: stakeGlow 2.5s ease-in-out infinite; }
+        @keyframes stakeGlow { 0%, 100% { box-shadow: 0 0 60px rgba(0, 217, 126, 0.35); } 50% { box-shadow: 0 0 80px rgba(0, 168, 95, 0.5); } }
+        .reward-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .reward-card:hover { transform: translateY(-16px); box-shadow: 0 30px 80px rgba(0, 217, 126, 0.2); }
+        .apy-badge { display: inline-block; background: linear-gradient(135deg, #00d97e, #00a85f); padding: 6px 12px; border-radius: 20px; font-weight: 700; font-size: 0.875rem; }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .pulseGreen { animation: pulseGreen 2s ease-in-out infinite; }
+        @keyframes pulseGreen { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-coins text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">StakeVault</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#pools" class="text-gray-700 font-medium hover:text-emerald-600 transition">Staking Pools</a>
+                <a href="#rewards" class="text-gray-700 font-medium hover:text-emerald-600 transition">Rewards</a>
+                <a href="#how-it-works" class="text-gray-700 font-medium hover:text-emerald-600 transition">How It Works</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-emerald-600 transition">FAQ</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Start Staking</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#pools" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">Staking Pools</a>
+                <a href="#rewards" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">Rewards</a>
+                <a href="#how-it-works" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">How It Works</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">FAQ</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-6 py-3 rounded-lg font-bold">Start Staking</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-green-50 to-emerald-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-leaf"></i> Passive Income
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Earn Crypto<br/><span class="gradient-stake">While You Hold</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Stake your cryptocurrency on StakeVault and earn attractive APY returns. Low risk, high rewards. Stake Bitcoin, Ethereum, Polkadot, and 50+ other cryptocurrencies instantly.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-emerald-500 to-teal-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Start Earning Today
+                    </button>
+                    <button class="border-2 border-emerald-300 text-emerald-600 px-8 py-4 rounded-lg font-bold hover:bg-emerald-50 transition">
+                        Learn More
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-emerald-600">$45.2B</p>
+                        <p class="text-gray-600">Total Staked</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-emerald-600">850K+</p>
+                        <p class="text-gray-600">Active Stakers</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="stake-glow w-80 h-80 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-leaf text-8xl text-emerald-200 opacity-40"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Staking Pools -->
+    <section id="pools" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Premium Staking Pools</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">High-yield opportunities across major cryptocurrencies</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-orange-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fab fa-bitcoin text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 4.5%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Bitcoin</h3>
+                    <p class="text-gray-600 mb-6">Secure and proven network</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">0.001 BTC</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">30 days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$12.5B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+                
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fab fa-ethereum text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 6.8%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Ethereum</h3>
+                    <p class="text-gray-600 mb-6">Staking through Proof of Stake</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">0.1 ETH</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">Flexible</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$18.2B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+                
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-pink-400 to-red-500 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-cube text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 8.2%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Polkadot</h3>
+                    <p class="text-gray-600 mb-6">High-yield nomination pool</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">10 DOT</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">14 days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$8.9B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+                
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-link text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 7.1%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Chainlink</h3>
+                    <p class="text-gray-600 mb-6">Oracle network staking rewards</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">1 LINK</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">7 days</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$5.3B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+                
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-brain text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 9.5%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Cardano</h3>
+                    <p class="text-gray-600 mb-6">Delegated proof of stake</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">1 ADA</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">Flexible</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$7.1B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+                
+                <div class="reward-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
+                    <div class="flex items-center justify-between mb-6">
+                        <div class="w-14 h-14 bg-gradient-to-br from-cyan-400 to-cyan-600 rounded-xl flex items-center justify-center shadow-lg">
+                            <i class="fas fa-water text-white text-2xl"></i>
+                        </div>
+                        <span class="apy-badge">APY 6.2%</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Solana</h3>
+                    <p class="text-gray-600 mb-6">High-performance validator rewards</p>
+                    <div class="space-y-3 mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Min Stake:</span>
+                            <span class="font-bold text-gray-900">0.01 SOL</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Lock Period:</span>
+                            <span class="font-bold text-gray-900">Flexible</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Pooled Value:</span>
+                            <span class="font-bold text-emerald-600">$3.2B</span>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Stake Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Rewards Section -->
+    <section id="rewards" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Your Staking Rewards</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Real-time earnings tracking and automated compounding</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fas fa-chart-line text-3xl text-emerald-600"></i>
+                        <div>
+                            <p class="text-gray-600 text-sm">Today's Earnings</p>
+                            <p class="text-3xl font-bold text-gray-900">$247.83</p>
+                        </div>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-600 pulseGreen" style="width: 65%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3">APY: 6.8% on $13.2K staked</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fas fa-calendar-alt text-3xl text-emerald-600"></i>
+                        <div>
+                            <p class="text-gray-600 text-sm">Monthly Earnings</p>
+                            <p class="text-3xl font-bold text-gray-900">$7,434</p>
+                        </div>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-600 pulseGreen" style="width: 75%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3">Projected annual: $89K+</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 shadow-sm">
+                    <div class="flex items-center gap-4 mb-6">
+                        <i class="fas fa-coins text-3xl text-emerald-600"></i>
+                        <div>
+                            <p class="text-gray-600 text-sm">Total Earned (Lifetime)</p>
+                            <p class="text-3xl font-bold text-gray-900">$1,248.92</p>
+                        </div>
+                    </div>
+                    <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-emerald-500 to-teal-600 pulseGreen" style="width: 85%"></div>
+                    </div>
+                    <p class="text-xs text-gray-500 mt-3">Since you started staking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">How Staking Works</h2>
+            
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Connect Wallet</h3>
+                    <p class="text-gray-600">Link your crypto wallet securely to StakeVault using Web3 authentication.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Select Assets</h3>
+                    <p class="text-gray-600">Choose which cryptocurrencies you want to stake from our curated pools.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Deposit & Earn</h3>
+                    <p class="text-gray-600">Deposit your crypto and immediately start earning rewards automatically.</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Withdraw Anytime</h3>
+                    <p class="text-gray-600">Unlock your tokens anytime with flexible unstaking (lock period varies).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Frequently Asked Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-emerald-600 transition">
+                        <span>Is staking safe on StakeVault?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, StakeVault uses industry-leading security measures. All funds are held in secure smart contracts that are regularly audited. We've never had a security incident since launch.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-emerald-600 transition">
+                        <span>What happens if I unstake early?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        For most pools, you can unstake anytime. However, some pools have lock periods (Bitcoin: 30 days, Polkadot: 14 days). Unstaking is always free with no penalties.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-emerald-600 transition">
+                        <span>When do I receive my staking rewards?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Rewards are calculated daily and credited directly to your staking pool. You can compound your earnings or withdraw them anytime. APY is fixed for the duration of your stake.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(3)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-emerald-600 transition">
+                        <span>Are there any fees?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        We charge only a 5% commission on rewards earned (not your principal). No withdrawal fees, no deposit fees, no hidden charges. Transparent pricing always.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-600 to-teal-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Start Earning Passive Income Today</h2>
+            <p class="text-xl text-emerald-100 mb-10">Join 850K+ stakers earning real yields on their crypto holdings</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-emerald-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Start Staking Free
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    View Documentation
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-coins text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">StakeVault</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Earn passive income through crypto staking</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Pools</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">APY Rates</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Start Staking</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Cryptocurrency</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100">
+                            <option>Bitcoin (BTC) - 4.5% APY</option>
+                            <option>Ethereum (ETH) - 6.8% APY</option>
+                            <option>Polkadot (DOT) - 8.2% APY</option>
+                            <option>Cardano (ADA) - 9.5% APY</option>
+                            <option>Solana (SOL) - 6.2% APY</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Amount to Stake</label>
+                        <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-600 focus:ring-2 focus:ring-emerald-100" placeholder="0.00" step="0.01">
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 accent-emerald-600">
+                            <span class="text-sm text-gray-700">I agree to Terms of Service and Privacy Policy</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Start Staking
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-500">Your funds remain in your control. Withdraw anytime.</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

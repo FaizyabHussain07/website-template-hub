@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MentalWell - Mental health therapy and counseling platform">
+    <meta name="keywords" content="mental health, therapy, counseling, psychology, mental wellness">
+    <title>MentalWell - Therapy For Everyone</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Raleway', sans-serif; font-weight: 800; }
+        .gradient-mental { background: linear-gradient(135deg, #a78bfa 0%, #9333ea 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .mental-glow { box-shadow: 0 0 50px rgba(167, 139, 250, 0.35); animation: mentalGlow 2.3s ease-in-out infinite; }
+        @keyframes mentalGlow { 0%, 100% { box-shadow: 0 0 50px rgba(167, 139, 250, 0.35); } 50% { box-shadow: 0 0 70px rgba(147, 51, 234, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .therapist-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .therapist-card:hover { transform: translateY(-10px); box-shadow: 0 25px 70px rgba(167, 139, 250, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-brain text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">MentalWell</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#therapists" class="text-gray-700 font-medium hover:text-purple-600 transition">Therapists</a>
+                <a href="#services" class="text-gray-700 font-medium hover:text-purple-600 transition">Services</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-purple-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-purple-400 to-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Book Session</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#therapists" class="block text-gray-700 font-medium py-2">Therapists</a>
+                <a href="#services" class="block text-gray-700 font-medium py-2">Services</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-purple-400 to-purple-600 text-white px-6 py-3 rounded-lg font-bold">Book Session</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-purple-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-heart"></i> Mental Health Care
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Therapy<br/><span class="gradient-mental">Made Accessible</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Connect with licensed therapists. Confidential counseling. Flexible scheduling. Affordable rates. Start feeling better today.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-purple-400 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Book First Session
+                    </button>
+                    <button class="border-2 border-purple-300 text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-purple-50 transition">
+                        Learn More
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-purple-600">200K+</p>
+                        <p class="text-gray-600">Sessions Completed</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-purple-600">4.9 <i class="fas fa-star text-yellow-500"></i></p>
+                        <p class="text-gray-600">Average Rating</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="mental-glow w-80 h-80 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-brain text-7xl text-purple-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Therapists -->
+    <section id="therapists" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Licensed Therapists</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Find your perfect therapist match</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="therapist-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-purple-300 to-purple-500 flex items-center justify-center">
+                        <i class="fas fa-user-nurse text-6xl text-purple-200 opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Dr. Emma Collins</h3>
+                        <p class="text-purple-600 font-semibold mb-3">Licensed Clinical Psychologist</p>
+                        <p class="text-gray-600 text-sm mb-4">Depression, Anxiety, Trauma. 12+ years experience.</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-yellow-500 font-semibold"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (98)</p>
+                            <button onclick="openModal()" class="bg-purple-100 text-purple-700 px-3 py-2 rounded-lg font-bold text-sm hover:bg-purple-200 transition">
+                                Book
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapist-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-indigo-300 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-user-nurse text-6xl text-indigo-200 opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Marcus Johnson</h3>
+                        <p class="text-purple-600 font-semibold mb-3">Licensed Therapist</p>
+                        <p class="text-gray-600 text-sm mb-4">Relationships, Stress, Life Transitions. 8+ years.</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-yellow-500 font-semibold"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (87)</p>
+                            <button onclick="openModal()" class="bg-purple-100 text-purple-700 px-3 py-2 rounded-lg font-bold text-sm hover:bg-purple-200 transition">
+                                Book
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="therapist-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="h-48 bg-gradient-to-br from-purple-300 to-indigo-500 flex items-center justify-center">
+                        <i class="fas fa-user-nurse text-6xl text-purple-200 opacity-40"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Dr. Sofia Martinez</h3>
+                        <p class="text-purple-600 font-semibold mb-3">Psychiatrist</p>
+                        <p class="text-gray-600 text-sm mb-4">ADHD, Bipolar, Medication Management. 15+ yrs.</p>
+                        <div class="flex justify-between items-center">
+                            <p class="text-yellow-500 font-semibold"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (102)</p>
+                            <button onclick="openModal()" class="bg-purple-100 text-purple-700 px-3 py-2 rounded-lg font-bold text-sm hover:bg-purple-200 transition">
+                                Book
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Services -->
+    <section id="services" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Our Services</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-video text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Video Therapy</h3>
+                    <p class="text-gray-600 mb-4">Secure video sessions. Privacy guaranteed. Schedule anytime.</p>
+                    <p class="text-purple-600 font-bold">$60 per session</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-phone text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Phone Therapy</h3>
+                    <p class="text-gray-600 mb-4">Talk on the phone. Ideal for busy schedules.</p>
+                    <p class="text-purple-600 font-bold">$55 per session</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-message text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Messaging</h3>
+                    <p class="text-gray-600 mb-4">Text your therapist. Get support between sessions.</p>
+                    <p class="text-purple-600 font-bold">Unlimited</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover:shadow-lg transition">
+                    <div class="w-14 h-14 bg-indigo-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-prescription-bottle text-indigo-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3">Medication Support</h3>
+                    <p class="text-gray-600 mb-4">Psychiatric evaluation & medication management.</p>
+                    <p class="text-purple-600 font-bold">$100 per session</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-purple-600 transition">
+                        <span>Is my information confidential?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, all conversations are private and protected under HIPAA. End-to-end encrypted. We never share your data.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-purple-600 transition">
+                        <span>How do I get started?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Answer a brief questionnaire about your needs, browse available therapists, and book your first session. Easy!
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-purple-600 transition">
+                        <span>Do you accept insurance?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, we work with many insurance plans. We provide documentation for reimbursement. Contact our support team.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Your Mental Health Matters</h2>
+            <p class="text-xl text-purple-100 mb-10">Take the first step today</p>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Book Session
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">MentalWell</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Services</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-purple-400 transition">Therapy</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition">Therapists</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-purple-400 transition">About</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-purple-400 transition">Help</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-purple-400 transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-purple-400 transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Book Session</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Therapist</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100">
+                            <option>Dr. Emma Collins</option>
+                            <option>Marcus Johnson</option>
+                            <option>Dr. Sofia Martinez</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Session Type</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100">
+                            <option>Video ($60)</option>
+                            <option>Phone ($55)</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Time</label>
+                        <input type="datetime-local" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100">
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-purple-400 to-purple-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

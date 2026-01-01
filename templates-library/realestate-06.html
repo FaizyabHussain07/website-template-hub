@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BusinessRealty - Commercial real estate solutions for offices, retail, and industrial properties">
+    <meta name="keywords" content="commercial real estate, office space, retail property, industrial space, lease">
+    <title>BusinessRealty - Commercial Real Estate Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Work Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Work Sans', sans-serif; font-weight: 700; letter-spacing: -0.01em; }
+        .gradient-navy { background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%); }
+        .stripe-pattern { background: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.05) 10px, rgba(255,255,255,0.05) 20px); }
+        .elevated { transition: all 0.3s cubic-bezier(0.2, 0, 0.38, 0.9); }
+        .elevated:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(30, 58, 138, 0.2); }
+        .modal-hide { display: none; }
+        .modal-hide.show { display: flex; }
+        .stat-number { font-size: 3rem; font-weight: 800; letter-spacing: -0.02em; }
+        .accent-blue { color: #3b82f6; }
+        .tab-inactive { color: #9ca3af; border-b: 3px solid transparent; }
+        .tab-active { color: #1e40af; border-b: 3px solid #3b82f6; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-navy rounded-lg flex items-center justify-center">
+                    <i class="fas fa-building text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">BusinessRealty</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#properties" class="text-gray-700 font-medium hover:text-blue-600 transition">Properties</a>
+                <a href="#solutions" class="text-gray-700 font-medium hover:text-blue-600 transition">Solutions</a>
+                <a href="#insights" class="text-gray-700 font-medium hover:text-blue-600 transition">Market Insights</a>
+                <a href="#about" class="text-gray-700 font-medium hover:text-blue-600 transition">About</a>
+                <button onclick="openModal()" class="bg-gradient-navy text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition">Get in Touch</button>
+            </nav>
+            
+            <button id="mobileMenuToggle" class="lg:hidden text-gray-700" onclick="toggleMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#properties" class="block text-gray-700 font-medium py-2">Properties</a>
+                <a href="#solutions" class="block text-gray-700 font-medium py-2">Solutions</a>
+                <a href="#insights" class="block text-gray-700 font-medium py-2">Market Insights</a>
+                <a href="#about" class="block text-gray-700 font-medium py-2">About</a>
+                <button onclick="openModal()" class="w-full bg-gradient-navy text-white py-2.5 rounded-lg font-semibold">Get in Touch</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-blue-100 rounded-lg text-blue-700 font-semibold text-sm mb-6">Commercial Real Estate Platform</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Find Your
+                        <span class="text-blue-600">Ideal Space</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Access thousands of commercial properties. From modern offices to retail spaces, find exactly what your business needs with our comprehensive database and expert support.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-navy text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Schedule Consultation
+                        </button>
+                        <button class="border-2 border-blue-600 text-blue-600 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition text-lg">
+                            View Database
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden shadow-2xl">
+                        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=700&h=700&fit=crop" alt="Modern office" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-lg shadow-2xl border border-gray-200">
+                        <p class="text-3xl font-bold text-gray-900">15K+</p>
+                        <p class="text-sm text-gray-600">Active Listings</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-gray-50 rounded-xl p-8 border border-gray-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Advanced Search</h2>
+                <div class="grid md:grid-cols-5 gap-4">
+                    <input type="text" placeholder="Location" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                    <select class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                        <option>Property Type</option>
+                        <option>Office</option>
+                        <option>Retail</option>
+                        <option>Industrial</option>
+                        <option>Mixed-Use</option>
+                    </select>
+                    <input type="text" placeholder="Sq Ft Range" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                    <input type="text" placeholder="Price Range" class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                    <button class="bg-gradient-navy text-white rounded-lg font-bold hover:shadow-lg transition">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Properties</h2>
+                <p class="text-xl text-gray-600">Premium commercial spaces available for lease and purchase</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md elevated border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=500&h=300&fit=crop" alt="Office" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded text-sm font-semibold mb-3">Office</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Financial District Offices</h3>
+                        <p class="text-gray-600 text-sm mb-4">Downtown • 12,500 Sq Ft</p>
+                        <div class="space-y-3 mb-6 py-4 border-y border-gray-200">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Asking Price</span>
+                                <span class="font-bold text-gray-900">$3.2M</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Price/Sq Ft</span>
+                                <span class="font-bold text-gray-900">$256</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="w-full bg-gradient-navy text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">Details</button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md elevated border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?w=500&h=300&fit=crop" alt="Retail" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-700 rounded text-sm font-semibold mb-3">Retail</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Shopping Center Space</h3>
+                        <p class="text-gray-600 text-sm mb-4">Market District • 8,000 Sq Ft</p>
+                        <div class="space-y-3 mb-6 py-4 border-y border-gray-200">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Asking Lease</span>
+                                <span class="font-bold text-gray-900">$32/Sq Ft/Yr</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Annual Cost</span>
+                                <span class="font-bold text-gray-900">$256K</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="w-full bg-gradient-navy text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">Details</button>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md elevated border border-gray-200">
+                    <div class="aspect-video bg-gray-300 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=300&fit=crop" alt="Industrial" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                    </div>
+                    <div class="p-6">
+                        <span class="inline-block px-3 py-1 bg-orange-100 text-orange-700 rounded text-sm font-semibold mb-3">Industrial</span>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Warehouse Complex</h3>
+                        <p class="text-gray-600 text-sm mb-4">Industrial Zone • 35,000 Sq Ft</p>
+                        <div class="space-y-3 mb-6 py-4 border-y border-gray-200">
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Asking Price</span>
+                                <span class="font-bold text-gray-900">$5.2M</span>
+                            </div>
+                            <div class="flex justify-between text-sm">
+                                <span class="text-gray-600">Price/Sq Ft</span>
+                                <span class="font-bold text-gray-900">$149</span>
+                            </div>
+                        </div>
+                        <button onclick="openModal()" class="w-full bg-gradient-navy text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">Details</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="openModal()" class="bg-gradient-navy text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                    Browse All Properties
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Services</h2>
+                <p class="text-xl text-gray-600">Comprehensive commercial real estate solutions</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="border-b border-gray-200 mb-12">
+                <div class="flex gap-8 overflow-x-auto">
+                    <button onclick="switchTab('leasing')" class="tab-inactive pb-4 font-semibold whitespace-nowrap transition-colors">Leasing Services</button>
+                    <button onclick="switchTab('sales')" class="tab-inactive pb-4 font-semibold whitespace-nowrap transition-colors">Sales & Investment</button>
+                    <button onclick="switchTab('advisory')" class="tab-inactive pb-4 font-semibold whitespace-nowrap transition-colors">Advisory Services</button>
+                    <button onclick="switchTab('management')" class="tab-inactive pb-4 font-semibold whitespace-nowrap transition-colors">Property Management</button>
+                </div>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="leasing" class="tab-content active">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Professional Leasing Services</h3>
+                        <ul class="space-y-4">
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Expert Tenant Placement</p>
+                                    <p class="text-gray-600 text-sm">Match your space with ideal tenants</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Market Analysis</p>
+                                    <p class="text-gray-600 text-sm">Data-driven pricing strategies</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Lease Negotiation</p>
+                                    <p class="text-gray-600 text-sm">Protect your interests</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop" alt="Leasing" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <div id="sales" class="tab-content">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=600&fit=crop" alt="Sales" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Sales & Investment Advisory</h3>
+                        <ul class="space-y-4">
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Investment Opportunity Sourcing</p>
+                                    <p class="text-gray-600 text-sm">Access exclusive off-market deals</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Valuation & Due Diligence</p>
+                                    <p class="text-gray-600 text-sm">Thorough property analysis</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Transaction Management</p>
+                                    <p class="text-gray-600 text-sm">End-to-end deal coordination</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="advisory" class="tab-content">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Strategic Advisory Services</h3>
+                        <ul class="space-y-4">
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Portfolio Strategy</p>
+                                    <p class="text-gray-600 text-sm">Optimize real estate holdings</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Market Research</p>
+                                    <p class="text-gray-600 text-sm">In-depth industry insights</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Risk Assessment</p>
+                                    <p class="text-gray-600 text-sm">Comprehensive risk analysis</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop" alt="Advisory" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+
+            <div id="management" class="tab-content">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop" alt="Management" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-6">Full Property Management</h3>
+                        <ul class="space-y-4">
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Daily Operations</p>
+                                    <p class="text-gray-600 text-sm">Tenant relations and maintenance</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Financial Reporting</p>
+                                    <p class="text-gray-600 text-sm">Detailed monthly reports</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <i class="fas fa-check text-blue-600 mt-1"></i>
+                                <div>
+                                    <p class="font-semibold text-gray-900">Capital Planning</p>
+                                    <p class="text-gray-600 text-sm">Strategic maintenance budgeting</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Market Insights -->
+    <section id="insights" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Market Insights</h2>
+                <p class="text-xl text-gray-600">Stay informed with the latest commercial real estate trends</p>
+            </div>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200 elevated">
+                    <p class="text-sm text-gray-600 mb-2">Office Market</p>
+                    <p class="stat-number text-gray-900">12.5%</p>
+                    <p class="text-gray-600 mt-2">YoY Growth</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 elevated">
+                    <p class="text-sm text-gray-600 mb-2">Retail Market</p>
+                    <p class="stat-number text-gray-900">$24/ft</p>
+                    <p class="text-gray-600 mt-2">Avg Price Per Sq Ft</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 elevated">
+                    <p class="text-sm text-gray-600 mb-2">Industrial Market</p>
+                    <p class="stat-number text-gray-900">8.2%</p>
+                    <p class="text-gray-600 mt-2">Vacancy Rate</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200 elevated">
+                    <p class="text-sm text-gray-600 mb-2">Mixed-Use</p>
+                    <p class="stat-number text-gray-900">$45M</p>
+                    <p class="text-gray-600 mt-2">Average Transaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6">About BusinessRealty</h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        With 25 years of experience in commercial real estate, we've helped thousands of businesses and investors find the right spaces and make smart decisions.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex gap-4">
+                            <i class="fas fa-users text-blue-600 text-2xl mt-1"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Expert Team</p>
+                                <p class="text-gray-600">Specialists across all property types</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i class="fas fa-globe text-blue-600 text-2xl mt-1"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Global Network</p>
+                                <p class="text-gray-600">International real estate connections</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <i class="fas fa-chart-line text-blue-600 text-2xl mt-1"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Data-Driven</p>
+                                <p class="text-gray-600">Advanced analytics and market research</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="aspect-square bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl overflow-hidden">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&h=600&fit=crop" alt="Team" class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-navy text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Find Your Ideal Space?</h2>
+            <p class="text-xl mb-10 opacity-90">Connect with our team for personalized commercial real estate solutions.</p>
+            <button onclick="openModal()" class="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Schedule Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">BusinessRealty</h4>
+                    <p class="text-sm">Your trusted partner in commercial real estate.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Solutions</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Leasing</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sales</a></li>
+                        <li><a href="#" class="hover:text-white transition">Management</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Team</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 BusinessRealty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Get in Touch</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Company Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white">
+                    <option value="">Service Interested In</option>
+                    <option value="leasing">Leasing</option>
+                    <option value="sales">Sales</option>
+                    <option value="advisory">Advisory</option>
+                    <option value="management">Management</option>
+                </select>
+                <textarea placeholder="Message" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 bg-white"></textarea>
+                <button type="submit" class="w-full bg-gradient-navy text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('consultationModal').classList.add('show');
+        }
+
+        function closeModal() {
+            document.getElementById('consultationModal').classList.remove('show');
+        }
+
+        function switchTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('button[onclick^="switchTab"]').forEach(btn => {
+                btn.classList.remove('tab-active');
+                btn.classList.add('tab-inactive');
+            });
+
+            // Show selected tab
+            document.getElementById(tabName).classList.add('active');
+            
+            // Add active class to clicked button
+            event.target.classList.remove('tab-inactive');
+            event.target.classList.add('tab-active');
+        }
+
+        // Initialize first tab as active
+        document.addEventListener('DOMContentLoaded', () => {
+            const firstButton = document.querySelector('button[onclick^="switchTab"]');
+            firstButton.classList.remove('tab-inactive');
+            firstButton.classList.add('tab-active');
+        });
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('consultationModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

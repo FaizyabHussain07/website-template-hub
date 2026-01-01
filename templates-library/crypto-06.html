@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TokenLaunch - Token launchpad for blockchain projects">
+    <meta name="keywords" content="Token launchpad, IDO, ICO, blockchain fundraising">
+    <title>TokenLaunch - Launch Your Blockchain Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 800; }
+        .gradient-launch { background: linear-gradient(135deg, #ec4899 0%, #d946ef 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .launch-glow { box-shadow: 0 0 60px rgba(236, 72, 153, 0.3); animation: launchGlow 2.5s ease-in-out infinite; }
+        @keyframes launchGlow { 0%, 100% { box-shadow: 0 0 60px rgba(236, 72, 153, 0.3); } 50% { box-shadow: 0 0 80px rgba(217, 70, 239, 0.5); } }
+        .project-card { transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .project-card:hover { transform: translateY(-20px) scale(1.02); box-shadow: 0 40px 100px rgba(236, 72, 153, 0.25); }
+        .progress-bar { height: 6px; border-radius: 3px; background: linear-gradient(90deg, #ec4899, #d946ef); }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .launch-badge { display: inline-block; background: linear-gradient(135deg, #ec4899, #d946ef); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; color: white; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-pink-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-rocket text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">TokenLaunch</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#projects" class="text-gray-700 font-medium hover:text-pink-600 transition">Projects</a>
+                <a href="#launches" class="text-gray-700 font-medium hover:text-pink-600 transition">Upcoming</a>
+                <a href="#how-it-works" class="text-gray-700 font-medium hover:text-pink-600 transition">How It Works</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-pink-600 transition">FAQ</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Launch Token</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#projects" class="block text-gray-700 font-medium py-2 hover:text-pink-600">Projects</a>
+                <a href="#launches" class="block text-gray-700 font-medium py-2 hover:text-pink-600">Upcoming</a>
+                <a href="#how-it-works" class="block text-gray-700 font-medium py-2 hover:text-pink-600">How It Works</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2 hover:text-pink-600">FAQ</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg font-bold">Launch Token</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50 to-purple-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-pink-100 text-pink-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-fire"></i> Fair & Transparent
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Launch Your<br/><span class="gradient-launch">Token Project</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Raise capital for your blockchain project with TokenLaunch. Secure token launches, whitelisting, vesting schedules, and community building tools integrated.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Start Your IDO
+                    </button>
+                    <button class="border-2 border-pink-300 text-pink-600 px-8 py-4 rounded-lg font-bold hover:bg-pink-50 transition">
+                        View Launchpad
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-pink-600">$2.5B</p>
+                        <p class="text-gray-600">Raised via TokenLaunch</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-pink-600">485</p>
+                        <p class="text-gray-600">Successful Launches</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="launch-glow w-80 h-80 bg-gradient-to-br from-pink-100 to-purple-100 rounded-3xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-rocket text-7xl text-pink-200 opacity-40"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Projects -->
+    <section id="projects" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Featured Token Launches</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Recent successful projects on TokenLaunch</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="project-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                    <div class="h-40 bg-gradient-to-br from-pink-400 to-rose-500 relative flex items-center justify-center">
+                        <i class="fas fa-star text-6xl text-pink-200 opacity-40"></i>
+                        <span class="launch-badge absolute top-4 right-4">Ended</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">StarToken</h3>
+                        <p class="text-gray-600 mb-6">Gaming platform token with ecosystem rewards</p>
+                        <div class="space-y-3 mb-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm text-gray-600">Hardcap:</span>
+                                    <span class="font-bold text-gray-900">$5M</span>
+                                </div>
+                                <div class="progress-bar w-full" style="width: 100%"></div>
+                            </div>
+                            <div class="text-sm text-pink-600 font-bold">Raised: $5,200,000</div>
+                        </div>
+                        <button class="w-full border-2 border-pink-500 text-pink-600 py-2 rounded-lg font-bold hover:bg-pink-50 transition">
+                            View Project
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                    <div class="h-40 bg-gradient-to-br from-purple-400 to-pink-500 relative flex items-center justify-center">
+                        <i class="fas fa-coins text-6xl text-purple-200 opacity-40"></i>
+                        <span class="launch-badge absolute top-4 right-4">Active</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">MetaFi Token</h3>
+                        <p class="text-gray-600 mb-6">DeFi protocol for metaverse finance</p>
+                        <div class="space-y-3 mb-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm text-gray-600">Hardcap:</span>
+                                    <span class="font-bold text-gray-900">$8M</span>
+                                </div>
+                                <div class="progress-bar w-full" style="width: 72%"></div>
+                            </div>
+                            <div class="text-sm text-pink-600 font-bold">Raised: $5,760,000</div>
+                        </div>
+                        <button onclick="openModal()" class="w-full border-2 border-pink-500 text-pink-600 py-2 rounded-lg font-bold hover:bg-pink-50 transition">
+                            Participate
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="project-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                    <div class="h-40 bg-gradient-to-br from-rose-400 to-purple-500 relative flex items-center justify-center">
+                        <i class="fas fa-shield-alt text-6xl text-rose-200 opacity-40"></i>
+                        <span class="launch-badge absolute top-4 right-4">Coming Soon</span>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">DefenseChain</h3>
+                        <p class="text-gray-600 mb-6">Security protocol for Web3 applications</p>
+                        <div class="space-y-3 mb-6">
+                            <div>
+                                <div class="flex justify-between mb-2">
+                                    <span class="text-sm text-gray-600">Hardcap:</span>
+                                    <span class="font-bold text-gray-900">$12M</span>
+                                </div>
+                                <div class="progress-bar w-full" style="width: 0%"></div>
+                            </div>
+                            <div class="text-sm text-pink-600 font-bold">Jan 15, 2025 - Launching Soon</div>
+                        </div>
+                        <button onclick="openModal()" class="w-full border-2 border-pink-500 text-pink-600 py-2 rounded-lg font-bold hover:bg-pink-50 transition">
+                            Whitelist
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upcoming Launches -->
+    <section id="launches" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Next 30 Days Launches</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">NFTFactory Token</h3>
+                        <p class="text-gray-600 mb-4">NFT creation and trading platform with royalties</p>
+                        <div class="flex gap-8">
+                            <div>
+                                <p class="text-sm text-gray-500">Hardcap</p>
+                                <p class="text-lg font-bold text-gray-900">$6M</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Launch Date</p>
+                                <p class="text-lg font-bold text-pink-600">Jan 8, 2025</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Whitelist</p>
+                                <p class="text-lg font-bold text-gray-900">Full</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Notify Me
+                    </button>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200 flex flex-col md:flex-row items-center justify-between gap-8">
+                    <div class="flex-1">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">ChainAI Protocol</h3>
+                        <p class="text-gray-600 mb-4">AI-powered smart contract optimization</p>
+                        <div class="flex gap-8">
+                            <div>
+                                <p class="text-sm text-gray-500">Hardcap</p>
+                                <p class="text-lg font-bold text-gray-900">$10M</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Launch Date</p>
+                                <p class="text-lg font-bold text-pink-600">Jan 22, 2025</p>
+                            </div>
+                            <div>
+                                <p class="text-sm text-gray-500">Status</p>
+                                <p class="text-lg font-bold text-gray-900">Whitelisting Open</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button onclick="openModal()" class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-8 py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Whitelist
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">How TokenLaunch Works</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">1</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Submit Project</h3>
+                    <p class="text-gray-600">Fill out launch application with whitepaper and tokenomics</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">2</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Verification</h3>
+                    <p class="text-gray-600">Our team reviews project legitimacy and team credibility</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">3</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Launch Date</h3>
+                    <p class="text-gray-600">Your token IDO goes live with whitelisted participants</p>
+                </div>
+                
+                <div class="text-center">
+                    <div class="w-20 h-20 bg-gradient-to-br from-pink-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <span class="text-4xl font-bold text-white">4</span>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Exchange Listing</h3>
+                    <p class="text-gray-600">Get listed on major DEXs and CEXs with community support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ Section -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Frequently Asked Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-pink-600 transition">
+                        <span>How much does it cost to launch?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        TokenLaunch charges a 2% success fee on raised amount. Tier 1 projects pay starting at $50K, Tier 2 at $100K. Premium support packages available.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-pink-600 transition">
+                        <span>What are the vesting requirements?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        We recommend: Team 12+ month vest with 6-month cliff, Treasury 24-month vest. Vesting is customizable based on your project needs and community feedback.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-pink-600 transition">
+                        <span>How do I participate in launches?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Join our whitelist, complete KYC verification (if required), and participate during allocation period. Early backers get bonus allocation. First-come, first-served basis.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(3)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-pink-600 transition">
+                        <span>Are all projects verified?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-3"></i>
+                    </button>
+                    <div id="faq-content-3" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, every project undergoes multi-stage verification including team doxxing, smart contract audits, and legal compliance reviews for investor protection.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-pink-600 to-purple-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Launch Your Token?</h2>
+            <p class="text-xl text-pink-100 mb-10">Join hundreds of successful projects funded through TokenLaunch</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-pink-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Apply Now
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    View Docs
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-rocket text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">TokenLaunch</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Token launchpad for blockchain projects</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition">Launch</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Explore</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Apply</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Developers</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition">Docs</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">GitHub</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">API</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition">Discord</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Twitter</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Blog</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-pink-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-pink-400 transition">Compliance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-pink-400 transition"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Launch Your Token</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Project Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-2 focus:ring-pink-100" placeholder="Your Project">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Token Ticker</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-2 focus:ring-pink-100" placeholder="e.g., MYTOKEN">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Raise Target</label>
+                        <input type="number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-2 focus:ring-pink-100" placeholder="Amount in USD">
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 accent-pink-600">
+                            <span class="text-sm text-gray-700">I agree to Terms & Conditions</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

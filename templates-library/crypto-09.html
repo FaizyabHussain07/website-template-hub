@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="MetaVerse Exchange - Trade virtual assets and NFTs across metaverses">
+    <meta name="keywords" content="metaverse, NFT exchange, virtual assets, digital collectibles">
+    <title>MetaVerse Exchange - Trade Across All Metaverses</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Poppins', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 800; }
+        .gradient-meta { background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .meta-glow { box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); animation: metaGlow 2s ease-in-out infinite; }
+        @keyframes metaGlow { 0%, 100% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.4); } 50% { box-shadow: 0 0 60px rgba(99, 102, 241, 0.6); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .world-card { transition: all 0.3s ease; }
+        .world-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 20px 60px rgba(139, 92, 246, 0.25); }
+        .world-badge { background: linear-gradient(135deg, #8b5cf6, #6366f1); color: white; padding: 8px 16px; border-radius: 8px; font-size: 0.85rem; font-weight: 700; display: inline-block; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-cube text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">MetaVerse<br class="hidden"/>Exchange</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#metaverse" class="text-gray-700 font-medium hover:text-violet-600 transition">Metaverses</a>
+                <a href="#assets" class="text-gray-700 font-medium hover:text-violet-600 transition">Assets</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-violet-600 transition">Learn</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-violet-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">Connect</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#metaverse" class="block text-gray-700 font-medium py-2">Metaverses</a>
+                <a href="#assets" class="block text-gray-700 font-medium py-2">Assets</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Learn</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-violet-500 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold">Connect</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-violet-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-violet-100 text-violet-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-vr-cardboard"></i> Metaverse Native
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Trade Across<br/><span class="gradient-meta">All Metaverses</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Buy, sell, and trade virtual land, avatars, and digital assets across Decentraland, The Sandbox, Roblox, and 15+ metaverse ecosystems. Unified marketplace. Zero friction.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-violet-500 to-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Connect Wallet
+                    </button>
+                    <button class="border-2 border-violet-300 text-violet-600 px-8 py-4 rounded-lg font-bold hover:bg-violet-50 transition">
+                        Explore Markets
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-violet-600">$18.2B</p>
+                        <p class="text-gray-600">Trade Volume</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-violet-600">500K+</p>
+                        <p class="text-gray-600">Daily Traders</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="meta-glow w-72 h-72 bg-gradient-to-br from-violet-100 to-indigo-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-cube text-6xl text-violet-300 opacity-30"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Supported Metaverses -->
+    <section id="metaverse" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Connected Metaverses</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">One exchange. All worlds.</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="world-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-mountain text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Decentraland</h3>
+                    <p class="text-gray-600 mb-6">The pioneer metaverse</p>
+                    <div class="space-y-3 text-sm mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">LAND Volume:</span>
+                            <span class="font-bold text-gray-900">$4.2B</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Wearables:</span>
+                            <span class="font-bold text-gray-900">2.1M+</span>
+                        </div>
+                    </div>
+                    <span class="world-badge flex justify-center">Active</span>
+                </div>
+                
+                <div class="world-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-gradient-to-br from-orange-400 to-amber-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-box text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">The Sandbox</h3>
+                    <p class="text-gray-600 mb-6">Play & earn ecosystem</p>
+                    <div class="space-y-3 text-sm mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">SAND Tokens:</span>
+                            <span class="font-bold text-gray-900">1.8B+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Games Created:</span>
+                            <span class="font-bold text-gray-900">50K+</span>
+                        </div>
+                    </div>
+                    <span class="world-badge flex justify-center">Active</span>
+                </div>
+                
+                <div class="world-card bg-white rounded-2xl p-8 border border-gray-100 shadow-sm hover:shadow-md">
+                    <div class="w-14 h-14 bg-gradient-to-br from-blue-400 to-cyan-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-gamepad text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Axie Infinity</h3>
+                    <p class="text-gray-600 mb-6">Play-to-earn pioneer</p>
+                    <div class="space-y-3 text-sm mb-6">
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Axies Traded:</span>
+                            <span class="font-bold text-gray-900">8.5M+</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Daily Users:</span>
+                            <span class="font-bold text-gray-900">200K</span>
+                        </div>
+                    </div>
+                    <span class="world-badge flex justify-center">Active</span>
+                </div>
+            </div>
+            
+            <p class="text-center text-gray-600 mt-12">+ Roblox Studio, Meta Horizon, VRChat, Fortnite Creator, Ready Player Me, and 9+ others</p>
+        </div>
+    </section>
+    
+    <!-- Top Assets -->
+    <section id="assets" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Trending Assets</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-violet-500 transition hover:shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-pink-300 to-rose-400 flex items-center justify-center">
+                        <i class="fas fa-mountain text-6xl text-pink-600 opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Genesis District Land</h3>
+                        <p class="text-sm text-gray-600 mb-4">Decentraland Prime Real Estate</p>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-2xl font-bold text-violet-600">12.5 ETH</p>
+                                <p class="text-xs text-gray-500 mt-1">Last: 11.8 ETH</p>
+                            </div>
+                            <span class="text-green-600 font-bold">+5.9%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-violet-500 transition hover:shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-purple-300 to-indigo-400 flex items-center justify-center">
+                        <i class="fas fa-person text-6xl text-purple-600 opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Rare Avatar Outfit</h3>
+                        <p class="text-sm text-gray-600 mb-4">The Sandbox Creator Exclusive</p>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-2xl font-bold text-violet-600">3.2 SAND</p>
+                                <p class="text-xs text-gray-500 mt-1">Last: 3.0 SAND</p>
+                            </div>
+                            <span class="text-green-600 font-bold">+6.7%</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 overflow-hidden hover:border-violet-500 transition hover:shadow-lg">
+                    <div class="h-40 bg-gradient-to-br from-blue-300 to-cyan-400 flex items-center justify-center">
+                        <i class="fas fa-dragon text-6xl text-blue-600 opacity-20"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Mystic Axie Infinity</h3>
+                        <p class="text-sm text-gray-600 mb-4">Triple-Class Legendary Creature</p>
+                        <div class="flex justify-between items-end">
+                            <div>
+                                <p class="text-2xl font-bold text-violet-600">45 WETH</p>
+                                <p class="text-xs text-gray-500 mt-1">Last: 42 WETH</p>
+                            </div>
+                            <span class="text-green-600 font-bold">+7.1%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Why Choose MetaVerse Exchange</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-globe text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Unified Marketplace</h3>
+                            <p class="text-gray-600">Access all metaverses from one dashboard. No switching between platforms or wallets.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-bolt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+                            <p class="text-gray-600">Instant transactions with gas optimization across all networks. Trade without delays.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-shield-alt text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Maximum Safety</h3>
+                            <p class="text-gray-600">Non-custodial wallets. Smart contract audited 4 times. Zero hacks in 3 years.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-violet-400 to-indigo-500 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-chart-line text-white text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">Best Rates</h3>
+                            <p class="text-gray-600">Our smart routing finds the best prices across all liquidity sources.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Common Questions</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-violet-600 transition">
+                        <span>What is a metaverse asset?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Metaverse assets are digital items owned as NFTs - virtual land, avatars, wearables, and collectibles that have real-world value and can be traded across platforms.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-violet-600 transition">
+                        <span>How do I start trading?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Connect your wallet (MetaMask, WalletConnect, etc.), deposit funds, and start trading immediately. No KYC required for basic trading.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-violet-600 transition">
+                        <span>Are my assets safe?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes. All assets remain in your personal wallet. We only facilitate trades. No middle-man risk. Full on-chain verification available.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-violet-600 to-indigo-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Step Into the Metaverse Economy</h2>
+            <p class="text-xl text-violet-100 mb-10">Trade across all metaverses with zero friction</p>
+            <button onclick="openModal()" class="bg-white text-violet-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Connect Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-cube text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">MetaVerse<br/>Exchange</span>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Trading</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-violet-400 transition">Markets</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">NFTs</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Metaverses</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">About</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-violet-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Team</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-violet-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Status</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-violet-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-violet-400 transition">Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-violet-400 transition"><i class="fab fa-youtube text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Connect Wallet</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 space-y-4">
+                <button class="w-full bg-gray-100 hover:bg-gray-200 px-4 py-3 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition">
+                    <i class="fab fa-ethereum text-2xl text-orange-500"></i> MetaMask
+                </button>
+                <button class="w-full bg-gray-100 hover:bg-gray-200 px-4 py-3 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition">
+                    <i class="fas fa-wallet text-2xl text-blue-500"></i> WalletConnect
+                </button>
+                <button class="w-full bg-gray-100 hover:bg-gray-200 px-4 py-3 rounded-lg font-semibold text-gray-900 flex items-center justify-center gap-2 transition">
+                    <i class="fas fa-cube text-2xl text-purple-500"></i> Coinbase
+                </button>
+                <button onclick="closeModal()" class="w-full text-gray-600 hover:text-gray-900 py-2 text-center font-medium transition">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

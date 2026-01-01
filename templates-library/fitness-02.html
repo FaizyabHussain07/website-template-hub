@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenFit - Holistic Wellness & Mindful Fitness</title>
+    <meta name="description" content="Integrate fitness with mindfulness. ZenFit offers yoga, meditation, and strength training for complete wellness.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Lora:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Montserrat', sans-serif;
+        }
+        .serif-title {
+            font-family: 'Lora', serif;
+        }
+        .gradient-teal {
+            background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-teal {
+            background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-teal:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px rgba(20, 184, 166, 0.3);
+        }
+        .nav-line {
+            position: relative;
+        }
+        .nav-line::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+            transition: width 0.3s;
+        }
+        .nav-line:hover::after {
+            width: 100%;
+        }
+        .float-card {
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+        .float-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 50px rgba(20, 184, 166, 0.15);
+        }
+        .tabs-container {
+            display: flex;
+            border-bottom: 2px solid #E0E7FF;
+        }
+        .tab-button {
+            padding: 16px 24px;
+            font-weight: 600;
+            color: #6B7280;
+            border: none;
+            background: none;
+            cursor: pointer;
+            position: relative;
+            transition: color 0.3s;
+        }
+        .tab-button.active {
+            color: #14B8A6;
+        }
+        .tab-button::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(135deg, #14B8A6 0%, #0F766E 100%);
+            transition: width 0.3s;
+        }
+        .tab-button.active::after {
+            width: 100%;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 48px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .icon-box {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, #CCFBF1 0%, #A7F3D0 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #0F766E;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full flex items-center justify-center">
+                    <i class="fas fa-om text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold gradient-teal">ZenFit</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#programs" class="nav-line text-gray-700 hover:text-teal-600">Programs</a>
+                <a href="#benefits" class="nav-line text-gray-700 hover:text-teal-600">Benefits</a>
+                <a href="#testimonials" class="nav-line text-gray-700 hover:text-teal-600">Stories</a>
+                <a href="#faq" class="nav-line text-gray-700 hover:text-teal-600">FAQ</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-teal text-white px-6 py-2 rounded-full font-semibold">Start Journey</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#programs" class="text-gray-700 py-2">Programs</a>
+            <a href="#benefits" class="text-gray-700 py-2">Benefits</a>
+            <a href="#testimonials" class="text-gray-700 py-2">Stories</a>
+            <a href="#faq" class="text-gray-700 py-2">FAQ</a>
+            <button onclick="openModal()" class="btn-teal text-white px-6 py-2 rounded-full font-semibold mt-4 w-full">Start Journey</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-b from-teal-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="serif-title text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Find Your Inner Strength</h1>
+                    <p class="text-lg text-gray-600 mb-8">Combine mindfulness, yoga, and strength training in one holistic wellness journey. Transform body and mind simultaneously.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-teal text-white px-8 py-3 rounded-full font-semibold text-lg">Begin Free Session</button>
+                        <button onclick="scrollToElement('programs')" class="border-2 border-teal-600 text-teal-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-teal-50 transition">Explore Programs</button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="absolute -inset-8 bg-gradient-to-br from-teal-200 to-teal-100 rounded-3xl opacity-30 blur-3xl"></div>
+                    <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=600&fit=crop" alt="Yoga Meditation" class="relative rounded-3xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h2 class="serif-title text-5xl font-bold text-gray-900 mb-4">Wellness Programs</h2>
+                <p class="text-xl text-gray-600">Choose what resonates with your soul</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="float-card bg-white rounded-2xl overflow-hidden border border-teal-100">
+                    <div class="h-48 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-spa text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Yoga Flow</h3>
+                        <p class="text-gray-600 mb-6">Daily yoga practices from beginner to advanced, focusing on flexibility and mindfulness.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Hatha & Vinyasa</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Breathing techniques</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> 30-min classes</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-teal text-white w-full py-2 rounded-lg font-semibold text-sm">Start Free</button>
+                    </div>
+                </div>
+                <div class="float-card bg-white rounded-2xl overflow-hidden border-2 border-teal-500 relative">
+                    <span class="absolute top-4 right-4 bg-teal-500 text-white px-4 py-1 rounded-full text-sm font-bold">Best</span>
+                    <div class="h-48 bg-gradient-to-br from-teal-500 to-teal-700 flex items-center justify-center">
+                        <i class="fas fa-dumbbell text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Strength & Mind</h3>
+                        <p class="text-gray-600 mb-6">Strength training integrated with mindfulness to build both physical and mental resilience.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Full body workouts</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Meditation sessions</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> 45-min sessions</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-teal text-white w-full py-2 rounded-lg font-semibold text-sm">Start Free</button>
+                    </div>
+                </div>
+                <div class="float-card bg-white rounded-2xl overflow-hidden border border-teal-100">
+                    <div class="h-48 bg-gradient-to-br from-teal-400 to-teal-600 flex items-center justify-center">
+                        <i class="fas fa-brain text-white text-6xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Mindful Living</h3>
+                        <p class="text-gray-600 mb-6">Meditation, breathwork, and mindfulness practices for stress relief and mental clarity.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Daily meditations</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Sleep guidance</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> 10-20 min classes</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-teal text-white w-full py-2 rounded-lg font-semibold text-sm">Start Free</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features with Tabs -->
+    <section id="benefits" class="py-24 px-4 bg-teal-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif-title text-5xl font-bold text-gray-900 mb-4">Why ZenFit Works</h2>
+                <p class="text-xl text-gray-600">Three pillars of complete wellness</p>
+            </div>
+            <div class="tabs-container mb-8">
+                <button class="tab-button active" onclick="switchTab(event, 'physical')">Physical Benefits</button>
+                <button class="tab-button" onclick="switchTab(event, 'mental')">Mental Wellness</button>
+                <button class="tab-button" onclick="switchTab(event, 'lifestyle')">Lifestyle</button>
+            </div>
+            <div id="physical" class="tab-content active">
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Increased Energy</h3>
+                            <p class="text-gray-600">Regular practice improves circulation and stamina. Feel energized throughout your day.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Better Sleep</h3>
+                            <p class="text-gray-600">Yoga and meditation regulate your sleep cycle naturally without any medications.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-muscle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Strength & Flexibility</h3>
+                            <p class="text-gray-600">Build lean muscle while improving flexibility and balance with each session.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Pain Relief</h3>
+                            <p class="text-gray-600">Say goodbye to chronic pain through targeted stretches and strengthening exercises.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="mental" class="tab-content">
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-cloud"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Reduced Anxiety</h3>
+                            <p class="text-gray-600">Mindfulness practices lower cortisol and create lasting calm in your daily life.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Mental Clarity</h3>
+                            <p class="text-gray-600">Clear your mind and improve focus with regular meditation and breathing work.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-peace"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Inner Peace</h3>
+                            <p class="text-gray-600">Develop emotional resilience and find inner peace through consistent practice.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-smile"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Happiness Boost</h3>
+                            <p class="text-gray-600">Experience increased happiness and improved mood with holistic wellness.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="lifestyle" class="tab-content">
+                <div class="grid md:grid-cols-2 gap-8 mt-8">
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Habit Formation</h3>
+                            <p class="text-gray-600">Build sustainable wellness habits that last a lifetime with our guidance.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-people"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Community</h3>
+                            <p class="text-gray-600">Connect with like-minded individuals on their wellness journey with you.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-road"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Personal Growth</h3>
+                            <p class="text-gray-600">Transform not just your body, but your entire lifestyle and mindset.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-6">
+                        <div class="icon-box flex-shrink-0">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Live Authentically</h3>
+                            <p class="text-gray-600">Discover your true potential and live a more authentic, purposeful life.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 px-4 bg-gradient-to-r from-teal-600 to-teal-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="text-4xl font-bold text-white mb-2">200K+</div>
+                    <p class="text-teal-100">Active Members</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-2">500+</div>
+                    <p class="text-teal-100">Video Classes</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-2">4.9★</div>
+                    <p class="text-teal-100">App Rating</p>
+                </div>
+                <div>
+                    <div class="text-4xl font-bold text-white mb-2">95%</div>
+                    <p class="text-teal-100">Satisfaction</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section id="testimonials" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif-title text-5xl font-bold text-gray-900 mb-4">Member Stories</h2>
+                <p class="text-xl text-gray-600">Real transformations through mindful wellness</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="float-card bg-gradient-to-br from-teal-50 to-white p-8 rounded-2xl border border-teal-100">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-sm leading-relaxed">"ZenFit changed my perspective on fitness. It's not just about workouts, it's about finding balance. My anxiety is gone and I've never felt better."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=50&h=50&fit=crop" alt="Lisa" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900 text-sm">Lisa Wong</p>
+                            <p class="text-xs text-gray-600">Mindful Living Program</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-card bg-gradient-to-br from-teal-50 to-white p-8 rounded-2xl border border-teal-100">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-sm leading-relaxed">"The combination of strength training and meditation is perfect. I'm stronger physically, but also mentally. This holistic approach really works."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=50&h=50&fit=crop" alt="Mark" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900 text-sm">Mark Peterson</p>
+                            <p class="text-xs text-gray-600">Strength & Mind Program</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="float-card bg-gradient-to-br from-teal-50 to-white p-8 rounded-2xl border border-teal-100">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-sm leading-relaxed">"As a beginner, I was nervous. The instructors are so encouraging and patient. I've found my yoga practice and I'm addicted to the feeling."</p>
+                    <div class="flex items-center gap-3">
+                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=50&h=50&fit=crop" alt="Maya" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-gray-900 text-sm">Maya Patel</p>
+                            <p class="text-xs text-gray-600">Yoga Flow Program</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif-title text-5xl font-bold text-gray-900 mb-4">Common Questions</h2>
+                <p class="text-xl text-gray-600">Find answers to help you get started</p>
+            </div>
+            <div class="space-y-4">
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full px-6 py-4 text-left font-semibold text-gray-900 flex justify-between items-center hover:bg-teal-50 transition" onclick="toggleFAQ(event)">
+                        <span>What is the best time to practice?</span>
+                        <i class="fas fa-chevron-down text-teal-600"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700">The best time is whenever you can be consistent. Many prefer early morning for clarity or evening for relaxation. Listen to your body and choose what works for you.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full px-6 py-4 text-left font-semibold text-gray-900 flex justify-between items-center hover:bg-teal-50 transition" onclick="toggleFAQ(event)">
+                        <span>Do I need any equipment?</span>
+                        <i class="fas fa-chevron-down text-teal-600"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700">Yoga requires only a mat. For strength training, we offer bodyweight options and modifications. Optional props include blocks, straps, and dumbbells for added challenge.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full px-6 py-4 text-left font-semibold text-gray-900 flex justify-between items-center hover:bg-teal-50 transition" onclick="toggleFAQ(event)">
+                        <span>Can I combine multiple programs?</span>
+                        <i class="fas fa-chevron-down text-teal-600"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700">Absolutely! Most members combine programs. A typical week might include 2-3 strength sessions, 2-3 yoga classes, and daily meditation for maximum benefits.</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button class="faq-button w-full px-6 py-4 text-left font-semibold text-gray-900 flex justify-between items-center hover:bg-teal-50 transition" onclick="toggleFAQ(event)">
+                        <span>What's included in the free trial?</span>
+                        <i class="fas fa-chevron-down text-teal-600"></i>
+                    </button>
+                    <div class="faq-content hidden px-6 py-4 bg-gray-50 border-t border-gray-200">
+                        <p class="text-gray-700">Your 7-day free trial gives unlimited access to all classes, meditations, and tracking features. No credit card required to start. Cancel anytime with one click.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="serif-title text-5xl font-bold text-gray-900 mb-4">Simple Pricing</h2>
+                <p class="text-xl text-gray-600">Choose your path to wellness</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="float-card bg-white border border-teal-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Free</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Limited access</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$0</span>
+                        <span class="text-gray-600">/forever</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-teal-600 text-teal-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-teal-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> 5 sample classes</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Basic meditation</li>
+                    </ul>
+                </div>
+                <div class="float-card bg-gradient-to-br from-teal-50 to-white border-2 border-teal-500 rounded-2xl p-8 relative">
+                    <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-teal-500 text-white px-4 py-1 rounded-full text-sm font-bold">Most Popular</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Unlimited access</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$12</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-teal text-white w-full py-2 rounded-lg font-semibold mb-8">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Unlimited classes</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> All programs</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Progress tracking</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Offline downloads</li>
+                    </ul>
+                </div>
+                <div class="float-card bg-white border border-teal-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Pro</h3>
+                    <p class="text-gray-600 mb-6 text-sm">VIP experience</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$29</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-teal-600 text-teal-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-teal-50 transition">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> All Premium features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> 1-on-1 coaching</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Personalized plans</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-teal-600"></i> Priority support</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-teal-600 to-teal-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="serif-title text-4xl md:text-5xl font-bold text-white mb-6">Begin Your Wellness Journey Today</h2>
+            <p class="text-xl text-teal-100 mb-10">7 days free. No credit card. Cancel anytime.</p>
+            <button onclick="openModal()" class="bg-white text-teal-600 px-10 py-4 rounded-full font-semibold text-lg hover:bg-teal-50 transition inline-block">Start Free Trial</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="flex items-center gap-2 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-teal-500 to-teal-700 rounded-full"></div>
+                        <span class="text-white font-bold">ZenFit</span>
+                    </div>
+                    <p class="text-sm">Your complete wellness companion.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Programs</a></li>
+                        <li><a href="#" class="hover:text-white">App</a></li>
+                        <li><a href="#" class="hover:text-white">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow Us</h4>
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-teal-600 transition"><i class="fab fa-instagram text-white"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-teal-600 transition"><i class="fab fa-facebook text-white"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-teal-600 transition"><i class="fab fa-youtube text-white"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Begin Free Trial</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-teal-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-teal-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-teal-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:border-teal-500" required>
+                    <option>Select Program</option>
+                    <option>Yoga Flow</option>
+                    <option>Strength & Mind</option>
+                    <option>Mindful Living</option>
+                </select>
+                <button type="submit" class="btn-teal text-white w-full py-3 rounded-lg font-semibold">Start Free Trial</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">7 days free • No card required • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function switchTab(event, tabName) {
+            document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            event.target.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+        function toggleFAQ(event) {
+            const content = event.currentTarget.nextElementSibling;
+            const icon = event.currentTarget.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+        function scrollToElement(id) {
+            const elem = document.getElementById(id);
+            elem.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome! Check your email to start your free trial.');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

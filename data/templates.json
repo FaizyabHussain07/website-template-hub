@@ -1,0 +1,1122 @@
+[
+  {
+    "id": "agency-01",
+    "name": "DesignStudio",
+    "industry": "Digital Agency",
+    "category": "Creative Agency",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-01.html",
+    "zipUrl": "zips/agency-01.zip",
+    "thumbnail": "assets/images/agency-01.png"
+  },
+  {
+    "id": "agency-02",
+    "name": "CodeWorks",
+    "industry": "Digital Agency",
+    "category": "Web Development",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-02.html",
+    "zipUrl": "zips/agency-02.zip",
+    "thumbnail": "assets/images/agency-02.png"
+  },
+  {
+    "id": "agency-03",
+    "name": "BrandForge",
+    "industry": "Digital Agency",
+    "category": "Marketing Agency",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-03.html",
+    "zipUrl": "zips/agency-03.zip",
+    "thumbnail": "assets/images/agency-03.png"
+  },
+  {
+    "id": "agency-04",
+    "name": "CreativeStudio",
+    "industry": "Digital Agency",
+    "category": "Branding & Design",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-04.html",
+    "zipUrl": "zips/agency-04.zip",
+    "thumbnail": "assets/images/agency-04.png"
+  },
+  {
+    "id": "agency-05",
+    "name": "PixelForce",
+    "industry": "Digital Agency",
+    "category": "UI/UX Design",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-05.html",
+    "zipUrl": "zips/agency-05.zip",
+    "thumbnail": "assets/images/agency-05.png"
+  },
+  {
+    "id": "agency-06",
+    "name": "GrowthLab",
+    "industry": "Digital Agency",
+    "category": "Growth Marketing",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-06.html",
+    "zipUrl": "zips/agency-06.zip",
+    "thumbnail": "assets/images/agency-06.png"
+  },
+  {
+    "id": "agency-07",
+    "name": "SocialVibe",
+    "industry": "Digital Agency",
+    "category": "Social Media",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-07.html",
+    "zipUrl": "zips/agency-07.zip",
+    "thumbnail": "assets/images/agency-07.png"
+  },
+  {
+    "id": "agency-08",
+    "name": "StartupBoost",
+    "industry": "Digital Agency",
+    "category": "Startup Consulting",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-08.html",
+    "zipUrl": "zips/agency-08.zip",
+    "thumbnail": "assets/images/agency-08.png"
+  },
+  {
+    "id": "agency-09",
+    "name": "ContentWorks",
+    "industry": "Digital Agency",
+    "category": "Content Marketing",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-09.html",
+    "zipUrl": "zips/agency-09.zip",
+    "thumbnail": "assets/images/agency-09.png"
+  },
+  {
+    "id": "agency-10",
+    "name": "EventFlow",
+    "industry": "Digital Agency",
+    "category": "Event Marketing",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/agency-10.html",
+    "zipUrl": "zips/agency-10.zip",
+    "thumbnail": "assets/images/agency-10.png"
+  },
+  {
+    "id": "crypto-01",
+    "name": "BitVault",
+    "industry": "Crypto",
+    "category": "Bitcoin & Security",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-01.html",
+    "zipUrl": "zips/crypto-01.zip",
+    "thumbnail": "assets/images/crypto-01.png"
+  },
+  {
+    "id": "crypto-02",
+    "name": "DeFiDash",
+    "industry": "Crypto",
+    "category": "DeFi Protocols",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-02.html",
+    "zipUrl": "zips/crypto-02.zip",
+    "thumbnail": "assets/images/crypto-02.png"
+  },
+  {
+    "id": "crypto-03",
+    "name": "BlockChain",
+    "industry": "Crypto",
+    "category": "Smart Contracts",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-03.html",
+    "zipUrl": "zips/crypto-03.zip",
+    "thumbnail": "assets/images/crypto-03.png"
+  },
+  {
+    "id": "crypto-04",
+    "name": "CryptoFortune",
+    "industry": "Crypto",
+    "category": "Trading Platform",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-04.html",
+    "zipUrl": "zips/crypto-04.zip",
+    "thumbnail": "assets/images/crypto-04.png"
+  },
+  {
+    "id": "crypto-05",
+    "name": "TokenMint",
+    "industry": "Crypto",
+    "category": "NFT Creation",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-05.html",
+    "zipUrl": "zips/crypto-05.zip",
+    "thumbnail": "assets/images/crypto-05.png"
+  },
+  {
+    "id": "crypto-06",
+    "name": "StakePro",
+    "industry": "Crypto",
+    "category": "Staking Solutions",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-06.html",
+    "zipUrl": "zips/crypto-06.zip",
+    "thumbnail": "assets/images/crypto-06.png"
+  },
+  {
+    "id": "crypto-07",
+    "name": "VaultX",
+    "industry": "Crypto",
+    "category": "Crypto Storage",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-07.html",
+    "zipUrl": "zips/crypto-07.zip",
+    "thumbnail": "assets/images/crypto-07.png"
+  },
+  {
+    "id": "crypto-08",
+    "name": "MoonRocket",
+    "industry": "Crypto",
+    "category": "Moonshot Tokens",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-08.html",
+    "zipUrl": "zips/crypto-08.zip",
+    "thumbnail": "assets/images/crypto-08.png"
+  },
+  {
+    "id": "crypto-09",
+    "name": "ChainLink",
+    "industry": "Crypto",
+    "category": "Cross-chain",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-09.html",
+    "zipUrl": "zips/crypto-09.zip",
+    "thumbnail": "assets/images/crypto-09.png"
+  },
+  {
+    "id": "crypto-10",
+    "name": "QuantumCoin",
+    "industry": "Crypto",
+    "category": "Quantum Resistance",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/crypto-10.html",
+    "zipUrl": "zips/crypto-10.zip",
+    "thumbnail": "assets/images/crypto-10.png"
+  },
+  {
+    "id": "ecommerce-01",
+    "name": "ShopHub",
+    "industry": "E-commerce",
+    "category": "General Retail",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-01.html",
+    "zipUrl": "zips/ecommerce-01.zip",
+    "thumbnail": "assets/images/ecommerce-01.png"
+  },
+  {
+    "id": "ecommerce-02",
+    "name": "FashionFlow",
+    "industry": "E-commerce",
+    "category": "Fashion Brands",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-02.html",
+    "zipUrl": "zips/ecommerce-02.zip",
+    "thumbnail": "assets/images/ecommerce-02.png"
+  },
+  {
+    "id": "ecommerce-03",
+    "name": "ElectroZone",
+    "industry": "E-commerce",
+    "category": "Electronics Store",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-03.html",
+    "zipUrl": "zips/ecommerce-03.zip",
+    "thumbnail": "assets/images/ecommerce-03.png"
+  },
+  {
+    "id": "ecommerce-04",
+    "name": "BeautyBliss",
+    "industry": "E-commerce",
+    "category": "Cosmetics & Beauty",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-04.html",
+    "zipUrl": "zips/ecommerce-04.zip",
+    "thumbnail": "assets/images/ecommerce-04.png"
+  },
+  {
+    "id": "ecommerce-05",
+    "name": "HomeDecor",
+    "industry": "E-commerce",
+    "category": "Furniture & Home",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-05.html",
+    "zipUrl": "zips/ecommerce-05.zip",
+    "thumbnail": "assets/images/ecommerce-05.png"
+  },
+  {
+    "id": "ecommerce-06",
+    "name": "SportGear",
+    "industry": "E-commerce",
+    "category": "Sports Equipment",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-06.html",
+    "zipUrl": "zips/ecommerce-06.zip",
+    "thumbnail": "assets/images/ecommerce-06.png"
+  },
+  {
+    "id": "ecommerce-07",
+    "name": "GourmetEats",
+    "industry": "E-commerce",
+    "category": "Food & Beverage",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-07.html",
+    "zipUrl": "zips/ecommerce-07.zip",
+    "thumbnail": "assets/images/ecommerce-07.png"
+  },
+  {
+    "id": "ecommerce-08",
+    "name": "VintageFind",
+    "industry": "E-commerce",
+    "category": "Antiques & Vintage",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-08.html",
+    "zipUrl": "zips/ecommerce-08.zip",
+    "thumbnail": "assets/images/ecommerce-08.png"
+  },
+  {
+    "id": "ecommerce-09",
+    "name": "TechMart",
+    "industry": "E-commerce",
+    "category": "Tech Gadgets",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-09.html",
+    "zipUrl": "zips/ecommerce-09.zip",
+    "thumbnail": "assets/images/ecommerce-09.png"
+  },
+  {
+    "id": "ecommerce-10",
+    "name": "LuxuryPrime",
+    "industry": "E-commerce",
+    "category": "Premium Goods",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/ecommerce-10.html",
+    "zipUrl": "zips/ecommerce-10.zip",
+    "thumbnail": "assets/images/ecommerce-10.png"
+  },
+  {
+    "id": "education-01",
+    "name": "SchoolHub",
+    "industry": "Education",
+    "category": "K-12 Education",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-01.html",
+    "zipUrl": "zips/education-01.zip",
+    "thumbnail": "assets/images/education-01.png"
+  },
+  {
+    "id": "education-02",
+    "name": "UniversityPath",
+    "industry": "Education",
+    "category": "Higher Education",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-02.html",
+    "zipUrl": "zips/education-02.zip",
+    "thumbnail": "assets/images/education-02.png"
+  },
+  {
+    "id": "education-03",
+    "name": "LanguageLab",
+    "industry": "Education",
+    "category": "Language Courses",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-03.html",
+    "zipUrl": "zips/education-03.zip",
+    "thumbnail": "assets/images/education-03.png"
+  },
+  {
+    "id": "education-04",
+    "name": "CodeBootcamp",
+    "industry": "Education",
+    "category": "Programming Bootcamp",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-04.html",
+    "zipUrl": "zips/education-04.zip",
+    "thumbnail": "assets/images/education-04.png"
+  },
+  {
+    "id": "education-05",
+    "name": "MusicAcademy",
+    "industry": "Education",
+    "category": "Music Education",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-05.html",
+    "zipUrl": "zips/education-05.zip",
+    "thumbnail": "assets/images/education-05.png"
+  },
+  {
+    "id": "education-06",
+    "name": "ArtSchool",
+    "industry": "Education",
+    "category": "Art & Design Classes",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-06.html",
+    "zipUrl": "zips/education-06.zip",
+    "thumbnail": "assets/images/education-06.png"
+  },
+  {
+    "id": "education-07",
+    "name": "FitnessAcademy",
+    "industry": "Education",
+    "category": "Fitness Certification",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-07.html",
+    "zipUrl": "zips/education-07.zip",
+    "thumbnail": "assets/images/education-07.png"
+  },
+  {
+    "id": "education-08",
+    "name": "ProfessionalHub",
+    "industry": "Education",
+    "category": "MBA & Certifications",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-08.html",
+    "zipUrl": "zips/education-08.zip",
+    "thumbnail": "assets/images/education-08.png"
+  },
+  {
+    "id": "education-09",
+    "name": "TutorConnect",
+    "industry": "Education",
+    "category": "K-12 Online Tutoring",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-09.html",
+    "zipUrl": "zips/education-09.zip",
+    "thumbnail": "assets/images/education-09.png"
+  },
+  {
+    "id": "education-10",
+    "name": "SkillUp",
+    "industry": "Education",
+    "category": "Career Skills Courses",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/education-10.html",
+    "zipUrl": "zips/education-10.zip",
+    "thumbnail": "assets/images/education-10.png"
+  },
+  {
+    "id": "fitness-01",
+    "name": "EliteFlow",
+    "industry": "Fitness",
+    "category": "Personal Training",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-01.html",
+    "zipUrl": "zips/fitness-01.zip",
+    "thumbnail": "assets/images/fitness-01.png"
+  },
+  {
+    "id": "fitness-02",
+    "name": "ZenFit",
+    "industry": "Fitness",
+    "category": "Yoga & Wellness",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-02.html",
+    "zipUrl": "zips/fitness-02.zip",
+    "thumbnail": "assets/images/fitness-02.png"
+  },
+  {
+    "id": "fitness-03",
+    "name": "IronHub",
+    "industry": "Fitness",
+    "category": "Strength Training",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-03.html",
+    "zipUrl": "zips/fitness-03.zip",
+    "thumbnail": "assets/images/fitness-03.png"
+  },
+  {
+    "id": "fitness-04",
+    "name": "NovaBorn",
+    "industry": "Fitness",
+    "category": "Women's Fitness",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-04.html",
+    "zipUrl": "zips/fitness-04.zip",
+    "thumbnail": "assets/images/fitness-04.png"
+  },
+  {
+    "id": "fitness-05",
+    "name": "FitLife 365",
+    "industry": "Fitness",
+    "category": "AI Coaching",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-05.html",
+    "zipUrl": "zips/fitness-05.zip",
+    "thumbnail": "assets/images/fitness-05.png"
+  },
+  {
+    "id": "fitness-06",
+    "name": "CrossFlex",
+    "industry": "Fitness",
+    "category": "Functional Fitness",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-06.html",
+    "zipUrl": "zips/fitness-06.zip",
+    "thumbnail": "assets/images/fitness-06.png"
+  },
+  {
+    "id": "fitness-07",
+    "name": "PilatesPro",
+    "industry": "Fitness",
+    "category": "Pilates & Core",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-07.html",
+    "zipUrl": "zips/fitness-07.zip",
+    "thumbnail": "assets/images/fitness-07.png"
+  },
+  {
+    "id": "fitness-08",
+    "name": "BoxMaster",
+    "industry": "Fitness",
+    "category": "Boxing & Combat",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-08.html",
+    "zipUrl": "zips/fitness-08.zip",
+    "thumbnail": "assets/images/fitness-08.png"
+  },
+  {
+    "id": "fitness-09",
+    "name": "FlowSpace",
+    "industry": "Fitness",
+    "category": "Dance Classes",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-09.html",
+    "zipUrl": "zips/fitness-09.zip",
+    "thumbnail": "assets/images/fitness-09.png"
+  },
+  {
+    "id": "fitness-10",
+    "name": "CoreVault",
+    "industry": "Fitness",
+    "category": "Corporate Wellness",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/fitness-10.html",
+    "zipUrl": "zips/fitness-10.zip",
+    "thumbnail": "assets/images/fitness-10.png"
+  },
+  {
+    "id": "healthcare-01",
+    "name": "HealthHub",
+    "industry": "Healthcare",
+    "category": "General Clinic",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-01.html",
+    "zipUrl": "zips/healthcare-01.zip",
+    "thumbnail": "assets/images/healthcare-01.png"
+  },
+  {
+    "id": "healthcare-02",
+    "name": "CardioCare",
+    "industry": "Healthcare",
+    "category": "Cardiology",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-02.html",
+    "zipUrl": "zips/healthcare-02.zip",
+    "thumbnail": "assets/images/healthcare-02.png"
+  },
+  {
+    "id": "healthcare-03",
+    "name": "DentalSmile",
+    "industry": "Healthcare",
+    "category": "Dental Services",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-03.html",
+    "zipUrl": "zips/healthcare-03.zip",
+    "thumbnail": "assets/images/healthcare-03.png"
+  },
+  {
+    "id": "healthcare-04",
+    "name": "WellnessCenter",
+    "industry": "Healthcare",
+    "category": "Wellness & Prevention",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-04.html",
+    "zipUrl": "zips/healthcare-04.zip",
+    "thumbnail": "assets/images/healthcare-04.png"
+  },
+  {
+    "id": "healthcare-05",
+    "name": "MediVision",
+    "industry": "Healthcare",
+    "category": "Eye Care",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-05.html",
+    "zipUrl": "zips/healthcare-05.zip",
+    "thumbnail": "assets/images/healthcare-05.png"
+  },
+  {
+    "id": "healthcare-06",
+    "name": "OrthoFlex",
+    "industry": "Healthcare",
+    "category": "Orthopedics",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-06.html",
+    "zipUrl": "zips/healthcare-06.zip",
+    "thumbnail": "assets/images/healthcare-06.png"
+  },
+  {
+    "id": "healthcare-07",
+    "name": "PhysioFlow",
+    "industry": "Healthcare",
+    "category": "Physiotherapy",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-07.html",
+    "zipUrl": "zips/healthcare-07.zip",
+    "thumbnail": "assets/images/healthcare-07.png"
+  },
+  {
+    "id": "healthcare-08",
+    "name": "MentalHealth",
+    "industry": "Healthcare",
+    "category": "Mental Health",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-08.html",
+    "zipUrl": "zips/healthcare-08.zip",
+    "thumbnail": "assets/images/healthcare-08.png"
+  },
+  {
+    "id": "healthcare-09",
+    "name": "VeterinaryCare",
+    "industry": "Healthcare",
+    "category": "Pet Healthcare",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-09.html",
+    "zipUrl": "zips/healthcare-09.zip",
+    "thumbnail": "assets/images/healthcare-09.png"
+  },
+  {
+    "id": "healthcare-10",
+    "name": "NursingPlus",
+    "industry": "Healthcare",
+    "category": "Home Nursing",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/healthcare-10.html",
+    "zipUrl": "zips/healthcare-10.zip",
+    "thumbnail": "assets/images/healthcare-10.png"
+  },
+  {
+    "id": "realestate-01",
+    "name": "PropertyPro",
+    "industry": "Real Estate",
+    "category": "General Real Estate",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-01.html",
+    "zipUrl": "zips/realestate-01.zip",
+    "thumbnail": "assets/images/realestate-01.png"
+  },
+  {
+    "id": "realestate-02",
+    "name": "LuxuryLiving",
+    "industry": "Real Estate",
+    "category": "Luxury Properties",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-02.html",
+    "zipUrl": "zips/realestate-02.zip",
+    "thumbnail": "assets/images/realestate-02.png"
+  },
+  {
+    "id": "realestate-03",
+    "name": "CityScape",
+    "industry": "Real Estate",
+    "category": "Urban Developments",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-03.html",
+    "zipUrl": "zips/realestate-03.zip",
+    "thumbnail": "assets/images/realestate-03.png"
+  },
+  {
+    "id": "realestate-04",
+    "name": "VillageHomes",
+    "industry": "Real Estate",
+    "category": "Rural Properties",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-04.html",
+    "zipUrl": "zips/realestate-04.zip",
+    "thumbnail": "assets/images/realestate-04.png"
+  },
+  {
+    "id": "realestate-05",
+    "name": "CommercialEdge",
+    "industry": "Real Estate",
+    "category": "Commercial Spaces",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-05.html",
+    "zipUrl": "zips/realestate-05.zip",
+    "thumbnail": "assets/images/realestate-05.png"
+  },
+  {
+    "id": "realestate-06",
+    "name": "ApartmentFinder",
+    "industry": "Real Estate",
+    "category": "Multi-family Homes",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-06.html",
+    "zipUrl": "zips/realestate-06.zip",
+    "thumbnail": "assets/images/realestate-06.png"
+  },
+  {
+    "id": "realestate-07",
+    "name": "InvestCorp",
+    "industry": "Real Estate",
+    "category": "Investment Properties",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-07.html",
+    "zipUrl": "zips/realestate-07.zip",
+    "thumbnail": "assets/images/realestate-07.png"
+  },
+  {
+    "id": "realestate-08",
+    "name": "ResortLife",
+    "industry": "Real Estate",
+    "category": "Resort Properties",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-08.html",
+    "zipUrl": "zips/realestate-08.zip",
+    "thumbnail": "assets/images/realestate-08.png"
+  },
+  {
+    "id": "realestate-09",
+    "name": "ConstructPro",
+    "industry": "Real Estate",
+    "category": "New Constructions",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-09.html",
+    "zipUrl": "zips/realestate-09.zip",
+    "thumbnail": "assets/images/realestate-09.png"
+  },
+  {
+    "id": "realestate-10",
+    "name": "PropertyPulse",
+    "industry": "Real Estate",
+    "category": "Real Estate Platform",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/realestate-10.html",
+    "zipUrl": "zips/realestate-10.zip",
+    "thumbnail": "assets/images/realestate-10.png"
+  },
+  {
+    "id": "saas-01",
+    "name": "CloudSync",
+    "industry": "SaaS",
+    "category": "Cloud Collaboration",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-01.html",
+    "zipUrl": "zips/saas-01.zip",
+    "thumbnail": "assets/images/saas-01.png"
+  },
+  {
+    "id": "saas-02",
+    "name": "DataFlow",
+    "industry": "SaaS",
+    "category": "Analytics & Insights",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-02.html",
+    "zipUrl": "zips/saas-02.zip",
+    "thumbnail": "assets/images/saas-02.png"
+  },
+  {
+    "id": "saas-03",
+    "name": "SecureVault",
+    "industry": "SaaS",
+    "category": "Security & Encryption",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-03.html",
+    "zipUrl": "zips/saas-03.zip",
+    "thumbnail": "assets/images/saas-03.png"
+  },
+  {
+    "id": "saas-04",
+    "name": "NeoAI",
+    "industry": "SaaS",
+    "category": "Artificial Intelligence",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-04.html",
+    "zipUrl": "zips/saas-04.zip",
+    "thumbnail": "assets/images/saas-04.png"
+  },
+  {
+    "id": "saas-05",
+    "name": "AutoScale",
+    "industry": "SaaS",
+    "category": "Auto-scaling Solutions",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-05.html",
+    "zipUrl": "zips/saas-05.zip",
+    "thumbnail": "assets/images/saas-05.png"
+  },
+  {
+    "id": "saas-06",
+    "name": "DevOps Pro",
+    "industry": "SaaS",
+    "category": "Development Operations",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-06.html",
+    "zipUrl": "zips/saas-06.zip",
+    "thumbnail": "assets/images/saas-06.png"
+  },
+  {
+    "id": "saas-07",
+    "name": "CloudBase",
+    "industry": "SaaS",
+    "category": "Database Management",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-07.html",
+    "zipUrl": "zips/saas-07.zip",
+    "thumbnail": "assets/images/saas-07.png"
+  },
+  {
+    "id": "saas-08",
+    "name": "ZeroCode",
+    "industry": "SaaS",
+    "category": "No-code Platform",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-08.html",
+    "zipUrl": "zips/saas-08.zip",
+    "thumbnail": "assets/images/saas-08.png"
+  },
+  {
+    "id": "saas-09",
+    "name": "APIHub",
+    "industry": "SaaS",
+    "category": "API Marketplace",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-09.html",
+    "zipUrl": "zips/saas-09.zip",
+    "thumbnail": "assets/images/saas-09.png"
+  },
+  {
+    "id": "saas-10",
+    "name": "ByteFlow",
+    "industry": "SaaS",
+    "category": "Data Streaming",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/saas-10.html",
+    "zipUrl": "zips/saas-10.zip",
+    "thumbnail": "assets/images/saas-10.png"
+  }
+]

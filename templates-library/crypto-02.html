@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BlockForge - DeFi Protocol for Decentralized Finance">
+    <meta name="keywords" content="DeFi, Blockchain, Decentralized Finance, Smart Contracts">
+    <title>BlockForge - Build & Deploy DeFi Protocols</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; font-weight: 800; }
+        .gradient-defi { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .defi-glow { box-shadow: 0 0 60px rgba(102, 126, 234, 0.4); animation: defiGlow 3s ease-in-out infinite; }
+        @keyframes defiGlow { 0%, 100% { box-shadow: 0 0 60px rgba(102, 126, 234, 0.4); } 50% { box-shadow: 0 0 80px rgba(118, 75, 162, 0.6); } }
+        .tab-btn { position: relative; padding-bottom: 12px; }
+        .tab-btn.active { color: #667eea; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px; background: linear-gradient(90deg, #667eea, #764ba2); }
+        .feature-gradient { background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%); }
+        .card-3d { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .card-3d:hover { transform: translateY(-16px) translateZ(0); box-shadow: 0 40px 80px rgba(102, 126, 234, 0.3); }
+        .protocol-stat { font-size: 3rem; font-weight: 800; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header/Navigation -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <i class="fas fa-hammer text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">BlockForge</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#protocols" class="text-gray-700 font-medium hover:text-purple-600 transition">Protocols</a>
+                <a href="#features" class="text-gray-700 font-medium hover:text-purple-600 transition">Features</a>
+                <a href="#benefits" class="text-gray-700 font-medium hover:text-purple-600 transition">Benefits</a>
+                <a href="#pricing" class="text-gray-700 font-medium hover:text-purple-600 transition">Pricing</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition">Deploy Protocol</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#protocols" class="block text-gray-700 font-medium py-2 hover:text-purple-600">Protocols</a>
+                <a href="#features" class="block text-gray-700 font-medium py-2 hover:text-purple-600">Features</a>
+                <a href="#benefits" class="block text-gray-700 font-medium py-2 hover:text-purple-600">Benefits</a>
+                <a href="#pricing" class="block text-gray-700 font-medium py-2 hover:text-purple-600">Pricing</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold">Deploy Protocol</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-gray-50 to-purple-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-purple-100 text-purple-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-code-branch"></i> Decentralized Finance
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Build DeFi<br/><span class="gradient-defi">Without Limits</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Deploy smart contract-based financial protocols with BlockForge. Create lending platforms, DEXs, yield farming, and more with enterprise-grade infrastructure and zero intermediaries.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition">
+                        Start Building
+                    </button>
+                    <button class="border-2 border-purple-300 text-purple-600 px-8 py-4 rounded-lg font-bold hover:bg-purple-50 transition">
+                        View Docs
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-gray-900">$500B+</p>
+                        <p class="text-gray-600">Total Value Locked</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-gray-900">10K+</p>
+                        <p class="text-gray-600">Active Protocols</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-gray-900">2M+</p>
+                        <p class="text-gray-600">Daily Users</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="defi-glow w-80 h-80 bg-gradient-to-br from-purple-100 to-indigo-100 rounded-3xl flex items-center justify-center relative">
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <i class="fas fa-cube text-7xl text-purple-200 opacity-60"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Top Protocols -->
+    <section id="protocols" class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-purple-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Popular DeFi Protocols</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Powered by BlockForge infrastructure</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="card-3d bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-exchange-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">SynthSwap</h3>
+                    <p class="text-gray-600 mb-4">DEX with AMM liquidity pools</p>
+                    <p class="text-2xl font-bold text-purple-600">$45.2B TVL</p>
+                </div>
+                
+                <div class="card-3d bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-percent text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">LendHub</h3>
+                    <p class="text-gray-600 mb-4">Lending & borrowing protocol</p>
+                    <p class="text-2xl font-bold text-purple-600">$78.5B TVL</p>
+                </div>
+                
+                <div class="card-3d bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-leaf text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">HarvestYield</h3>
+                    <p class="text-gray-600 mb-4">Yield farming aggregator</p>
+                    <p class="text-2xl font-bold text-purple-600">$32.1B TVL</p>
+                </div>
+                
+                <div class="card-3d bg-white rounded-2xl p-8 border border-gray-100">
+                    <div class="w-16 h-16 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-shield-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">InsuranceDAX</h3>
+                    <p class="text-gray-600 mb-4">Decentralized insurance</p>
+                    <p class="text-2xl font-bold text-purple-600">$8.9B TVL</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Enterprise Protocol Features</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Everything needed to launch production-grade DeFi protocols</p>
+            
+            <div class="space-y-12">
+                <!-- Feature 1 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <div class="feature-gradient rounded-2xl p-12 h-80 flex items-center justify-center relative overflow-hidden">
+                            <i class="fas fa-code text-6xl text-purple-300 opacity-80"></i>
+                            <div class="absolute top-8 right-8 bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                                Smart Contracts
+                            </div>
+                        </div>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <h3 class="text-4xl font-bold text-gray-900 mb-4">Audited Smart Contracts</h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Start with battle-tested, audited smart contracts. Solidity templates for DEXs, lending protocols, derivatives, and more. Customize or extend as needed.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Multi-chain deployment</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Gas-optimized code</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Formal verification ready</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="feature-gradient rounded-2xl p-12 h-80 flex items-center justify-center relative overflow-hidden">
+                        <i class="fas fa-chart-line text-6xl text-purple-300 opacity-80"></i>
+                        <div class="absolute bottom-8 left-8 bg-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                            Analytics
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-4xl font-bold text-gray-900 mb-4">Real-Time Analytics</h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Monitor protocol health with comprehensive dashboards. Track TVL, volume, liquidity, user metrics, and more. Real-time alerts for critical events.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Live data feeds</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Risk analytics</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Governance insights</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="order-2 lg:order-1">
+                        <feature-gradient rounded-2xl p-12 h-80 flex items-center justify-center relative overflow-hidden class="feature-gradient">
+                            <i class="fas fa-lock text-6xl text-purple-300 opacity-80"></i>
+                            <div class="absolute top-8 right-8 bg-purple-600 text-white text-xs font-bold px-3 py-1.5 rounded-full">
+                                Security
+                            </div>
+                        </feature-gradient>
+                    </div>
+                    <div class="order-1 lg:order-2">
+                        <h3 class="text-4xl font-bold text-gray-900 mb-4">Security & Compliance</h3>
+                        <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                            Built-in security measures from day one. Multi-sig treasury, time locks, circuit breakers, and emergency pause mechanisms protect your protocol.
+                        </p>
+                        <ul class="space-y-3">
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Audit trail logging</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Reentrancy protection</span>
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <i class="fas fa-check-circle text-purple-600 text-xl"></i>
+                                <span class="text-gray-700">Admin permission model</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Why Choose BlockForge?</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-tachometer-alt text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Lightning Fast</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Optimized infrastructure for high-throughput protocols. Handle millions of transactions with sub-second latency.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-globe text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Multi-Chain Ready</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Deploy on Ethereum, Polygon, Arbitrum, Optimism, Avalanche, and 10+ other chains from one dashboard.
+                    </p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 border border-gray-200">
+                    <div class="w-14 h-14 bg-gradient-to-br from-purple-600 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                        <i class="fas fa-network-wired text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Community Driven</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Access to 50K+ developer ecosystem. Collaborate, learn, and grow with the vibrant DeFi community.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-white rounded-2xl border border-gray-200 p-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 text-center">Developer Statistics</h3>
+                <div class="grid md:grid-cols-4 gap-8">
+                    <div class="text-center">
+                        <div class="protocol-stat mb-2">25K+</div>
+                        <p class="text-gray-600 font-medium">Active Developers</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="protocol-stat mb-2">150M+</div>
+                        <p class="text-gray-600 font-medium">Total Transactions</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="protocol-stat mb-2">99.9%</div>
+                        <p class="text-gray-600 font-medium">Uptime SLA</p>
+                    </div>
+                    <div class="text-center">
+                        <div class="protocol-stat mb-2">$2.1B</div>
+                        <p class="text-gray-600 font-medium">Developer Grants</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Flexible Protocol Plans</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Scale from testnet to production</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testnet Plan -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Testnet</h3>
+                    <p class="text-gray-600 mb-8">For development</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">Free</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Smart contract templates</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Testnet deployment</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Community support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">API access (limited)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Production Plan -->
+                <div class="bg-white rounded-2xl border-2 border-purple-600 p-8 relative shadow-xl">
+                    <div class="absolute -top-4 left-8 bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 py-1.5 rounded-full text-sm font-bold">
+                        MOST POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-6">Production</h3>
+                    <p class="text-gray-600 mb-8">For live protocols</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$2,999</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition mb-8">
+                        Start Protocol
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Everything in Testnet</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Mainnet deployment</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Multi-chain support</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Premium analytics</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">24/7 technical support</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-8">For ecosystems</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Sales
+                    </button>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Everything in Production</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Custom integrations</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Dedicated infrastructure</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">Custom audits & SLAs</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i class="fas fa-check text-purple-600"></i>
+                            <span class="text-gray-700">White-glove onboarding</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-700">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Build Your DeFi Protocol?</h2>
+            <p class="text-xl text-purple-100 mb-10">Join thousands of developers building the future of finance</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-purple-50 transition shadow-xl">
+                    Deploy Now
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    View Documentation
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-purple-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-hammer text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">BlockForge</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Enterprise DeFi protocol infrastructure</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Protocols</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Developers</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400 transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">GitHub</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">API Reference</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Community</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400 transition">Discord</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Forums</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Grants</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-purple-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition"><i class="fab fa-github text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-purple-400 transition"><i class="fab fa-discord text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Deploy Your Protocol</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Protocol Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100" placeholder="e.g., SynthSwap">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Email Address</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100" placeholder="you@example.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Chain Preference</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-purple-600 focus:ring-2 focus:ring-purple-100">
+                            <option>Ethereum Mainnet</option>
+                            <option>Polygon</option>
+                            <option>Arbitrum</option>
+                            <option>Optimism</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="flex items-center gap-3">
+                            <input type="checkbox" class="w-4 h-4 accent-purple-600">
+                            <span class="text-sm text-gray-700">I agree to Terms of Service</span>
+                        </label>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Deploy Protocol
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

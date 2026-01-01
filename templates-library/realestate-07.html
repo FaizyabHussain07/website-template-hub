@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="GreenHomes - Sustainable and eco-friendly real estate properties for conscious living">
+    <meta name="keywords" content="eco-friendly homes, sustainable real estate, green buildings, LEED certified, green properties">
+    <title>GreenHomes - Sustainable Real Estate</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Open Sans', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Merriweather', serif; font-weight: 700; }
+        .gradient-eco { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .gradient-earth { background: linear-gradient(135deg, #b45309 0%, #d97706 100%); }
+        .leaf-accent { color: #10b981; }
+        .eco-card { transition: all 0.3s ease; border-left: 4px solid #10b981; }
+        .eco-card:hover { transform: translateX(8px); }
+        .modal-closed { display: none; }
+        .modal-closed.open { display: flex; }
+        .animate-float { animation: float 3s ease-in-out infinite; }
+        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-20px); } }
+        .sustainable-badge { background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%); color: #047857; }
+        .accordion-item { border: 1px solid #e5e7eb; }
+        .accordion-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .accordion-content.open { max-height: 500px; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-green-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-eco rounded-lg flex items-center justify-center shadow-md">
+                    <i class="fas fa-leaf text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">GreenHomes</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#properties" class="text-gray-700 font-medium hover:leaf-accent transition">Properties</a>
+                <a href="#sustainability" class="text-gray-700 font-medium hover:leaf-accent transition">Sustainability</a>
+                <a href="#benefits" class="text-gray-700 font-medium hover:leaf-accent transition">Benefits</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:leaf-accent transition">FAQ</a>
+                <button onclick="openModal()" class="bg-gradient-eco text-white px-6 py-3 rounded-lg font-semibold hover:shadow-lg transition">Schedule Tour</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-green-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#properties" class="block text-gray-700 font-medium py-2">Properties</a>
+                <a href="#sustainability" class="block text-gray-700 font-medium py-2">Sustainability</a>
+                <a href="#benefits" class="block text-gray-700 font-medium py-2">Benefits</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">FAQ</a>
+                <button onclick="openModal()" class="w-full bg-gradient-eco text-white py-3 rounded-lg font-semibold">Schedule Tour</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-green-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 sustainable-badge rounded-full font-semibold text-sm mb-6">Sustainable Living Starts Here</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Live
+                        <span class="leaf-accent"> Sustainably</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Discover eco-friendly homes designed for conscious living. Reduce your carbon footprint while enjoying modern comfort and community.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-eco text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Explore Properties
+                        </button>
+                        <button class="border-2 border-green-600 text-green-600 px-8 py-4 rounded-lg font-bold hover:bg-green-50 transition text-lg">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-green-100 to-emerald-50 rounded-2xl overflow-hidden shadow-2xl animate-float">
+                        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=700&h=700&fit=crop" alt="Eco-friendly home" class="w-full h-full object-cover">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-xl shadow-xl border border-green-100">
+                        <p class="text-2xl font-bold text-gray-900">100%</p>
+                        <p class="text-sm text-gray-600">Carbon Neutral</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Stats -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="text-center p-6 bg-green-50 rounded-xl border border-green-100">
+                    <p class="text-4xl font-bold leaf-accent mb-2">2,500+</p>
+                    <p class="text-gray-600">Green Properties</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-xl border border-green-100">
+                    <p class="text-4xl font-bold leaf-accent mb-2">85%</p>
+                    <p class="text-gray-600">Energy Savings</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-xl border border-green-100">
+                    <p class="text-4xl font-bold leaf-accent mb-2">10K+</p>
+                    <p class="text-gray-600">Happy Families</p>
+                </div>
+                <div class="text-center p-6 bg-green-50 rounded-xl border border-green-100">
+                    <p class="text-4xl font-bold leaf-accent mb-2">50K</p>
+                    <p class="text-gray-600">Tons CO₂ Saved</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Green Properties</h2>
+                <p class="text-xl text-gray-600">Sustainably designed homes with modern amenities</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45201003c6b7?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 sustainable-badge px-3 py-1 rounded-full text-sm font-bold">LEED Gold</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Eco-Zen Cottage</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Sustainable Neighborhood</p>
+                        <div class="space-y-3 mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-solar-panel leaf-accent"></i>
+                                <span class="text-gray-700">10kW Solar Panel System</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-droplet leaf-accent"></i>
+                                <span class="text-gray-700">Rainwater Harvesting</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-leaf leaf-accent"></i>
+                                <span class="text-gray-700">Zero Waste Gardens</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$425K</span>
+                            <button onclick="openModal()" class="bg-gradient-eco text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Tour</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 sustainable-badge px-3 py-1 rounded-full text-sm font-bold">LEED Platinum</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Modern Green Estate</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Eco Village Community</p>
+                        <div class="space-y-3 mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-solar-panel leaf-accent"></i>
+                                <span class="text-gray-700">15kW Solar System</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-wind leaf-accent"></i>
+                                <span class="text-gray-700">Wind Energy Access</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-leaf leaf-accent"></i>
+                                <span class="text-gray-700">Organic Landscape</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$650K</span>
+                            <button onclick="openModal()" class="bg-gradient-eco text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Tour</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 sustainable-badge px-3 py-1 rounded-full text-sm font-bold">Net Zero</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-909 mb-2">Net-Zero Residence</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Green Living District</p>
+                        <div class="space-y-3 mb-6 p-4 bg-green-50 rounded-lg border border-green-200">
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-battery-full leaf-accent"></i>
+                                <span class="text-gray-700">Energy Storage System</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-temperature-low leaf-accent"></i>
+                                <span class="text-gray-700">Smart Climate Control</span>
+                            </div>
+                            <div class="flex items-center gap-2 text-sm">
+                                <i class="fas fa-leaf leaf-accent"></i>
+                                <span class="text-gray-700">Native Plants Only</span>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$575K</span>
+                            <button onclick="openModal()" class="bg-gradient-eco text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">Tour</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Features -->
+    <section id="sustainability" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Our Sustainability Standards</h2>
+                <p class="text-xl text-gray-600">Every property meets rigorous environmental criteria</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 mb-12">
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-solar-panel text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Renewable Energy</h3>
+                            <p class="text-gray-600 text-sm">Solar and wind integration for energy independence</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-water text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Water Conservation</h3>
+                            <p class="text-gray-600 text-sm">Rainwater harvesting and efficient plumbing systems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-leaf text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Biodiversity</h3>
+                            <p class="text-gray-600 text-sm">Native plantings support local ecosystems</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-recycle text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Recycled Materials</h3>
+                            <p class="text-gray-600 text-sm">Construction using sustainable, eco-friendly materials</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-wind text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Air Quality</h3>
+                            <p class="text-gray-600 text-sm">Advanced ventilation for healthy indoor air</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="eco-card bg-gray-50 p-8 rounded-xl">
+                    <div class="flex gap-4 mb-4">
+                        <i class="fas fa-certificate text-3xl leaf-accent"></i>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900">Certifications</h3>
+                            <p class="text-gray-600 text-sm">LEED, WELL, and other recognized standards</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 px-4 sm:px-6 lg:px-8 bg-green-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Benefits of Green Living</h2>
+                <p class="text-xl text-gray-600">Beyond environmental impact - real benefits for your life</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-money-bill-wave text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Lower Utility Bills</h3>
+                    <p class="text-gray-600">Save up to 85% on energy costs with efficient systems and renewable energy sources.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-heart text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-909 mb-4">Better Health</h3>
+                    <p class="text-gray-600">Improved indoor air quality and non-toxic materials support respiratory and overall wellness.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-house-heart text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-909 mb-4">Higher Resale Value</h3>
+                    <p class="text-gray-600">Green homes appreciate faster and attract more buyers in the growing eco-conscious market.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-leaf text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-909 mb-4">Environmental Impact</h3>
+                    <p class="text-gray-600">Reduce your carbon footprint and contribute to a sustainable future for next generations.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-people-group text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-909 mb-4">Community Living</h3>
+                    <p class="text-gray-600">Join eco-conscious communities with shared values and sustainable lifestyle practices.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-green-200 text-center hover:shadow-lg transition">
+                    <i class="fas fa-trophy text-4xl leaf-accent mb-4"></i>
+                    <h3 class="text-xl font-bold text-gray-909 mb-4">Tax Incentives</h3>
+                    <p class="text-gray-600">Qualify for federal and state incentives for purchasing LEED certified green homes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Frequently Asked Questions</h2>
+                <p class="text-xl text-gray-600">Everything you need to know about green living</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="accordion-item rounded-lg">
+                    <button onclick="toggleAccordion(this)" class="w-full p-6 bg-green-50 text-left flex justify-between items-center hover:bg-green-100 transition">
+                        <span class="font-bold text-gray-900">Are green homes more expensive?</span>
+                        <i class="fas fa-chevron-down text-green-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-white border-t border-green-200">
+                            <p class="text-gray-600">While green homes may have a higher initial cost, they save significantly on utility bills. Most homeowners recover the investment within 5-7 years through energy savings.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item rounded-lg">
+                    <button onclick="toggleAccordion(this)" class="w-full p-6 bg-green-50 text-left flex justify-between items-center hover:bg-green-100 transition">
+                        <span class="font-bold text-gray-900">What is LEED certification?</span>
+                        <i class="fas fa-chevron-down text-green-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-white border-t border-green-200">
+                            <p class="text-gray-600">LEED (Leadership in Energy and Environmental Design) is an internationally recognized certification system that verifies a building's environmental performance and sustainability standards.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item rounded-lg">
+                    <button onclick="toggleAccordion(this)" class="w-full p-6 bg-green-50 text-left flex justify-between items-center hover:bg-green-100 transition">
+                        <span class="font-bold text-gray-909">How do solar panels work?</span>
+                        <i class="fas fa-chevron-down text-green-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-white border-t border-green-200">
+                            <p class="text-gray-600">Solar panels convert sunlight into electricity using photovoltaic cells. Excess energy can be stored in batteries or sold back to the grid, making your home energy-independent.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item rounded-lg">
+                    <button onclick="toggleAccordion(this)" class="w-full p-6 bg-green-50 text-left flex justify-between items-center hover:bg-green-100 transition">
+                        <span class="font-bold text-gray-909">What maintenance is required?</span>
+                        <i class="fas fa-chevron-down text-green-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="p-6 bg-white border-t border-green-200">
+                            <p class="text-gray-600">Green homes are designed to minimize maintenance. Solar panels need occasional cleaning, and rainwater systems require regular checks. Overall, maintenance is similar to conventional homes.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-eco text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Go Green?</h2>
+            <p class="text-xl mb-10 opacity-90">Start your journey to sustainable living today.</p>
+            <button onclick="openModal()" class="bg-white text-green-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Schedule a Property Tour
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">GreenHomes</h4>
+                    <p class="text-sm">Leading the way in sustainable real estate.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Browse</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Properties</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sustainability</a></li>
+                        <li><a href="#" class="hover:text-white transition">Communities</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Learn</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Resources</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 GreenHomes. Committed to sustainable living.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Tour Modal -->
+    <div id="tourModal" class="modal-closed fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Schedule a Tour</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 bg-white">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 bg-white">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 bg-white">
+                <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-green-600 bg-white">
+                <button type="submit" class="w-full bg-gradient-eco text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Schedule Tour</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('tourModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('tourModal').classList.remove('open');
+        }
+
+        function toggleAccordion(button) {
+            const content = button.nextElementSibling;
+            const isOpen = content.classList.contains('open');
+            
+            // Close all accordions
+            document.querySelectorAll('.accordion-content').forEach(item => {
+                item.classList.remove('open');
+            });
+            document.querySelectorAll('.accordion-item button').forEach(btn => {
+                btn.classList.remove('bg-green-200');
+            });
+
+            // Open clicked accordion
+            if (!isOpen) {
+                content.classList.add('open');
+                button.classList.add('bg-green-200');
+            }
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('tourModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

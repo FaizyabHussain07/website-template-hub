@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DoctorHub - Find and book appointments with doctors online">
+    <meta name="keywords" content="doctor appointment, booking, healthcare, medical consultation, telemedicine">
+    <title>DoctorHub - Book Doctor Appointments</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; font-weight: 800; }
+        .gradient-doctor { background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .doctor-glow { box-shadow: 0 0 50px rgba(239, 68, 68, 0.3); animation: doctorGlow 2.5s ease-in-out infinite; }
+        @keyframes doctorGlow { 0%, 100% { box-shadow: 0 0 50px rgba(239, 68, 68, 0.3); } 50% { box-shadow: 0 0 70px rgba(220, 38, 38, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .doctor-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .doctor-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(239, 68, 68, 0.15); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-stethoscope text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">DoctorHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#doctors" class="text-gray-700 font-medium hover:text-red-600 transition">Find Doctors</a>
+                <a href="#specialties" class="text-gray-700 font-medium hover:text-red-600 transition">Specialties</a>
+                <a href="#how-it-works" class="text-gray-700 font-medium hover:text-red-600 transition">How It Works</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-red-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Book Now</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#doctors" class="block text-gray-700 font-medium py-2">Find Doctors</a>
+                <a href="#specialties" class="block text-gray-700 font-medium py-2">Specialties</a>
+                <a href="#how-it-works" class="block text-gray-700 font-medium py-2">How It Works</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-lg font-bold">Book Now</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-red-50 to-rose-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-check"></i> Verified Doctors
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Find & Book<br/><span class="gradient-doctor">Top Doctors</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Schedule appointments with verified doctors. Instant consultations. Video or in-person. All specialties.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-red-500 to-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Book Appointment
+                    </button>
+                    <button class="border-2 border-red-300 text-red-600 px-8 py-4 rounded-lg font-bold hover:bg-red-50 transition">
+                        Find Doctors
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-red-600">10K+</p>
+                        <p class="text-gray-600">Doctors</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-red-600">100K+</p>
+                        <p class="text-gray-600">Appointments</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="doctor-glow w-80 h-80 bg-gradient-to-br from-red-100 to-rose-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-user-doctor text-7xl text-red-100 opacity-50"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Doctors -->
+    <section id="doctors" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Meet Our Doctors</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="doctor-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-red-200 to-rose-200 flex items-center justify-center">
+                        <i class="fas fa-user-doctor text-red-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">Dr. Sarah Johnson</h3>
+                        <p class="text-red-600 font-semibold mb-4">Cardiology</p>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-gray-600">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span>4.9 (450 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm">20+ years experience. Board certified. Specializes in heart disease treatment.</p>
+                        <button onclick="openModal()" class="w-full bg-red-100 text-red-700 py-2 rounded-lg font-bold hover:bg-red-200 transition">
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="doctor-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-red-200 to-rose-200 flex items-center justify-center">
+                        <i class="fas fa-user-doctor text-red-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">Dr. Michael Chen</h3>
+                        <p class="text-red-600 font-semibold mb-4">Neurology</p>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-gray-600">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span>4.8 (380 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm">18+ years experience. Neurological disorders. Brain health expert.</p>
+                        <button onclick="openModal()" class="w-full bg-red-100 text-red-700 py-2 rounded-lg font-bold hover:bg-red-200 transition">
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="doctor-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-red-200 to-rose-200 flex items-center justify-center">
+                        <i class="fas fa-user-doctor text-red-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-1">Dr. Emily Rodriguez</h3>
+                        <p class="text-red-600 font-semibold mb-4">Dermatology</p>
+                        <div class="flex items-center gap-2 mb-4 text-sm text-gray-600">
+                            <i class="fas fa-star text-yellow-400"></i>
+                            <span>4.7 (520 reviews)</span>
+                        </div>
+                        <p class="text-gray-600 mb-6 text-sm">15+ years experience. Skin care expert. Cosmetic dermatology.</p>
+                        <button onclick="openModal()" class="w-full bg-red-100 text-red-700 py-2 rounded-lg font-bold hover:bg-red-200 transition">
+                            Book Appointment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Specialties -->
+    <section id="specialties" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Medical Specialties</h2>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-heart text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Cardiology</h3>
+                    <p class="text-sm text-gray-600">Heart & cardiovascular</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-brain text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Neurology</h3>
+                    <p class="text-sm text-gray-600">Brain & nervous system</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-flask-vial text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Orthopedics</h3>
+                    <p class="text-sm text-gray-600">Bones & joints</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-eye text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Ophthalmology</h3>
+                    <p class="text-sm text-gray-600">Eyes & vision</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-skin text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Dermatology</h3>
+                    <p class="text-sm text-gray-600">Skin health</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-tooth text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Dentistry</h3>
+                    <p class="text-sm text-gray-600">Teeth & gums</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-lung text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Pulmonology</h3>
+                    <p class="text-sm text-gray-600">Lungs & respiratory</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition">
+                    <i class="fas fa-stethoscope text-red-500 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">General Practice</h3>
+                    <p class="text-sm text-gray-600">Primary care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8 bg-red-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">How It Works</h2>
+            
+            <div class="space-y-8">
+                <div class="flex gap-8 items-start">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-3xl font-bold text-white">1</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Search & Find</h3>
+                        <p class="text-lg text-gray-600">Browse thousands of verified doctors. Filter by specialty, location, and availability.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-8 items-start">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-3xl font-bold text-white">2</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Book Appointment</h3>
+                        <p class="text-lg text-gray-600">Select your preferred date and time. Get instant confirmation.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-8 items-start">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-3xl font-bold text-white">3</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Video Consultation</h3>
+                        <p class="text-lg text-gray-600">Join video call or visit in-person. Get professional medical advice.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-8 items-start">
+                    <div class="w-20 h-20 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center flex-shrink-0">
+                        <span class="text-3xl font-bold text-white">4</span>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2">Get Prescription</h3>
+                        <p class="text-lg text-gray-600">Receive digital prescriptions. Order medicines online.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-red-600 transition">
+                        <span>Are doctors verified?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, all doctors are verified and licensed. We perform background checks and verify credentials.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-red-600 transition">
+                        <span>How much does a consultation cost?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Consultation fees vary by doctor (&#8377;300-1500). Prices shown before booking.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-red-600 transition">
+                        <span>Is my information private?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, 100% secure. All data encrypted. HIPAA compliant. No information shared.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-500 to-red-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Your Health, Our Priority</h2>
+            <p class="text-xl text-red-100 mb-10">Book with top-rated doctors today</p>
+            <button onclick="openModal()" class="bg-white text-red-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Book Appointment
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-br from-red-500 to-red-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-stethoscope text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">DoctorHub</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Doctors</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-red-400 transition">Find Doctors</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition">Specialties</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Patients</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-red-400 transition">How It Works</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition">Pricing</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-red-400 transition">About</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-red-400 transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-red-400 transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Book Appointment</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Select Doctor</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100">
+                            <option>Dr. Sarah Johnson - Cardiology</option>
+                            <option>Dr. Michael Chen - Neurology</option>
+                            <option>Dr. Emily Rodriguez - Dermatology</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Preferred Date</label>
+                        <input type="date" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Consultation Type</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100">
+                            <option>Video Consultation</option>
+                            <option>In-Person Visit</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Confirm Booking
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

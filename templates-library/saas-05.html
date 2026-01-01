@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TaskVault - Secure task and password management for teams">
+    <meta name="keywords" content="SaaS, task management, password manager, team security">
+    <title>TaskVault - Secure Task & Password Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+        
+        .gradient-red {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .shield-pulse {
+            animation: shieldPulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes shieldPulse {
+            0%, 100% { transform: scale(1) rotate(0deg); }
+            50% { transform: scale(1.05) rotate(1deg); }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+        
+        .modal-wrapper {
+            display: none;
+        }
+        
+        .modal-wrapper.open {
+            display: flex;
+        }
+        
+        .safety-badge {
+            background: linear-gradient(135deg, rgba(220, 38, 38, 0.1), rgba(153, 27, 27, 0.05));
+            border: 1px solid rgba(220, 38, 38, 0.2);
+        }
+        
+        .counter-up {
+            animation: countUp 2s ease-out;
+        }
+        
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .tab-selector button {
+            position: relative;
+            color: #6b7280;
+            font-weight: 600;
+            padding: 10px 0;
+            border: none;
+            background: none;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        
+        .tab-selector button.active {
+            color: #dc2626;
+        }
+        
+        .tab-selector button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #dc2626;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-red-600 rounded-lg flex items-center justify-center shadow-lg">
+                    <i class="fas fa-shield-alt text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">TaskVault</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#features" class="text-gray-700 font-medium hover:text-red-600 transition">Features</a>
+                <a href="#security" class="text-gray-700 font-medium hover:text-red-600 transition">Security</a>
+                <a href="#pricing" class="text-gray-700 font-medium hover:text-red-600 transition">Pricing</a>
+                <button onclick="openSignup()" class="bg-red-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-red-700 transition">
+                    Sign Up
+                </button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-700" onclick="toggleMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-gray-700 font-medium py-2 hover:text-red-600">Features</a>
+                <a href="#security" class="block text-gray-700 font-medium py-2 hover:text-red-600">Security</a>
+                <a href="#pricing" class="block text-gray-700 font-medium py-2 hover:text-red-600">Pricing</a>
+                <button onclick="openSignup()" class="w-full bg-red-600 text-white px-6 py-2.5 rounded-lg font-semibold">Sign Up</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-red-100 text-red-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-lock text-indigo-600"></i> Military-Grade Encryption
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+                    Your Secrets,<br/><span class="gradient-red">Safely Guarded</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Secure task management and password vault for teams. Zero-knowledge architecture means only you can see your data. Trust, verified.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openSignup()" class="bg-red-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-red-700 transition shadow-lg">
+                        Get Started Free
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-red-600 hover:text-red-600 transition">
+                        Learn More
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-6"><i class="fas fa-check text-green-600 mr-1"></i> No credit card required &bull; <i class="fas fa-check text-green-600 mr-1"></i> 30-day free trial</p>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="shield-pulse relative w-full h-96">
+                    <div class="absolute inset-0 bg-gradient-to-br from-red-100 to-orange-50 rounded-3xl flex items-center justify-center">
+                        <i class="fas fa-lock text-8xl text-red-300 opacity-30"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features -->
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Complete Protection Suite</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Everything your team needs to stay secure</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-red-100 text-red-600 mb-6">
+                        <i class="fas fa-key"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Password Vault</h3>
+                    <p class="text-gray-600">Generate, store, and auto-fill strong passwords. Securely shared across your team.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-orange-100 text-orange-600 mb-6">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Task Management</h3>
+                    <p class="text-gray-600">Organize and track team tasks with encrypted notes and attachments.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-red-100 text-red-600 mb-6">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Secure Documents</h3>
+                    <p class="text-gray-600">Store sensitive documents with version control and expiring links.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-yellow-100 text-yellow-600 mb-6">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Security Alerts</h3>
+                    <p class="text-gray-600">Get notified of suspicious activity and unauthorized access attempts.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-blue-100 text-blue-600 mb-6">
+                        <i class="fas fa-history"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Audit Logs</h3>
+                    <p class="text-gray-600">Complete activity history for compliance and security investigations.</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl p-8 hover-lift border border-gray-100">
+                    <div class="feature-icon bg-green-100 text-green-600 mb-6">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Team Management</h3>
+                    <p class="text-gray-600">Fine-grained permissions and role-based access control for teams.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Security Section with Tabs -->
+    <section id="security" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Bank-Level Security</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Your data is protected like your life depends on it</p>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-lock text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">End-to-End Encryption</h3>
+                            <p class="text-gray-600">AES-256 encryption. Your passwords are encrypted on your device before leaving.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-eye-slash text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Zero-Knowledge</h3>
+                            <p class="text-gray-600">We can't access your data even if we wanted to. Only you hold the keys.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0 w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-check-circle text-red-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Verified & Audited</h3>
+                            <p class="text-gray-600">Independently audited. SOC 2 Type II certified. GDPR compliant.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="safety-badge rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-8">Certifications</h3>
+                    
+                    <div class="tab-selector mb-8 border-b border-gray-200 space-x-8">
+                        <button onclick="switchTab('encryption')" class="active">Encryption</button>
+                        <button onclick="switchTab('compliance')" class="">Compliance</button>
+                    </div>
+                    
+                    <div id="tab-encryption" class="tab-content">
+                        <ul class="space-y-4">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">Military-grade AES-256 encryption</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">TLS 1.3 for all data in transit</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">PBKDF2 key derivation</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tab-compliance" class="tab-content hidden">
+                        <ul class="space-y-4">
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">SOC 2 Type II certified</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">GDPR & CCPA compliant</span>
+                            </li>
+                            <li class="flex gap-3">
+                                <i class="fas fa-check text-red-600 text-xl flex-shrink-0"></i>
+                                <span class="text-gray-700">Annual third-party audits</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Simple Pricing</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">No hidden fees, cancel anytime</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover-lift">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Individual</h3>
+                    <p class="text-gray-600 mb-8">For personal use</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$4.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openSignup()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Unlimited passwords</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Tasks & notes</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>2GB storage</span></li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl border-2 border-red-600 p-8 hover-lift relative shadow-lg">
+                    <div class="absolute -top-4 left-8 bg-red-600 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-4">Team</h3>
+                    <p class="text-gray-600 mb-8">For teams & businesses</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$9.99</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openSignup()" class="w-full bg-red-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-red-700 transition mb-8">
+                        Start Free Trial
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Everything in Individual</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Up to 10 team members</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>100GB storage</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Audit logs</span></li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 hover-lift">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-8">For large organizations</p>
+                    <div class="mb-8">
+                        <span class="text-3xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openSignup()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Us
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Everything in Team</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Unlimited users</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Dedicated support</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-red-600"></i> <span>Custom integrations</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-red-600 to-orange-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Keep Your Secrets Safe</h2>
+            <p class="text-2xl text-red-100 mb-10">Join thousands of teams protecting their sensitive data with TaskVault.</p>
+            <button onclick="openSignup()" class="bg-white text-red-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Start Your Free Trial
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-red-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-shield-alt text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">TaskVault</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Secure task & password management</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Security</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400 transition">Help</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-red-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-red-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-red-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-red-400 transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="signupModal" class="modal-wrapper fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-900">Get Started Free</h3>
+                <button onclick="closeSignup()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Password</label>
+                        <input type="password" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-red-600 focus:ring-2 focus:ring-red-100">
+                    </div>
+                    
+                    <button type="button" onclick="closeSignup()" class="w-full bg-red-600 text-white py-3 rounded-lg font-bold hover:bg-red-700 transition">
+                        Create Account
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openSignup() {
+            document.getElementById('signupModal').classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSignup() {
+            document.getElementById('signupModal').classList.remove('open');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function switchTab(tab) {
+            const encryption = document.getElementById('tab-encryption');
+            const compliance = document.getElementById('tab-compliance');
+            const encBtn = document.querySelector('button[onclick="switchTab(\'encryption\')"]');
+            const compBtn = document.querySelector('button[onclick="switchTab(\'compliance\')"]');
+            
+            if (tab === 'encryption') {
+                encryption.classList.remove('hidden');
+                compliance.classList.add('hidden');
+                encBtn.classList.add('active');
+                compBtn.classList.remove('active');
+            } else {
+                encryption.classList.add('hidden');
+                compliance.classList.remove('hidden');
+                encBtn.classList.remove('active');
+                compBtn.classList.add('active');
+            }
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('signupModal');
+            if (event.target === modal) {
+                closeSignup();
+            }
+        }
+    </script>
+</body>
+</html>

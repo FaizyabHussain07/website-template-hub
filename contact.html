@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us & Support | Web Templates Hub</title>
+    <meta name="description"
+        content="Have questions or need support? Contact the Web Templates Hub team. We're here to help you get the most out of our free template library.">
+    <meta name="keywords" content="contact support, template help, web development inquiry, support form">
+
+    <!-- OG / Twitter -->
+    <meta property="og:title" content="Contact Us | Web Templates Hub">
+    <meta property="og:description" content="Get in touch with the Web Templates Hub team for support and inquiries.">
+    <meta property="twitter:title" content="Contact Us | Web Templates Hub">
+    <link rel="canonical" href="https://webtemplateshub.com/contact.html">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+
+<body class="bg-slate-50">
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                    <i data-lucide="layout" class="text-white w-6 h-6"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">WebTemplates<span
+                        class="text-blue-600">Hub</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="index.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Templates</a>
+                <a href="categories.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Categories</a>
+                <a href="pricing.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a>
+                <a href="contact.html" class="text-sm font-medium text-blue-600">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="index.html"
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">
+                    Download Free
+                </a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 flex-col gap-4 animate-in slide-in-from-top-4 duration-300">
+            <a href="index.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Templates</a>
+            <a href="categories.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Categories</a>
+            <a href="pricing.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Pricing</a>
+            <a href="contact.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors text-blue-600">Contact</a>
+            <a href="index.html"
+                class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold mt-2 shadow-lg shadow-blue-500/25 text-center">
+                Download Free
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-40 pb-20 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h1 class="text-4xl font-bold text-slate-900 mb-4">How can we help?</h1>
+                <p class="text-slate-500 text-lg">Send us a message and our team will get back to you within 24 minutes.
+                </p>
+            </div>
+
+            <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-100 shadow-2xl relative">
+                <!-- FormSubmit Integration -->
+                <form id="contact-form" action="https://formsubmit.co/ajax/syedfaizyabhussain07@gmail.com" method="POST"
+                    class="space-y-6">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="New Support Inquiry | Web Templates Hub">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Full Name</label>
+                            <input type="text" name="name" placeholder="John Doe" required
+                                class="w-full px-4 py-4 bg-slate-50 border border-transparent rounded-xl focus:border-blue-200 outline-none transition-all">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-sm font-bold text-slate-700">Email Address</label>
+                            <input type="email" name="email" placeholder="john@example.com" required
+                                class="w-full px-4 py-4 bg-slate-50 border border-transparent rounded-xl focus:border-blue-200 outline-none transition-all">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-700">Subject</label>
+                        <select name="subject_type"
+                            class="w-full px-4 py-4 bg-slate-50 border border-transparent rounded-xl focus:border-blue-200 outline-none transition-all">
+                            <option>Template Support</option>
+                            <option>Licensing Query</option>
+                            <option>Custom Development</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-sm font-bold text-slate-700">Message</label>
+                        <textarea name="message" rows="5" placeholder="How can we help you today?" required
+                            class="w-full px-4 py-4 bg-slate-50 border border-transparent rounded-xl focus:border-blue-200 outline-none transition-all"></textarea>
+                    </div>
+                    <button type="submit" id="submit-btn"
+                        class="w-full py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 flex items-center justify-center gap-3 group">
+                        <span>Send Message</span>
+                        <i data-lucide="send" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Modal Overlay -->
+            <div id="success-modal"
+                class="hidden fixed inset-0 z-[100] flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm animate-in fade-in duration-300">
+                <div
+                    class="bg-white rounded-3xl p-8 md:p-12 max-w-lg w-full shadow-2xl text-center transform animate-in zoom-in slide-in-from-bottom-8 duration-500">
+                    <div
+                        class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check-circle-2" class="w-10 h-10"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">Thank You!</h2>
+                    <p class="text-slate-600 text-lg mb-8">
+                        Your message has been received. Our team will get back to you within 24 minutes!
+                    </p>
+                    <button onclick="location.reload()"
+                        class="w-full py-4 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-all shadow-xl flex items-center justify-center gap-2">
+                        <i data-lucide="x" class="w-4 h-4"></i>
+                        <span>Close</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 text-center">
+                <div class="p-6">
+                    <i data-lucide="mail" class="w-8 h-8 text-blue-600 mx-auto mb-4"></i>
+                    <h4 class="font-bold text-slate-900">Email Us</h4>
+                    <p class="text-slate-500">support@templateshub.com</p>
+                </div>
+                <div class="p-6">
+                    <i data-lucide="message-square" class="w-8 h-8 text-blue-600 mx-auto mb-4"></i>
+                    <h4 class="font-bold text-slate-900">Live Chat</h4>
+                    <p class="text-slate-500">Available 9am - 5pm EST</p>
+                </div>
+                <div class="p-6">
+                    <i data-lucide="map-pin" class="w-8 h-8 text-blue-600 mx-auto mb-4"></i>
+                    <h4 class="font-bold text-slate-900">Office</h4>
+                    <p class="text-slate-500">Remote First Team</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+                            <i data-lucide="layout" class="text-white w-6 h-6"></i>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">WebTemplatesHub</span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm">
+                        Curating the world's best single-page HTML templates for developers and entrepreneurs. 100% Free
+                        Forever.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Product</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Templates</a></li>
+                        <li><a href="categories.html" class="hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="terms.html" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="help.html" class="hover:text-white transition-colors">Help</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                &copy; 2026 Web Templates Hub. All rights reserved. Free for everyone.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // AJAX Form Submission
+        const form = document.getElementById('contact-form');
+        const successModal = document.getElementById('success-modal');
+        const submitBtn = document.getElementById('submit-btn');
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Loading state
+            submitBtn.disabled = true;
+            const originalContent = submitBtn.innerHTML;
+            submitBtn.innerHTML = `
+                <div class="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                <span>Sending...</span>
+            `;
+
+            const formData = new FormData(form);
+            const object = Object.fromEntries(formData);
+
+            try {
+                const response = await fetch("https://formsubmit.co/ajax/syedfaizyabhussain07@gmail.com", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Accept": "application/json"
+                    },
+                    body: JSON.stringify(object)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    form.classList.add('hidden');
+                    successModal.classList.remove('hidden');
+                    lucide.createIcons(); // Refresh icons for modal
+                } else {
+                    throw new Error(result.message || 'Submission failed');
+                }
+            } catch (error) {
+                console.error(error);
+                alert('Oops! Something went wrong. Please try again later.');
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalContent;
+            }
+        });
+    </script>
+</body>
+
+</html>

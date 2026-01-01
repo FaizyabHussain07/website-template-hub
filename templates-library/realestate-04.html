@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="InvestRealty - Smart real estate investment platform with market analytics and portfolio management">
+    <meta name="keywords" content="real estate investment, property management, market analytics, investment properties">
+    <title>InvestRealty - Real Estate Investment Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; font-weight: 700; letter-spacing: -0.02em; }
+        .gradient-tech { background: linear-gradient(135deg, #7c3aed 0%, #06b6d4 100%); }
+        .bg-glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .pulse-icon { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        .metric-card { transition: all 0.3s ease; }
+        .metric-card:hover { transform: translateY(-8px); }
+        .modal-closed { display: none; }
+        .modal-closed.visible { display: flex; }
+        .accordion-content { display: none; }
+        .accordion-content.open { display: block; }
+        .chart-bar { background: linear-gradient(180deg, #7c3aed 0%, #06b6d4 100%); }
+    </style>
+</head>
+<body class="bg-gray-950 text-gray-100">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-gray-950 z-50 border-b border-gray-800 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 bg-gradient-tech rounded-lg flex items-center justify-center shadow-lg">
+                    <i class="fas fa-chart-line text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-white">InvestRealty</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#properties" class="text-gray-300 font-medium hover:text-cyan-400 transition">Properties</a>
+                <a href="#analytics" class="text-gray-300 font-medium hover:text-cyan-400 transition">Analytics</a>
+                <a href="#features" class="text-gray-300 font-medium hover:text-cyan-400 transition">Features</a>
+                <a href="#plans" class="text-gray-300 font-medium hover:text-cyan-400 transition">Plans</a>
+                <button onclick="openModal()" class="bg-gradient-tech text-white px-6 py-2.5 rounded-lg font-semibold hover:shadow-xl transition">Get Started</button>
+            </nav>
+            
+            <button id="mobileMenuToggle" class="lg:hidden text-gray-300" onclick="toggleMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-gray-900 border-t border-gray-800">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#properties" class="block text-gray-300 font-medium py-2">Properties</a>
+                <a href="#analytics" class="block text-gray-300 font-medium py-2">Analytics</a>
+                <a href="#features" class="block text-gray-300 font-medium py-2">Features</a>
+                <a href="#plans" class="block text-gray-300 font-medium py-2">Plans</a>
+                <button onclick="openModal()" class="w-full bg-gradient-tech text-white py-2.5 rounded-lg font-semibold">Get Started</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-gray-900 to-gray-950 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-glass rounded-full text-cyan-400 text-sm font-semibold mb-6">Real Estate Investment Simplified</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                        Smart Investment
+                        <span class="bg-gradient-tech bg-clip-text text-transparent">Opportunities</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 mb-10 leading-relaxed">
+                        Access vetted real estate investments with comprehensive analytics, performance tracking, and portfolio management tools designed for modern investors.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-gradient-tech text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Investing Now
+                        </button>
+                        <button class="border-2 border-cyan-400 text-cyan-400 px-8 py-4 rounded-lg font-bold hover:bg-cyan-400 hover:bg-opacity-10 transition text-lg">
+                            View Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="bg-glass rounded-2xl p-8 border border-gray-700">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="bg-gradient-to-br from-purple-500 to-cyan-500 rounded-lg p-6 text-center">
+                                <p class="text-4xl font-bold text-white mb-2">$2.4B</p>
+                                <p class="text-sm text-white opacity-90">AUM</p>
+                            </div>
+                            <div class="bg-gradient-to-br from-cyan-500 to-purple-500 rounded-lg p-6 text-center">
+                                <p class="text-4xl font-bold text-white mb-2">12.5%</p>
+                                <p class="text-sm text-white opacity-90">Avg Return</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700">
+                                <p class="text-3xl font-bold text-cyan-400 mb-2">5K+</p>
+                                <p class="text-sm text-gray-400">Properties</p>
+                            </div>
+                            <div class="bg-gray-800 rounded-lg p-6 text-center border border-gray-700">
+                                <p class="text-3xl font-bold text-cyan-400 mb-2">15K+</p>
+                                <p class="text-sm text-gray-400">Investors</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute top-0 right-0 w-96 h-96 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -z-10"></div>
+        <div class="absolute -bottom-40 left-20 w-96 h-96 bg-cyan-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 -z-10"></div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="properties" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Featured Investment Opportunities</h2>
+                <p class="text-xl text-gray-400">Curated properties with strong market fundamentals and growth potential</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-glass rounded-2xl overflow-hidden hover:bg-opacity-10 transition">
+                    <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1554431651-8a0575ba56c9?w=500&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-purple-600 px-3 py-1 rounded-full text-sm font-bold text-white">High ROI</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Downtown Office Complex</h3>
+                        <p class="text-gray-400 text-sm mb-4">Premium Business District</p>
+                        <div class="bg-gray-800 rounded p-4 mb-4 border border-gray-700">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-gray-400">Min Investment</span>
+                                <span class="text-cyan-400 font-bold">$50K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Expected Return</span>
+                                <span class="text-cyan-400 font-bold">13.2%</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-gradient-tech text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">View Details</button>
+                    </div>
+                </div>
+
+                <div class="bg-glass rounded-2xl overflow-hidden hover:bg-opacity-10 transition">
+                    <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=500&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-cyan-600 px-3 py-1 rounded-full text-sm font-bold text-white">Trending</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Residential Tower</h3>
+                        <p class="text-gray-400 text-sm mb-4">Urban Development Zone</p>
+                        <div class="bg-gray-800 rounded p-4 mb-4 border border-gray-700">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-gray-400">Min Investment</span>
+                                <span class="text-cyan-400 font-bold">$75K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Expected Return</span>
+                                <span class="text-cyan-400 font-bold">11.8%</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-gradient-tech text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">View Details</button>
+                    </div>
+                </div>
+
+                <div class="bg-glass rounded-2xl overflow-hidden hover:bg-opacity-10 transition">
+                    <div class="aspect-video bg-gray-800 relative overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1487145068519-e21cc028cb29?w=500&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                        <div class="absolute top-4 right-4 bg-purple-600 px-3 py-1 rounded-full text-sm font-bold text-white">Exclusive</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Retail Shopping Center</h3>
+                        <p class="text-gray-400 text-sm mb-4">Commercial Hub</p>
+                        <div class="bg-gray-800 rounded p-4 mb-4 border border-gray-700">
+                            <div class="flex justify-between mb-3">
+                                <span class="text-gray-400">Min Investment</span>
+                                <span class="text-cyan-400 font-bold">$100K</span>
+                            </div>
+                            <div class="flex justify-between">
+                                <span class="text-gray-400">Expected Return</span>
+                                <span class="text-cyan-400 font-bold">14.5%</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-gradient-tech text-white py-2 rounded-lg font-semibold hover:shadow-lg transition">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Section -->
+    <section id="analytics" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Portfolio Analytics</h2>
+                <p class="text-xl text-gray-400">Real-time insights and performance tracking</p>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12">
+                <div class="bg-glass rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-8">Market Performance</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Residential</span>
+                                <span class="text-cyan-400 font-bold">68%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-3">
+                                <div class="chart-bar h-3 rounded-full" style="width: 68%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Commercial</span>
+                                <span class="text-cyan-400 font-bold">22%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-3">
+                                <div class="chart-bar h-3 rounded-full" style="width: 22%"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between mb-2">
+                                <span class="text-gray-400">Mixed-Use</span>
+                                <span class="text-cyan-400 font-bold">10%</span>
+                            </div>
+                            <div class="w-full bg-gray-800 rounded-full h-3">
+                                <div class="chart-bar h-3 rounded-full" style="width: 10%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-glass rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-white mb-8">Return Distribution</h3>
+                    <div class="space-y-4">
+                        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-300 font-semibold">10-12% Range</span>
+                                <span class="text-gray-400">35%</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Conservative & Stable</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-300 font-semibold">12-15% Range</span>
+                                <span class="text-gray-400">48%</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Balanced Growth</p>
+                        </div>
+                        <div class="bg-gray-800 rounded-lg p-4 border border-gray-700">
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-gray-300 font-semibold">15%+ Range</span>
+                                <span class="text-gray-400">17%</span>
+                            </div>
+                            <p class="text-sm text-gray-500">High Growth</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-950">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Platform Features</h2>
+                <p class="text-xl text-gray-400">Everything you need to make informed investment decisions</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-purple-400"><i class="fas fa-chart-area"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Advanced Analytics</h3>
+                    <p class="text-gray-400 text-sm">Deep market insights and performance metrics</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-cyan-400"><i class="fas fa-wallet"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Portfolio Management</h3>
+                    <p class="text-gray-400 text-sm">Diversify and track investments in real-time</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-purple-400"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Verified Properties</h3>
+                    <p class="text-gray-400 text-sm">All investments thoroughly vetted and certified</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-cyan-400"><i class="fas fa-headset"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Expert Support</h3>
+                    <p class="text-gray-400 text-sm">Dedicated advisors available 24/7</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-purple-400"><i class="fas fa-bell"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Real-time Alerts</h3>
+                    <p class="text-gray-400 text-sm">Stay informed with instant notifications</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-cyan-400"><i class="fas fa-lock"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Bank-level Security</h3>
+                    <p class="text-gray-400 text-sm">Enterprise-grade encryption and protection</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-purple-400"><i class="fas fa-mobile-alt"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Mobile App</h3>
+                    <p class="text-gray-400 text-sm">Manage investments on the go</p>
+                </div>
+
+                <div class="bg-glass rounded-xl p-6 hover:bg-opacity-10 transition metric-card">
+                    <div class="text-3xl mb-4 text-cyan-400"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <h3 class="text-lg font-bold text-white mb-3">Tax Reports</h3>
+                    <p class="text-gray-400 text-sm">Automated tax documentation</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section id="plans" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-white mb-4">Investment Plans</h2>
+                <p class="text-xl text-gray-400">Choose the plan that fits your investment goals</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-glass rounded-2xl p-8 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-4">Starter</h3>
+                    <p class="text-3xl font-bold text-cyan-400 mb-6">$10K<span class="text-lg text-gray-400">/min</span></p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>5+ Property Access</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Basic Analytics</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Email Support</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Monthly Reports</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-cyan-400 text-cyan-400 py-3 rounded-lg font-bold hover:bg-cyan-400 hover:bg-opacity-10 transition">Get Started</button>
+                </div>
+
+                <div class="bg-glass rounded-2xl p-8 border-2 border-purple-500 relative">
+                    <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gradient-tech text-white px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Professional</h3>
+                    <p class="text-3xl font-bold text-purple-400 mb-6">$50K<span class="text-lg text-gray-400">/min</span></p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>All Properties</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Advanced Analytics</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Priority Support</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Weekly Reports</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-gradient-tech text-white py-3 rounded-lg font-bold hover:shadow-xl transition">Get Started</button>
+                </div>
+
+                <div class="bg-glass rounded-2xl p-8 border border-gray-700">
+                    <h3 class="text-2xl font-bold text-white mb-4">Enterprise</h3>
+                    <p class="text-3xl font-bold text-cyan-400 mb-6">Custom<span class="text-lg text-gray-400">/pricing</span></p>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Full Access</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Custom Analytics</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Dedicated Manager</li>
+                        <li class="flex gap-3 text-gray-300"><i class="fas fa-check text-purple-400 mt-1"></i>Real-time Reports</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-cyan-400 text-cyan-400 py-3 rounded-lg font-bold hover:bg-cyan-400 hover:bg-opacity-10 transition">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-tech">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold text-white mb-6">Ready to Start Investing?</h2>
+            <p class="text-xl text-gray-100 mb-10">Join thousands of investors building wealth through real estate</p>
+            <button onclick="openModal()" class="bg-white text-purple-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Create Your Account
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">InvestRealty</h4>
+                    <p class="text-sm">Smart real estate investment platform for modern investors.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Products</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Properties</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Analytics</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="hover:text-cyan-400 transition"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 InvestRealty. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Registration Modal -->
+    <div id="registrationModal" class="modal-closed fixed inset-0 bg-black bg-opacity-60 z-50 items-center justify-center p-4 backdrop-blur-sm">
+        <div class="bg-gray-800 rounded-2xl shadow-2xl max-w-md w-full p-8 border border-gray-700">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-white">Create Account</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Full Name" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-cyan-400">
+                <select class="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:border-cyan-400">
+                    <option value="">Select Investment Amount</option>
+                    <option value="10k">$10,000 - $50,000</option>
+                    <option value="50k">$50,000 - $100,000</option>
+                    <option value="100k">$100,000+</option>
+                </select>
+                <button type="submit" class="w-full bg-gradient-tech text-white py-3 rounded-lg font-bold hover:shadow-lg transition">Create Account</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('registrationModal').classList.add('visible');
+        }
+
+        function closeModal() {
+            document.getElementById('registrationModal').classList.remove('visible');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('registrationModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

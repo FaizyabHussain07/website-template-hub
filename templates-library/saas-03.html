@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FlowHub - Collaborative project management made simple">
+    <meta name="keywords" content="SaaS, project management, collaboration, team tools">
+    <title>FlowHub - Simple Project Management for Teams</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'DM Sans', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+        }
+        
+        .gradient-emerald {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .bounce-smooth {
+            animation: bounceSmooth 3s ease-in-out infinite;
+        }
+        
+        @keyframes bounceSmooth {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+        
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.320, 1);
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(16, 185, 129, 0.15);
+        }
+        
+        .cta-glow {
+            box-shadow: 0 0 30px rgba(16, 185, 129, 0.3);
+        }
+        
+        .modal-container {
+            display: none;
+            animation: fadeInModal 0.3s ease-out;
+        }
+        
+        .modal-container.active {
+            display: flex;
+        }
+        
+        @keyframes fadeInModal {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .feature-grid-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-grid-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .feature-grid-item:hover::before {
+            opacity: 1;
+        }
+        
+        .stat-counter {
+            font-feature-settings: "tnum";
+        }
+        
+        .tab-underline {
+            position: relative;
+        }
+        
+        .tab-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #10b981;
+            transition: width 0.3s;
+        }
+        
+        .tab-underline.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white bg-opacity-95 backdrop-blur z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center shadow-md">
+                    <i class="fas fa-check-double text-white text-lg"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">FlowHub</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#features" class="text-gray-700 font-medium hover:text-emerald-600 transition">Features</a>
+                <a href="#benefits" class="text-gray-700 font-medium hover:text-emerald-600 transition">Benefits</a>
+                <a href="#testimonials" class="text-gray-700 font-medium hover:text-emerald-600 transition">Reviews</a>
+                <button onclick="openSignup()" class="bg-emerald-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-emerald-600 transition shadow-md">
+                    Start Free
+                </button>
+            </nav>
+            
+            <button id="mobileToggle" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#features" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">Features</a>
+                <a href="#benefits" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">Benefits</a>
+                <a href="#testimonials" class="block text-gray-700 font-medium py-2 hover:text-emerald-600">Reviews</a>
+                <button onclick="openSignup()" class="w-full bg-emerald-500 text-white px-6 py-2.5 rounded-lg font-semibold">Start Free</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-emerald-100 text-emerald-700 px-4 py-1.5 rounded-full text-sm font-semibold mb-6">
+                    <i class="fas fa-wand-magic-sparkles text-purple-600"></i> Used by 50K+ teams worldwide
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+                    Work Together,<br/><span class="gradient-emerald">Get More Done</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    FlowHub brings your entire team onto one visual workspace. Plan projects, collaborate in real-time, and ship faster than ever.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openSignup()" class="bg-emerald-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-emerald-600 transition shadow-lg">
+                        Get Started Free
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-emerald-500 hover:text-emerald-600 transition">
+                        Watch Demo
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-6">No credit card required &bull; Set up in 2 minutes</p>
+            </div>
+            
+            <div class="hidden lg:block relative">
+                <div class="bounce-smooth w-full h-96 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl shadow-2xl flex items-center justify-center">
+                    <i class="fas fa-tasks text-7xl text-emerald-300 opacity-50"></i>
+                </div>
+                <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl p-6 shadow-xl border border-gray-100 w-48">
+                    <div class="flex items-center gap-2 mb-4">
+                        <i class="fas fa-chart-line text-emerald-500"></i>
+                        <span class="font-semibold text-gray-900">Team Velocity</span>
+                    </div>
+                    <p class="text-sm text-gray-600"><i class="fas fa-arrow-up text-green-600 mr-1"></i>34% productivity boost</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section id="features" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Everything You Need</h2>
+                <p class="text-xl text-gray-600">Built for teams of all sizes</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-emerald-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-kanban text-emerald-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Kanban Boards</h3>
+                    <p class="text-gray-600">Visualize your workflow with drag-and-drop boards. Perfect for agile teams.</p>
+                </div>
+                
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-blue-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-calendar-alt text-blue-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Timeline View</h3>
+                    <p class="text-gray-600">See all projects on a timeline. Plan sprints, manage dependencies, and track milestones.</p>
+                </div>
+                
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-purple-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-comments text-purple-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Real-time Chat</h3>
+                    <p class="text-gray-600">Built-in messaging keeps conversations connected to the work. No more scattered chats.</p>
+                </div>
+                
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-pink-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-file-alt text-pink-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Wiki & Docs</h3>
+                    <p class="text-gray-600">Centralized knowledge base. Keep all team docs in one searchable place.</p>
+                </div>
+                
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-orange-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-plug text-orange-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Integrations</h3>
+                    <p class="text-gray-600">Connect with 200+ tools. Slack, GitHub, Figma, Jira, and more.</p>
+                </div>
+                
+                <div class="feature-grid-item bg-white rounded-2xl p-8 card-hover border border-gray-100">
+                    <div class="w-14 h-14 bg-teal-100 rounded-xl flex items-center justify-center mb-6">
+                        <i class="fas fa-lock text-teal-600 text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Enterprise Security</h3>
+                    <p class="text-gray-600">SOC 2 certified, SSO, audit logs, and advanced permissions. Enterprise-grade security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Benefits Section with Tabs -->
+    <section id="benefits" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">Why Teams Love FlowHub</h2>
+                <p class="text-xl text-gray-600">See the impact yourself</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="space-y-6">
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100">
+                                <i class="fas fa-rocket text-emerald-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">50% Faster Delivery</h3>
+                            <p class="text-gray-600">Reduce project delays by half. Better visibility = faster decisions.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100">
+                                <i class="fas fa-smile text-emerald-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Better Team Alignment</h3>
+                            <p class="text-gray-600">Everyone knows what's happening. Less meetings, more doing.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <div class="flex-shrink-0">
+                            <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-emerald-100">
+                                <i class="fas fa-coins text-emerald-600 text-xl"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Save $50K Annually</h3>
+                            <p class="text-gray-600">Replace 5 tools with one. Significant cost savings for mid to large teams.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-100 p-8 shadow-lg">
+                    <div class="flex border-b mb-8 gap-4 overflow-x-auto">
+                        <button onclick="switchTab('tab1')" class="tab-underline active pb-4 px-1 font-bold text-gray-900 whitespace-nowrap">Use Cases</button>
+                        <button onclick="switchTab('tab2')" class="tab-underline pb-4 px-1 font-bold text-gray-700 hover:text-gray-900 whitespace-nowrap">Stats</button>
+                    </div>
+                    
+                    <div id="tab1" class="tab-content">
+                        <ul class="space-y-4">
+                            <li class="flex gap-3 items-start">
+                                <i class="fas fa-check text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700">Product teams managing complex features</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <i class="fas fa-check text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700">Marketing campaigns with multiple stakeholders</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <i class="fas fa-check text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700">Remote teams across time zones</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <i class="fas fa-check text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700">Agencies managing multiple client projects</span>
+                            </li>
+                            <li class="flex gap-3 items-start">
+                                <i class="fas fa-check text-emerald-500 mt-1 flex-shrink-0"></i>
+                                <span class="text-gray-700">Operations teams coordinating processes</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div id="tab2" class="tab-content hidden">
+                        <div class="space-y-8">
+                            <div>
+                                <p class="text-4xl font-bold gradient-emerald mb-2 stat-counter">98%</p>
+                                <p class="text-gray-600">Team satisfaction rate</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold gradient-emerald mb-2 stat-counter">15h</p>
+                                <p class="text-gray-600">Time saved per week per team</p>
+                            </div>
+                            <div>
+                                <p class="text-4xl font-bold gradient-emerald mb-2 stat-counter">3x</p>
+                                <p class="text-gray-600">Faster project execution</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Loved by Teams Everywhere</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl border border-gray-200 p-8 card-hover">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "FlowHub completely transformed how our team works. We've cut project duration by 40% and communication is so much clearer. Best investment ever."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Alex Morgan</p>
+                            <p class="text-sm text-gray-600">Product Manager, TechStart</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8 card-hover">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "As a remote team, FlowHub has been a game-changer. Real-time collaboration, clear timelines, and integrated chat means we feel more connected than ever."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-400 to-purple-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Sofia Rodriguez</p>
+                            <p class="text-sm text-gray-600">Design Lead, Creative Studios</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8 card-hover">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "We managed to consolidate 5 different tools into FlowHub. The simplicity is incredible, and our team picked it up immediately. Highly recommended!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-pink-400 to-rose-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">James Chen</p>
+                            <p class="text-sm text-gray-600">CEO, Digital Ventures</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-emerald-500 to-teal-500">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Ready to Transform Your Team?</h2>
+            <p class="text-2xl text-emerald-50 mb-10">Join 50,000+ teams already using FlowHub.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openSignup()" class="bg-white text-emerald-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                    Get Started Free
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    View Pricing
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-check-double text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">FlowHub</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Project management for modern teams</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Help Center</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">API Docs</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-emerald-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-emerald-400 transition">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal-container fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-900">Get Started Free</h3>
+                <button onclick="closeSignup()" class="text-gray-400 hover:text-gray-600 transition">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100" placeholder="Your name">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Work Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100" placeholder="you@company.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Company</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-emerald-500 focus:ring-2 focus:ring-emerald-100" placeholder="Company name">
+                    </div>
+                    
+                    <button type="button" onclick="closeSignup()" class="w-full bg-emerald-500 text-white py-3 rounded-lg font-bold hover:bg-emerald-600 transition">
+                        Create Account
+                    </button>
+                    
+                    <p class="text-center text-xs text-gray-500">By signing up, you agree to our Terms and Privacy Policy</p>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openSignup() {
+            document.getElementById('signupModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeSignup() {
+            document.getElementById('signupModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function switchTab(tabName) {
+            const tab1 = document.getElementById('tab1');
+            const tab2 = document.getElementById('tab2');
+            const btn1 = document.querySelector('button[onclick="switchTab(\'tab1\')"]');
+            const btn2 = document.querySelector('button[onclick="switchTab(\'tab2\')"]');
+            
+            if (tabName === 'tab1') {
+                tab1.classList.remove('hidden');
+                tab2.classList.add('hidden');
+                btn1.classList.add('active');
+                btn2.classList.remove('active');
+            } else {
+                tab1.classList.add('hidden');
+                tab2.classList.remove('hidden');
+                btn1.classList.remove('active');
+                btn2.classList.add('active');
+            }
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('signupModal');
+            if (event.target === modal) {
+                closeSignup();
+            }
+        }
+    </script>
+</body>
+</html>

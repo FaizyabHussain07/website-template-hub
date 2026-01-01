@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CurveAI - AI-powered customer experience platform">
+    <meta name="keywords" content="SaaS, AI, customer experience, personalization">
+    <title>CurveAI - AI Customer Experience Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+        
+        .gradient-amber {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .orbit {
+            animation: orbit 8s linear infinite;
+        }
+        
+        @keyframes orbit {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .float-up {
+            animation: floatUp 2s ease-in-out infinite;
+        }
+        
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .card-stack {
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .card-stack:hover {
+            transform: translateY(-12px) translateX(8px);
+            box-shadow: 0 30px 60px rgba(245, 158, 11, 0.2);
+        }
+        
+        .modal-open {
+            display: none;
+        }
+        
+        .modal-open.show {
+            display: flex;
+        }
+        
+        .feature-row {
+            position: relative;
+            padding: 20px;
+            border-left: 4px solid #f59e0b;
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.05), transparent);
+        }
+        
+        .feature-row:hover {
+            border-left-color: #d97706;
+            background: linear-gradient(90deg, rgba(245, 158, 11, 0.1), transparent);
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+                    <i class="fas fa-sparkles text-white"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">CurveAI</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#capabilities" class="text-gray-600 font-medium hover:text-amber-600 transition">Capabilities</a>
+                <a href="#usecases" class="text-gray-600 font-medium hover:text-amber-600 transition">Use Cases</a>
+                <a href="#pricing" class="text-gray-600 font-medium hover:text-amber-600 transition">Pricing</a>
+                <button onclick="openTrial()" class="bg-amber-500 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-amber-600 transition">
+                    Free Trial
+                </button>
+            </nav>
+            
+            <button id="hamburger" class="lg:hidden text-gray-600" onclick="toggleNav()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileNav" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#capabilities" class="block text-gray-600 font-medium py-2 hover:text-amber-600">Capabilities</a>
+                <a href="#usecases" class="block text-gray-600 font-medium py-2 hover:text-amber-600">Use Cases</a>
+                <a href="#pricing" class="block text-gray-600 font-medium py-2 hover:text-amber-600">Pricing</a>
+                <button onclick="openTrial()" class="w-full bg-amber-500 text-white px-6 py-2.5 rounded-lg font-semibold">Free Trial</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-amber-100 text-amber-700 px-4 py-1.5 rounded-full text-sm font-bold mb-6">
+                    <i class="fas fa-bolt text-yellow-500"></i> Powered by Advanced AI
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 leading-tight mb-6">
+                    Delight Every<br/><span class="gradient-amber">Customer</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    AI-powered personalization engine that delivers the right message to the right customer at the right time. Increase conversion by 40%.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4">
+                    <button onclick="openTrial()" class="bg-amber-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-amber-600 transition shadow-lg">
+                        Start Free Trial
+                    </button>
+                    <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-amber-500 hover:text-amber-600 transition">
+                        View Demo
+                    </button>
+                </div>
+                <p class="text-sm text-gray-500 mt-6"><i class="fas fa-check text-green-600 mr-1"></i> AI setup in 5 minutes &bull; <i class="fas fa-check text-green-600 mr-1"></i> No credit card required</p>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center relative h-96">
+                <div class="orbit w-72 h-72">
+                    <div class="absolute inset-0 border-2 border-amber-200 rounded-full"></div>
+                    <div class="absolute inset-8 border-2 border-amber-100 rounded-full"></div>
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-16 h-16 bg-gradient-to-br from-amber-500 to-orange-600 rounded-full shadow-lg"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Capabilities -->
+    <section id="capabilities" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">AI Capabilities That Drive Results</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Intelligent features that work 24/7</p>
+            
+            <div class="space-y-4">
+                <div class="feature-row rounded-xl bg-white">
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-amber-600 text-2xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Smart Segmentation</h3>
+                            <p class="text-gray-600">AI automatically segments customers based on 200+ behavioral factors. Always accurate, always updated.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-row rounded-xl bg-white">
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-magic text-orange-600 text-2xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Dynamic Personalization</h3>
+                            <p class="text-gray-600">Content, offers, and messaging adapt in real-time. Each customer sees exactly what converts them.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-row rounded-xl bg-white">
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-chart-line text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">Predictive Analytics</h3>
+                            <p class="text-gray-600">Forecast customer churn, lifetime value, and next actions. Make proactive decisions before things happen.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="feature-row rounded-xl bg-white">
+                    <div class="flex items-start gap-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-robot text-amber-600 text-2xl"></i>
+                        </div>
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-2">AI Chatbot</h3>
+                            <p class="text-gray-600">Conversational AI that understands context. Handles 90% of support requests automatically.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Use Cases -->
+    <section id="usecases" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Industry Solutions</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Proven results across every vertical</p>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-shopping-cart text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">E-commerce</h3>
+                    <p class="text-gray-600 mb-4">40% increase in conversion rate. Smart product recommendations. Cart abandonment recovery.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 380%</p>
+                </div>
+                
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-stream text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">SaaS</h3>
+                    <p class="text-gray-600 mb-4">Reduce churn by 35%. Personalized onboarding. Proactive upsell triggers.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 420%</p>
+                </div>
+                
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-heart text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Healthcare</h3>
+                    <p class="text-gray-600 mb-4">Patient engagement +50%. Appointment reminders. Treatment follow-ups.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 250%</p>
+                </div>
+                
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-graduation-cap text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Education</h3>
+                    <p class="text-gray-600 mb-4">Enrollment boost +45%. Student engagement. Course recommendations.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 310%</p>
+                </div>
+                
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-bank text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Finance</h3>
+                    <p class="text-gray-600 mb-4">Loan approval +25%. Risk assessment. Personalized offers.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 290%</p>
+                </div>
+                
+                <div class="card-stack bg-white rounded-2xl p-8 border border-gray-200 hover:border-amber-500">
+                    <div class="text-4xl mb-4"><i class="fas fa-plane text-amber-500"></i></div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Travel & Hospitality</h3>
+                    <p class="text-gray-600 mb-4">Booking rates +55%. Personalized recommendations. Dynamic pricing.</p>
+                    <p class="text-sm text-amber-600 font-semibold">Avg. ROI: 500%</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">Pay For Results</h2>
+            <p class="text-xl text-gray-600 text-center mb-16">Flexible pricing that grows with your business</p>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 card-stack">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-8">Perfect to get started</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$299</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openTrial()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Up to 10K customers</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Basic AI features</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Email support</span></li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl border-2 border-amber-500 p-8 card-stack relative shadow-lg">
+                    <div class="absolute -top-4 left-8 bg-amber-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        POPULAR
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-4">Growth</h3>
+                    <p class="text-gray-600 mb-8">For scaling businesses</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$999</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openTrial()" class="w-full bg-amber-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-amber-600 transition mb-8">
+                        Start Free Trial
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Up to 500K customers</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>All AI features</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Priority support</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Custom integrations</span></li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 card-stack">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-8">Unlimited scale</p>
+                    <div class="mb-8">
+                        <span class="text-3xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openTrial()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Sales
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Unlimited customers</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Dedicated AI team</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>24/7 support</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-amber-500"></i> <span>Custom models</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-amber-500 to-orange-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Transform Your Customer Experience</h2>
+            <p class="text-2xl text-amber-50 mb-10">Start your free AI trial today. See results in 7 days.</p>
+            <button onclick="openTrial()" class="bg-white text-amber-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Get Free Trial
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-gradient-to-br from-amber-500 to-orange-600 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-sparkles text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">CurveAI</span>
+                    </div>
+                    <p class="text-sm text-gray-400">AI-powered customer experience</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Pricing</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Security</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Docs</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-amber-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-amber-400 transition"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-open fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold text-gray-900">Start Free Trial</h3>
+                <button onclick="closeTrial()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Company</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-amber-500 focus:ring-2 focus:ring-amber-100">
+                    </div>
+                    
+                    <button type="button" onclick="closeTrial()" class="w-full bg-amber-500 text-white py-3 rounded-lg font-bold hover:bg-amber-600 transition">
+                        Start Trial
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleNav() {
+            document.getElementById('mobileNav').classList.toggle('hidden');
+        }
+        
+        function openTrial() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeTrial() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeTrial();
+            }
+        }
+    </script>
+</body>
+</html>

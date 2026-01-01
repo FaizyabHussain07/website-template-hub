@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="HomeFinder - Community-first real estate platform helping families find their perfect neighborhood">
+    <meta name="keywords" content="real estate, family homes, neighborhoods, community, property search">
+    <title>HomeFinder - Find Your Community</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Quicksand', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Poppins', sans-serif; font-weight: 700; }
+        .gradient-warm { background: linear-gradient(135deg, #ff6b6b 0%, #ffa94d 100%); }
+        .gradient-mint { background: linear-gradient(135deg, #38b6a8 0%, #2dd4bf 100%); }
+        .hover-bounce { transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+        .hover-bounce:hover { transform: translateY(-8px); }
+        .card-shadow { box-shadow: 0 10px 30px rgba(255, 107, 107, 0.15); }
+        .modal-off { display: none; }
+        .modal-off.on { display: flex; }
+        .slide-in-left { animation: slideLeft 0.6s ease-out; }
+        @keyframes slideLeft { from { opacity: 0; transform: translateX(-40px); } to { opacity: 1; transform: translateX(0); } }
+        .badge-coral { background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%); }
+        .badge-mint { background: linear-gradient(135deg, #38b6a8 0%, #2dd4bf 100%); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-warm rounded-lg flex items-center justify-center shadow-md">
+                    <i class="fas fa-home text-white text-lg font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">HomeFinder</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#browse" class="text-gray-700 font-medium hover:text-orange-600 transition">Browse</a>
+                <a href="#neighborhoods" class="text-gray-700 font-medium hover:text-orange-600 transition">Neighborhoods</a>
+                <a href="#why" class="text-gray-700 font-medium hover:text-orange-600 transition">Why Us</a>
+                <a href="#stories" class="text-gray-700 font-medium hover:text-orange-600 transition">Stories</a>
+                <button onclick="openContactModal()" class="bg-gradient-warm text-white px-5 py-2.5 rounded-full font-semibold hover:shadow-lg transition">Start Search</button>
+            </nav>
+            
+            <button id="mobileMenuToggle" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-100">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#browse" class="block text-gray-700 font-medium py-2">Browse</a>
+                <a href="#neighborhoods" class="block text-gray-700 font-medium py-2">Neighborhoods</a>
+                <a href="#why" class="block text-gray-700 font-medium py-2">Why Us</a>
+                <a href="#stories" class="block text-gray-700 font-medium py-2">Stories</a>
+                <button onclick="openContactModal()" class="w-full bg-gradient-warm text-white py-2.5 rounded-full font-semibold">Start Search</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-28 pb-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-orange-50 to-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="slide-in-left">
+                    <span class="inline-block px-4 py-2 bg-orange-100 rounded-full text-orange-600 font-semibold text-sm mb-6">Your Community Awaits</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Find Your Perfect
+                        <span class="bg-gradient-warm bg-clip-text text-transparent">Home & Community</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Discover neighborhoods that match your lifestyle. From family-friendly suburbs to vibrant urban communities, find where you truly belong.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openContactModal()" class="bg-gradient-warm text-white px-8 py-4 rounded-full font-bold hover:shadow-xl transition text-lg">
+                            Explore Properties
+                        </button>
+                        <button class="border-2 border-orange-600 text-orange-600 px-8 py-4 rounded-full font-bold hover:bg-orange-50 transition text-lg">
+                            Watch Demo
+                        </button>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="aspect-square bg-gradient-to-br from-orange-100 to-pink-100 rounded-3xl overflow-hidden card-shadow">
+                        <img src="https://images.unsplash.com/photo-1516156537038-70a600be7ab6?w=700&h=700&fit=crop" alt="Community" class="w-full h-full object-cover hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl card-shadow">
+                        <p class="text-2xl font-bold text-gray-900">50K+</p>
+                        <p class="text-sm text-gray-600">Happy Families</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Search -->
+    <section class="py-12 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="bg-gradient-to-r from-orange-50 to-pink-50 rounded-3xl p-8 border border-orange-200">
+                <h2 class="text-2xl font-bold text-gray-900 mb-6">Start Your Search</h2>
+                <div class="grid md:grid-cols-4 gap-4">
+                    <input type="text" placeholder="Location or Neighborhood" class="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600 bg-white">
+                    <select class="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600 bg-white">
+                        <option>Budget</option>
+                        <option>Under $300K</option>
+                        <option>$300K - $500K</option>
+                        <option>$500K - $750K</option>
+                        <option>$750K+</option>
+                    </select>
+                    <select class="px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600 bg-white">
+                        <option>Bedrooms</option>
+                        <option>1 Bedroom</option>
+                        <option>2 Bedrooms</option>
+                        <option>3+ Bedrooms</option>
+                    </select>
+                    <button class="bg-gradient-warm text-white rounded-xl font-bold hover:shadow-lg transition">Search Now</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Properties -->
+    <section id="browse" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Featured Homes</h2>
+                <p class="text-lg text-gray-600">Beautiful properties in thriving communities</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover-bounce">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1570129477492-45201003c6b7?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-coral text-white px-3 py-1 rounded-full text-sm font-bold">New</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Sunny Ridge House</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Maple Heights Community</p>
+                        <div class="flex gap-4 text-gray-600 text-sm mb-4">
+                            <span><i class="fas fa-door-open text-orange-600 mr-1"></i>3 Beds</span>
+                            <span><i class="fas fa-bath text-orange-600 mr-1"></i>2 Baths</span>
+                            <span><i class="fas fa-expand text-orange-600 mr-1"></i>1,800 sqft</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$425K</span>
+                            <button onclick="openContactModal()" class="bg-gradient-warm text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">View</button>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="text-xs text-gray-600">Great schools • Parks nearby • Walkable</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover-bounce">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1572120471610-ded80287d71b?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-mint text-white px-3 py-1 rounded-full text-sm font-bold">Featured</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Modern Family Home</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Riverside Village</p>
+                        <div class="flex gap-4 text-gray-600 text-sm mb-4">
+                            <span><i class="fas fa-door-open text-teal-600 mr-1"></i>4 Beds</span>
+                            <span><i class="fas fa-bath text-teal-600 mr-1"></i>3 Baths</span>
+                            <span><i class="fas fa-expand text-teal-600 mr-1"></i>2,200 sqft</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$575K</span>
+                            <button onclick="openContactModal()" class="bg-gradient-mint text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">View</button>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="text-xs text-gray-600">Community pool • Shopping area • Safe</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-2xl overflow-hidden card-shadow hover-bounce">
+                    <div class="aspect-video bg-gray-300 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=400&h=300&fit=crop" alt="Property" class="w-full h-full object-cover hover:scale-110 transition duration-300">
+                        <div class="absolute top-4 right-4 badge-coral text-white px-3 py-1 rounded-full text-sm font-bold">Hot</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Cozy Corner Cottage</h3>
+                        <p class="text-gray-600 mb-4 text-sm">Downtown Arts District</p>
+                        <div class="flex gap-4 text-gray-600 text-sm mb-4">
+                            <span><i class="fas fa-door-open text-orange-600 mr-1"></i>2 Beds</span>
+                            <span><i class="fas fa-bath text-orange-600 mr-1"></i>2 Baths</span>
+                            <span><i class="fas fa-expand text-orange-600 mr-1"></i>1,200 sqft</span>
+                        </div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="text-2xl font-bold text-gray-900">$350K</span>
+                            <button onclick="openContactModal()" class="bg-gradient-warm text-white px-4 py-2 rounded-lg font-semibold hover:shadow-lg transition">View</button>
+                        </div>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="text-xs text-gray-600">Restaurants nearby • Vibrant • Convenient</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12">
+                <button onclick="openContactModal()" class="bg-gradient-warm text-white px-8 py-4 rounded-full font-bold hover:shadow-xl transition text-lg">
+                    Browse All Properties
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Neighborhoods Section -->
+    <section id="neighborhoods" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Popular Neighborhoods</h2>
+                <p class="text-lg text-gray-600">Each community has its own unique character and charm</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-orange-50 to-pink-50 rounded-2xl p-8 border border-orange-200 hover-bounce">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-tree text-orange-600 text-2xl"></i> Maple Heights
+                    </h3>
+                    <p class="text-gray-700 mb-6">Peaceful, tree-lined streets perfect for families. Award-winning schools and abundant parks.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Family-Friendly</span>
+                        <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Great Schools</span>
+                        <span class="bg-orange-200 text-orange-800 px-3 py-1 rounded-full text-sm font-medium">Parks</span>
+                    </div>
+                    <button onclick="openContactModal()" class="text-orange-600 font-bold hover:text-orange-700 flex items-center gap-2">
+                        Explore <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 rounded-2xl p-8 border border-teal-200 hover-bounce">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-water text-teal-600 text-2xl"></i> Riverside Village
+                    </h3>
+                    <p class="text-gray-700 mb-6">Modern community with excellent amenities, vibrant dining scene, and scenic waterfront views.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-teal-200 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">Modern</span>
+                        <span class="bg-teal-200 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">Dining</span>
+                        <span class="bg-teal-200 text-teal-800 px-3 py-1 rounded-full text-sm font-medium">Recreation</span>
+                    </div>
+                    <button onclick="openContactModal()" class="text-teal-600 font-bold hover:text-teal-700 flex items-center gap-2">
+                        Explore <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-8 border border-pink-200 hover-bounce">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-paint-brush text-pink-600 text-2xl"></i> Downtown Arts District
+                    </h3>
+                    <p class="text-gray-700 mb-6">Eclectic and vibrant area for creative professionals. Galleries, studios, and trendy cafes.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-pink-200 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Vibrant</span>
+                        <span class="bg-pink-200 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Cultural</span>
+                        <span class="bg-pink-200 text-pink-800 px-3 py-1 rounded-full text-sm font-medium">Walkable</span>
+                    </div>
+                    <button onclick="openContactModal()" class="text-pink-600 font-bold hover:text-pink-700 flex items-center gap-2">
+                        Explore <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+
+                <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 border border-yellow-200 hover-bounce">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3 flex items-center gap-3">
+                        <i class="fas fa-building text-yellow-600 text-2xl"></i> Tech Hub District
+                    </h3>
+                    <p class="text-gray-700 mb-6">Cutting-edge neighborhood with innovation centers, modern architecture, and young professionals.</p>
+                    <div class="flex flex-wrap gap-2 mb-6">
+                        <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Innovation</span>
+                        <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Modern</span>
+                        <span class="bg-yellow-200 text-yellow-800 px-3 py-1 rounded-full text-sm font-medium">Jobs</span>
+                    </div>
+                    <button onclick="openContactModal()" class="text-yellow-600 font-bold hover:text-yellow-700 flex items-center gap-2">
+                        Explore <i class="fas fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Section -->
+    <section id="why" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Why Choose HomeFinder?</h2>
+                <p class="text-lg text-gray-600">We care about finding you the right home, not just closing a deal</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover-bounce">
+                    <div class="w-16 h-16 bg-gradient-warm rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-heart text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Community First</h3>
+                    <p class="text-gray-600">We focus on neighborhoods, not just properties. Find communities where you'll truly belong.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover-bounce">
+                    <div class="w-16 h-16 bg-gradient-mint rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-users text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Expert Support</h3>
+                    <p class="text-gray-600">Our agents know every neighborhood intimately. Personalized guidance every step of the way.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl card-shadow text-center hover-bounce">
+                    <div class="w-16 h-16 bg-gradient-warm rounded-full flex items-center justify-center mx-auto mb-6 shadow-lg">
+                        <i class="fas fa-star text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-4">Best Rates</h3>
+                    <p class="text-gray-600">Competitive pricing and exclusive deals for our community members.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories Section -->
+    <section id="stories" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Success Stories</h2>
+                <p class="text-lg text-gray-600">Real families, real homes, real happiness</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gradient-to-br from-orange-50 to-pink-50 p-8 rounded-2xl border border-orange-200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-orange-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">The Johnson Family</p>
+                            <p class="text-sm text-gray-600">Now in Maple Heights</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"HomeFinder helped us find the perfect neighborhood for our kids. We couldn't be happier with our new community!"</p>
+                    <div class="flex gap-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+
+                <div class="bg-gradient-to-br from-teal-50 to-cyan-50 p-8 rounded-2xl border border-teal-200">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-16 h-16 bg-teal-300 rounded-full"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Marcus & Elena</p>
+                            <p class="text-sm text-gray-600">Now in Riverside Village</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic mb-4">"Great experience from start to finish. The team really listened to what we wanted and found us the ideal place."</p>
+                    <div class="flex gap-1">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-orange-500 to-pink-500 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Find Home?</h2>
+            <p class="text-xl mb-10 opacity-90">Start your journey to a community you'll love.</p>
+            <button onclick="openContactModal()" class="bg-white text-orange-600 px-10 py-4 rounded-full font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Explore Properties Today
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">HomeFinder</h4>
+                    <p class="text-sm">Helping families find their perfect home and community.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Browse</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Properties</a></li>
+                        <li><a href="#" class="hover:text-white transition">Neighborhoods</a></li>
+                        <li><a href="#" class="hover:text-white transition">Schools</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <div class="flex gap-4 text-gray-400">
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="hover:text-white transition"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 HomeFinder. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Contact Modal -->
+    <div id="contactModal" class="modal-off fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Start Your Search</h3>
+                <button onclick="closeContactModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:border-orange-600">
+                    <option value="">Interested in...</option>
+                    <option value="buy">Buying a Home</option>
+                    <option value="sell">Selling a Home</option>
+                    <option value="invest">Investment Property</option>
+                </select>
+                <button type="submit" class="w-full bg-gradient-warm text-white py-3 rounded-xl font-bold hover:shadow-lg transition">Get Started</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openContactModal() {
+            document.getElementById('contactModal').classList.add('on');
+        }
+
+        function closeContactModal() {
+            document.getElementById('contactModal').classList.remove('on');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('contactModal');
+            if (e.target === modal) {
+                closeContactModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (window.innerWidth < 1024) {
+                        document.getElementById('mobileMenu').classList.add('hidden');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FitMax - Sports & Fitness Equipment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@400;600;700;800&family=Source+Code+Pro:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { font-family: 'Exo', sans-serif; }
+        code, pre { font-family: 'Source Code Pro', monospace; }
+        .gradient-orange { background: linear-gradient(135deg, #f59e0b 0%, #ef7c3f 100%); }
+        .gradient-orange-light { background: linear-gradient(135deg, #fed7aa 0%, #fecdba 100%); }
+        @keyframes fitGlow { 0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.3); } 50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.6); } }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+        .fit-glow { animation: fitGlow 2s ease-in-out infinite; }
+        .bounce-item { animation: bounce 2s ease-in-out infinite; }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .card-hover { transition: all 0.3s ease; }
+        .card-hover:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(245, 158, 11, 0.2); }
+        .header-fixed { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        body { padding-top: 80px; }
+        .mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
+        .mobile-menu.show { max-height: 400px; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="header-fixed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <div class="w-10 h-10 gradient-orange rounded-lg flex items-center justify-center text-white font-bold"><i class="fas fa-dumbbell"></i></div>
+                <span class="text-2xl font-bold text-gray-900">FitMax</span>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="#home" class="text-gray-700 hover:text-amber-600 transition">Home</a>
+                <a href="#products" class="text-gray-700 hover:text-amber-600 transition">Products</a>
+                <a href="#training" class="text-gray-700 hover:text-amber-600 transition">Training</a>
+                <a href="#faq" class="text-gray-700 hover:text-amber-600 transition">FAQ</a>
+            </nav>
+            <button class="md:hidden" onclick="toggleMobileMenu()"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></button>
+            <button onclick="openModal()" class="hidden md:block gradient-orange text-white px-6 py-2 rounded-lg hover:shadow-lg transition">Shop Now</button>
+        </div>
+        <div class="mobile-menu md:hidden bg-gray-50 border-t">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#home" class="block text-gray-700 hover:text-amber-600">Home</a>
+                <a href="#products" class="block text-gray-700 hover:text-amber-600">Products</a>
+                <a href="#training" class="block text-gray-700 hover:text-amber-600">Training</a>
+                <a href="#faq" class="block text-gray-700 hover:text-amber-600">FAQ</a>
+                <button onclick="openModal()" class="w-full gradient-orange text-white px-4 py-2 rounded-lg hover:shadow-lg transition">Shop Now</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="pt-12 pb-20 bg-gradient-to-br from-amber-50 to-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Achieve Your <span class="gradient-orange bg-clip-text text-transparent">Fitness Goals</span></h1>
+                    <p class="text-xl text-gray-600 mb-8">Professional-grade equipment for home and commercial gyms. Build strength, endurance, and confidence with FitMax.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-orange text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition bounce-item">Get Equipped</button>
+                        <button class="border-2 border-amber-600 text-amber-600 px-8 py-3 rounded-lg font-semibold hover:bg-amber-50 transition">Browse Gear</button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="gradient-orange-light w-full h-96 rounded-2xl flex items-center justify-center fit-glow">
+                        <div class="text-center">
+                            <div class="text-6xl mb-4"><i class="fas fa-person-biking text-amber-600"></i></div>
+                            <p class="text-amber-900 font-semibold">Premium Fitness Gear</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-4 text-gray-900">Featured Equipment</h2>
+            <p class="text-center text-gray-600 mb-12">Best-selling fitness products for all training levels</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-orange-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-dumbbell text-5xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Pro Dumbbell Set</h3>
+                    <p class="text-gray-600 mb-4">Adjustable 5-50kg dumbbells. Chromium plated, ergonomic grip handles</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-amber-600">$899</span>
+                        <span class="text-sm bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Best Seller</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg hover:bg-amber-200 transition font-semibold">Add to Cart</button>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-orange-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-home text-5xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Home Gym Machine</h3>
+                    <p class="text-gray-600 mb-4">All-in-one equipment. Weight stacks, cardio, and strength training</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-amber-600">$1,499</span>
+                        <span class="text-sm bg-amber-100 text-amber-800 px-3 py-1 rounded-full">Premium</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg hover:bg-amber-200 transition font-semibold">Add to Cart</button>
+                </div>
+                <div class="card-hover bg-gradient-to-br from-gray-50 to-white border border-gray-100 rounded-xl p-6">
+                    <div class="gradient-orange-light w-full h-48 rounded-lg mb-4 flex items-center justify-center">
+                        <i class="fas fa-heart-pulse text-5xl text-amber-600"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Smart Fitness Watch</h3>
+                    <p class="text-gray-600 mb-4">Track workouts, heart rate, sleep. Water-resistant, 14-day battery</p>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-2xl font-bold text-amber-600">$399</span>
+                        <span class="text-sm bg-amber-100 text-amber-800 px-3 py-1 rounded-full">In Stock</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-amber-100 text-amber-700 py-2 rounded-lg hover:bg-amber-200 transition font-semibold">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="py-16 bg-amber-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-8">Shop by Category</h3>
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-amber-300">
+                    <i class="fas fa-weight text-4xl text-amber-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Weights</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-amber-300">
+                    <i class="fas fa-person-walking text-4xl text-amber-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Cardio</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-amber-300">
+                    <i class="fas fa-person-biking text-4xl text-amber-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Machines</h4>
+                </div>
+                <div class="card-hover bg-white border border-gray-100 rounded-lg p-6 text-center cursor-pointer hover:border-amber-300">
+                    <i class="fas fa-heart-pulse text-4xl text-amber-600 mb-3"></i>
+                    <h4 class="font-bold text-gray-900">Wearables</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Training Programs -->
+    <section id="training" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">FitMax Advantage</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-orange rounded-full text-white text-2xl mb-4"><i class="fas fa-dumbbell"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Professional Grade</h3>
+                    <p class="text-gray-600">Commercial-quality equipment used by athletes and trainers worldwide</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-orange rounded-full text-white text-2xl mb-4"><i class="fas fa-check"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Lifetime Support</h3>
+                    <p class="text-gray-600">Setup guides, maintenance tips, and fitness coaching included</p>
+                </div>
+                <div class="text-center">
+                    <div class="inline-flex items-center justify-center w-16 h-16 gradient-orange rounded-full text-white text-2xl mb-4"><i class="fas fa-truck"></i></div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Free Delivery</h3>
+                    <p class="text-gray-600">White-glove delivery and assembly service on orders over $500</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sale -->
+    <section class="py-20 gradient-orange text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <span class="inline-block bg-white bg-opacity-20 text-white px-4 py-2 rounded-full text-sm font-semibold mb-4">New Year Resolution</span>
+            <h2 class="text-5xl font-bold mb-4">Start Your Transformation</h2>
+            <p class="text-xl text-amber-100 mb-8">Get fit packages with professional equipment and training at 25% off</p>
+            <button onclick="openModal()" class="bg-white text-amber-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Start Now</button>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-20 bg-white">
+        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-12 text-gray-900">FAQ</h2>
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq1')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-amber-50 transition flex justify-between items-center">
+                    <span>Do you provide assembly?</span>
+                    <span id="faq1-icon">+</span>
+                </button>
+                <div id="faq1" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! Free professional assembly on equipment over $500. For smaller items, we provide detailed video guides and phone support.</p>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg mb-4">
+                <button onclick="toggleFAQ('faq2')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-amber-50 transition flex justify-between items-center">
+                    <span>What's your warranty?</span>
+                    <span id="faq2-icon">+</span>
+                </button>
+                <div id="faq2" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>All equipment comes with 2-5 year manufacturer warranty. We also offer extended protection plans up to 10 years.</p>
+                </div>
+            </div>
+            <div class="border border-gray-200 rounded-lg">
+                <button onclick="toggleFAQ('faq3')" class="w-full px-6 py-4 text-left font-semibold text-gray-900 hover:bg-amber-50 transition flex justify-between items-center">
+                    <span>Can I finance?</span>
+                    <span id="faq3-icon">+</span>
+                </button>
+                <div id="faq3" class="modal-hidden bg-gray-50 px-6 py-4 text-gray-700">
+                    <p>Yes! We offer 0% financing on purchases over $1000. Flexible payment plans up to 24 months available.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 bg-gradient-to-r from-amber-500 to-amber-600 text-white">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">Join FitMax Community</h2>
+            <p class="text-amber-100 mb-8">Get exclusive workout plans, nutrition tips, and fitness updates</p>
+            <div class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+                <input type="email" placeholder="Enter your email" class="flex-1 px-4 py-3 rounded-lg text-gray-900 focus:outline-none focus:ring-2 focus:ring-white">
+                <button class="bg-white text-amber-600 px-8 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Subscribe</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-5 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Shop</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Weights</a></li>
+                        <li><a href="#" class="hover:text-white transition">Machines</a></li>
+                        <li><a href="#" class="hover:text-white transition">Cardio</a></li>
+                        <li><a href="#" class="hover:text-white transition">Accessories</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Athletes</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Support</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Help</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                        <li><a href="#" class="hover:text-white transition">Shipping</a></li>
+                        <li><a href="#" class="hover:text-white transition">Assembly</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-white transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-white transition">Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition">Warranty</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Social</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">Facebook</a></li>
+                        <li><a href="#" class="hover:text-white transition">YouTube</a></li>
+                        <li><a href="#" class="hover:text-white transition">TikTok</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="productModal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full relative">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+            <div class="p-6">
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">FitMax Elite Member</h3>
+                <p class="text-gray-600 mb-6">Exclusive access to training programs, nutrition plans, and 10% lifetime discount on all gear.</p>
+                <form onsubmit="submitForm(event)">
+                    <input type="text" placeholder="Your name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <input type="email" placeholder="Your email" required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <select required class="w-full px-4 py-2 border border-gray-300 rounded-lg mb-6 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                        <option value="">Select fitness level</option>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                        <option value="athlete">Athlete</option>
+                    </select>
+                    <button type="submit" class="w-full gradient-orange text-white font-bold py-3 rounded-lg hover:shadow-lg transition">Become Elite</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() { document.getElementById('productModal').classList.add('show'); }
+        function closeModal() { document.getElementById('productModal').classList.remove('show'); }
+        function submitForm(e) { e.preventDefault(); alert('Welcome to FitMax Elite! Check your email for your exclusive benefits.'); closeModal(); }
+        document.getElementById('productModal').addEventListener('click', function(e) { if (e.target === this) closeModal(); });
+        function toggleMobileMenu() { document.querySelector('.mobile-menu').classList.toggle('show'); }
+        function toggleFAQ(id) { const element = document.getElementById(id); const icon = document.getElementById(id + '-icon'); element.classList.toggle('show'); icon.textContent = element.classList.contains('show') ? '-' : '+'; }
+    </script>
+</body>
+</html>

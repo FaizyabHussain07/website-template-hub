@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CreativeStudio - Branding and design agency. Logo design, brand identity, visual content creation.">
+    <meta name="keywords" content="branding, logo design, graphic design, brand identity, creative agency">
+    <title>CreativeStudio - Branding & Design Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Cormorant+Garamond:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Raleway', sans-serif; }
+        h1, h2, h3 { font-family: 'Cormorant Garamond', serif; }
+        .gradient-creative { background: linear-gradient(135deg, #ec4899 0%, #f59e0b 100%); }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-creative rounded-lg flex items-center justify-center">
+                    <i class="fas fa-palette text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">CreativeStudio</span>
+            </div>
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-pink-600 transition font-medium">Services</a>
+                <a href="#work" class="text-gray-700 hover:text-pink-600 transition font-medium">Work</a>
+                <a href="#process" class="text-gray-700 hover:text-pink-600 transition font-medium">Process</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-pink-600 transition font-medium">Testimonials</a>
+                <button onclick="openModal()" class="gradient-creative text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Inquire</button>
+            </nav>
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Services</a>
+                <a href="#work" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Work</a>
+                <a href="#process" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Process</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-pink-600 py-2 font-medium">Testimonials</a>
+                <button onclick="openModal()" class="w-full gradient-creative text-white py-2 rounded-lg font-bold">Inquire</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-pink-50 to-amber-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-pink-100 text-pink-700 rounded-full text-sm font-bold mb-6">Creative Excellence</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Design That
+                        <span class="gradient-creative bg-clip-text text-transparent"> Tells Your Story</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Award-winning branding and design studio. Transforming ideas into visual masterpieces.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-creative text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Start Your Project
+                        </button>
+                        <button class="border-2 border-pink-600 text-pink-600 px-8 py-4 rounded-lg font-bold hover:bg-pink-50 transition text-lg">
+                            View Portfolio
+                        </button>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-pink-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">100+ Brands Designed</p>
+                                <p class="text-sm text-gray-600">From startups to Fortune 500</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-pink-600 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Award-Winning Work</p>
+                                <p class="text-sm text-gray-600">International design awards</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=500&h=400&fit=crop" alt="Design" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">What We Create</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-pen-tool text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Brand Identity</h3>
+                    <p class="text-gray-600 mb-6">Complete brand development from concept to execution. Logo, colors, typography, guidelines.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-image text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Visual Design</h3>
+                    <p class="text-gray-600 mb-6">Stunning graphics, illustrations, and visual content. Print and digital design.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-newspaper text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Marketing Design</h3>
+                    <p class="text-gray-600 mb-6">Brochures, posters, social media templates, packaging design, and advertising materials.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-film text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Motion Graphics</h3>
+                    <p class="text-gray-600 mb-6">Animated logos, explainer videos, video content, and visual storytelling.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">UI/UX Design</h3>
+                    <p class="text-gray-600 mb-6">App and website interfaces. User-centered design with stunning aesthetics.</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-pink-500 transition">
+                    <div class="w-12 h-12 gradient-creative rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-retweet text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Rebranding</h3>
+                    <p class="text-gray-600 mb-6">Complete brand refresh and repositioning. Transform your visual identity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Featured Work</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1522869635100-ce8e12434e5f?w=400&h=300&fit=crop" alt="Work" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Tech Startup Branding</h3>
+                        <p class="text-gray-600 text-sm">Complete brand identity for AI startup</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=400&h=300&fit=crop" alt="Work" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Luxury Brand Campaign</h3>
+                        <p class="text-gray-600 text-sm">High-end visual design and photography</p>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=300&fit=crop" alt="Work" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">App Redesign</h3>
+                        <p class="text-gray-600 text-sm">Complete UI/UX overhaul and redesign</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Creative Process</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border-l-4 border-pink-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Discovery & Strategy</h3>
+                    <p class="text-gray-600">We immerse ourselves in your brand story, understand your audience, and define clear creative direction.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-pink-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Conceptualization</h3>
+                    <p class="text-gray-600">Creative brainstorming and ideation. Exploring multiple directions and concepts.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-pink-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Design & Refinement</h3>
+                    <p class="text-gray-600">Detailed design execution, iteration, and refinement based on your feedback.</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border-l-4 border-pink-600">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Delivery & Support</h3>
+                    <p class="text-gray-600">Final files in all formats, brand guidelines, and ongoing support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">What Clients Say</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"CreativeStudio completely transformed our brand. The design is stunning and perfectly captures our vision. Highly recommend!"</p>
+                    <p class="font-bold text-gray-900">Founder, Fashion Brand</p>
+                </div>
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-4">"Professional, creative, and collaborative. They understood our brand better than we did!"</p>
+                    <p class="font-bold text-gray-900">CEO, Tech Company</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-creative text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Create Something Beautiful?</h2>
+            <p class="text-xl mb-10 opacity-90">Let's bring your creative vision to life.</p>
+            <button onclick="openModal()" class="bg-white text-pink-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Start a Conversation
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">CreativeStudio</h4>
+                    <p class="text-sm">Award-winning branding and design studio.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Branding</a></li>
+                        <li><a href="#" class="hover:text-white transition">Design</a></li>
+                        <li><a href="#" class="hover:text-white transition">UI/UX</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Team</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Connect</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Instagram</a></li>
+                        <li><a href="#" class="hover:text-white transition">Behance</a></li>
+                        <li><a href="#" class="hover:text-white transition">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 CreativeStudio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div id="inquireModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Let's Create</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-pink-600 focus:ring-1 focus:ring-pink-600">
+                    <option>Project Type</option>
+                    <option>Brand Identity</option>
+                    <option>Graphic Design</option>
+                    <option>UI/UX Design</option>
+                    <option>Rebranding</option>
+                </select>
+                <button type="submit" class="w-full gradient-creative text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Let's Talk
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        function openModal() {
+            document.getElementById('inquireModal').classList.add('open');
+        }
+        function closeModal() {
+            document.getElementById('inquireModal').classList.remove('open');
+        }
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('inquireModal');
+            if (e.target === modal) closeModal();
+        });
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

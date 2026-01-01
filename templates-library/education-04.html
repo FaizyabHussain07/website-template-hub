@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ProSkills Academy - Corporate training and professional development programs. Upskill your workforce today.">
+    <meta name="keywords" content="corporate training, professional development, skills training, employee development">
+    <title>ProSkills Academy - Corporate Training</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=IBM+Plex+Serif:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Montserrat', sans-serif; }
+        h1, h2, h3 { font-family: 'IBM Plex Serif', serif; font-weight: 700; }
+        .gradient-pro { background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%); }
+        .gradient-accent { background: linear-gradient(135deg, #3b82f6 0%, #60a5fa 100%); }
+        .course-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+        .tab-pane { display: none; }
+        .tab-pane.active { display: block; animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .company-logo { height: 60px; display: flex; align-items: center; justify-content: center; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-pro rounded-lg flex items-center justify-center">
+                    <i class="fas fa-briefcase text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">ProSkills</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#programs" class="text-gray-700 hover:text-blue-600 transition font-medium">Programs</a>
+                <a href="#clients" class="text-gray-700 hover:text-blue-600 transition font-medium">Clients</a>
+                <a href="#team" class="text-gray-700 hover:text-blue-600 transition font-medium">Team</a>
+                <a href="#pricing" class="text-gray-700 hover:text-blue-600 transition font-medium">Pricing</a>
+                <button onclick="openModal()" class="gradient-pro text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Get Demo</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#programs" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Programs</a>
+                <a href="#clients" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Clients</a>
+                <a href="#team" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Team</a>
+                <a href="#pricing" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Pricing</a>
+                <button onclick="openModal()" class="w-full gradient-pro text-white py-2 rounded-lg font-bold">Get Demo</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 gradient-pro text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute top-20 right-20 w-96 h-96 bg-white rounded-full blur-3xl"></div>
+        </div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-blue-500 bg-opacity-30 border border-blue-300 rounded-full text-sm font-bold mb-6">Enterprise Training Solutions</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+                        Upskill Your Team
+                    </h1>
+                    <p class="text-xl mb-10 text-blue-100 leading-relaxed">
+                        Transform your workforce with our proven corporate training programs. Measurable results. Expert instructors. Flexible delivery.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Schedule Demo
+                        </button>
+                        <button class="border-2 border-white text-white px-8 py-4 rounded-lg font-bold hover:bg-white hover:bg-opacity-10 transition text-lg">
+                            View Case Studies
+                        </button>
+                    </div>
+                    
+                    <div class="flex gap-12 mt-12 text-sm">
+                        <div>
+                            <p class="text-3xl font-bold">500+</p>
+                            <p class="text-blue-200">Companies trained</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold">50K+</p>
+                            <p class="text-blue-200">Employees upskilled</p>
+                        </div>
+                        <div>
+                            <p class="text-3xl font-bold">4.9/5</p>
+                            <p class="text-blue-200">Satisfaction rate</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block">
+                    <div class="bg-white bg-opacity-10 backdrop-blur p-8 rounded-xl border border-white border-opacity-20">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=500&h=400&fit=crop" alt="Training" class="rounded-lg">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section id="programs" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">Training Programs</h2>
+                <p class="text-xl text-gray-600">Customized solutions for every department</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-500 hover:shadow-lg transition">
+                    <div class="w-14 h-14 gradient-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-chart-line text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Leadership Development</h3>
+                    <p class="text-gray-600 mb-6">Build strong leaders at all levels. Emotional intelligence, strategic thinking, team management.</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>4-week executive program</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>1-on-1 coaching included</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>ROI tracking</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg font-bold hover:bg-blue-50 transition">Learn More</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-500 hover:shadow-lg transition">
+                    <div class="w-14 h-14 gradient-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-laptop text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Technical Skills</h3>
+                    <p class="text-gray-600 mb-6">Stay ahead with latest technology. Cloud, AI, cybersecurity, data science, software development.</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Hands-on projects</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Industry experts teach</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Certifications included</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg font-bold hover:bg-blue-50 transition">Learn More</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl shadow-md border border-gray-200 hover:border-blue-500 hover:shadow-lg transition">
+                    <div class="w-14 h-14 gradient-accent rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-handshake text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Soft Skills</h3>
+                    <p class="text-gray-600 mb-6">Communication, collaboration, and cultural excellence. Build stronger teams and customer relationships.</p>
+                    <ul class="space-y-2 text-sm text-gray-700 mb-8">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Customized workshops</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Team building modules</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Behavioral coaching</li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-blue-600 text-blue-600 py-2 rounded-lg font-bold hover:bg-blue-50 transition">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Delivery Options -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Flexible Delivery Methods</h2>
+
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border-2 border-blue-200">
+                    <div class="text-5xl mb-4">🏢</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">On-Site</h3>
+                    <p class="text-gray-600">Delivered at your office with your team. Full customization available.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border-2 border-blue-200">
+                    <div class="text-5xl mb-4">🌐</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Virtual</h3>
+                    <p class="text-gray-600">Live online sessions with interactive activities and breakouts.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border-2 border-blue-200">
+                    <div class="text-5xl mb-4">📚</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Self-Paced</h3>
+                    <p class="text-gray-600">On-demand courses with lifetime access and certification.</p>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-50 to-white p-8 rounded-xl border-2 border-blue-200">
+                    <div class="text-5xl mb-4">🔀</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-3">Blended</h3>
+                    <p class="text-gray-600">Mix of live sessions, self-paced learning, and coaching.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Clients Section -->
+    <section id="clients" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Trusted by Industry Leaders</h2>
+                <p class="text-xl text-gray-600">500+ companies transforming their workforce</p>
+            </div>
+
+            <div class="grid md:grid-cols-5 gap-8 items-center py-8 border-y border-gray-300">
+                <div class="company-logo text-gray-400 hover:text-blue-600 transition">
+                    <i class="fas fa-building text-5xl"></i>
+                </div>
+                <div class="company-logo text-gray-400 hover:text-blue-600 transition">
+                    <i class="fas fa-building text-5xl"></i>
+                </div>
+                <div class="company-logo text-gray-400 hover:text-blue-600 transition">
+                    <i class="fas fa-building text-5xl"></i>
+                </div>
+                <div class="company-logo text-gray-400 hover:text-blue-600 transition">
+                    <i class="fas fa-building text-5xl"></i>
+                </div>
+                <div class="company-logo text-gray-400 hover:text-blue-600 transition">
+                    <i class="fas fa-building text-5xl"></i>
+                </div>
+            </div>
+
+            <div class="mt-16 bg-white p-10 rounded-xl border border-gray-200">
+                <p class="text-gray-700 text-lg mb-6 italic">"ProSkills transformed our leadership pipeline. We've seen a 40% improvement in manager satisfaction and 25% reduction in turnover. Best investment in our people."</p>
+                <div class="flex items-center gap-4">
+                    <div class="w-14 h-14 bg-blue-300 rounded-full"></div>
+                    <div>
+                        <p class="font-bold text-gray-900">Jennifer Williams</p>
+                        <p class="text-sm text-gray-600">Chief People Officer, Fortune 500 Company</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-16 text-center">Transparent Pricing</h2>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl border-2 border-gray-200 hover:border-blue-500 transition">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6">For small teams</p>
+                    <p class="text-4xl font-bold mb-6">$5K<span class="text-lg text-gray-600">/program</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>Up to 25 employees</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>Virtual delivery</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>3-month support</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg font-bold hover:bg-blue-50 transition">Get Started</button>
+                </div>
+
+                <div class="bg-gradient-pro text-white p-8 rounded-xl relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-amber-400 text-gray-900 px-4 py-1 rounded-full font-bold text-sm">MOST POPULAR</div>
+                    <h3 class="text-2xl font-bold mb-2">Professional</h3>
+                    <p class="text-blue-100 mb-6">For growing companies</p>
+                    <p class="text-4xl font-bold mb-6">$15K<span class="text-lg text-blue-100">/program</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>Up to 100 employees</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>Hybrid delivery</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check"></i><span>6-month support</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full bg-white text-blue-600 py-3 rounded-lg font-bold hover:bg-gray-100 transition">Get Started</button>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border-2 border-gray-200 hover:border-blue-500 transition">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large organizations</p>
+                    <p class="text-4xl font-bold mb-6">Custom<span class="text-lg text-gray-600">/program</span></p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>Unlimited employees</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>All delivery methods</span></li>
+                        <li class="flex gap-2"><i class="fas fa-check text-blue-600"></i><span>12-month support</span></li>
+                    </ul>
+                    <button onclick="openModal()" class="w-full border-2 border-blue-600 text-blue-600 py-3 rounded-lg font-bold hover:bg-blue-50 transition">Contact Sales</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-pro text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Upskill Your Team?</h2>
+            <p class="text-xl mb-10 opacity-90">Schedule a demo with our training experts. Free consultation included.</p>
+            <button onclick="openModal()" class="bg-white text-blue-600 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Schedule Demo
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">ProSkills</h4>
+                    <p class="text-sm">Enterprise training solutions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Leadership</a></li>
+                        <li><a href="#" class="hover:text-white transition">Technical</a></li>
+                        <li><a href="#" class="hover:text-white transition">Soft Skills</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                        <li><a href="#" class="hover:text-white transition">Sales</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm mb-2">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 ProSkills Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Demo Modal -->
+    <div id="demoModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Schedule Your Demo</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Company Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <button type="submit" class="w-full gradient-pro text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Schedule Demo
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('demoModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('demoModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('demoModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

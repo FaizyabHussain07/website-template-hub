@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="DataSync - Real-time data synchronization platform for enterprises">
+    <meta name="keywords" content="SaaS, data sync, enterprise, cloud platform">
+    <title>DataSync - Enterprise Data Synchronization Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Outfit', sans-serif;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Space Mono', monospace;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        
+        .gradient-cyan {
+            background: linear-gradient(135deg, #00d4ff 0%, #0099ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .slide-in {
+            animation: slideIn 0.8s ease-out;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        .scale-bounce {
+            animation: scaleBounce 2s ease-in-out infinite;
+        }
+        
+        @keyframes scaleBounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .accordion-active {
+            max-height: 500px;
+            opacity: 1;
+        }
+        
+        .accordion-hidden {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        
+        .accent-line {
+            width: 4px;
+            background: linear-gradient(180deg, #00d4ff 0%, #0099ff 100%);
+        }
+        
+        .grid-pattern {
+            background-image: 
+                linear-gradient(to right, rgba(0,212,255,0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(0,212,255,0.05) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+        
+        .modal-overlay {
+            display: none;
+        }
+        
+        .modal-overlay.active {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="sticky top-0 bg-white z-50 border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-cyan-500 rounded-sm flex items-center justify-center">
+                    <i class="fas fa-database text-white text-lg"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">DataSync</span>
+            </div>
+            
+            <div class="hidden lg:flex gap-10 items-center">
+                <a href="#how-it-works" class="text-gray-700 hover:text-cyan-600 font-medium transition">How It Works</a>
+                <a href="#pricing" class="text-gray-700 hover:text-cyan-600 font-medium transition">Pricing</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-cyan-600 font-medium transition">Testimonials</a>
+                <button onclick="openModal()" class="bg-cyan-500 text-white px-6 py-2.5 rounded-lg font-medium hover:bg-cyan-600 transition">Get Access</button>
+            </div>
+            
+            <button id="hamburger" class="lg:hidden text-gray-700" onclick="toggleMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#how-it-works" class="block text-gray-700 font-medium hover:text-cyan-600">How It Works</a>
+                <a href="#pricing" class="block text-gray-700 font-medium hover:text-cyan-600">Pricing</a>
+                <a href="#testimonials" class="block text-gray-700 font-medium hover:text-cyan-600">Testimonials</a>
+                <button onclick="openModal()" class="w-full bg-cyan-500 text-white px-6 py-2.5 rounded-lg font-medium">Get Access</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Social Proof Section (Early) -->
+    <section class="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8 border-b">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="text-gray-600 font-medium mb-6">Trusted by leading enterprises</p>
+            <div class="flex flex-wrap justify-center items-center gap-8 opacity-75">
+                <div class="font-bold text-gray-400">Fortune 500</div>
+                <div class="font-bold text-gray-400">TechCorp</div>
+                <div class="font-bold text-gray-400">DataVault</div>
+                <div class="font-bold text-gray-400">CloudNet</div>
+                <div class="font-bold text-gray-400">SecureData</div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Hero Section -->
+    <section class="pt-24 pb-20 px-4 sm:px-6 lg:px-8 grid-pattern">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="slide-in">
+                    <div class="inline-block bg-cyan-100 text-cyan-700 px-4 py-1.5 rounded-full text-sm font-medium mb-6">
+                        Real-time Synchronization
+                    </div>
+                    <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Your Data,<br/><span class="gradient-cyan">Always Synced</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                        Enterprise-grade data synchronization across all your systems. Zero data loss, millisecond latency, complete visibility.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="bg-cyan-500 text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-cyan-600 transition shadow-lg">
+                            Request Demo
+                        </button>
+                        <button class="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-lg font-bold hover:border-cyan-500 hover:text-cyan-600 transition">
+                            Read Case Study
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:flex items-center justify-center">
+                    <div class="scale-bounce w-full h-96 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-2xl flex items-center justify-center shadow-xl">
+                        <i class="fas fa-server text-6xl text-cyan-400 opacity-40"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4">How DataSync Works</h2>
+                <p class="text-xl text-gray-600">Simple, powerful, enterprise-ready</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-lg bg-cyan-100 text-cyan-600">
+                            <i class="fas fa-plug text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Connect</h3>
+                        <p class="text-gray-600">Link all your data sources in minutes. No coding required. 150+ native integrations.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-lg bg-blue-100 text-blue-600">
+                            <i class="fas fa-sync text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Synchronize</h3>
+                        <p class="text-gray-600">Real-time bidirectional sync with conflict resolution and version control built-in.</p>
+                    </div>
+                </div>
+                
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-lg bg-indigo-100 text-indigo-600">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Monitor</h3>
+                        <p class="text-gray-600">Comprehensive analytics and real-time monitoring. Know exactly what's happening.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Accordion Section -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">Enterprise Features</h2>
+            
+            <div class="space-y-4">
+                <!-- Accordion Item 1 -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button onclick="toggleAccordion(0)" class="w-full px-6 py-5 text-left font-bold text-lg text-gray-900 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span>Advanced Security & Compliance</span>
+                        <i class="fas fa-chevron-down transition-transform" id="icon-0"></i>
+                    </button>
+                    <div id="content-0" class="accordion-hidden transition-all duration-300">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600">
+                            <ul class="space-y-3">
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>End-to-end encryption for all data in transit</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>SOC 2 Type II, ISO 27001, HIPAA, GDPR compliant</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Granular role-based access control (RBAC)</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Audit logs and compliance reporting</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 2 -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button onclick="toggleAccordion(1)" class="w-full px-6 py-5 text-left font-bold text-lg text-gray-900 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span>Performance & Reliability</span>
+                        <i class="fas fa-chevron-down transition-transform" id="icon-1"></i>
+                    </button>
+                    <div id="content-1" class="accordion-hidden transition-all duration-300">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600">
+                            <ul class="space-y-3">
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>99.99% uptime SLA backed by financial penalties</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Global infrastructure with edge computing</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Sub-100ms latency for most operations</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Automatic failover and disaster recovery</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 3 -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button onclick="toggleAccordion(2)" class="w-full px-6 py-5 text-left font-bold text-lg text-gray-900 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span>Integration & Customization</span>
+                        <i class="fas fa-chevron-down transition-transform" id="icon-2"></i>
+                    </button>
+                    <div id="content-2" class="accordion-hidden transition-all duration-300">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600">
+                            <ul class="space-y-3">
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>REST API and webhooks for custom integrations</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Workflow builder with 1000+ pre-built connectors</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Custom field mapping and data transformation</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Dedicated integration support team</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Accordion Item 4 -->
+                <div class="bg-white rounded-lg border border-gray-200 overflow-hidden">
+                    <button onclick="toggleAccordion(3)" class="w-full px-6 py-5 text-left font-bold text-lg text-gray-900 flex justify-between items-center hover:bg-gray-50 transition">
+                        <span>Support & Training</span>
+                        <i class="fas fa-chevron-down transition-transform" id="icon-3"></i>
+                    </button>
+                    <div id="content-3" class="accordion-hidden transition-all duration-300">
+                        <div class="px-6 py-4 border-t border-gray-200 text-gray-600">
+                            <ul class="space-y-3">
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>24/7/365 enterprise support with <2hr SLA</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Dedicated customer success manager</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Comprehensive onboarding and training program</span></li>
+                                <li class="flex gap-3"><i class="fas fa-check text-cyan-500 mt-1"></i> <span>Custom documentation and API documentation</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-16">What Enterprise Leaders Say</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "DataSync eliminated our data silos overnight. We cut sync errors by 99% and saved our team 400 hours annually. Game-changer for our operations."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Michael Rodriguez</p>
+                            <p class="text-sm text-gray-600">VP of Operations, TechVenture</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "The level of reliability and support is unmatched. DataSync handles our mission-critical data with zero downtime. Highly recommended for enterprises."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-400 to-pink-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">Jessica Chen</p>
+                            <p class="text-sm text-gray-600">CTO, DataCorp Solutions</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        "Integration was seamless. Their team got us up and running in 2 weeks. The ROI has been incredible &ndash; data accuracy improved 85% across our systems."
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-br from-green-400 to-blue-600"></div>
+                        <div>
+                            <p class="font-bold text-gray-900">David Thompson</p>
+                            <p class="text-sm text-gray-600">Director of IT, FinanceHub Inc</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
+                <p class="text-xl text-gray-600">Choose the plan that fits your scale</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter Plan -->
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6">For small teams</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$299</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Get Started
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Up to 5 data sources</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">10 syncs per day</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Email support</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Professional Plan -->
+                <div class="bg-white rounded-xl border-2 border-cyan-500 p-8 relative shadow-xl">
+                    <div class="absolute -top-4 left-8 bg-cyan-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+                        Most Popular
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2 mt-4">Professional</h3>
+                    <p class="text-gray-600 mb-6">For growing companies</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">$999</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-cyan-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-cyan-600 transition mb-8">
+                        Request Demo
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Unlimited data sources</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Unlimited syncs</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Priority support</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Custom integrations</span></li>
+                    </ul>
+                </div>
+                
+                <!-- Enterprise Plan -->
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                    <p class="text-gray-600 mb-6">For large organizations</p>
+                    <div class="mb-6">
+                        <span class="text-4xl font-bold text-gray-900">Custom</span>
+                    </div>
+                    <button onclick="openModal()" class="w-full bg-gray-200 text-gray-900 px-6 py-3 rounded-lg font-bold hover:bg-gray-300 transition mb-8">
+                        Contact Sales
+                    </button>
+                    <ul class="space-y-3">
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Everything in Pro</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Dedicated manager</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">SLA guarantee</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-cyan-500"></i> <span class="text-gray-700">Custom training</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-cyan-500 to-blue-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">Ready to Sync Your Data?</h2>
+            <p class="text-xl text-cyan-100 mb-10">Join 500+ enterprises that trust DataSync with their critical data.</p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button onclick="openModal()" class="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-lg">
+                    Request Demo
+                </button>
+                <button class="border-2 border-white text-white px-10 py-4 rounded-lg font-bold text-lg hover:bg-white hover:bg-opacity-10 transition">
+                    See Features
+                </button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-5 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-8 h-8 bg-cyan-500 rounded-sm flex items-center justify-center">
+                            <i class="fas fa-database text-white text-sm"></i>
+                        </div>
+                        <span class="text-lg font-bold text-white">DataSync</span>
+                    </div>
+                    <p class="text-sm text-gray-400">Enterprise data synchronization</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Product</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Features</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Integrations</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Careers</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Docs</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">API</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Support</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-cyan-400 transition">Privacy</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Terms</a></li>
+                        <li><a href="#" class="hover:text-cyan-400 transition">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                    <div class="flex gap-6 mt-4 md:mt-0">
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-twitter text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-linkedin text-lg"></i></a>
+                        <a href="#" class="text-gray-400 hover:text-cyan-400 transition"><i class="fab fa-github text-lg"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-overlay fixed inset-0 bg-black bg-opacity-50 z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full m-auto max-h-96 overflow-y-auto">
+            <div class="flex justify-between items-center p-6 border-b sticky top-0 bg-white">
+                <h3 class="text-2xl font-bold text-gray-900">Request Demo</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Full Name</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200" placeholder="Jane Smith">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200" placeholder="jane@company.com">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Company</label>
+                        <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200" placeholder="Your Company">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-2">Data Sources</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-200">
+                            <option>Select...</option>
+                            <option>2-5</option>
+                            <option>5-20</option>
+                            <option>20+</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-cyan-500 text-white py-3 rounded-lg font-bold hover:bg-cyan-600 transition">
+                        Request Demo
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleAccordion(index) {
+            const content = document.getElementById(`content-${index}`);
+            const icon = document.getElementById(`icon-${index}`);
+            
+            content.classList.toggle('accordion-hidden');
+            content.classList.toggle('accordion-active');
+            icon.style.transform = content.classList.contains('accordion-active') ? 'rotate(180deg)' : 'rotate(0)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

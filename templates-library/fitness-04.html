@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaBorn - Women's Fitness & Empowerment</title>
+    <meta name="description" content="Fitness programs designed by women, for women. Strength, confidence, and community.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        .elegant-title {
+            font-family: 'Playfair Display', serif;
+        }
+        .gradient-rose {
+            background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .btn-rose {
+            background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+            transition: all 0.3s ease;
+        }
+        .btn-rose:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(236, 72, 153, 0.35);
+        }
+        .link-underline {
+            position: relative;
+            display: inline-block;
+        }
+        .link-underline::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #EC4899, #F43F5E);
+            transition: width 0.3s;
+        }
+        .link-underline:hover::after {
+            width: 100%;
+        }
+        .float-up {
+            animation: floatUp 0.6s ease-out;
+        }
+        @keyframes floatUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .card-float {
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s;
+        }
+        .card-float:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(236, 72, 153, 0.12);
+        }
+        .accordion-header {
+            background: #FDF2F8;
+            padding: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #FCE7F3;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        .accordion-header:hover {
+            background: #FCE7F3;
+        }
+        .accordion-header.active {
+            background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+            color: white;
+            border-color: #EC4899;
+        }
+        .accordion-header.active::after {
+            transform: rotate(180deg);
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-content.active {
+            max-height: 400px;
+            padding: 0 18px 18px 18px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 50;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.3s ease;
+        }
+        @keyframes modalSlideIn {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 70px;
+            left: 0;
+            right: 0;
+            background: white;
+            flex-direction: column;
+            padding: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            display: flex;
+        }
+        .stat-number {
+            font-size: 44px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #EC4899 0%, #F43F5E 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="bg-white shadow-sm fixed w-full top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-gradient-to-br from-rose-500 to-rose-600 rounded-full flex items-center justify-center">
+                    <i class="fas fa-heart text-white"></i>
+                </div>
+                <span class="text-xl font-bold gradient-rose">NovaBorn</span>
+            </div>
+            <nav class="hidden md:flex gap-8">
+                <a href="#programs" class="link-underline text-gray-700 hover:text-rose-600">Programs</a>
+                <a href="#about" class="link-underline text-gray-700 hover:text-rose-600">Why Us</a>
+                <a href="#stories" class="link-underline text-gray-700 hover:text-rose-600">Stories</a>
+                <a href="#pricing" class="link-underline text-gray-700 hover:text-rose-600">Pricing</a>
+            </nav>
+            <button onclick="openModal()" class="hidden md:block btn-rose text-white px-6 py-2 rounded-full font-semibold">Join Now</button>
+            <button onclick="toggleMobileMenu()" class="md:hidden text-2xl text-gray-700">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+        <div id="mobileMenu" class="mobile-menu">
+            <a href="#programs" class="text-gray-700 py-2">Programs</a>
+            <a href="#about" class="text-gray-700 py-2">Why Us</a>
+            <a href="#stories" class="text-gray-700 py-2">Stories</a>
+            <a href="#pricing" class="text-gray-700 py-2">Pricing</a>
+            <button onclick="openModal()" class="btn-rose text-white px-6 py-2 rounded-full font-semibold mt-4 w-full">Join Now</button>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="pt-32 pb-20 px-4 bg-gradient-to-br from-rose-50 to-pink-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="float-up">
+                    <h1 class="elegant-title text-5xl md:text-6xl font-bold text-gray-900 mb-6 leading-tight">Become Your Most Powerful Self</h1>
+                    <p class="text-xl text-gray-600 mb-8">Women-led fitness. Female coaches. Inclusive community. Built for your strength, inside and out.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="btn-rose text-white px-8 py-3 rounded-full font-semibold text-lg">Start Free Trial</button>
+                        <button onclick="document.getElementById('programs').scrollIntoView({behavior: 'smooth'})" class="border-2 border-rose-600 text-rose-600 px-8 py-3 rounded-full font-semibold text-lg hover:bg-rose-50 transition">Explore Programs</button>
+                    </div>
+                </div>
+                <div class="relative hidden md:block">
+                    <div class="absolute -inset-6 bg-gradient-to-br from-rose-200 to-pink-200 rounded-3xl opacity-25 blur-2xl"></div>
+                    <img src="https://images.unsplash.com/photo-1552410260-7812040801d1?w=600&h=600&fit=crop" alt="Women Fitness" class="relative rounded-3xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs -->
+    <section id="programs" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="elegant-title text-5xl font-bold text-gray-900 mb-4">Fitness Programs Built for Women</h2>
+                <p class="text-xl text-gray-600">Find what resonates with you</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-float bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-rose-300 to-pink-300 flex items-center justify-center">
+                        <i class="fas fa-heart text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Strength Sisterhood</h3>
+                        <p class="text-gray-600 mb-6">Build real strength without intimidation. Progressive training designed for women's physiology.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> 3-4x per week</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Female coaches</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Supportive community</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-rose text-white w-full py-2 rounded-lg font-semibold text-sm">Learn More</button>
+                    </div>
+                </div>
+                <div class="card-float bg-gradient-to-br from-rose-50 to-pink-50 rounded-2xl overflow-hidden border-2 border-rose-600 shadow-lg relative">
+                    <span class="absolute top-4 right-4 bg-rose-600 text-white px-4 py-1 rounded-full text-sm font-bold">MOST LOVED</span>
+                    <div class="h-48 bg-gradient-to-br from-rose-400 to-pink-400 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Cardio & Dance</h3>
+                        <p class="text-gray-600 mb-6">High-energy workouts that celebrate movement. Feel strong, empowered, and joyful.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> 4-5x per week</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Dance & cardio mix</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Mood boosting</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-rose text-white w-full py-2 rounded-lg font-semibold text-sm">Learn More</button>
+                    </div>
+                </div>
+                <div class="card-float bg-white rounded-2xl overflow-hidden border border-rose-100 shadow-lg">
+                    <div class="h-48 bg-gradient-to-br from-rose-300 to-pink-300 flex items-center justify-center">
+                        <i class="fas fa-lotus text-white text-5xl opacity-20"></i>
+                    </div>
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Yoga & Balance</h3>
+                        <p class="text-gray-600 mb-6">Find your center. Flexibility, balance, and inner strength through mindful movement.</p>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> 3-5x per week</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> All levels</li>
+                            <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Stress relief</li>
+                        </ul>
+                        <button onclick="openModal()" class="btn-rose text-white w-full py-2 rounded-lg font-semibold text-sm">Learn More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why NovaBorn -->
+    <section id="about" class="py-24 px-4 bg-rose-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="elegant-title text-5xl font-bold text-gray-900 mb-4">Why Women Choose NovaBorn</h2>
+                <p class="text-xl text-gray-600">More than fitness. It's sisterhood.</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-users text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">All-Female Coaching Team</h3>
+                        <p class="text-gray-600">Learn from women who understand your body, your goals, and your journey.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-heart text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Body-Positive Community</h3>
+                        <p class="text-gray-600">Zero judgment. Every body is a strong body. We celebrate all shapes and sizes.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-brain text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Women's Health Expertise</h3>
+                        <p class="text-gray-600">Programs designed for hormonal cycles, pregnancy, postpartum, and menopause.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-trophies text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Real Results</h3>
+                        <p class="text-gray-600">Thousands of women getting stronger, healthier, and more confident daily.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-mobile text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">On-Demand Workouts</h3>
+                        <p class="text-gray-600">Train anytime, anywhere. Work with your schedule, not against it.</p>
+                    </div>
+                </div>
+                <div class="flex gap-6">
+                    <div class="flex-shrink-0">
+                        <div class="w-14 h-14 bg-gradient-to-br from-rose-400 to-pink-400 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-comments text-white text-xl"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-2">Live Q&A & Support</h3>
+                        <p class="text-gray-600">24/7 access to expert coaches. Your questions matter. We're here for you.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ/Accordion -->
+    <section class="py-24 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="elegant-title text-5xl font-bold text-gray-900 mb-4">Questions?</h2>
+                <p class="text-xl text-gray-600">We've got answers</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <button class="accordion-header w-full flex" onclick="toggleAccordion(event)">
+                        <span>What if I've never worked out before?</span>
+                        <i class="fas fa-chevron-down ml-auto text-rose-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Perfect! Our beginner programs are designed for anyone starting from zero. Our coaches meet you where you are and progress at your pace. Most beginners feel confident and strong within 2 weeks.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="accordion-header w-full flex" onclick="toggleAccordion(event)">
+                        <span>How long are the workouts?</span>
+                        <i class="fas fa-chevron-down ml-auto text-rose-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Most workouts are 30-45 minutes. We also have quick 15-minute sessions for busy days. Choose what fits your life. Consistency matters more than duration.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="accordion-header w-full flex" onclick="toggleAccordion(event)">
+                        <span>Do I need equipment?</span>
+                        <i class="fas fa-chevron-down ml-auto text-rose-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">No equipment needed! We offer bodyweight options for all programs. You can add dumbbells or resistance bands if you want, but they're optional.</p>
+                    </div>
+                </div>
+                <div>
+                    <button class="accordion-header w-full flex" onclick="toggleAccordion(event)">
+                        <span>Can I combine multiple programs?</span>
+                        <i class="fas fa-chevron-down ml-auto text-rose-600"></i>
+                    </button>
+                    <div class="accordion-content">
+                        <p class="text-gray-700">Absolutely! Many members combine Strength Sisterhood with Yoga & Balance. Our coaches can help you build a balanced weekly routine.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-16 px-4 bg-gradient-to-r from-rose-600 to-pink-600">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div>
+                    <div class="stat-number">150K+</div>
+                    <p class="text-white text-lg">Strong Women</p>
+                </div>
+                <div>
+                    <div class="stat-number">50+</div>
+                    <p class="text-white text-lg">Female Coaches</p>
+                </div>
+                <div>
+                    <div class="stat-number">4.8★</div>
+                    <p class="text-white text-lg">App Rating</p>
+                </div>
+                <div>
+                    <div class="stat-number">97%</div>
+                    <p class="text-white text-lg">Retention Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stories -->
+    <section id="stories" class="py-24 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="elegant-title text-5xl font-bold text-gray-900 mb-4">Real Women, Real Power</h2>
+                <p class="text-xl text-gray-600">Hear from members who transformed</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-float bg-rose-50 rounded-2xl p-8 border border-rose-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"Never thought I could be this strong. The female coaches get it. No judgment, only encouragement. This community changed my life."</p>
+                    <div class="border-t border-rose-200 pt-4">
+                        <p class="font-bold text-gray-900">Jessica Martinez</p>
+                        <p class="text-rose-600 text-sm">Strength Sisterhood</p>
+                    </div>
+                </div>
+                <div class="card-float bg-rose-50 rounded-2xl p-8 border border-rose-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"As a busy mom, I needed flexibility. These workouts fit my life. I'm stronger, healthier, and my confidence is through the roof!"</p>
+                    <div class="border-t border-rose-200 pt-4">
+                        <p class="font-bold text-gray-900">Sarah Thompson</p>
+                        <p class="text-rose-600 text-sm">Cardio & Dance</p>
+                    </div>
+                </div>
+                <div class="card-float bg-rose-50 rounded-2xl p-8 border border-rose-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6">"The yoga program helped me during postpartum recovery. Expert guidance for women's health. Truly caring coaches. 10/10 recommend!"</p>
+                    <div class="border-t border-rose-200 pt-4">
+                        <p class="font-bold text-gray-900">Amanda Chen</p>
+                        <p class="text-rose-600 text-sm">Yoga & Balance</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-24 px-4 bg-rose-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="elegant-title text-5xl font-bold text-gray-900 mb-4">Affordable Strength</h2>
+                <p class="text-xl text-gray-600">Choose your path</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="card-float bg-white border border-rose-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Try it out</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$9</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-rose-600 text-rose-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-rose-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Limited class library</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Basic tracking</li>
+                    </ul>
+                </div>
+                <div class="card-float bg-gradient-to-br from-rose-50 to-pink-50 border-2 border-rose-600 rounded-2xl p-8 relative">
+                    <span class="absolute -top-4 left-1/2 -translate-x-1/2 bg-rose-600 text-white px-4 py-1 rounded-full text-sm font-bold">MOST POPULAR</span>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Premium</h3>
+                    <p class="text-gray-600 mb-6 text-sm">Everything you need</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$19</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="btn-rose text-white w-full py-2 rounded-lg font-semibold mb-8">Start Free Trial</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> All programs</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> New classes weekly</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Community access</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Progress tracking</li>
+                    </ul>
+                </div>
+                <div class="card-float bg-white border border-rose-200 rounded-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-2">Elite</h3>
+                    <p class="text-gray-600 mb-6 text-sm">VIP experience</p>
+                    <div class="mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$49</span>
+                        <span class="text-gray-600">/month</span>
+                    </div>
+                    <button onclick="openModal()" class="border-2 border-rose-600 text-rose-600 w-full py-2 rounded-lg font-semibold mb-8 hover:bg-rose-50 transition">Get Started</button>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> All Premium features</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> 1-on-1 coaching calls</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Priority support</li>
+                        <li class="flex items-center gap-2 text-gray-700"><i class="fas fa-check text-rose-600"></i> Personalized plan</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-rose-600 to-pink-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="elegant-title text-4xl md:text-5xl font-bold text-white mb-6">Your Strongest Self Awaits</h2>
+            <p class="text-xl text-rose-100 mb-10">Join 150,000 women building strength, confidence, and community.</p>
+            <button onclick="openModal()" class="bg-white text-rose-600 px-10 py-4 rounded-full font-semibold text-lg hover:bg-rose-50 transition inline-block">Start Your Free Trial</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <div class="text-white font-bold text-lg mb-4">NovaBorn</div>
+                    <p class="text-sm">Women's strength. Women's community.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Programs</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">Strength</a></li>
+                        <li><a href="#" class="hover:text-white">Cardio & Dance</a></li>
+                        <li><a href="#" class="hover:text-white">Yoga</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white">About</a></li>
+                        <li><a href="#" class="hover:text-white">Blog</a></li>
+                        <li><a href="#" class="hover:text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-semibold mb-4">Follow</h4>
+                    <div class="flex gap-3">
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-600 transition"><i class="fab fa-instagram text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-600 transition"><i class="fab fa-tiktok text-white text-sm"></i></a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-rose-600 transition"><i class="fab fa-facebook text-white text-sm"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="if(event.target === this) closeModal()">
+        <div class="modal-content">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="elegant-title text-2xl font-bold text-gray-900">Start Your Journey</h3>
+                <button onclick="closeModal()" class="text-2xl text-gray-600 hover:text-gray-900"><i class="fas fa-times"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-rose-500" required>
+                <input type="email" placeholder="Email" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-rose-500" required>
+                <input type="tel" placeholder="Phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-rose-500">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg mb-4 focus:outline-none focus:ring-2 focus:ring-rose-500" required>
+                    <option>Choose Program</option>
+                    <option>Strength Sisterhood</option>
+                    <option>Cardio & Dance</option>
+                    <option>Yoga & Balance</option>
+                </select>
+                <button type="submit" class="btn-rose text-white w-full py-3 rounded-lg font-semibold">Start Free Trial</button>
+            </form>
+            <p class="text-center text-gray-600 text-sm mt-4">7 days free • No card required • Cancel anytime</p>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('modal').classList.add('active');
+        }
+        function closeModal() {
+            document.getElementById('modal').classList.remove('active');
+        }
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+        }
+        function toggleAccordion(event) {
+            const header = event.currentTarget;
+            const content = header.nextElementSibling;
+            
+            document.querySelectorAll('.accordion-header.active').forEach(h => {
+                if (h !== header) {
+                    h.classList.remove('active');
+                    h.nextElementSibling.classList.remove('active');
+                }
+            });
+            
+            header.classList.toggle('active');
+            content.classList.toggle('active');
+        }
+        function handleSubmit(event) {
+            event.preventDefault();
+            alert('Welcome! Check your email for your free trial access!');
+            closeModal();
+        }
+    </script>
+</body>
+</html>

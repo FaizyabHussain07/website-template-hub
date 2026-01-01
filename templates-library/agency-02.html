@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CodeWorks - Web development agency. Custom software, e-commerce, web apps for businesses.">
+    <meta name="keywords" content="web development, software development, e-commerce, web apps, custom development">
+    <title>CodeWorks - Web Development Agency</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Fira Code', monospace; }
+        h1, h2, h3 { font-family: 'Merriweather', serif; }
+        .gradient-code { background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%); }
+        .code-highlight { background: #f3f4f6; border-left: 4px solid #1e3c72; }
+        .modal-hide { display: none; }
+        .modal-hide.open { display: flex; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 gradient-code rounded-lg flex items-center justify-center">
+                    <i class="fas fa-code text-white font-bold"></i>
+                </div>
+                <span class="text-xl font-bold text-gray-900">CodeWorks</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-10 items-center">
+                <a href="#services" class="text-gray-700 hover:text-blue-600 transition font-medium">Services</a>
+                <a href="#projects" class="text-gray-700 hover:text-blue-600 transition font-medium">Projects</a>
+                <a href="#process" class="text-gray-700 hover:text-blue-600 transition font-medium">Process</a>
+                <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition font-medium">Testimonials</a>
+                <button onclick="openModal()" class="gradient-code text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">Start Project</button>
+            </nav>
+            
+            <button id="mobileMenuBtn" class="lg:hidden text-gray-900" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden bg-white border-t border-gray-200">
+            <div class="px-4 py-4 space-y-3">
+                <a href="#services" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Services</a>
+                <a href="#projects" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Projects</a>
+                <a href="#process" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Process</a>
+                <a href="#testimonials" class="block text-gray-700 hover:text-blue-600 py-2 font-medium">Testimonials</a>
+                <button onclick="openModal()" class="w-full gradient-code text-white py-2 rounded-lg font-bold">Start Project</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-blue-50 to-indigo-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="inline-block px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm font-bold mb-6">Expert Developers</span>
+                    <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                        Build Your Digital
+                        <span class="gradient-code bg-clip-text text-transparent"> Product</span>
+                    </h1>
+                    <p class="text-xl text-gray-600 mb-10 leading-relaxed">
+                        Custom web and software development for ambitious businesses. From concept to launch.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button onclick="openModal()" class="gradient-code text-white px-8 py-4 rounded-lg font-bold hover:shadow-xl transition text-lg">
+                            Schedule Consultation
+                        </button>
+                        <button class="border-2 border-blue-700 text-blue-700 px-8 py-4 rounded-lg font-bold hover:bg-blue-50 transition text-lg">
+                            View Our Work
+                        </button>
+                    </div>
+                    
+                    <div class="mt-12 space-y-4">
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-blue-700 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">35+ Successful Projects</p>
+                                <p class="text-sm text-gray-600">Delivered across diverse sectors</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3">
+                            <i class="fas fa-check text-blue-700 text-2xl"></i>
+                            <div>
+                                <p class="font-bold text-gray-900">Full-Stack Expertise</p>
+                                <p class="text-sm text-gray-600">Backend, frontend, cloud, and DevOps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hidden lg:block relative">
+                    <img src="https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop" alt="Development" class="rounded-xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-6 text-center">What We Build</h2>
+            <p class="text-xl text-gray-600 text-center mb-16 max-w-3xl mx-auto">Comprehensive development services tailored to your needs</p>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-globe text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Web Applications</h3>
+                    <p class="text-gray-600 mb-6">Full-featured web apps. React, Vue, Angular, Node.js, Python, and more.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Responsive design</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Real-time features</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>API integration</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Database design</li>
+                    </ul>
+                </div>
+
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-shopping-cart text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">E-Commerce Platforms</h3>
+                    <p class="text-gray-600 mb-6">Scalable e-commerce solutions. Shopify, WooCommerce, custom builds.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Payment gateway integration</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Inventory management</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Mobile optimization</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Analytics & reporting</li>
+                    </ul>
+                </div>
+
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-mobile-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Mobile Apps</h3>
+                    <p class="text-gray-600 mb-6">Native and cross-platform apps. iOS, Android, React Native development.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Native performance</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Offline functionality</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Push notifications</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>App store deployment</li>
+                    </ul>
+                </div>
+
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-server text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Backend & APIs</h3>
+                    <p class="text-gray-600 mb-6">Scalable server infrastructure. Microservices, cloud deployment, security.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>RESTful APIs</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Cloud deployment</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Database optimization</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Security & authentication</li>
+                    </ul>
+                </div>
+
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-sync-alt text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">DevOps & Infrastructure</h3>
+                    <p class="text-gray-600 mb-6">Cloud infrastructure management. AWS, Azure, GCP, CI/CD pipelines.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Cloud setup & migration</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>CI/CD automation</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Monitoring & logging</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Security compliance</li>
+                    </ul>
+                </div>
+
+                <div class="code-highlight p-8 rounded-xl hover:shadow-lg transition">
+                    <div class="w-12 h-12 gradient-code rounded-lg flex items-center justify-center mb-6">
+                        <i class="fas fa-tools text-white text-xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-900 mb-3">Maintenance & Support</h3>
+                    <p class="text-gray-600 mb-6">Ongoing support and optimization. Bug fixes, updates, scaling.</p>
+                    <ul class="space-y-2 text-sm text-gray-700">
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>24/7 monitoring</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Bug fixes & patches</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Performance optimization</li>
+                        <li><i class="fas fa-check text-blue-600 mr-2"></i>Feature updates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Recent Projects</h2>
+
+            <div class="space-y-12">
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f70db4397?w=500&h=400&fit=crop" alt="Project" class="rounded-xl shadow-lg">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">SaaS Platform Rebuild</h3>
+                        <p class="text-gray-600 mb-6">Migrated legacy system to modern architecture. Improved performance by 70% and reduced costs by 40%.</p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>React + Node.js + PostgreSQL</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>AWS cloud deployment</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Zero downtime migration</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Real-time analytics</li>
+                        </ul>
+                        <button class="gradient-code text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">View Case Study</button>
+                    </div>
+                </div>
+
+                <div class="grid lg:grid-cols-2 gap-8 items-center">
+                    <div>
+                        <h3 class="text-3xl font-bold text-gray-900 mb-4">E-Commerce Platform Launch</h3>
+                        <p class="text-gray-600 mb-6">Built scalable e-commerce platform for fashion retailer. Handles 10K+ concurrent users with 99.9% uptime.</p>
+                        <ul class="space-y-2 text-gray-700 mb-6">
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Vue.js + Laravel backend</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Payment integrations</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Inventory management</li>
+                            <li><i class="fas fa-check text-blue-600 mr-2"></i>Mobile responsive</li>
+                        </ul>
+                        <button class="gradient-code text-white px-6 py-2 rounded-lg font-bold hover:shadow-lg transition">View Case Study</button>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1522869635100-ce8e12434e5f?w=500&h=400&fit=crop" alt="Project" class="rounded-xl shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section id="process" class="py-20 px-4 sm:px-6 lg:px-8 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Our Development Process</h2>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-5 gap-4">
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-code rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl">1</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Discovery</h3>
+                    <p class="text-gray-600 text-sm">Understand your goals and requirements</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-code rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl">2</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Planning</h3>
+                    <p class="text-gray-600 text-sm">Design architecture and roadmap</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-code rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl">3</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Development</h3>
+                    <p class="text-gray-600 text-sm">Build with clean, scalable code</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-code rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl">4</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Testing</h3>
+                    <p class="text-gray-600 text-sm">Comprehensive QA and testing</p>
+                </div>
+
+                <div class="text-center">
+                    <div class="w-16 h-16 gradient-code rounded-full mx-auto mb-4 flex items-center justify-center text-white font-bold text-xl">5</div>
+                    <h3 class="text-lg font-bold text-gray-900 mb-2">Launch</h3>
+                    <p class="text-gray-600 text-sm">Deploy and provide support</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl lg:text-5xl font-bold text-gray-900 mb-16 text-center">Client Testimonials</h2>
+
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"CodeWorks delivered exactly what we needed. Their team was responsive, professional, and delivered ahead of schedule. Our new platform increased revenue by 35%."</p>
+                    <p class="font-bold text-gray-900">CEO, TechStartup</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"Working with CodeWorks was a game-changer. They transformed our legacy system into a modern, scalable platform. Highly recommended!"</p>
+                    <p class="font-bold text-gray-900">CTO, Enterprise Corp</p>
+                </div>
+
+                <div class="bg-white p-8 rounded-xl border border-gray-200">
+                    <div class="flex gap-1 mb-4">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-6 text-lg">"Best development team we've worked with. Their expertise in both frontend and backend is exceptional. They're now our trusted technical partner."</p>
+                    <p class="font-bold text-gray-900">Product Lead, FinTech Co</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 px-4 sm:px-6 lg:px-8 gradient-code text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">Ready to Build Something Great?</h2>
+            <p class="text-xl mb-10 opacity-90">Let's discuss your project and how we can help.</p>
+            <button onclick="openModal()" class="bg-white text-blue-700 px-10 py-4 rounded-lg font-bold hover:shadow-2xl transition text-lg hover:bg-gray-100">
+                Schedule Free Consultation
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">CodeWorks</h4>
+                    <p class="text-sm">Web development agency building digital solutions.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Services</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Web Apps</a></li>
+                        <li><a href="#" class="hover:text-white transition">E-Commerce</a></li>
+                        <li><a href="#" class="hover:text-white transition">Mobile Apps</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">About</a></li>
+                        <li><a href="#" class="hover:text-white transition">Careers</a></li>
+                        <li><a href="#" class="hover:text-white transition">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-white transition">Blog</a></li>
+                        <li><a href="#" class="hover:text-white transition">Guide</a></li>
+                        <li><a href="#" class="hover:text-white transition">Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 pt-8 text-center text-sm">
+                <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+                <p>&copy; 2026 CodeWorks. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Consultation Modal -->
+    <div id="consultationModal" class="modal-hide fixed inset-0 bg-black bg-opacity-50 z-50 items-center justify-center p-4">
+        <div class="bg-white rounded-xl shadow-2xl max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900">Schedule Consultation</h3>
+                <button onclick="closeModal()" class="text-gray-600 hover:text-gray-900">
+                    <i class="fas fa-times text-2xl"></i>
+                </button>
+            </div>
+            <form class="space-y-4">
+                <input type="text" placeholder="Your Name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="email" placeholder="Email Address" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <input type="tel" placeholder="Phone Number" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600">
+                    <option>Project Type</option>
+                    <option>Web Application</option>
+                    <option>E-Commerce</option>
+                    <option>Mobile App</option>
+                    <option>Other</option>
+                </select>
+                <button type="submit" class="w-full gradient-code text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                    Schedule Now
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        function openModal() {
+            document.getElementById('consultationModal').classList.add('open');
+        }
+
+        function closeModal() {
+            document.getElementById('consultationModal').classList.remove('open');
+        }
+
+        document.addEventListener('click', (e) => {
+            const modal = document.getElementById('consultationModal');
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    document.getElementById('mobileMenu').classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

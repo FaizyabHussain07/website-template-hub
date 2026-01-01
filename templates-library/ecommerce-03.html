@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TechGear - Electronics store for gadgets and tech accessories">
+    <meta name="keywords" content="electronics, gadgets, tech, smartphones, computers">
+    <title>TechGear - Tech Gadgets Store</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { font-family: 'Outfit', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Outfit', sans-serif; font-weight: 800; }
+        .gradient-tech { background: linear-gradient(135deg, #06b6d4 0%, #0284c7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .tech-glow { box-shadow: 0 0 50px rgba(6, 182, 212, 0.3); animation: techGlow 2.3s ease-in-out infinite; }
+        @keyframes techGlow { 0%, 100% { box-shadow: 0 0 50px rgba(6, 182, 212, 0.3); } 50% { box-shadow: 0 0 70px rgba(2, 132, 199, 0.45); } }
+        .modal-hidden { display: none !important; }
+        .modal-hidden.show { display: flex !important; }
+        .tech-card { transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .tech-card:hover { transform: translateY(-8px); box-shadow: 0 20px 60px rgba(6, 182, 212, 0.2); }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white z-50 border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-lg">
+                    <i class="fas fa-microchip text-white text-xl"></i>
+                </div>
+                <span class="text-2xl font-bold text-gray-900">TechGear</span>
+            </div>
+            
+            <nav class="hidden lg:flex gap-12 items-center">
+                <a href="#products" class="text-gray-700 font-medium hover:text-cyan-600 transition">Products</a>
+                <a href="#categories" class="text-gray-700 font-medium hover:text-cyan-600 transition">Categories</a>
+                <a href="#deals" class="text-gray-700 font-medium hover:text-cyan-600 transition">Hot Deals</a>
+                <a href="#faq" class="text-gray-700 font-medium hover:text-cyan-600 transition">Help</a>
+                <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold hover:shadow-lg transition shadow-md">Shop</button>
+            </nav>
+            
+            <button id="mobileToggleBtn" class="lg:hidden text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+        
+        <div id="mobileMenu" class="hidden lg:hidden border-t bg-white">
+            <div class="px-4 py-4 space-y-4">
+                <a href="#products" class="block text-gray-700 font-medium py-2">Products</a>
+                <a href="#categories" class="block text-gray-700 font-medium py-2">Categories</a>
+                <a href="#deals" class="block text-gray-700 font-medium py-2">Hot Deals</a>
+                <a href="#faq" class="block text-gray-700 font-medium py-2">Help</a>
+                <button onclick="openModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-6 py-3 rounded-lg font-bold">Shop</button>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero -->
+    <section class="pt-32 pb-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-cyan-50 to-blue-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <div class="inline-block bg-cyan-100 text-cyan-700 px-4 py-2 rounded-full text-sm font-bold mb-8 flex items-center gap-2">
+                    <i class="fas fa-zap"></i> Latest Tech
+                </div>
+                <h1 class="text-6xl lg:text-7xl font-bold text-gray-900 mb-6 leading-tight">
+                    Cutting Edge<br/><span class="gradient-tech">Technology</span>
+                </h1>
+                <p class="text-xl text-gray-600 mb-8 leading-relaxed">
+                    Latest gadgets. Best prices. Expert advice. Free tech support.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 mb-8">
+                    <button onclick="openModal()" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white px-8 py-4 rounded-lg font-bold text-lg hover:shadow-xl transition shadow-lg">
+                        Browse Now
+                    </button>
+                    <button class="border-2 border-cyan-300 text-cyan-600 px-8 py-4 rounded-lg font-bold hover:bg-cyan-50 transition">
+                        View Deals
+                    </button>
+                </div>
+                <div class="flex gap-8 text-sm">
+                    <div>
+                        <p class="text-3xl font-bold text-cyan-600">15K+</p>
+                        <p class="text-gray-600">Products</p>
+                    </div>
+                    <div>
+                        <p class="text-3xl font-bold text-cyan-600">2 Year</p>
+                        <p class="text-gray-600">Warranty</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="hidden lg:flex items-center justify-center">
+                <div class="tech-glow w-80 h-80 bg-gradient-to-br from-cyan-100 to-blue-100 rounded-3xl flex items-center justify-center">
+                    <i class="fas fa-laptop text-7xl text-cyan-200 opacity-40"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Products -->
+    <section id="products" class="py-24 px-4 sm:px-6 lg:px-8 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Top Products</h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="tech-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-cyan-200 to-blue-200 flex items-center justify-center">
+                        <i class="fas fa-mobile text-cyan-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Smartphone Pro</h3>
+                        <p class="text-sm text-gray-600 mb-4">5G, 120Hz display, 5000mAh battery</p>
+                        <span class="text-2xl font-bold text-cyan-600">&#8377;34,999</span>
+                        <button onclick="openModal()" class="w-full mt-4 bg-cyan-100 text-cyan-700 py-2 rounded-lg font-bold hover:bg-cyan-200 transition">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="tech-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-cyan-200 to-blue-200 flex items-center justify-center">
+                        <i class="fas fa-laptop text-cyan-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Gaming Laptop</h3>
+                        <p class="text-sm text-gray-600 mb-4">RTX 4060, 16GB RAM, 512GB SSD</p>
+                        <span class="text-2xl font-bold text-cyan-600">&#8377;89,999</span>
+                        <button onclick="openModal()" class="w-full mt-4 bg-cyan-100 text-cyan-700 py-2 rounded-lg font-bold hover:bg-cyan-200 transition">Add to Cart</button>
+                    </div>
+                </div>
+                
+                <div class="tech-card bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm">
+                    <div class="w-full h-48 bg-gradient-to-br from-cyan-200 to-blue-200 flex items-center justify-center">
+                        <i class="fas fa-headphones text-cyan-300 text-8xl opacity-30"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-lg font-bold text-gray-900 mb-2">Wireless Earbuds</h3>
+                        <p class="text-sm text-gray-600 mb-4">Noise cancelling, 48hr battery</p>
+                        <span class="text-2xl font-bold text-cyan-600">&#8377;12,999</span>
+                        <button onclick="openModal()" class="w-full mt-4 bg-cyan-100 text-cyan-700 py-2 rounded-lg font-bold hover:bg-cyan-200 transition">Add to Cart</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Categories -->
+    <section id="categories" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Shop by Category</h2>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition cursor-pointer">
+                    <i class="fas fa-mobile text-cyan-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Phones</h3>
+                    <p class="text-sm text-gray-600">2000+ models</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition cursor-pointer">
+                    <i class="fas fa-laptop text-cyan-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Laptops</h3>
+                    <p class="text-sm text-gray-600">1500+ options</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition cursor-pointer">
+                    <i class="fas fa-gamepad text-cyan-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Accessories</h3>
+                    <p class="text-sm text-gray-600">5000+ items</p>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8 text-center hover:shadow-lg transition cursor-pointer">
+                    <i class="fas fa-tv text-cyan-600 text-4xl mb-4"></i>
+                    <h3 class="font-bold text-gray-900 mb-2">Displays</h3>
+                    <p class="text-sm text-gray-600">800+ monitors</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Deals -->
+    <section id="deals" class="py-24 px-4 sm:px-6 lg:px-8 bg-cyan-50">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Hot Deals</h2>
+            
+            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-bolt text-cyan-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Flash Sales</h3>
+                            <p class="text-gray-600">Daily deals. Limited quantity.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-2xl border border-gray-200 p-8">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 bg-cyan-100 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                            <i class="fas fa-gift text-cyan-600 text-xl"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Bundle Offers</h3>
+                            <p class="text-gray-600">Save more when you buy together.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- FAQ -->
+    <section id="faq" class="py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-16">Questions?</h2>
+            
+            <div class="space-y-6">
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(0)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-cyan-600 transition">
+                        <span>Is warranty provided?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-0"></i>
+                    </button>
+                    <div id="faq-content-0" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        Yes, manufacturer warranty on all products. Extended warranty available.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(1)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-cyan-600 transition">
+                        <span>Do you sell original products?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-1"></i>
+                    </button>
+                    <div id="faq-content-1" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        100% authentic. Authorized distributor for all brands. Money-back guarantee.
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-xl border border-gray-200 p-8">
+                    <button onclick="toggleFaq(2)" class="w-full text-left flex justify-between items-center font-bold text-lg text-gray-900 hover:text-cyan-600 transition">
+                        <span>What's the return policy?</span>
+                        <i class="fas fa-chevron-down transition-transform" id="faq-icon-2"></i>
+                    </button>
+                    <div id="faq-content-2" class="hidden mt-4 text-gray-600 leading-relaxed border-t pt-4">
+                        30-day returns. Free shipping for returns. Instant refund to account.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- CTA -->
+    <section class="py-24 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-cyan-500 to-blue-600">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl md:text-6xl font-bold text-white mb-6">Latest Tech at Best Price</h2>
+            <p class="text-xl text-cyan-100 mb-10">Official distributor. Authorized seller.</p>
+            <button onclick="openModal()" class="bg-white text-cyan-600 px-10 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition shadow-xl">
+                Shop Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-5 gap-12 mb-12">
+            <div>
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-8 h-8 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                        <i class="fas fa-microchip text-white text-sm"></i>
+                    </div>
+                    <span class="text-lg font-bold text-white">TechGear</span>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Shop</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400 transition">Phones</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition">Laptops</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Support</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400 transition">Help</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition">Warranty</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Company</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400 transition">About</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition">Blog</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-white mb-4 text-sm uppercase">Legal</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-cyan-400 transition">Privacy</a></li>
+                    <li><a href="#" class="hover:text-cyan-400 transition">Terms</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-gray-800 pt-8">
+            <p class="text-center text-gray-400 text-sm">Created by <a href="https://devweavex.netlify.app/" class="text-gray-300 hover:text-white transition">DevWeaveX</a> — <a href="https://faizyab-hussain.vercel.app/" class="text-gray-300 hover:text-white transition">Syed Faizyab Hussain</a> & <a href="https://www.linkedin.com/in/syed-danish-raza/" class="text-gray-300 hover:text-white transition">Syed Danish Raza</a></p>
+        </div>
+    </footer>
+    
+    <!-- Modal -->
+    <div id="modal" class="modal-hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center px-4">
+        <div class="bg-white rounded-2xl shadow-2xl max-w-md w-full">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h3 class="text-2xl font-bold text-gray-900">Shop Products</h3>
+                <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-semibold text-gray-700 mb-2">Product Category</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-cyan-600 focus:ring-2 focus:ring-cyan-100">
+                            <option>Smartphones</option>
+                            <option>Laptops</option>
+                            <option>Accessories</option>
+                        </select>
+                    </div>
+                    
+                    <button type="button" onclick="closeModal()" class="w-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-lg font-bold hover:shadow-lg transition">
+                        Browse Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        }
+        
+        function openModal() {
+            document.getElementById('modal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeModal() {
+            document.getElementById('modal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+        
+        function toggleFaq(index) {
+            const content = document.getElementById(`faq-content-${index}`);
+            const icon = document.getElementById(`faq-icon-${index}`);
+            
+            content.classList.toggle('hidden');
+            icon.style.transform = content.classList.contains('hidden') ? 'rotate(0)' : 'rotate(180deg)';
+        }
+        
+        window.onclick = function(event) {
+            const modal = document.getElementById('modal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
