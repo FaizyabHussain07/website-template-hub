@@ -1,155 +1,160 @@
-// Page Loader - Show loading spinner until page is fully loaded with all assets
-(function() {
-    // Create professional loader HTML
+// Page Loader Logic
+(function () {
+    // Critical Loader Styles
+    const style = document.createElement('style');
+    style.textContent = `
+        #page-loader {
+            position: fixed;
+            inset: 0;
+            background: #f8fafc;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #eff6ff 100%);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 2rem;
+            transition: opacity 0.25s ease-out;
+            visibility: visible !important;
+        }
+        .loader-content { display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+        .loader-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+        .loader-logo-icon { 
+            width: 3.5rem; height: 3.5rem; 
+            background: #2563eb; 
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            border-radius: 1rem; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.25);
+        }
+        .loader-logo-text { font-size: 1.75rem; font-weight: 800; color: #0f172a; font-family: sans-serif; }
+        .loader-logo-text span { color: #2563eb; }
+        .loader-spinner { position: relative; width: 4.5rem; height: 4.5rem; }
+        .spinner-ring { position: absolute; inset: 0; border-radius: 50%; border: 4px solid transparent; }
+        .spinner-ring-outer { border-top-color: #2563eb; border-right-color: #60a5fa; animation: loader-spin 1.5s linear infinite; }
+        .spinner-ring-inner { inset: 0.6rem; border-bottom-color: #3b82f6; border-left-color: #93c5fd; animation: loader-spin-reverse 2s linear infinite; }
+        .loader-text { text-align: center; font-family: sans-serif; }
+        .loader-text p:first-child { font-size: 1.25rem; font-weight: 700; color: #1e293b; margin: 0; }
+        .loader-text p:last-child { font-size: 0.875rem; color: #64748b; margin-top: 0.5rem; }
+        .loader-progress-bar { width: 14rem; height: 6px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+        .loader-progress-value { height: 100%; background: #2563eb; width: 40%; animation: loader-progress 2s ease-in-out infinite; }
+        @keyframes loader-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes loader-spin-reverse { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
+        @keyframes loader-progress { 0% { transform: translateX(-100%); width: 30%; } 50% { width: 60%; } 100% { transform: translateX(250%); width: 30%; } }
+        
+        /* Hide content until loaded */
+        body > *:not(#page-loader) { opacity: 0; }
+        body.loaded > *:not(#page-loader) { opacity: 1; transition: opacity 0.3s ease-in-out; }
+        html.loaded { overflow-y: auto; }
+        html:not(.loaded) { overflow-y: hidden; }
+    `;
+    document.head.appendChild(style);
+
     const loaderHTML = `
-    <div id="page-loader" class="fixed inset-0 bg-gradient-to-br from-slate-50 via-white to-blue-50 z-9999 flex items-center justify-center">
-        <div class="flex flex-col items-center gap-8">
-            <!-- Logo/Brand -->
-            <div class="flex items-center gap-2 mb-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-blue-600 to-blue-700 rounded-xl flex items-center justify-center shadow-lg">
-                    <svg class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M3 13h2v8H3zm4-8h2v16H7zm4-2h2v18h-2zm4 4h2v14h-2zm4-4h2v18h-2z"/>
+    <div id="page-loader">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <div class="loader-logo-icon">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                        <line x1="3" y1="9" x2="21" y2="9"></line>
+                        <line x1="9" y1="21" x2="9" y2="9"></line>
                     </svg>
                 </div>
-                <span class="text-2xl font-bold text-slate-900">WebTemplates<span class="text-blue-600">Hub</span></span>
+                <span class="loader-logo-text">WebTemplates<span>Hub</span></span>
             </div>
 
-            <!-- Advanced Spinner -->
-            <div class="relative w-20 h-20">
-                <!-- Outer ring -->
-                <div class="absolute inset-0 rounded-full border-4 border-transparent border-t-blue-600 border-r-blue-400 animate-spin" style="animation-duration: 2s;"></div>
-                <!-- Middle ring -->
-                <div class="absolute inset-2 rounded-full border-4 border-transparent border-b-blue-500 border-l-blue-300 animate-spin" style="animation-duration: 3s; animation-direction: reverse;"></div>
-                <!-- Inner ring -->
-                <div class="absolute inset-4 rounded-full border-2 border-blue-200"></div>
+            <div class="loader-spinner">
+                <div class="spinner-ring spinner-ring-outer"></div>
+                <div class="spinner-ring spinner-ring-inner"></div>
             </div>
 
-            <!-- Loading text with dots animation -->
-            <div class="text-center">
-                <p class="text-slate-600 font-semibold text-lg">
-                    Loading<span class="inline-block w-6 text-left">
-                        <span class="inline-block animate-bounce" style="animation-delay: 0s;">.</span><span class="inline-block animate-bounce" style="animation-delay: 0.2s;">.</span><span class="inline-block animate-bounce" style="animation-delay: 0.4s;">.</span>
-                    </span>
-                </p>
-                <p class="text-slate-400 text-sm mt-2">Getting everything ready for you</p>
+            <div class="loader-text">
+                <p>Loading...</p>
+                <p>Preparing your experience</p>
             </div>
 
-            <!-- Progress bar -->
-            <div class="w-48 h-1 bg-slate-200 rounded-full overflow-hidden">
-                <div class="h-full bg-gradient-to-r from-blue-400 to-blue-600 rounded-full animate-pulse" style="width: 70%; animation: progress 2s ease-in-out infinite;"></div>
+            <div class="loader-progress-bar">
+                <div class="loader-progress-value"></div>
             </div>
         </div>
-
-        <style>
-            @keyframes progress {
-                0%, 100% { width: 30%; }
-                50% { width: 70%; }
-            }
-        </style>
     </div>
     `;
 
-    // Hide page until everything loads
-    function hidePage() {
-        document.documentElement.classList.remove('loaded');
-    }
-
-    // Show page when everything is ready
-    function showPage() {
+    // Ensure the HTML has the 'loaded' class state managed
+    function showContent() {
         document.documentElement.classList.add('loaded');
-        hideLoader();
-    }
+        document.body.classList.add('loaded');
 
-    // Function to create and show loader
-    function createLoader() {
-        // Remove existing loader if any
-        const existingLoader = document.getElementById('page-loader');
-        if (existingLoader) {
-            existingLoader.remove();
-        }
-        
-        // Create new loader
-        const loaderDiv = document.createElement('div');
-        loaderDiv.innerHTML = loaderHTML;
-        const loader = loaderDiv.firstElementChild;
-        loader.style.opacity = '1';
-        loader.style.transition = 'opacity 0.3s ease-out';
-        document.body.insertBefore(loader, document.body.firstChild);
-        return loader;
-    }
-
-    // Function to hide loader
-    function hideLoader() {
         const loader = document.getElementById('page-loader');
         if (loader) {
-            loader.style.transition = 'opacity 0.4s ease-out';
             loader.style.opacity = '0';
-            
-            // Remove loader from DOM after fade-out
-            setTimeout(function() {
-                if (loader.parentNode) {
-                    loader.remove();
-                }
-            }, 400);
+            setTimeout(() => {
+                if (loader.parentNode) loader.remove();
+            }, 250);
         }
     }
 
-    // Hide page initially
-    hidePage();
-
-    // Create loader on page start
-    if (document.body) {
-        createLoader();
+    function hideContent() {
+        document.documentElement.classList.remove('loaded');
+        document.body.classList.remove('loaded');
     }
 
-    // Insert loader at the beginning of body when DOM is ready
-    document.addEventListener('DOMContentLoaded', function() {
-        if (!document.getElementById('page-loader')) {
-            createLoader();
-        }
-        
-        // Initialize lucide icons if available
-        if (window.lucide && window.lucide.createIcons) {
-            try {
-                window.lucide.createIcons();
-            } catch (e) {
-                console.log('Lucide icons initialization...');
-            }
-        }
-    });
+    function createLoader() {
+        if (document.getElementById('page-loader')) return;
 
-    // Hide loader and show page when all resources are loaded
-    window.addEventListener('load', function() {
-        // Wait a bit to ensure all rendering is complete
-        setTimeout(function() {
-            // Initialize lucide icons again
-            if (window.lucide && window.lucide.createIcons) {
-                try {
-                    window.lucide.createIcons();
-                } catch (e) {
-                    console.log('Final lucide initialization...');
+        const loaderContainer = document.createElement('div');
+        loaderContainer.innerHTML = loaderHTML;
+        const loader = loaderContainer.firstElementChild;
+
+        // Insert as first child of body
+        if (document.body) {
+            document.body.insertBefore(loader, document.body.firstChild);
+        } else {
+            // Fallback if body isn't ready, wait for it
+            const observer = new MutationObserver((mutations, obs) => {
+                if (document.body) {
+                    document.body.insertBefore(loader, document.body.firstChild);
+                    obs.disconnect();
                 }
-            }
-            showPage();
-        }, 150);
+            });
+            observer.observe(document.documentElement, { childList: true });
+        }
+    }
+
+    // Initialize loader as soon as possible
+    createLoader();
+
+    // Re-run on DOMContentLoaded just in case
+    document.addEventListener('DOMContentLoaded', createLoader);
+
+    // Initial state
+    hideContent();
+
+    // Final show when everything is ready
+    window.addEventListener('load', function () {
+        // Give Tailwind a moment to parse (reduced for speed)
+        setTimeout(showContent, 100);
     });
 
-    // Fallback: Hide loader after max time (15 seconds)
-    setTimeout(function() {
-        hideLoader();
-        showPage();
-    }, 15000);
+    // Strict fallback timer (3 seconds as requested)
+    setTimeout(showContent, 3000);
 
-    // Intercept all navigation to show loader again
-    document.addEventListener('click', function(e) {
+    // Lucide initialization helper
+    window.addEventListener('load', function () {
+        if (window.lucide) {
+            window.lucide.createIcons();
+        }
+    });
+
+    // Handle navigation
+    document.addEventListener('click', function (e) {
         const link = e.target.closest('a[href]');
-        if (link && link.href && !link.target && !link.href.startsWith('#')) {
-            // Check if it's an internal link (same domain or relative)
-            const isInternal = link.hostname === window.location.hostname || !link.hostname;
-            if (isInternal) {
-                // Hide page and show loader for navigation
-                hidePage();
-                createLoader();
+        if (link && link.href && !link.target && !link.href.startsWith('#') && !link.href.startsWith('javascript:')) {
+            const url = new URL(link.href, window.location.origin);
+            if (url.origin === window.location.origin) {
+                // Same site navigation
+                hideContent();
+                // We don't necessarily need to create the loader here as the next page will have it
             }
         }
     }, true);

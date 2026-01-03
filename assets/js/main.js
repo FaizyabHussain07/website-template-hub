@@ -102,10 +102,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
             card.innerHTML = `
                 <div class="relative group aspect-video bg-slate-100 overflow-hidden">
-                    <img src="${template.thumbnail}" alt="${template.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                    <img src="${template.thumbnail}" alt="${template.name} - Free ${template.industry} Template" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
                         onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-8\\'><div class=\\'text-center space-y-2\\'><div class=\\'text-white/20 font-black text-3xl uppercase tracking-tighter mb-1\\'>${template.industry}</div><div class=\\'text-white font-bold text-lg\\'>${template.name}</div></div><div class=\\'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100\\'><a href=\\'template.html?id=${template.id}\\' class=\\'bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl\\'>Preview Template</a></div></div>'">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                        <a href="template.html?id=${template.id}" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl">
+                        <a href="template.html?id=${template.id}" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl" aria-label="Preview ${template.name} Template">
                             Preview Template
                         </a>
                     </div>

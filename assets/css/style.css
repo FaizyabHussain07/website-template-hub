@@ -9,14 +9,22 @@
 }
 
 html {
-    visibility: hidden;
-    opacity: 0;
+    /* Prevent vertical scroll while loading */
+    overflow-y: hidden;
 }
 
 html.loaded {
-    visibility: visible;
+    overflow-y: auto;
+}
+
+/* Hide body content initially */
+body > *:not(#page-loader) {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+body.loaded > *:not(#page-loader) {
     opacity: 1;
-    transition: opacity 0.3s ease-in;
 }
 
 body {
