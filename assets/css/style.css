@@ -8,6 +8,17 @@
     --text-muted: #64748b;
 }
 
+html {
+    visibility: hidden;
+    opacity: 0;
+}
+
+html.loaded {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity 0.3s ease-in;
+}
+
 body {
     font-family: 'Plus Jakarta Sans', sans-serif;
     background-color: var(--bg-main);
