@@ -21,10 +21,7 @@
         .loader-logo { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
         .loader-logo-icon { 
             width: 3.5rem; height: 3.5rem; 
-            background: #2563eb; 
-            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
-            border-radius: 1rem; display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.25);
+            display: flex; align-items: center; justify-content: center;
         }
         .loader-logo-text { font-size: 1.75rem; font-weight: 800; color: #0f172a; font-family: sans-serif; }
         .loader-logo-text span { color: #2563eb; }
@@ -54,10 +51,10 @@
         <div class="loader-content">
             <div class="loader-logo">
                 <div class="loader-logo-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="3" y1="9" x2="21" y2="9"></line>
-                        <line x1="9" y1="21" x2="9" y2="9"></line>
+                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" stroke="white" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.3"/>
+                        <path d="M4 6L9 18L12 12L15 18L20 6" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 18L12 12L15 18" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
                     </svg>
                 </div>
                 <span class="loader-logo-text">WebTemplates<span>Hub</span></span>
@@ -83,7 +80,9 @@
     // Ensure the HTML has the 'loaded' class state managed
     function showContent() {
         document.documentElement.classList.add('loaded');
-        document.body.classList.add('loaded');
+        if (document.body) {
+            document.body.classList.add('loaded');
+        }
 
         const loader = document.getElementById('page-loader');
         if (loader) {
@@ -96,7 +95,9 @@
 
     function hideContent() {
         document.documentElement.classList.remove('loaded');
-        document.body.classList.remove('loaded');
+        if (document.body) {
+            document.body.classList.remove('loaded');
+        }
     }
 
     function createLoader() {
@@ -127,8 +128,8 @@
     // Re-run on DOMContentLoaded just in case
     document.addEventListener('DOMContentLoaded', createLoader);
 
-    // Initial state
-    hideContent();
+    // Initial state (html class only since body might not be ready)
+    document.documentElement.classList.remove('loaded');
 
     // Final show when everything is ready
     window.addEventListener('load', function () {
