@@ -1,7 +1,7 @@
 [
   {
     "id": "agency-01",
-    "name": "DesignStudio",
+    "name": "DesignStudio - Creative Digital Agency",
     "industry": "Digital Agency",
     "category": "Creative Agency",
     "tech": [
@@ -15,7 +15,7 @@
   },
   {
     "id": "agency-02",
-    "name": "CodeWorks",
+    "name": "CodeWorks - Web Development Agency",
     "industry": "Digital Agency",
     "category": "Web Development",
     "tech": [
@@ -29,7 +29,7 @@
   },
   {
     "id": "agency-03",
-    "name": "BrandForge",
+    "name": "BrandForge - Full-Service Marketing Agency",
     "industry": "Digital Agency",
     "category": "Marketing Agency",
     "tech": [
@@ -43,7 +43,7 @@
   },
   {
     "id": "agency-04",
-    "name": "CreativeStudio",
+    "name": "CreativeStudio - Branding & Design Agency",
     "industry": "Digital Agency",
     "category": "Branding & Design",
     "tech": [
@@ -57,7 +57,7 @@
   },
   {
     "id": "agency-05",
-    "name": "PixelForce",
+    "name": "PixelForce - UI/UX Design Agency",
     "industry": "Digital Agency",
     "category": "UI/UX Design",
     "tech": [
@@ -71,7 +71,7 @@
   },
   {
     "id": "agency-06",
-    "name": "GrowthLab",
+    "name": "GrowthLab - Growth Marketing Agency",
     "industry": "Digital Agency",
     "category": "Growth Marketing",
     "tech": [
@@ -85,7 +85,7 @@
   },
   {
     "id": "agency-07",
-    "name": "SocialVibe",
+    "name": "SocialVibe - Social Media Marketing Agency",
     "industry": "Digital Agency",
     "category": "Social Media",
     "tech": [
@@ -99,7 +99,7 @@
   },
   {
     "id": "agency-08",
-    "name": "StartupBoost",
+    "name": "StartupBoost - Startup Consulting & Growth",
     "industry": "Digital Agency",
     "category": "Startup Consulting",
     "tech": [
@@ -113,7 +113,7 @@
   },
   {
     "id": "agency-09",
-    "name": "ContentWorks",
+    "name": "ContentWorks - Content Marketing Agency",
     "industry": "Digital Agency",
     "category": "Content Marketing",
     "tech": [
@@ -127,7 +127,7 @@
   },
   {
     "id": "agency-10",
-    "name": "EventFlow",
+    "name": "EventFlow - Event Marketing & Management",
     "industry": "Digital Agency",
     "category": "Event Marketing",
     "tech": [
@@ -141,7 +141,7 @@
   },
   {
     "id": "crypto-01",
-    "name": "BitVault",
+    "name": "CryptoVault - Secure Cryptocurrency Management Platform",
     "industry": "Crypto",
     "category": "Bitcoin & Security",
     "tech": [
@@ -155,7 +155,7 @@
   },
   {
     "id": "crypto-02",
-    "name": "DeFiDash",
+    "name": "BlockForge - Build & Deploy DeFi Protocols",
     "industry": "Crypto",
     "category": "DeFi Protocols",
     "tech": [
@@ -169,7 +169,7 @@
   },
   {
     "id": "crypto-03",
-    "name": "BlockChain",
+    "name": "NFTGallery - Create & Trade Digital NFTs",
     "industry": "Crypto",
     "category": "Smart Contracts",
     "tech": [
@@ -183,7 +183,7 @@
   },
   {
     "id": "crypto-04",
-    "name": "CryptoFortune",
+    "name": "StakeVault - Earn Crypto Through Staking",
     "industry": "Crypto",
     "category": "Trading Platform",
     "tech": [
@@ -197,7 +197,7 @@
   },
   {
     "id": "crypto-05",
-    "name": "TokenMint",
+    "name": "DAOHub - Build & Govern Your DAO",
     "industry": "Crypto",
     "category": "NFT Creation",
     "tech": [
@@ -211,7 +211,7 @@
   },
   {
     "id": "crypto-06",
-    "name": "StakePro",
+    "name": "TokenLaunch - Launch Your Blockchain Project",
     "industry": "Crypto",
     "category": "Staking Solutions",
     "tech": [
@@ -225,7 +225,7 @@
   },
   {
     "id": "crypto-07",
-    "name": "VaultX",
+    "name": "CryptoShield - Protect Your Digital Assets",
     "industry": "Crypto",
     "category": "Crypto Storage",
     "tech": [
@@ -239,7 +239,7 @@
   },
   {
     "id": "crypto-08",
-    "name": "MoonRocket",
+    "name": "ChainSwap - Swap Across Any Blockchain",
     "industry": "Crypto",
     "category": "Moonshot Tokens",
     "tech": [
@@ -253,7 +253,7 @@
   },
   {
     "id": "crypto-09",
-    "name": "ChainLink",
+    "name": "MetaVerse Exchange - Trade Across All Metaverses",
     "industry": "Crypto",
     "category": "Cross-chain",
     "tech": [
@@ -267,7 +267,7 @@
   },
   {
     "id": "crypto-10",
-    "name": "QuantumCoin",
+    "name": "CryptoLearn Academy - Master Blockchain",
     "industry": "Crypto",
     "category": "Quantum Resistance",
     "tech": [
@@ -281,7 +281,7 @@
   },
   {
     "id": "ecommerce-01",
-    "name": "ShopHub",
+    "name": "ShopHub - Your Online Store",
     "industry": "E-commerce",
     "category": "General Retail",
     "tech": [
@@ -295,7 +295,7 @@
   },
   {
     "id": "ecommerce-02",
-    "name": "FashionFlow",
+    "name": "FashionHub - Trendy Fashion Store",
     "industry": "E-commerce",
     "category": "Fashion Brands",
     "tech": [
@@ -309,7 +309,7 @@
   },
   {
     "id": "ecommerce-03",
-    "name": "ElectroZone",
+    "name": "TechGear - Tech Gadgets Store",
     "industry": "E-commerce",
     "category": "Electronics Store",
     "tech": [
@@ -323,7 +323,7 @@
   },
   {
     "id": "ecommerce-04",
-    "name": "BeautyBliss",
+    "name": "GreenScape - Home & Garden Store",
     "industry": "E-commerce",
     "category": "Cosmetics & Beauty",
     "tech": [
@@ -337,7 +337,7 @@
   },
   {
     "id": "ecommerce-05",
-    "name": "HomeDecor",
+    "name": "LuminaBeauty - Premium Cosmetics & Skincare",
     "industry": "E-commerce",
     "category": "Furniture & Home",
     "tech": [
@@ -351,7 +351,7 @@
   },
   {
     "id": "ecommerce-06",
-    "name": "SportGear",
+    "name": "TechPulse - Premium Electronics Store",
     "industry": "E-commerce",
     "category": "Sports Equipment",
     "tech": [
@@ -365,7 +365,7 @@
   },
   {
     "id": "ecommerce-07",
-    "name": "GourmetEats",
+    "name": "StyleVogue - Fashion Boutique",
     "industry": "E-commerce",
     "category": "Food & Beverage",
     "tech": [
@@ -379,7 +379,7 @@
   },
   {
     "id": "ecommerce-08",
-    "name": "VintageFind",
+    "name": "FitMax - Sports & Fitness Equipment",
     "industry": "E-commerce",
     "category": "Antiques & Vintage",
     "tech": [
@@ -393,7 +393,7 @@
   },
   {
     "id": "ecommerce-09",
-    "name": "TechMart",
+    "name": "LuxeHome - Premium Furniture Store",
     "industry": "E-commerce",
     "category": "Tech Gadgets",
     "tech": [
@@ -407,7 +407,7 @@
   },
   {
     "id": "ecommerce-10",
-    "name": "LuxuryPrime",
+    "name": "BookVault - Online Bookstore & Media",
     "industry": "E-commerce",
     "category": "Premium Goods",
     "tech": [
@@ -421,7 +421,7 @@
   },
   {
     "id": "education-01",
-    "name": "SchoolHub",
+    "name": "LearnHub - Online Learning Platform",
     "industry": "Education",
     "category": "K-12 Education",
     "tech": [
@@ -435,7 +435,7 @@
   },
   {
     "id": "education-02",
-    "name": "UniversityPath",
+    "name": "SkillForge - Coding Bootcamp & Career Path",
     "industry": "Education",
     "category": "Higher Education",
     "tech": [
@@ -449,7 +449,7 @@
   },
   {
     "id": "education-03",
-    "name": "LanguageLab",
+    "name": "LinguaFlow - Learn Languages Fast",
     "industry": "Education",
     "category": "Language Courses",
     "tech": [
@@ -463,7 +463,7 @@
   },
   {
     "id": "education-04",
-    "name": "CodeBootcamp",
+    "name": "ProSkills Academy - Corporate Training",
     "industry": "Education",
     "category": "Programming Bootcamp",
     "tech": [
@@ -477,7 +477,7 @@
   },
   {
     "id": "education-05",
-    "name": "MusicAcademy",
+    "name": "CreativeHub - Design & Digital Art Academy",
     "industry": "Education",
     "category": "Music Education",
     "tech": [
@@ -491,7 +491,7 @@
   },
   {
     "id": "education-06",
-    "name": "ArtSchool",
+    "name": "MusicAcademy - Learn Music Online",
     "industry": "Education",
     "category": "Art & Design Classes",
     "tech": [
@@ -505,7 +505,7 @@
   },
   {
     "id": "education-07",
-    "name": "FitnessAcademy",
+    "name": "FitnessAcademy - Trainer Certification",
     "industry": "Education",
     "category": "Fitness Certification",
     "tech": [
@@ -519,7 +519,7 @@
   },
   {
     "id": "education-08",
-    "name": "ProfessionalHub",
+    "name": "ProfessionalHub - Advanced Certifications",
     "industry": "Education",
     "category": "MBA & Certifications",
     "tech": [
@@ -533,7 +533,7 @@
   },
   {
     "id": "education-09",
-    "name": "TutorConnect",
+    "name": "TutorConnect - Online Tutoring Platform",
     "industry": "Education",
     "category": "K-12 Online Tutoring",
     "tech": [
@@ -547,7 +547,7 @@
   },
   {
     "id": "education-10",
-    "name": "SkillUp",
+    "name": "SkillUp - Career Skills Courses",
     "industry": "Education",
     "category": "Career Skills Courses",
     "tech": [
@@ -561,7 +561,7 @@
   },
   {
     "id": "fitness-01",
-    "name": "EliteFlow",
+    "name": "EliteFlow - Personal Training & Fitness Coaching",
     "industry": "Fitness",
     "category": "Personal Training",
     "tech": [
@@ -575,7 +575,7 @@
   },
   {
     "id": "fitness-02",
-    "name": "ZenFit",
+    "name": "ZenFit - Holistic Wellness & Mindful Fitness",
     "industry": "Fitness",
     "category": "Yoga & Wellness",
     "tech": [
@@ -589,7 +589,7 @@
   },
   {
     "id": "fitness-03",
-    "name": "IronHub",
+    "name": "IronHub - Professional Strength Training & Bodybuilding",
     "industry": "Fitness",
     "category": "Strength Training",
     "tech": [
@@ -603,7 +603,7 @@
   },
   {
     "id": "fitness-04",
-    "name": "NovaBorn",
+    "name": "NovaBorn - Women's Fitness & Empowerment",
     "industry": "Fitness",
     "category": "Women's Fitness",
     "tech": [
@@ -617,7 +617,7 @@
   },
   {
     "id": "fitness-05",
-    "name": "FitLife 365",
+    "name": "FitLife 365 - Your Personal AI Fitness Coach",
     "industry": "Fitness",
     "category": "AI Coaching",
     "tech": [
@@ -631,7 +631,7 @@
   },
   {
     "id": "fitness-06",
-    "name": "CrossFlex",
+    "name": "CrossFlex - Functional Fitness Anywhere",
     "industry": "Fitness",
     "category": "Functional Fitness",
     "tech": [
@@ -645,7 +645,7 @@
   },
   {
     "id": "fitness-07",
-    "name": "PilatesPro",
+    "name": "PilatesPro - Core Strength & Body Sculpting",
     "industry": "Fitness",
     "category": "Pilates & Core",
     "tech": [
@@ -659,7 +659,7 @@
   },
   {
     "id": "fitness-08",
-    "name": "BoxMaster",
+    "name": "BoxMaster - Boxing & Combat Fitness",
     "industry": "Fitness",
     "category": "Boxing & Combat",
     "tech": [
@@ -673,7 +673,7 @@
   },
   {
     "id": "fitness-09",
-    "name": "FlowSpace",
+    "name": "FlowSpace - Dance & Movement Studios",
     "industry": "Fitness",
     "category": "Dance Classes",
     "tech": [
@@ -687,7 +687,7 @@
   },
   {
     "id": "fitness-10",
-    "name": "CoreVault",
+    "name": "CoreVault - Corporate Wellness Programs",
     "industry": "Fitness",
     "category": "Corporate Wellness",
     "tech": [
@@ -701,7 +701,7 @@
   },
   {
     "id": "healthcare-01",
-    "name": "HealthHub",
+    "name": "TelaHealth - Virtual Doctor Visits",
     "industry": "Healthcare",
     "category": "General Clinic",
     "tech": [
@@ -715,7 +715,7 @@
   },
   {
     "id": "healthcare-02",
-    "name": "CardioCare",
+    "name": "WellVital - Your Health Companion",
     "industry": "Healthcare",
     "category": "Cardiology",
     "tech": [
@@ -729,7 +729,7 @@
   },
   {
     "id": "healthcare-03",
-    "name": "DentalSmile",
+    "name": "MediFlow - Streamline Your Medical Practice",
     "industry": "Healthcare",
     "category": "Dental Services",
     "tech": [
@@ -743,7 +743,7 @@
   },
   {
     "id": "healthcare-04",
-    "name": "WellnessCenter",
+    "name": "CareLync - Coordinate Patient Care",
     "industry": "Healthcare",
     "category": "Wellness & Prevention",
     "tech": [
@@ -757,7 +757,7 @@
   },
   {
     "id": "healthcare-05",
-    "name": "MediVision",
+    "name": "PharmaDirect - Pharmacy At Your Door",
     "industry": "Healthcare",
     "category": "Eye Care",
     "tech": [
@@ -771,7 +771,7 @@
   },
   {
     "id": "healthcare-06",
-    "name": "OrthoFlex",
+    "name": "MentalWell - Therapy For Everyone",
     "industry": "Healthcare",
     "category": "Orthopedics",
     "tech": [
@@ -785,7 +785,7 @@
   },
   {
     "id": "healthcare-07",
-    "name": "PhysioFlow",
+    "name": "FitLife - Your Fitness Companion",
     "industry": "Healthcare",
     "category": "Physiotherapy",
     "tech": [
@@ -799,7 +799,7 @@
   },
   {
     "id": "healthcare-08",
-    "name": "MentalHealth",
+    "name": "DoctorHub - Book Doctor Appointments",
     "industry": "Healthcare",
     "category": "Mental Health",
     "tech": [
@@ -813,7 +813,7 @@
   },
   {
     "id": "healthcare-09",
-    "name": "VeterinaryCare",
+    "name": "VitalSign - Monitor Your Health",
     "industry": "Healthcare",
     "category": "Pet Healthcare",
     "tech": [
@@ -827,7 +827,7 @@
   },
   {
     "id": "healthcare-10",
-    "name": "NursingPlus",
+    "name": "HealthCare+ - Premium Health Insurance",
     "industry": "Healthcare",
     "category": "Home Nursing",
     "tech": [
@@ -841,7 +841,7 @@
   },
   {
     "id": "realestate-01",
-    "name": "PropertyPro",
+    "name": "LuxeLand - Property Marketplace",
     "industry": "Real Estate",
     "category": "General Real Estate",
     "tech": [
@@ -855,7 +855,7 @@
   },
   {
     "id": "realestate-02",
-    "name": "LuxuryLiving",
+    "name": "PropertyNest - Real Estate Solutions",
     "industry": "Real Estate",
     "category": "Luxury Properties",
     "tech": [
@@ -869,7 +869,7 @@
   },
   {
     "id": "realestate-03",
-    "name": "CityScape",
+    "name": "ElevateHomes - Luxury Real Estate",
     "industry": "Real Estate",
     "category": "Urban Developments",
     "tech": [
@@ -883,7 +883,7 @@
   },
   {
     "id": "realestate-04",
-    "name": "VillageHomes",
+    "name": "InvestRealty - Real Estate Investment Platform",
     "industry": "Real Estate",
     "category": "Rural Properties",
     "tech": [
@@ -897,7 +897,7 @@
   },
   {
     "id": "realestate-05",
-    "name": "CommercialEdge",
+    "name": "HomeFinder - Find Your Community",
     "industry": "Real Estate",
     "category": "Commercial Spaces",
     "tech": [
@@ -911,7 +911,7 @@
   },
   {
     "id": "realestate-06",
-    "name": "ApartmentFinder",
+    "name": "BusinessRealty - Commercial Real Estate Solutions",
     "industry": "Real Estate",
     "category": "Multi-family Homes",
     "tech": [
@@ -925,7 +925,7 @@
   },
   {
     "id": "realestate-07",
-    "name": "InvestCorp",
+    "name": "GreenHomes - Sustainable Real Estate",
     "industry": "Real Estate",
     "category": "Investment Properties",
     "tech": [
@@ -939,7 +939,7 @@
   },
   {
     "id": "realestate-08",
-    "name": "ResortLife",
+    "name": "VacationPalace - Luxury Holiday Homes",
     "industry": "Real Estate",
     "category": "Resort Properties",
     "tech": [
@@ -953,7 +953,7 @@
   },
   {
     "id": "realestate-09",
-    "name": "ConstructPro",
+    "name": "PropertyManager Pro - Property Management Platform",
     "industry": "Real Estate",
     "category": "New Constructions",
     "tech": [
@@ -967,7 +967,7 @@
   },
   {
     "id": "realestate-10",
-    "name": "PropertyPulse",
+    "name": "Elite Realty Group - Top Real Estate Brokerage",
     "industry": "Real Estate",
     "category": "Real Estate Platform",
     "tech": [
@@ -981,7 +981,7 @@
   },
   {
     "id": "restaurant-01",
-    "name": "Restaurant Template 01",
+    "name": "Taste Haven - Fine Dining",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -995,7 +995,7 @@
   },
   {
     "id": "restaurant-02",
-    "name": "Restaurant Template 02",
+    "name": "FreshBite - Farm-to-Table Dining",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1009,9 +1009,9 @@
   },
   {
     "id": "restaurant-03",
-    "name": "Restaurant Template 03",
+    "name": "Ember & Oak - BBQ Smokehouse",
     "industry": "Restaurant",
-    "category": "Landing Page",
+    "category": "Restaurant",
     "tech": [
       "HTML",
       "Tailwind",
@@ -1023,7 +1023,7 @@
   },
   {
     "id": "restaurant-04",
-    "name": "Restaurant Template 04",
+    "name": "Luna Bella - Italian Fine Dining",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1037,7 +1037,7 @@
   },
   {
     "id": "restaurant-05",
-    "name": "Restaurant Template 05",
+    "name": "Spice Route - Indian Restaurant",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1051,7 +1051,7 @@
   },
   {
     "id": "restaurant-06",
-    "name": "Restaurant Template 06",
+    "name": "Sakura Zen - Japanese Restaurant",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1065,7 +1065,7 @@
   },
   {
     "id": "restaurant-07",
-    "name": "Restaurant Template 07",
+    "name": "Le Petit Bistro - French Cuisine",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1079,7 +1079,7 @@
   },
   {
     "id": "restaurant-08",
-    "name": "Restaurant Template 08",
+    "name": "Coastal Catch - Fresh Seafood",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1093,7 +1093,7 @@
   },
   {
     "id": "restaurant-09",
-    "name": "Restaurant Template 09",
+    "name": "El Fuego - Mexican Restaurant",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1107,7 +1107,7 @@
   },
   {
     "id": "restaurant-10",
-    "name": "Restaurant Template 10",
+    "name": "Timber Creek - Steakhouse",
     "industry": "Restaurant",
     "category": "Landing Page",
     "tech": [
@@ -1121,7 +1121,7 @@
   },
   {
     "id": "saas-01",
-    "name": "CloudSync",
+    "name": "CloudFlow - Workflow Automation for Modern Teams",
     "industry": "SaaS",
     "category": "Cloud Collaboration",
     "tech": [
@@ -1135,7 +1135,7 @@
   },
   {
     "id": "saas-02",
-    "name": "DataFlow",
+    "name": "DataSync - Enterprise Data Synchronization Platform",
     "industry": "SaaS",
     "category": "Analytics & Insights",
     "tech": [
@@ -1149,7 +1149,7 @@
   },
   {
     "id": "saas-03",
-    "name": "SecureVault",
+    "name": "FlowHub - Simple Project Management for Teams",
     "industry": "SaaS",
     "category": "Security & Encryption",
     "tech": [
@@ -1163,7 +1163,7 @@
   },
   {
     "id": "saas-04",
-    "name": "NeoAI",
+    "name": "AnalyticsHub - Real-time Analytics & Insights Platform",
     "industry": "SaaS",
     "category": "Artificial Intelligence",
     "tech": [
@@ -1177,7 +1177,7 @@
   },
   {
     "id": "saas-05",
-    "name": "AutoScale",
+    "name": "TaskVault - Secure Task & Password Management",
     "industry": "SaaS",
     "category": "Auto-scaling Solutions",
     "tech": [
@@ -1191,7 +1191,7 @@
   },
   {
     "id": "saas-06",
-    "name": "DevOps Pro",
+    "name": "CurveAI - AI Customer Experience Platform",
     "industry": "SaaS",
     "category": "Development Operations",
     "tech": [
@@ -1205,7 +1205,7 @@
   },
   {
     "id": "saas-07",
-    "name": "CloudBase",
+    "name": "SyncTeam - Team Collaboration & File Sync",
     "industry": "SaaS",
     "category": "Database Management",
     "tech": [
@@ -1219,7 +1219,7 @@
   },
   {
     "id": "saas-08",
-    "name": "ZeroCode",
+    "name": "BrainCode - AI-Powered Code Generation",
     "industry": "SaaS",
     "category": "No-code Platform",
     "tech": [
@@ -1233,7 +1233,7 @@
   },
   {
     "id": "saas-09",
-    "name": "APIHub",
+    "name": "VisionAI - Intelligent Image Analysis API",
     "industry": "SaaS",
     "category": "API Marketplace",
     "tech": [
@@ -1247,7 +1247,7 @@
   },
   {
     "id": "saas-10",
-    "name": "ByteFlow",
+    "name": "StreamPro - Professional Live Streaming Platform",
     "industry": "SaaS",
     "category": "Data Streaming",
     "tech": [

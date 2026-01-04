@@ -1,0 +1,32 @@
+[
+    {
+        "date": "January 4, 2026",
+        "type": "New",
+        "title": "Platform Update",
+        "description": [
+            "Added dedicated Updates/Changelog page.",
+            "Improved mobile navigation responsiveness.",
+            "Added 5 new Agency portfolio templates."
+        ]
+    },
+    {
+        "date": "December 25, 2025",
+        "type": "Templates",
+        "title": "Holiday Release",
+        "description": [
+            "Released 10 E-commerce templates.",
+            "Added \"Christmas Sale\" landing page bundle.",
+            "Optimized image loading for faster performance."
+        ]
+    },
+    {
+        "date": "December 10, 2025",
+        "type": "Fixes",
+        "title": "Bug Fixes & Improvements",
+        "description": [
+            "Fixed broken links in the documentation.",
+            "Resolved layout issues on Safari browser.",
+            "Updated social media icons in footer."
+        ]
+    }
+]
