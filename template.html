@@ -31,22 +31,26 @@
 <body class="bg-gray-900 overflow-hidden h-screen flex flex-col">
 
     <!-- Top Navigation -->
-    <header class="h-16 bg-white flex items-center justify-between px-6 z-50 shadow-sm">
-        <div class="flex items-center gap-6">
-            <a href="index.html" class="flex items-center gap-2 group">
+    <header
+        class="h-16 bg-white flex items-center justify-between px-4 md:px-6 z-50 shadow-sm transition-all duration-300">
+        <div class="flex items-center gap-3 md:gap-6">
+            <a href="index.html" class="flex items-center gap-2 group" title="Back to Hub">
                 <i data-lucide="arrow-left"
                     class="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors"></i>
-                <span class="text-sm font-semibold text-gray-700 group-hover:text-blue-600">Back to Hub</span>
+                <span class="hidden sm:block text-sm font-semibold text-gray-700 group-hover:text-blue-600">Back to
+                    Hub</span>
             </a>
-            <div class="h-6 w-px bg-gray-200"></div>
+            <div class="h-6 w-px bg-gray-200 hidden sm:block"></div>
             <div class="flex items-center gap-3">
-                <h1 id="template-title" class="font-bold text-gray-900">Loading Template...</h1>
+                <h1 id="template-title"
+                    class="font-bold text-gray-900 text-sm md:text-base truncate max-w-[120px] sm:max-w-none">Loading...
+                </h1>
                 <span id="template-badge"
                     class="hidden md:block text-[10px] font-bold uppercase tracking-wider text-blue-600 bg-blue-50 px-2 py-0.5 rounded">...</span>
             </div>
         </div>
 
-        <div class="flex items-center gap-4">
+        <div class="flex items-center gap-2 md:gap-4">
             <div class="hidden lg:flex items-center gap-2 mr-6 text-gray-400">
                 <button id="view-mobile" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Mobile Mode"><i
                         data-lucide="smartphone" class="w-5 h-5"></i></button>
@@ -60,10 +64,10 @@
                     title="Reload Preview"><i data-lucide="rotate-cw" class="w-5 h-5"></i></button>
             </div>
             <a id="download-btn" href="#"
-                class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-3 py-2 md:px-5 md:py-2 rounded-lg text-sm font-semibold flex items-center gap-2 transition-all shadow-lg shadow-blue-500/20"
                 download>
                 <i data-lucide="download" class="w-4 h-4"></i>
-                Download Free
+                <span class="hidden sm:inline">Download Free</span>
             </a>
         </div>
     </header>
