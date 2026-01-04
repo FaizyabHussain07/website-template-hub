@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Timber Creek - Premium Steakhouse">
+    <meta name="keywords" content="steakhouse, beef, premium, fine dining">
+    <title>Timber Creek - Steakhouse</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Source+Serif+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Source Serif Pro', serif; background: #2a2420; color: #e8e6e1; }
+        h1, h2, h3, h4 { font-family: 'Playfair Display', serif; font-weight: 700; }
+        nav { position: sticky; top: 0; z-index: 50; background: #1a1715; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border-bottom: 2px solid #8b6f47; }
+        .wood-accent { color: #8b6f47; background-color: #8b6f47; }
+        .prime-gold { color: #d4af37; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-3xl font-bold prime-gold">
+                <i class="fas fa-tree"></i> TIMBER CREEK
+            </div>
+            <button id="navToggle" class="md:hidden text-gray-300 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#experience" class="text-gray-300 hover:prime-gold transition font-semibold">Experience</a></li>
+                <li><a href="#steaks" class="text-gray-300 hover:prime-gold transition font-semibold">Steaks</a></li>
+                <li><a href="#wines" class="text-gray-300 hover:prime-gold transition font-semibold">Wines</a></li>
+                <li><a href="#reservations" class="text-gray-300 hover:prime-gold transition font-semibold">Reservations</a></li>
+                <li><button onclick="openReserve()" class="wood-accent text-white px-6 py-2 rounded hover:opacity-90 transition font-bold">Book</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative py-48 px-4" style="background-image: url('https://images.unsplash.com/photo-1555939594-58d7cb561631?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-black/70"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10">
+            <h1 class="text-7xl font-bold prime-gold mb-4">TIMBER CREEK</h1>
+            <p class="text-3xl mb-4 text-gray-200 font-light">Premium Steakhouse</p>
+            <p class="text-xl mb-8 max-w-2xl mx-auto text-gray-300">Where USDA Prime beef meets rustic elegance. Aged 28 days for peak flavor. Seared to perfection in our wood-fired kitchen.</p>
+            <button onclick="openReserve()" class="wood-accent text-white px-8 py-3 rounded font-bold text-lg hover:opacity-90 transition mr-4">Reserve Now</button>
+            <button onclick="document.getElementById('steaks').scrollIntoView()" class="border-2 border-yellow-600 text-yellow-600 px-8 py-3 rounded font-bold hover:bg-yellow-600 hover:text-black transition">View Menu</button>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-24 px-4 bg-black">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold prime-gold text-center mb-16">The Timber Creek Experience</h2>
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div class="w-20 h-20 wood-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-fire text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Wood-Fired Excellence</h3>
+                    <p class="text-gray-400">Our custom-built wood-fired grill reaches 900°F, creating an incomparable crust and smoky depth to every steak.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 wood-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-dumbbell text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Prime Aging Process</h3>
+                    <p class="text-gray-400">Every cut is dry-aged for exactly 28 days, concentrating flavor and creating the most tender beef possible.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 wood-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i class="fas fa-wine-bottle text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-gray-100 mb-3">Sommelier's Selection</h3>
+                    <p class="text-gray-400">Our award-winning wine collection features premium vintages curated to complement our steaks perfectly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Steaks -->
+    <section id="steaks" class="py-24 px-4 bg-gray-900">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold prime-gold text-center mb-4">Our Steaks</h2>
+            <p class="text-center text-gray-400 mb-16 text-lg">USDA Prime • 28-Day Dry Aged • Wood-Fired to Order</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-8 rounded-lg border border-yellow-600">
+                    <h3 class="text-3xl font-bold prime-gold mb-6">Classic Cuts</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">New York Strip</h4>
+                            <p class="text-gray-400 text-sm mb-2">14 oz | Classic bold beef flavor with beautiful marbling</p>
+                            <p class="prime-gold font-bold text-lg">$58</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">Ribeye</h4>
+                            <p class="text-gray-400 text-sm mb-2">16 oz | Premium marbling, butter-tender and succulent</p>
+                            <p class="prime-gold font-bold text-lg">$62</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">Filet Mignon</h4>
+                            <p class="text-gray-400 text-sm mb-2">8 oz | Most tender cut, mild and elegant</p>
+                            <p class="prime-gold font-bold text-lg">$68</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-800 p-8 rounded-lg border border-yellow-600">
+                    <h3 class="text-3xl font-bold prime-gold mb-6">Signature Selections</h3>
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">Porterhouse</h4>
+                            <p class="text-gray-400 text-sm mb-2">20 oz | Strip & tenderloin combo, the ultimate experience</p>
+                            <p class="prime-gold font-bold text-lg">$74</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">Dry-Aged Prime Grade</h4>
+                            <p class="text-gray-400 text-sm mb-2">24 oz | Our signature cut, peak marbling and aging</p>
+                            <p class="prime-gold font-bold text-lg">$82</p>
+                        </div>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-100 mb-1">Wagyu A5 Japan</h4>
+                            <p class="text-gray-400 text-sm mb-2">8 oz | World's most luxurious beef, ultra-marbled</p>
+                            <p class="prime-gold font-bold text-lg">$125</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-gray-800 rounded-lg border border-yellow-600 text-center">
+                <p class="text-gray-300 text-lg">All steaks include: House salad, seasonal vegetables & your choice of starch</p>
+                <p class="text-gray-500 text-sm mt-3">Add premium toppings: Truffle butter • Foie gras • King crab • Lobster tail</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wines -->
+    <section id="wines" class="py-24 px-4 bg-black">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold prime-gold text-center mb-12">Wine Cellar</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-gray-900 rounded-lg">
+                    <i class="fas fa-wine-bottle text-4xl prime-gold mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Cabernet Sauvignon</h3>
+                    <p class="text-gray-400 text-sm">Premium Napa Valley & Bordeaux selections</p>
+                    <p class="text-gray-500 text-xs mt-3">Starting at $85</p>
+                </div>
+                <div class="text-center p-6 bg-gray-900 rounded-lg">
+                    <i class="fas fa-wine-bottle text-4xl prime-gold mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Burgundy Reds</h3>
+                    <p class="text-gray-400 text-sm">Elegant Pinot Noir & Côtes du Rhône</p>
+                    <p class="text-gray-500 text-xs mt-3">Starting at $72</p>
+                </div>
+                <div class="text-center p-6 bg-gray-900 rounded-lg">
+                    <i class="fas fa-champagne-glass text-4xl prime-gold mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-100 mb-2">Premium Champagne</h3>
+                    <p class="text-gray-400 text-sm">Prestigious houses & prestigious vintages</p>
+                    <p class="text-gray-500 text-xs mt-3">Starting at $98</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservations -->
+    <section id="reservations" class="py-24 px-4 bg-gray-900">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold prime-gold mb-12">Plan Your Visit</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <i class="fas fa-map-marker-alt text-4xl prime-gold mb-4 block"></i>
+                    <p class="font-bold text-gray-100 text-lg">123 Timber Ridge Drive</p>
+                    <p class="text-gray-400">Mountain View District</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone text-4xl prime-gold mb-4 block"></i>
+                    <p class="font-bold text-gray-100 text-lg">+1 (555) 567-8901</p>
+                    <p class="text-gray-400">Reservations Only</p>
+                </div>
+                <div>
+                    <i class="fas fa-clock text-4xl prime-gold mb-4 block"></i>
+                    <p class="font-bold text-gray-100 text-lg">Tue-Sun 5PM-11PM</p>
+                    <p class="text-gray-400">Monday: Closed</p>
+                </div>
+            </div>
+            <button onclick="openReserve()" class="wood-accent text-white px-10 py-3 rounded font-bold text-lg hover:opacity-90 transition">Make a Reservation</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="reserveModal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-50 flex items-center justify-center p-4">
+        <div class="bg-gray-900 rounded-lg max-w-md w-full p-8 border border-yellow-600">
+            <h3 class="text-2xl font-bold prime-gold mb-6">Reserve Your Table</h3>
+            <form onsubmit="submitReserve(event)" class="space-y-4">
+                <input type="text" placeholder="Name" required class="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded text-gray-100 focus:outline-none focus:border-yellow-600">
+                <input type="email" placeholder="Email" required class="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded text-gray-100 focus:outline-none focus:border-yellow-600">
+                <input type="date" required class="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded text-gray-100 focus:outline-none focus:border-yellow-600">
+                <input type="time" required class="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded text-gray-100 focus:outline-none focus:border-yellow-600">
+                <input type="number" min="1" max="12" placeholder="Guests" required class="w-full bg-gray-800 border border-gray-700 px-4 py-2 rounded text-gray-100 focus:outline-none focus:border-yellow-600">
+                <button type="submit" class="w-full wood-accent text-white py-2 rounded font-bold hover:opacity-90">Reserve</button>
+                <button type="button" onclick="closeReserve()" class="w-full border border-gray-700 py-2 rounded font-semibold text-gray-300 hover:bg-gray-800">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black text-gray-500 py-8 px-4 text-center border-t border-yellow-600">
+        <p>&copy; 2024 Timber Creek Steakhouse. Prime. Aged. Perfect.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() { const modal = document.getElementById('reserveModal'); modal ? modal.classList.toggle('hidden') : null; }
+        function openReserve() { document.getElementById('reserveModal').classList.remove('hidden'); }
+        function closeReserve() { document.getElementById('reserveModal').classList.add('hidden'); }
+        function submitReserve(e) { e.preventDefault(); alert('Reservation confirmed!'); closeReserve(); }
+    </script>
+</body>
+</html>

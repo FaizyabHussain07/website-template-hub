@@ -25,6 +25,7 @@ A comprehensive collection of 100 production-ready, single-file HTML website tem
 ├── Fitness & Wellness (10 templates)
 ├── Education (10 templates)
 ├── Digital Agency & Marketing (10 templates)
+├── Restrurant (10 templates)
 └── README.md
 ```
 
@@ -41,6 +42,7 @@ A comprehensive collection of 100 production-ready, single-file HTML website tem
 - **Accessibility** - WCAG 2.1 AA standards
 
 ---
+
 
 ## 📁 All 100 Templates
 
@@ -193,6 +195,32 @@ A comprehensive collection of 100 production-ready, single-file HTML website tem
 | 10 | EventFlow | Event marketing | Indigo/Purple | Sora + EB Garamond |
 
 **Features:** Service cards, portfolio/case studies, client testimonials, team profiles, project showcases
+
+
+## 9 *Restaurant* (10 Templates )
+
+| # | Template Name | focus | Theme | Colors | 
+|---|---|---|---|---|---|
+| 1 | Taste Haven | Fine Dining | Luxury Premium | Gold/Cream |
+| 2 | FreshBite | Farm-to-Table | Organic & Fresh | Green/White |
+| 3 | Ember & Oak | BBQ & Smokehouse | Rustic BBQ | Dark Brown/Red |
+| 4 | Luna Bella | Italian Fine Dining | Classic Italian | Red/Gold |
+| 5 | Spice Route | Indian Cuisine | Aromatic Spices | Orange/Saffron |
+| 6 | Sakura Zen | Japanese | Minimalist Zen | Red/White |
+| 7 | Le Petit Bistro | French Bistro | Classical Bistro | Navy/Gold |
+| 8 | Coastal Catch | Seafood | Fresh & Coastal | Blue/Teal |
+| 9 | El Fuego | Mexican | Vibrant & Festive | Red/Orange |
+| 10 | Timber Creek | Steakhouse | Luxury Steaks | Dark/Charcoal |
+
+**Features:** 
+- Unique structural designs (not template-like)
+- Professional responsive navigation with mobile hamburger menus
+- High-quality Unsplash images with gradient fallbacks
+- Font Awesome icons (no emoji)
+- Dedicated sections: Hero, Menu/Specialties, About, Gallery, Reviews, Contact
+- Smooth animations and interactions
+- Fully responsive (mobile, tablet, desktop)
+- Professional typography with unique font pairings per restaurant
 
 ---
 

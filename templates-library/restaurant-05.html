@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Spice Route - Premium Indian Cuisine">
+    <meta name="keywords" content="indian restaurant, curry, tandoor, spices">
+    <title>Spice Route - Indian Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        .heading { font-family: 'Playfair Display', serif; }
+        .spice-gradient { background: linear-gradient(135deg, #d4511e 0%, #f97316 100%); }
+        .category-tab { position: relative; padding: 1rem 1.5rem; border: none; background: none; cursor: pointer; font-weight: 600; color: #666; transition: all 0.3s; }
+        .category-tab.active { color: #d4511e; }
+        .category-tab.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: #d4511e; }
+        .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .food-card { background: white; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); transition: all 0.3s; }
+        .food-card:hover { transform: translateY(-8px); box-shadow: 0 10px 30px rgba(212, 81, 30, 0.2); }
+        .spice-badge { display: inline-block; background: #d4511e; color: white; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.75rem; font-weight: 700; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-white z-50 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-2xl font-bold heading text-orange-600">
+                <i class="fas fa-pepper-hot"></i> SPICE ROUTE
+            </div>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#cuisine" class="text-gray-700 hover:text-orange-600 font-medium transition">Cuisine</a></li>
+                <li><a href="#menu" class="text-gray-700 hover:text-orange-600 font-medium transition">Menu</a></li>
+                <li><a href="#experience" class="text-gray-700 hover:text-orange-600 font-medium transition">Experience</a></li>
+                <li><a href="#reviews" class="text-gray-700 hover:text-orange-600 font-medium transition">Reviews</a></li>
+                <li><button onclick="openRes()" class="spice-gradient text-white px-6 py-2 rounded hover:shadow-lg transition">Book</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-24 pb-16 px-4 bg-gradient-to-b from-orange-50 to-white text-center" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+        <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 heading">Spice Route</h1>
+        <p class="text-2xl text-orange-600 mb-4 heading">Journey Through Indian Flavors</p>
+        <p class="text-gray-600 max-w-2xl mx-auto mb-8">From Kerala's coastal curries to Punjab's tandoori treasures, experience India's culinary heritage</p>
+        <div class="flex gap-4 justify-center">
+            <button onclick="openRes()" class="spice-gradient text-white px-8 py-3 rounded font-bold hover:shadow-lg transition">Reserve Table</button>
+            <button onclick="document.getElementById('menu').scrollIntoView()" class="border-2 border-orange-600 text-orange-600 px-8 py-3 rounded font-bold hover:bg-orange-50 transition">Explore Menu</button>
+        </div>
+    </section>
+
+    <!-- Cuisine Section -->
+    <section id="cuisine" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-12 text-center heading">Our Culinary Traditions</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center">
+                    <div class="w-20 h-20 spice-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-fire text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 heading">Tandoor Mastery</h3>
+                    <p class="text-gray-600">Clay oven perfection. Our tandoor reaches 900°F, imparting authentic char and smoky depth to meats and breads.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 spice-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-mortar-pestle text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 heading">Spice Blending</h3>
+                    <p class="text-gray-600">Hand-ground masalas daily. Each spice blend balances heat, aromatics, and depth to perfection.</p>
+                </div>
+                <div class="text-center">
+                    <div class="w-20 h-20 spice-gradient rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-leaf text-white text-3xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900 mb-3 heading">Fresh Ingredients</h3>
+                    <p class="text-gray-600">Sourced from trusted suppliers. Cilantro, ginger, turmeric—everything is fresh and premium quality.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4 text-center heading">Menu</h2>
+            <p class="text-center text-gray-600 mb-12">Authentic recipes from every region of India</p>
+
+            <div class="flex overflow-x-auto gap-2 mb-12 border-b border-gray-300">
+                <button class="category-tab active" onclick="showCategory('curries')">Curries</button>
+                <button class="category-tab" onclick="showCategory('tandoor')">Tandoor</button>
+                <button class="category-tab" onclick="showCategory('bread')">Breads</button>
+                <button class="category-tab" onclick="showCategory('rice')">Rice</button>
+            </div>
+
+            <div id="curries" class="food-grid">
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-orange-400 to-red-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-food text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Butter Chicken</h3>
+                        <p class="text-gray-600 text-sm mb-3">Tender chicken in creamy tomato sauce with fenugreek</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Medium</span>
+                            <span class="font-bold text-orange-600">$18</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-orange-400 to-red-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-food text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Lamb Rogan Josh</h3>
+                        <p class="text-gray-600 text-sm mb-3">Aromatic lamb curry with yogurt and spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i><i class="fas fa-fire"></i> Hot</span>
+                            <span class="font-bold text-orange-600">$22</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-orange-400 to-red-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-food text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Palak Paneer</h3>
+                        <p class="text-gray-600 text-sm mb-3">Cottage cheese in spinach gravy, classic and creamy</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Mild</span>
+                            <span class="font-bold text-orange-600">$16</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="tandoor" class="food-grid hidden">
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-red-500 to-orange-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Tandoori Chicken</h3>
+                        <p class="text-gray-600 text-sm mb-3">Marinated and clay-oven roasted to perfection</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Medium</span>
+                            <span class="font-bold text-orange-600">$24</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-red-500 to-orange-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Seekh Kebab</h3>
+                        <p class="text-gray-600 text-sm mb-3">Minced meat skewers with herbs and spices</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i><i class="fas fa-fire"></i> Hot</span>
+                            <span class="font-bold text-orange-600">$16</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-red-500 to-orange-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-fire text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Paneer Tikka</h3>
+                        <p class="text-gray-600 text-sm mb-3">Marinated cheese cubes, tandoor-grilled</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Mild</span>
+                            <span class="font-bold text-orange-600">$14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="bread" class="food-grid hidden">
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-amber-600 to-yellow-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-bread-slice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Naan</h3>
+                        <p class="text-gray-600 text-sm mb-3">Traditional tandoor-baked flatbread</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Plain</span>
+                            <span class="font-bold text-orange-600">$4</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-amber-600 to-yellow-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-bread-slice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Garlic Naan</h3>
+                        <p class="text-gray-600 text-sm mb-3">Topped with fresh garlic and cilantro</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Garlic</span>
+                            <span class="font-bold text-orange-600">$5</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-amber-600 to-yellow-600 h-40 flex items-center justify-center">
+                        <i class="fas fa-bread-slice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Biryani Rice</h3>
+                        <p class="text-gray-600 text-sm mb-3">Fragrant basmati with meat or vegetables</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Rice</span>
+                            <span class="font-bold text-orange-600">$12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="rice" class="food-grid hidden">
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-yellow-500 to-amber-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-rice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Chicken Biryani</h3>
+                        <p class="text-gray-600 text-sm mb-3">Fragrant rice layered with spiced chicken</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Medium</span>
+                            <span class="font-bold text-orange-600">$16</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-yellow-500 to-amber-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-rice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Lamb Biryani</h3>
+                        <p class="text-gray-600 text-sm mb-3">Premium rice with tender, spiced lamb</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i><i class="fas fa-fire"></i> Hot</span>
+                            <span class="font-bold text-orange-600">$18</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="food-card">
+                    <div class="bg-gradient-to-br from-yellow-500 to-amber-500 h-40 flex items-center justify-center">
+                        <i class="fas fa-bowl-rice text-white text-4xl"></i>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-lg text-gray-900 mb-2">Veg Biryani</h3>
+                        <p class="text-gray-600 text-sm mb-3">Aromatic rice with fresh seasonal vegetables</p>
+                        <div class="flex justify-between items-center">
+                            <span class="spice-badge"><i class="fas fa-fire"></i> Mild</span>
+                            <span class="font-bold text-orange-600">$14</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="py-20 px-4 spice-gradient text-white">
+        <div class="max-w-6xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-12 heading">Experience the Spice Route</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div>
+                    <i class="fas fa-utensils text-5xl mb-4 block"></i>
+                    <h3 class="text-xl font-bold mb-2">Authentic Recipes</h3>
+                    <p>Generations-old recipes passed down from Indian master chefs</p>
+                </div>
+                <div>
+                    <i class="fas fa-leaf text-5xl mb-4 block"></i>
+                    <h3 class="text-xl font-bold mb-2">Premium Spices</h3>
+                    <p>Hand-selected from the spice markets of India</p>
+                </div>
+                <div>
+                    <i class="fas fa-heart text-5xl mb-4 block"></i>
+                    <h3 class="text-xl font-bold mb-2">Made with Love</h3>
+                    <p>Every dish prepared with passion and care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 heading">Guest Stories</h2>
+            <div class="space-y-6">
+                <div class="bg-gray-50 p-8 rounded border-l-4 border-orange-600">
+                    <div class="flex items-center mb-3 gap-2">
+                        <span class="text-orange-600"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="font-bold text-gray-900">Rajesh Kumar</span>
+                    </div>
+                    <p class="text-gray-600">"Finally found authentic Indian food! The tandoori chicken tastes like what I eat at home in Delhi. Highly impressed."</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded border-l-4 border-orange-600">
+                    <div class="flex items-center mb-3 gap-2">
+                        <span class="text-orange-600"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="font-bold text-gray-900">Emma Wilson</span>
+                    </div>
+                    <p class="text-gray-600">"The spice blending is phenomenal. Each curry had perfect balance of heat and flavor. We're coming back next week!"</p>
+                </div>
+                <div class="bg-gray-50 p-8 rounded border-l-4 border-orange-600">
+                    <div class="flex items-center mb-3 gap-2">
+                        <span class="text-orange-600"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></span>
+                        <span class="font-bold text-gray-900">Marco Santos</span>
+                    </div>
+                    <p class="text-gray-600">"Best biryani outside of India. The naan is crispy and hot, the curries are aromatic. Worth every penny."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold text-gray-900 mb-4 heading">Embark on Your Spice Journey</h2>
+            <p class="text-gray-600 mb-8 text-lg">Reserve your table and explore the flavors of India</p>
+            <button onclick="openRes()" class="spice-gradient text-white px-8 py-3 rounded font-bold text-lg hover:shadow-lg transition">Reserve Now</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="resModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6 heading">Book Your Table</h3>
+            <form onsubmit="submitRes(event)" class="space-y-4">
+                <input type="text" placeholder="Name" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-orange-600">
+                <input type="email" placeholder="Email" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-orange-600">
+                <input type="date" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-orange-600">
+                <input type="time" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-orange-600">
+                <input type="number" min="1" max="12" placeholder="Guests" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-orange-600">
+                <button type="submit" class="w-full spice-gradient text-white py-2 rounded font-bold">Reserve</button>
+                <button type="button" onclick="closeRes()" class="w-full border border-gray-300 py-2 rounded font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto grid md:grid-cols-4 gap-8 mb-8">
+            <div>
+                <h4 class="text-white font-bold mb-4">Spice Route</h4>
+                <p class="text-sm">Authentic Indian cuisine bringing the flavors of India to your table.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Navigation</h4>
+                <ul class="text-sm space-y-2">
+                    <li><a href="#cuisine" class="hover:text-white">Cuisine</a></li>
+                    <li><a href="#menu" class="hover:text-white">Menu</a></li>
+                    <li><a href="#reviews" class="hover:text-white">Reviews</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Contact</h4>
+                <ul class="text-sm space-y-2">
+                    <li>+1 (555) 789-0123</li>
+                    <li>hello@spiceroute.com</li>
+                    <li>456 Spice Lane, Flavor City</li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Hours</h4>
+                <ul class="text-sm space-y-1">
+                    <li>Tue-Thu: 5PM-10PM</li>
+                    <li>Fri-Sat: 5PM-11PM</li>
+                    <li>Sun: 5PM-9PM</li>
+                    <li>Monday: Closed</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-800 pt-8 text-center text-sm">
+            <p>&copy; 2024 Spice Route. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { const menu = document.getElementById('navMenu'); menu ? menu.classList.toggle('hidden') : null; }
+        function openRes() { document.getElementById('resModal').classList.remove('hidden'); }
+        function closeRes() { document.getElementById('resModal').classList.add('hidden'); }
+        function submitRes(e) { e.preventDefault(); alert('Reservation received!'); closeRes(); }
+        function showCategory(cat) {
+            document.querySelectorAll('[id="curries"], [id="tandoor"], [id="bread"], [id="rice"]').forEach(el => el.classList.add('hidden'));
+            document.getElementById(cat).classList.remove('hidden');
+            document.querySelectorAll('.category-tab').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

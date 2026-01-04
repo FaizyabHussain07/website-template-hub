@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="El Fuego - Authentic Mexican Restaurant">
+    <meta name="keywords" content="mexican restaurant, tacos, authentic">
+    <title>El Fuego - Mexican Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&family=Roboto:wght@400;500;700&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #fef3f2;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Patua One', cursive;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .mexican-red {
+            color: #dc2626;
+        }
+
+        .mexican-red-bg {
+            background-color: #dc2626;
+        }
+
+        .mexican-gold {
+            color: #f59e0b;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-3xl font-bold mexican-red">
+                <i class="fas fa-fire"></i> EL FUEGO
+            </div>
+            <button class="md:hidden text-gray-700 text-2xl" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#story" class="text-gray-900 hover:text-red-600 transition font-bold">Our Story</a></li>
+                <li><a href="#menu" class="text-gray-900 hover:text-red-600 transition font-bold">Menu</a></li>
+                <li><a href="#specialties" class="text-gray-900 hover:text-red-600 transition font-bold">Specialties</a>
+                </li>
+                <li><a href="#contact" class="text-gray-900 hover:text-red-600 transition font-bold">Contact</a></li>
+                <li><button onclick="openRes()"
+                        class="mexican-red-bg text-white px-6 py-2 rounded hover:bg-red-700 transition font-bold">Book</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="mobileNavMenu" class="hidden md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <ul class="flex flex-col gap-0 py-2">
+            <li><a href="#story" class="text-gray-900 hover:text-red-600 transition font-bold block py-3 px-4">Our
+                    Story</a></li>
+            <li><a href="#menu" class="text-gray-900 hover:text-red-600 transition font-bold block py-3 px-4">Menu</a>
+            </li>
+            <li><a href="#specialties"
+                    class="text-gray-900 hover:text-red-600 transition font-bold block py-3 px-4">Specialties</a></li>
+            <li><a href="#contact"
+                    class="text-gray-900 hover:text-red-600 transition font-bold block py-3 px-4">Contact</a></li>
+            <li class="px-4 py-2"><button onclick="openRes()"
+                    class="mexican-red-bg text-white px-6 py-2 rounded hover:bg-red-700 transition font-bold w-full">Book</button>
+            </li>
+        </ul>
+    </div>
+    <script>
+        function toggleMobileNav() { document.getElementById('mobileNavMenu').classList.toggle('hidden'); }
+    </script>
+
+    <!-- Hero -->
+    <section class="relative py-40 px-4"
+        style="background-image: url('https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-black/60"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10 text-white">
+            <h1 class="text-7xl font-bold mb-4">EL FUEGO</h1>
+            <p class="text-3xl mb-4 mexican-gold font-bold">Authentic Mexican Fire</p>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Experience the passionate flavors of Mexico. From traditional
+                street tacos to chef-crafted specialties, every dish celebrates our culinary heritage.</p>
+            <button onclick="openRes()"
+                class="mexican-red-bg text-white px-8 py-3 rounded font-bold text-lg hover:bg-red-700 transition mr-4">Reservar</button>
+            <button onclick="document.getElementById('menu').scrollIntoView()"
+                class="border-2 border-yellow-400 text-yellow-400 px-8 py-3 rounded font-bold hover:bg-yellow-400 hover:text-gray-900 transition">Ver
+                Menú</button>
+        </div>
+    </section>
+
+    <!-- Story -->
+    <section id="story" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop"
+                        alt="Mexican Food" class="w-full rounded-lg shadow-xl">
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold mexican-red mb-6">Passion for Flavor</h2>
+                    <p class="text-gray-700 text-lg mb-4 leading-relaxed">El Fuego was born from a deep love for Mexican
+                        cuisine and tradition. Our chef, trained in Oaxaca and Mexico City, brings authentic techniques
+                        and family recipes passed down through generations.</p>
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed">We source fresh chilies, spices, and
+                        ingredients directly from Mexican suppliers, ensuring every dish tastes like it came straight
+                        from the markets of Mexico.</p>
+                    <ul class="space-y-3 text-gray-700 font-semibold">
+                        <li><i class="fas fa-check mexican-red mr-3"></i> Authentic Recipes</li>
+                        <li><i class="fas fa-check mexican-red mr-3"></i> Fresh Mexican Ingredients</li>
+                        <li><i class="fas fa-check mexican-red mr-3"></i> Hand-Made Tortillas</li>
+                        <li><i class="fas fa-check mexican-red mr-3"></i> Craft Margaritas</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mexican-red mb-4">Menu</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">Traditional recipes, bold flavors, pure passion</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-3xl font-bold mexican-red mb-6 pb-3 border-b-4 border-yellow-400">Tacos</h3>
+                    <div class="space-y-5">
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Tacos al Pastor</h4>
+                            <p class="text-gray-600 text-sm mb-2">Marinated pork, pineapple, onions (3 tacos)</p>
+                            <p class="mexican-red font-bold">$14</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Carne Asada Tacos</h4>
+                            <p class="text-gray-600 text-sm mb-2">Grilled beef, cilantro, onion (3 tacos)</p>
+                            <p class="mexican-red font-bold">$15</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Fish Tacos</h4>
+                            <p class="text-gray-600 text-sm mb-2">Crispy battered fish, cabbage slaw (3 tacos)</p>
+                            <p class="mexican-red font-bold">$16</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-bold mexican-red mb-6 pb-3 border-b-4 border-yellow-400">Specialties</h3>
+                    <div class="space-y-5">
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Chile Relleno</h4>
+                            <p class="text-gray-600 text-sm mb-2">Roasted poblano filled with cheese, tomato sauce</p>
+                            <p class="mexican-red font-bold">$18</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Chiles en Nogada</h4>
+                            <p class="text-gray-600 text-sm mb-2">Poblano with walnut sauce & pomegranate</p>
+                            <p class="mexican-red font-bold">$22</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-red-600">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Mole Rojo</h4>
+                            <p class="text-gray-600 text-sm mb-2">Chicken with traditional red mole sauce</p>
+                            <p class="mexican-red font-bold">$24</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialties -->
+    <section id="specialties" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center mexican-red mb-12">House Specialties</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center p-6 bg-yellow-50 rounded-lg">
+                    <i class="fas fa-glass-margarita text-4xl mexican-red mb-4 block"></i>
+                    <h3 class="text-2xl font-bold mexican-red mb-3">Craft Margaritas</h3>
+                    <p class="text-gray-700 mb-4">Hand-crafted with premium tequila and fresh citrus. Sip perfection.
+                    </p>
+                    <p class="text-sm text-gray-600">Starting at $12</p>
+                </div>
+                <div class="text-center p-6 bg-yellow-50 rounded-lg">
+                    <i class="fas fa-fire text-4xl mexican-red mb-4 block"></i>
+                    <h3 class="text-2xl font-bold mexican-red mb-3">Salsas & Sauces</h3>
+                    <p class="text-gray-700 mb-4">Made fresh daily from authentic recipes. Heat level varies!</p>
+                    <p class="text-sm text-gray-600">Complimentary with chips</p>
+                </div>
+                <div class="text-center p-6 bg-yellow-50 rounded-lg">
+                    <i class="fas fa-star text-4xl mexican-red mb-4 block"></i>
+                    <h3 class="text-2xl font-bold mexican-red mb-3">Churros</h3>
+                    <p class="text-gray-700 mb-4">Crispy fried pastry with cinnamon sugar and chocolate sauce</p>
+                    <p class="text-sm text-gray-600">$8</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & CTA -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-r from-red-600 to-orange-600 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-12">Join Us for an Unforgettable Evening</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <i class="fas fa-map-marker-alt text-4xl mb-3 block mexican-gold"></i>
+                    <p class="font-bold text-lg">789 Fiesta Street</p>
+                    <p class="text-red-100">Downtown District</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone text-4xl mb-3 block mexican-gold"></i>
+                    <p class="font-bold text-lg">+1 (555) 456-7890</p>
+                    <p class="text-red-100">Reservations</p>
+                </div>
+                <div>
+                    <i class="fas fa-clock text-4xl mb-3 block mexican-gold"></i>
+                    <p class="font-bold text-lg">Tue-Sun 5PM-11PM</p>
+                    <p class="text-red-100">Monday: Closed</p>
+                </div>
+            </div>
+            <button onclick="openRes()"
+                class="bg-yellow-400 text-gray-900 px-8 py-3 rounded font-bold text-lg hover:bg-yellow-300 transition">Make
+                a Reservation</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="resModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <h3 class="text-2xl font-bold mexican-red mb-6">Reservar Mesa</h3>
+            <form onsubmit="submitRes(event)" class="space-y-4">
+                <input type="text" placeholder="Nombre" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="email" placeholder="Email" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="date" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="time" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="number" min="1" max="12" placeholder="Personas" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <button type="submit"
+                    class="w-full mexican-red-bg text-white py-2 rounded font-bold hover:bg-red-700">Reservar</button>
+                <button type="button" onclick="closeRes()"
+                    class="w-full border border-gray-300 py-2 rounded font-semibold text-gray-700 hover:bg-gray-50">Cancelar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 px-4 text-center">
+        <p>&copy; 2024 El Fuego. ¡Bienvenidos!</p>
+    </footer>
+
+    <script>
+        function openRes() { document.getElementById('resModal').classList.remove('hidden'); }
+        function closeRes() { document.getElementById('resModal').classList.add('hidden'); }
+        function submitRes(e) { e.preventDefault(); alert('¡Reservación confirmada!'); closeRes(); }
+    </script>
+</body>
+
+</html>

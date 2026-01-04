@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sakura Zen - Premium Japanese Cuisine">
+    <meta name="keywords" content="japanese restaurant, sushi, ramen, tempura">
+    <title>Sakura Zen - Japanese Restaurant</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Noto+Serif+JP:wght@600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: #fafaf8;
+        }
+
+        .heading {
+            font-family: 'Noto Serif JP', serif;
+        }
+
+        .zen-accent {
+            color: #c41e3a;
+        }
+
+        .zen-border {
+            border-color: #c41e3a;
+        }
+
+        nav {
+            background: white;
+            border-bottom: 1px solid #e5e5e5;
+        }
+
+        .menu-section {
+            scroll-behavior: smooth;
+        }
+
+        .dish-item {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid #c41e3a;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+
+        .dish-item:hover {
+            box-shadow: 0 4px 16px rgba(196, 30, 58, 0.15);
+            transform: translateX(4px);
+        }
+
+        .price {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #c41e3a;
+        }
+
+        .rice-bg {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8e8e6 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-2xl font-bold heading zen-accent">
+                <i class="fas fa-leaf"></i> SAKURA ZEN
+            </div>
+            <button class="md:hidden text-gray-700 text-2xl" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#about" class="text-gray-900 hover:text-red-600 transition font-semibold">About</a></li>
+                <li><a href="#menu" class="text-gray-900 hover:text-red-600 transition font-semibold">Menu</a></li>
+                <li><a href="#chef" class="text-gray-900 hover:text-red-600 transition font-semibold">Chef</a></li>
+                <li><a href="#contact" class="text-gray-900 hover:text-red-600 transition font-semibold">Contact</a></li>
+                <li><button onclick="openBook()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition font-semibold">Reserve</button></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="mobileNavMenu" class="hidden md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <ul class="flex flex-col gap-0 py-2">
+            <li><a href="#about" class="text-gray-900 hover:text-red-600 transition font-semibold block py-3 px-4">About</a></li>
+            <li><a href="#menu" class="text-gray-900 hover:text-red-600 transition font-semibold block py-3 px-4">Menu</a></li>
+            <li><a href="#chef" class="text-gray-900 hover:text-red-600 transition font-semibold block py-3 px-4">Chef</a></li>
+            <li><a href="#contact" class="text-gray-900 hover:text-red-600 transition font-semibold block py-3 px-4">Contact</a></li>
+            <li class="px-4 py-2"><button onclick="openBook()" class="bg-red-600 text-white px-6 py-2 rounded hover:bg-red-700 transition font-semibold w-full">Reserve</button></li>
+        </ul>
+    </div>
+    <script>
+        function toggleMobileNav() { document.getElementById('mobileNavMenu').classList.toggle('hidden'); }
+    </script>
+
+    <!-- Hero -->
+    <section class="rice-bg py-24 px-4 text-center"
+        style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-blend-mode: overlay;">
+        <h1 class="text-6xl md:text-7xl font-bold heading text-gray-900 mb-4">SAKURA ZEN</h1>
+        <div class="flex justify-center gap-2 mb-6">
+            
+            <p class="text-xl text-gray-600">Authentic Japanese Culinary Art</p>
+            
+        </div>
+        <p class="max-w-2xl mx-auto text-gray-600 mb-8 leading-relaxed">In harmony with nature and tradition, we bring
+            you the essence of Japan's most refined cuisine, prepared with meticulous precision and respect for every
+            ingredient.</p>
+        <button onclick="openBook()"
+            class="bg-red-600 text-white px-8 py-3 rounded hover:bg-red-700 transition font-semibold mr-4">Reserve
+            Now</button>
+        <button onclick="document.getElementById('menu').scrollIntoView()"
+            class="border-2 border-red-600 text-red-600 px-8 py-3 rounded hover:bg-red-50 transition font-semibold">View
+            Menu</button>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold heading text-gray-900 text-center mb-12">About Sakura Zen</h2>
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Sakura Zen is more than a restaurant—it's a sanctuary
+                        where Japanese culinary tradition meets modern sensibility. Our chefs train for over a decade to
+                        master the art of sushi, preparing each piece with ritual precision.</p>
+                    <p class="text-gray-600 mb-4 leading-relaxed">Every ingredient is hand-selected from the finest
+                        suppliers. From the rice milled just right, to the fish delivered fresh daily, we honor the
+                        philosophy of "shokunin"—the pursuit of craft mastery.</p>
+                    <p class="text-gray-600 leading-relaxed">Come not just to eat, but to experience a moment of zen in
+                        every bite.</p>
+                </div>
+                <div class="text-center">
+                    <div class="bg-red-50 rounded-lg p-8 border-2 border-red-200">
+                        <i class="fas fa-award text-5xl text-red-600 mb-4 block"></i>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-2 heading">Chef Masaru</h3>
+                        <p class="text-gray-600 text-sm">15+ years training in Tokyo's finest establishments</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-16 px-4 bg-gray-50">
+        <div class="max-w-5xl mx-auto">
+            <h2 class="text-4xl font-bold heading text-gray-900 text-center mb-4">Menu</h2>
+            <p class="text-center text-gray-600 mb-12">Changing seasonally to honor nature's bounty</p>
+
+            <!-- Sushi Section -->
+            <div class="menu-section mb-12">
+                <h3 class="text-2xl font-bold heading text-gray-900 mb-6 pb-3 border-b-2 zen-border">握り寿司 - Nigiri Sushi
+                </h3>
+                <div class="space-y-3">
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Maguro <span
+                                    class="text-sm font-normal text-gray-600">(Tuna)</span></h4>
+                            <span class="price">$6</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Fatty bluefin tuna, butter-soft</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Sake <span
+                                    class="text-sm font-normal text-gray-600">(Salmon)</span></h4>
+                            <span class="price">$5</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Premium Atlantic salmon with delicate sweetness</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Hotate <span
+                                    class="text-sm font-normal text-gray-600">(Scallop)</span></h4>
+                            <span class="price">$8</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Sweet, tender scallop with subtle ocean flavor</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Uni <span
+                                    class="text-sm font-normal text-gray-600">(Sea Urchin)</span></h4>
+                            <span class="price">$12</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Creamy delicacy from pristine waters</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rolls Section -->
+            <div class="menu-section mb-12">
+                <h3 class="text-2xl font-bold heading text-gray-900 mb-6 pb-3 border-b-2 zen-border">巻き物 - Sushi Rolls
+                </h3>
+                <div class="space-y-3">
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">California Roll</h4>
+                            <span class="price">$10</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Crab, avocado, cucumber in inside-out roll</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Dragon Roll</h4>
+                            <span class="price">$16</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Eel and cucumber topped with avocado and wasabi</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Spicy Tuna Roll</h4>
+                            <span class="price">$12</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Tuna with sriracha, jalapeño, and mayo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hot Dishes Section -->
+            <div class="menu-section mb-12">
+                <h3 class="text-2xl font-bold heading text-gray-900 mb-6 pb-3 border-b-2 zen-border">温かい料理 - Hot Dishes
+                </h3>
+                <div class="space-y-3">
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Tonkotsu Ramen</h4>
+                            <span class="price">$15</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Rich pork bone broth, noodles, chashu, soft egg</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Tempura Assortment</h4>
+                            <span class="price">$18</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Shrimp, vegetables, white fish in light batter</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Chicken Yakitori</h4>
+                            <span class="price">$14</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Grilled chicken skewers with teriyaki glaze</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Appetizers -->
+            <div class="menu-section">
+                <h3 class="text-2xl font-bold heading text-gray-900 mb-6 pb-3 border-b-2 zen-border">前菜 - Appetizers
+                </h3>
+                <div class="space-y-3">
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Edamame</h4>
+                            <span class="price">$5</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Boiled soybeans with sea salt</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Gyoza</h4>
+                            <span class="price">$8</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Pork and vegetable dumplings, pan-fried</p>
+                    </div>
+                    <div class="dish-item">
+                        <div class="flex justify-between items-start mb-2">
+                            <h4 class="text-lg font-bold text-gray-900">Miso Soup</h4>
+                            <span class="price">$4</span>
+                        </div>
+                        <p class="text-gray-600 text-sm">Traditional fermented soy broth with tofu</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chef -->
+    <section id="chef" class="py-16 px-4 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold heading text-gray-900 mb-4">The Chef's Philosophy</h2>
+            <div class="bg-red-50 rounded-lg p-12 border-l-4 zen-border">
+                <p class="text-gray-700 text-lg leading-relaxed mb-6">"In Japanese cuisine, we believe that the soul of
+                    a dish lies not in complexity, but in simplicity and respect for the ingredient. Every grain of
+                    rice, every slice of fish tells a story. Our role as chefs is to listen to that story and present it
+                    truthfully."</p>
+                <p class="font-bold text-gray-900 heading text-xl">— Chef Masaru Yamamoto</p>
+                <p class="text-gray-600 text-sm mt-2">Head Chef, Sakura Zen</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="py-16 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold heading text-gray-900 text-center mb-12">Guest Experiences</h2>
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="bg-white p-6 rounded border-t-4 zen-border">
+                    <div class="flex gap-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-600 mb-3">"The most authentic sushi experience I've had outside Tokyo. Chef
+                        Masaru's hands are true artists."</p>
+                    <p class="font-bold text-gray-900 text-sm">Hiroshi Tanaka</p>
+                </div>
+                <div class="bg-white p-6 rounded border-t-4 zen-border">
+                    <div class="flex gap-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-600 mb-3">"Serene atmosphere, impeccable service, and every bite is perfect. A
+                        true zen experience."</p>
+                    <p class="font-bold text-gray-900 text-sm">Sarah Mitchell</p>
+                </div>
+                <div class="bg-white p-6 rounded border-t-4 zen-border">
+                    <div class="flex gap-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-600 mb-3">"Worth every penny. The nigiri melts in your mouth. The chef takes
+                        pride in every piece."</p>
+                    <p class="font-bold text-gray-900 text-sm">David Chen</p>
+                </div>
+                <div class="bg-white p-6 rounded border-t-4 zen-border">
+                    <div class="flex gap-1 mb-2">
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                        <i class="fas fa-star text-yellow-400 text-sm"></i>
+                    </div>
+                    <p class="text-gray-600 mb-3">"A meditation in food. Quiet, elegant, and deeply satisfying. My
+                        favorite sushi spot."</p>
+                    <p class="font-bold text-gray-900 text-sm">Lisa Anderson</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & CTA -->
+    <section id="contact" class="py-16 px-4 bg-gradient-to-r from-red-600 to-red-700 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4 heading">Visit Sakura Zen</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-8">
+                <div>
+                    <i class="fas fa-map-marker-alt text-3xl mb-2 block"></i>
+                    <p class="font-semibold">789 Zen Lane</p>
+                    <p class="text-red-100">Harmony City, HC 12345</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone text-3xl mb-2 block"></i>
+                    <p class="font-semibold">+1 (555) 234-5678</p>
+                    <p class="text-red-100">Call for inquiries</p>
+                </div>
+                <div>
+                    <i class="fas fa-clock text-3xl mb-2 block"></i>
+                    <p class="font-semibold">Tue-Sun: 5PM-10PM</p>
+                    <p class="text-red-100">Monday: Closed</p>
+                </div>
+            </div>
+            <button onclick="openBook()"
+                class="bg-white text-red-600 px-8 py-3 rounded font-bold hover:bg-gray-100 transition">Make a
+                Reservation</button>
+        </div>
+    </section>
+
+    <!-- Booking Modal -->
+    <div id="bookModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <h3 class="text-2xl font-bold text-gray-900 heading mb-6">Reserve Your Table</h3>
+            <form onsubmit="submitBook(event)" class="space-y-4">
+                <input type="text" placeholder="Name" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="email" placeholder="Email" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="date" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="time" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <input type="number" min="1" max="8" placeholder="Number of guests" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-600">
+                <button type="submit"
+                    class="w-full bg-red-600 text-white py-2 rounded font-bold hover:bg-red-700">Reserve</button>
+                <button type="button" onclick="closeBook()"
+                    class="w-full border border-gray-300 py-2 rounded font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 px-4">
+        <div class="max-w-6xl mx-auto text-center">
+            <p class="mb-2">&copy; 2024 Sakura Zen. Authentic Japanese Cuisine.</p>
+            <p class="text-sm text-gray-500">Crafted with care and respect for tradition.</p>
+        </div>
+    </footer>
+
+    <script>
+        function openBook() { document.getElementById('bookModal').classList.remove('hidden'); }
+        function closeBook() { document.getElementById('bookModal').classList.add('hidden'); }
+        function submitBook(e) { e.preventDefault(); alert('Reservation confirmed!'); closeBook(); }
+    </script>
+</body>
+
+</html>

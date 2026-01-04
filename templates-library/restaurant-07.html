@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Le Petit Bistro - Authentic French Cuisine">
+    <meta name="keywords" content="french restaurant, bistro, french cuisine">
+    <title>Le Petit Bistro - French Cuisine</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lora:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            background: #faf8f3;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: 'Bebas Neue', cursive;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navy {
+            color: #1a2d5c;
+        }
+
+        .navyy{
+            background: #1a2d5c;
+        
+        }
+
+        .gold-accent {
+            color: #d4af37;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-3xl font-bold navy">
+                <i class="fas fa-utensils gold-accent"></i> LE PETIT BISTRO
+            </div>
+            <button class="md:hidden text-gray-700 text-2xl" onclick="toggleMobileNav()">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#about" class="text-gray-900 hover:text-yellow-600 transition font-semibold">About</a></li>
+                <li><a href="#menu" class="text-gray-900 hover:text-yellow-600 transition font-semibold">Menu</a></li>
+                <li><a href="#wine" class="text-gray-900 hover:text-yellow-600 transition font-semibold">Wine</a></li>
+                <li><a href="#contact" class="text-gray-900 hover:text-yellow-600 transition font-semibold">Contact</a></li>
+                <li><button onclick="openReserve()" class="navyy text-white px-6 py-2 rounded hover:bg-blue-900 transition font-bold">Reserve</button></li>
+            </ul>
+        </div>
+    </nav>
+    <div id="mobileNavMenu" class="hidden md:hidden bg-white border-b border-gray-200 shadow-lg">
+        <ul class="flex flex-col gap-0 py-2">
+            <li><a href="#about" class="text-gray-900 hover:text-yellow-600 transition font-semibold block py-3 px-4">About</a></li>
+            <li><a href="#menu" class="text-gray-900 hover:text-yellow-600 transition font-semibold block py-3 px-4">Menu</a></li>
+            <li><a href="#wine" class="text-gray-900 hover:text-yellow-600 transition font-semibold block py-3 px-4">Wine</a></li>
+            <li><a href="#contact" class="text-gray-900 hover:text-yellow-600 transition font-semibold block py-3 px-4">Contact</a></li>
+            <li class="px-4 py-2"><button onclick="openReserve()" class="navy text-white px-6 py-2 rounded hover:bg-blue-900 transition font-bold w-full">Reserve</button></li>
+        </ul>
+    </div>
+    <script>
+        function toggleMobileNav() { document.getElementById('mobileNavMenu').classList.toggle('hidden'); }
+    </script>
+
+    <!-- Hero -->
+    <section class="relative py-32 px-4"
+        style="background-image: url('https://images.unsplash.com/photo-1504674900152-b8b35e7fc369?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-black/40"></div>
+        <div class="max-w-4xl mx-auto text-center relative z-10 text-white">
+            <h1 class="text-7xl mb-4 font-bold">LE PETIT BISTRO</h1>
+            <p class="text-2xl mb-4 font-light">Classical French Dining</p>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Discover the elegance of French bistro culture in our intimate
+                1920s-inspired restaurant</p>
+            <button onclick="openReserve()"
+                class="bg-yellow-500 text-black px-8 py-3 rounded font-bold text-lg hover:bg-yellow-400 transition mr-4">Réserver</button>
+            <button onclick="document.getElementById('menu').scrollIntoView()"
+                class="border-2 border-yellow-500 text-yellow-500 px-8 py-3 rounded font-bold hover:bg-yellow-500 hover:text-black transition">Carte</button>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-5xl font-bold navy mb-6">Our Heritage</h2>
+                    <p class="text-gray-700 text-lg mb-4 leading-relaxed">Founded in 1985, Le Petit Bistro brings
+                        authentic Parisian bistro culture to the heart of our city. Our chef trained in Lyon and Paris,
+                        mastering the classical techniques of French cuisine.</p>
+                    <p class="text-gray-700 text-lg mb-4 leading-relaxed">We honor traditions while celebrating the best
+                        of seasonal ingredients. From coq au vin to duck confit, every dish is prepared with precision
+                        and passion.</p>
+                    <div class="space-y-2 text-gray-700">
+                        <p><i class="fas fa-check gold-accent mr-2"></i> Chef-Trained in Paris & Lyon</p>
+                        <p><i class="fas fa-check gold-accent mr-2"></i> Extensive French Wine List</p>
+                        <p><i class="fas fa-check gold-accent mr-2"></i> Seasonal Menu</p>
+                        <p><i class="fas fa-check gold-accent mr-2"></i> Private Dining</p>
+                    </div>
+                </div>
+                <div
+                    class="bg-gradient-to-br from-yellow-100 to-orange-100 h-96 rounded-lg flex items-center justify-center text-5xl text-gray-700">
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop"
+                        alt="French Cuisine" class="w-full h-full object-cover rounded-lg shadow-lg">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold navy text-center mb-4">Carte du Jour</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">Daily selections from our classical French kitchen</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Starters -->
+                <div>
+                    <h3 class="text-3xl font-bold navy mb-6 pb-3 border-b-2 border-yellow-500">Entrées</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Soupe à l'Oignon</h4>
+                            <p class="text-gray-600 text-sm mb-2">French onion soup with Gruyère</p>
+                            <p class="gold-accent font-bold">$14</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Escargots de Bourgogne</h4>
+                            <p class="text-gray-600 text-sm mb-2">Snails in herb butter</p>
+                            <p class="gold-accent font-bold">$18</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Salade Niçoise</h4>
+                            <p class="text-gray-600 text-sm mb-2">Tuna, eggs, anchovies, olives</p>
+                            <p class="gold-accent font-bold">$16</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mains -->
+                <div>
+                    <h3 class="text-3xl font-bold navy mb-6 pb-3 border-b-2 border-yellow-500">Plats Principaux</h3>
+                    <div class="space-y-6">
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Coq au Vin</h4>
+                            <p class="text-gray-600 text-sm mb-2">Chicken braised in Burgundy wine</p>
+                            <p class="gold-accent font-bold">$32</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Duck Confit</h4>
+                            <p class="text-gray-600 text-sm mb-2">Slow-roasted duck leg with seasonal vegetables</p>
+                            <p class="gold-accent font-bold">$36</p>
+                        </div>
+                        <div class="bg-white p-4 rounded border-l-4 border-yellow-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Bouillabaisse</h4>
+                            <p class="text-gray-600 text-sm mb-2">Provençal fish stew with rouille</p>
+                            <p class="gold-accent font-bold">$38</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Wine -->
+    <section id="wine" class="py-20 px-4 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold navy mb-6">Our Wine Cellar</h2>
+            <p class="text-gray-600 text-lg mb-12">Curated selection from France's finest regions</p>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-gray-50 rounded">
+                    <i class="fas fa-wine-glass text-4xl gold-accent mb-4 block"></i>
+                    <h3 class="text-xl font-bold navy mb-2">Burgundy</h3>
+                    <p class="text-gray-600">Pinot Noir and Chardonnay excellence</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded">
+                    <i class="fas fa-wine-bottle text-4xl gold-accent mb-4 block"></i>
+                    <h3 class="text-xl font-bold navy mb-2">Bordeaux</h3>
+                    <p class="text-gray-600">Bold reds and elegant blends</p>
+                </div>
+                <div class="p-6 bg-gray-50 rounded">
+                    <i class="fas fa-champagne-glass text-4xl gold-accent mb-4 block"></i>
+                    <h3 class="text-xl font-bold navy mb-2">Champagne</h3>
+                    <p class="text-gray-600">Premium selections for celebration</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact & CTA -->
+    <section id="contact" class="py-20 px-4 navyy text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-12">Visit Us</h2>
+            <div class="grid md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <i class="fas fa-map-marker-alt text-3xl gold-accent mb-4 block"></i>
+                    <p class="font-semibold">456 Seine Street</p>
+                    <p class="text-gray-300">Paris District</p>
+                </div>
+                <div>
+                    <i class="fas fa-phone text-3xl gold-accent mb-4 block"></i>
+                    <p class="font-semibold">+1 (555) 345-6789</p>
+                    <p class="text-gray-300">Call for reservations</p>
+                </div>
+                <div>
+                    <i class="fas fa-clock text-3xl gold-accent mb-4 block"></i>
+                    <p class="font-semibold">Tue-Sun 6PM-11PM</p>
+                    <p class="text-gray-300">Monday: Closed</p>
+                </div>
+            </div>
+            <button onclick="openReserve()"
+                class="bg-yellow-500 text-black px-10 py-3 rounded font-bold text-lg hover:bg-yellow-400 transition">Make
+                a Reservation</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="reserveModal"
+        class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <h3 class="text-2xl font-bold navy mb-6">Réserver Une Table</h3>
+            <form onsubmit="submitReserve(event)" class="space-y-4">
+                <input type="text" placeholder="Name" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-yellow-500">
+                <input type="email" placeholder="Email" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-yellow-500">
+                <input type="date" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-yellow-500">
+                <input type="time" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-yellow-500">
+                <input type="number" min="1" max="10" placeholder="Guests" required
+                    class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-yellow-500">
+                <button type="submit"
+                    class="w-full navyy text-white py-2 rounded font-bold hover:bg-blue-900">Reserve</button>
+                <button type="button" onclick="closeReserve()"
+                    class="w-full border border-gray-300 py-2 rounded font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="navyy text-gray-300 py-8 px-4 text-center">
+        <p>&copy; 2024 Le Petit Bistro. Bonjour et Bon Appétit!</p>
+    </footer>
+
+    <script>
+        function openReserve() { document.getElementById('reserveModal').classList.remove('hidden'); }
+        function closeReserve() { document.getElementById('reserveModal').classList.add('hidden'); }
+        function submitReserve(e) { e.preventDefault(); alert('Reservation confirmed!'); closeReserve(); }
+    </script>
+</body>
+
+</html>

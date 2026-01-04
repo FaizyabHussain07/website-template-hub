@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="FreshBite - Organic Farm-to-Table Restaurant">
+    <meta name="keywords" content="farm to table, organic food, sustainable restaurant">
+    <title>FreshBite - Farm-to-Table Dining</title>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Raleway', sans-serif; line-height: 1.8; color: #3a3a3a; background: #f9f7f5; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; font-weight: 700; color: #2d5016; }
+        h1 { font-size: 3.8rem; line-height: 1.1; }
+        h2 { font-size: 2.8rem; margin-bottom: 1.5rem; }
+        h3 { font-size: 1.4rem; margin-bottom: 1rem; }
+        p { font-size: 1rem; line-height: 1.8; color: #555; }
+        a { text-decoration: none; }
+        
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.97); z-index: 1000; box-shadow: 0 2px 6px rgba(0,0,0,0.04); padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 22px; font-weight: 800; color: #27ae60; font-family: 'Playfair Display'; letter-spacing: 1px; }
+        .nav-menu { display: flex; gap: 2.5rem; list-style: none; align-items: center; }
+        .nav-menu a { font-family: 'Raleway'; font-size: 0.9rem; font-weight: 500; color: #333; transition: color 0.3s; padding-bottom: 2px; border-bottom: 2px solid transparent; }
+        .nav-menu a:hover { color: #27ae60; border-bottom-color: #27ae60; }
+        .toggle-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: #333; }
+        .btn-reserve { background: linear-gradient(135deg, #27ae60, #1e7e34); color: white; padding: 10px 26px; border-radius: 50px; border: none; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-reserve:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(39, 174, 96, 0.3); }
+        
+        /* Hero */
+        .hero { margin-top: 70px; background: linear-gradient(135deg, rgba(39, 174, 96, 0.15), rgba(46, 125, 50, 0.1)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23e8f5e9" width="1200" height="800"/></svg>'); background-size: cover; background-position: center; padding: 120px 2rem; text-align: center; color: #2d5016; min-height: 650px; display: flex; align-items: center; justify-content: center; }
+        .hero-content { max-width: 800px; }
+        .hero h1 { color: #2d5016; margin-bottom: 1.5rem; }
+        .hero-subtitle { font-size: 1.2rem; margin-bottom: 2.5rem; color: #555; }
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: linear-gradient(135deg, #27ae60, #1e7e34); color: white; padding: 14px 40px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; font-family: 'Raleway'; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(39, 174, 96, 0.25); }
+        .btn-secondary { background: white; color: #27ae60; padding: 14px 40px; border: 2px solid #27ae60; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Raleway'; }
+        .btn-secondary:hover { background: #27ae60; color: white; }
+        
+        /* Sections */
+        .section { padding: 100px 2rem; }
+        .section-light { background: white; }
+        .section-dark { background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { color: #2d5016; margin-bottom: 1rem; }
+        .section-title p { font-size: 1rem; color: #666; max-width: 600px; margin: 0 auto; }
+        
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-image { height: 450px; background: linear-gradient(135deg, #27ae60, #1e7e34), url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=500&fit=crop') center/cover; border-radius: 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.2rem; font-weight: 600; }
+        .about-content h2 { color: #2d5016; }
+        .about-content p { margin-bottom: 1.5rem; }
+        .about-list { list-style: none; margin: 2rem 0; }
+        .about-list li { padding: 0.8rem 0; display: flex; align-items: center; gap: 1rem; }
+        .about-list li::before { content: '\f06d'; font-family: 'Font Awesome 6 Free'; font-weight: 900; margin-right: 0.5rem; color: #27ae60; }
+        
+        /* Features Grid */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { background: white; padding: 2.5rem; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.07); text-align: center; border: 1px solid transparent; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(39, 174, 96, 0.15); border-color: #27ae60; }
+        .feature-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #27ae60, #1e7e34); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; margin: 0 auto 1.5rem; }
+        .feature-card h3 { color: #2d5016; }
+        .feature-card p { color: #666; }
+        
+        /* Timeline/Farmers Section */
+        .farmers-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .farmer-card { background: white; padding: 2rem; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.08); border-left: 5px solid #27ae60; position: relative; }
+        .farmer-card h4 { color: #2d5016; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .farmer-title { color: #27ae60; font-size: 0.85rem; font-weight: 600; margin-bottom: 1rem; }
+        .farmer-card p { color: #666; font-size: 0.95rem; line-height: 1.7; }
+        
+        /* Menu Section */
+        .tabs { display: flex; gap: 2rem; margin-bottom: 3rem; border-bottom: 2px solid #e0e0e0; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: none; border: none; font-size: 1rem; font-family: 'Playfair Display'; font-weight: 700; color: #999; cursor: pointer; padding: 1rem 0; position: relative; transition: color 0.3s; }
+        .tab-btn.active { color: #27ae60; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: #27ae60; }
+        .tab-content { display: none; }
+        .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .menu-item { background: white; padding: 2rem; border-radius: 10px; border: 1px solid #e8e8e8; transition: all 0.3s; }
+        .menu-item:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .menu-item-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.8rem; }
+        .menu-item-name { font-size: 1.1rem; font-weight: 600; color: #2d5016; font-family: 'Playfair Display'; }
+        .menu-item-price { font-size: 1.2rem; color: #27ae60; font-weight: 700; }
+        .menu-item-desc { font-size: 0.9rem; color: #666; line-height: 1.6; }
+        
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .testimonial-card { background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-left: 5px solid #27ae60; position: relative; }
+        .testimonial-card::before { content: '🌿'; position: absolute; top: 1.5rem; right: 2rem; font-size: 2.5rem; opacity: 0.1; }
+        .stars { color: #f59e0b; font-size: 0.85rem; letter-spacing: 1px; margin-bottom: 1rem; }
+        .testimonial-text { color: #666; line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+        .testimonial-author { font-weight: 600; color: #2d5016; }
+        .testimonial-role { font-size: 0.85rem; color: #999; }
+        
+        /* CTA Section */
+        .cta { background: linear-gradient(135deg, #27ae60, #1e7e34); padding: 80px 2rem; text-align: center; color: white; }
+        .cta h2 { color: white; margin-bottom: 1.5rem; }
+        .cta p { color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-btn { background: white; color: #27ae60; padding: 14px 40px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; font-family: 'Raleway'; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; padding: 2.5rem; border-radius: 10px; max-width: 500px; width: 90%; box-shadow: 0 10px 50px rgba(0,0,0,0.3); animation: slideUp 0.3s; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { float: right; font-size: 28px; font-weight: bold; color: #999; background: none; border: none; cursor: pointer; }
+        .close-btn:hover { color: #27ae60; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #333; }
+        .form-group input { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Raleway'; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus { outline: none; border-color: #27ae60; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #27ae60, #1e7e34); color: white; padding: 14px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Raleway'; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(39, 174, 96, 0.3); }
+        
+        /* Footer */
+        footer { background: #2d5016; color: #aaa; padding: 60px 2rem 30px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-col h4 { color: #27ae60; font-size: 1rem; margin-bottom: 1.5rem; font-family: 'Playfair Display'; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: #aaa; transition: color 0.3s; font-size: 0.9rem; }
+        .footer-col ul li a:hover { color: #27ae60; }
+        .footer-col p { color: #aaa; font-size: 0.9rem; }
+        .footer-bottom { border-top: 1px solid #444; padding-top: 2rem; text-align: center; color: #666; font-size: 0.85rem; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toggle-btn { display: block; }
+            .nav-menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; gap: 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+            .nav-menu.active { display: flex; }
+            .nav-menu a { padding: 1rem 2rem; border-bottom: 1px solid #eee; }
+            h1 { font-size: 2.3rem; }
+            h2 { font-size: 1.8rem; }
+            .hero { padding: 60px 1.5rem; min-height: 400px; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { height: 300px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-leaf"></i> FRESHBITE</div>
+            <button class="toggle-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#farmers">Farmers</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><button class="btn-reserve" onclick="openModal()">Reserve</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Fresh from Farm to Table</h1>
+            <p class="hero-subtitle">Taste the pure essence of organic, sustainable cuisine prepared with produce harvested at peak freshness</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="openModal()">Book a Table</button>
+                <button class="btn-secondary" onclick="document.getElementById('menu').scrollIntoView()">Explore Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-light">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">Organic & Sustainable Dining</div>
+                <div class="about-content">
+                    <h2>Roots in Sustainability</h2>
+                    <p>FreshBite celebrates the simple beauty of organic farming and sustainable cuisine. We believe that exceptional food begins with exceptional ingredients, sourced directly from local farmers who share our commitment to the earth.</p>
+                    <p>Every dish on our menu tells a story of partnership with our farming community. We change our menu seasonally, ensuring you always get the freshest, most flavorful produce at its peak.</p>
+                    <ul class="about-list">
+                        <li>100% Organic Sourcing</li>
+                        <li>Direct Farm Partnerships</li>
+                        <li>Seasonal Menu Changes</li>
+                        <li>Zero-Waste Philosophy</li>
+                        <li>Locally Sourced Wines</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Farm-to-Table</h2>
+                <p>Discover the difference authentic, sustainable dining makes</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Certified Organic</h3>
+                    <p>Every ingredient is certified organic, pesticide-free, and grown with respect for nature</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Direct Partnerships</h3>
+                    <p>We work directly with local family farms, ensuring fair prices and peak quality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-seedling"></i></div>
+                    <h3>Seasonal Selection</h3>
+                    <p>Our menu evolves with the seasons, showcasing what's freshest and best right now</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-earth-americas"></i></div>
+                    <h3>Sustainability</h3>
+                    <p>Zero-waste operations and compostable packaging support our planet</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-tree"></i></div>
+                    <h3>Environmental Impact</h3>
+                    <p>Supporting organic farming that regenerates soil and protects biodiversity</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-heart"></i></div>
+                    <h3>Health & Wellness</h3>
+                    <p>Nourish your body with clean, chemical-free food prepared with care</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Farmers Section -->
+    <section id="farmers" class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Meet Our Farmers</h2>
+                <p>The passionate people behind our ingredients</p>
+            </div>
+            <div class="farmers-section">
+                <div class="farmer-card">
+                    <h4>Green Valley Farms</h4>
+                    <p class="farmer-title">Organic Vegetable Specialist</p>
+                    <p>Third-generation family farm growing over 50 varieties of heirloom vegetables using regenerative practices that improve soil health every season.</p>
+                </div>
+                <div class="farmer-card">
+                    <h4>Misty Meadows Dairy</h4>
+                    <p class="farmer-title">Grass-Fed & Pasture Raised</p>
+                    <p>Our partner dairy provides creamy, nutrient-rich milk and cheese from cows that graze freely on pesticide-free pastures.</p>
+                </div>
+                <div class="farmer-card">
+                    <h4>Heritage Grain Co.</h4>
+                    <p class="farmer-title">Artisan Grain Producer</p>
+                    <p>Specializing in ancient grain varieties milled fresh to order. Their commitment to soil conservation makes every loaf truly special.</p>
+                </div>
+                <div class="farmer-card">
+                    <h4>Orchard House</h4>
+                    <p class="farmer-title">Organic Fruit & Berries</p>
+                    <p>Beautifully maintained orchards producing the ripest, most flavorful fruits. No synthetic chemicals, just nature and expertise.</p>
+                </div>
+                <div class="farmer-card">
+                    <h4>Wild Herb Gardens</h4>
+                    <p class="farmer-title">Medicinal & Culinary Herbs</p>
+                    <p>Hand-tended gardens of fresh herbs and edible flowers, harvested at peak flavor for maximum nutrition and taste.</p>
+                </div>
+                <div class="farmer-card">
+                    <h4>Sunlit Honey Farm</h4>
+                    <p class="farmer-title">Raw & Wildflower Honey</p>
+                    <p>Pure, unheated honey from bees that pollinate organic flowers. Supporting the bees means supporting our ecosystem.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Seasonal Menu</h2>
+                <p>Farm-fresh cuisine that changes with the seasons</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'starters')">Starters</button>
+                <button class="tab-btn" onclick="switchTab(event, 'mains')">Main Courses</button>
+                <button class="tab-btn" onclick="switchTab(event, 'desserts')">Desserts</button>
+            </div>
+
+            <div id="starters" class="tab-content active">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Heirloom Tomato Salad</span>
+                        <span class="menu-item-price">$14</span>
+                    </div>
+                    <p class="menu-item-desc">Mixed heirloom varieties, fresh mozzarella, basil from our garden</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Organic Vegetable Soup</span>
+                        <span class="menu-item-price">$12</span>
+                    </div>
+                    <p class="menu-item-desc">Seasonal vegetables with fresh herbs and house-made stock</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Beet & Goat Cheese Plate</span>
+                        <span class="menu-item-price">$13</span>
+                    </div>
+                    <p class="menu-item-desc">Roasted heirloom beets, artisanal goat cheese, candied walnuts</p>
+                </div>
+            </div>
+
+            <div id="mains" class="tab-content">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Grass-Fed Beef Plate</span>
+                        <span class="menu-item-price">$38</span>
+                    </div>
+                    <p class="menu-item-desc">Pasture-raised beef with seasonal vegetables and herb sauce</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Organic Chicken</span>
+                        <span class="menu-item-price">$32</span>
+                    </div>
+                    <p class="menu-item-desc">Free-range chicken with roasted root vegetables and fresh herbs</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Vegetarian Harvest Bowl</span>
+                        <span class="menu-item-price">$28</span>
+                    </div>
+                    <p class="menu-item-desc">Seasonal vegetables, grains, legumes, house vinaigrette</p>
+                </div>
+            </div>
+
+            <div id="desserts" class="tab-content">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Seasonal Fruit Tart</span>
+                        <span class="menu-item-price">$9</span>
+                    </div>
+                    <p class="menu-item-desc">Fresh-picked fruit on organic pastry with house honey</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Organic Chocolate Cake</span>
+                        <span class="menu-item-price">$10</span>
+                    </div>
+                    <p class="menu-item-desc">Dark chocolate made with organic cocoa and local honey</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Farm-Fresh Berry Parfait</span>
+                        <span class="menu-item-price">$8</span>
+                    </div>
+                    <p class="menu-item-desc">Local berries with organic yogurt and house granola</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Guest Stories</h2>
+                <p>What our organic-loving community says</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Finally found a restaurant where I can eat knowing exactly where my food comes from. The flavors are incredible and the values align with mine."</p>
+                    <p class="testimonial-author">Jessica Green</p>
+                    <p class="testimonial-role">Sustainability Advocate</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The seasonal changes keep us coming back. Every visit features fresh, exciting flavors. Supporting local farmers has never tasted so good!"</p>
+                    <p class="testimonial-author">Marcus & Elena</p>
+                    <p class="testimonial-role">Regular Guests</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"As a food blogger, I appreciate the transparency and authenticity. This is what farm-to-table should be—genuine, delicious, and meaningful."</p>
+                    <p class="testimonial-author">Alex Morrison</p>
+                    <p class="testimonial-role">Food Blogger</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Join Our Farm-to-Table Community</h2>
+        <p>Experience the taste and values of sustainable, organic dining</p>
+        <button class="cta-btn" onclick="openModal()">Reserve Your Seat</button>
+    </section>
+
+    <!-- Modal -->
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3 style="margin-bottom: 1.5rem; color: #2d5016;">Book a Table</h3>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" required>
+                </div>
+                <div class="form-group">
+                    <label>Guests</label>
+                    <input type="number" min="1" max="12" required>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Booking</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>FreshBite</h4>
+                    <p>Farm-to-table restaurant celebrating organic, sustainable cuisine and community partnerships.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#farmers">Farmers</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:+1234567890">+1 (555) 234-5678</a></li>
+                        <li><a href="mailto:hello@freshbite.com">hello@freshbite.com</a></li>
+                        <li><a href="#">789 Harvest Road, Farm City</a></li>
+                        <li><a href="#">Wed-Sun: 5PM - 10PM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FreshBite. Supporting local farmers and sustainable living.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function openModal() { document.getElementById('reservationModal').classList.add('active'); }
+        function closeModal() { document.getElementById('reservationModal').classList.remove('active'); }
+        function handleFormSubmit(e) { e.preventDefault(); alert('Thank you! Your reservation will be confirmed shortly.'); closeModal(); }
+        function switchTab(e, tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+        }
+        window.onclick = function(e) { 
+            const modal = document.getElementById('reservationModal');
+            if (e.target === modal) closeModal();
+        }
+    </script>
+</body>
+</html>

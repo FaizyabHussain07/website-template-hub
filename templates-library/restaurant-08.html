@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coastal Catch - Seafood Restaurant">
+    <meta name="keywords" content="seafood, fish, restaurant, ocean">
+    <title>Coastal Catch - Fresh Seafood</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Quicksand', sans-serif; background: linear-gradient(135deg, #e0f7f4 0%, #b8e6e3 100%); }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 700; }
+        nav { position: sticky; top: 0; z-index: 50; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .wave-divider { height: 60px; background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120" fill="%23ffffff"/></svg>') repeat-x; background-size: auto 100%; }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2 text-2xl font-bold text-blue-600">
+                <i class="fas fa-anchor"></i> COASTAL CATCH
+            </div>
+            <button id="menuToggle" class="md:hidden text-gray-700 text-2xl">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#about" class="text-gray-700 hover:text-blue-600 transition font-semibold">About</a></li>
+                <li><a href="#menu" class="text-gray-700 hover:text-blue-600 transition font-semibold">Menu</a></li>
+                <li><a href="#specials" class="text-gray-700 hover:text-blue-600 transition font-semibold">Daily Specials</a></li>
+                <li><a href="#reviews" class="text-gray-700 hover:text-blue-600 transition font-semibold">Reviews</a></li>
+                <li><button onclick="openBook()" class="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition font-bold">Book Table</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative py-40 px-4" style="background-image: url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&h=600&fit=crop'); background-size: cover; background-position: center; background-attachment: fixed;">
+        <div class="absolute inset-0 bg-blue-900/50"></div>
+        <div class="max-w-5xl mx-auto text-center relative z-10 text-white">
+            <h1 class="text-7xl font-bold mb-4">COASTAL CATCH</h1>
+            <p class="text-3xl mb-4 font-light">Fresh From The Ocean</p>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">Farm-to-table meets sea-to-plate. We serve only the freshest catch delivered daily from sustainable fisheries</p>
+            <button onclick="openBook()" class="bg-blue-500 text-white px-8 py-3 rounded font-bold text-lg hover:bg-blue-400 transition mr-4">Reserve Now</button>
+            <button onclick="document.getElementById('menu').scrollIntoView()" class="border-2 border-blue-500 text-blue-500 bg-white px-8 py-3 rounded font-bold hover:bg-blue-50 transition">View Menu</button>
+        </div>
+    </section>
+
+    <div class="wave-divider"></div>
+
+    <!-- About -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&h=500&fit=crop" alt="Seafood" class="w-full rounded-lg shadow-lg">
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold text-gray-900 mb-6">Ocean to Table</h2>
+                    <p class="text-gray-700 text-lg mb-4 leading-relaxed">At Coastal Catch, we believe the best seafood restaurant starts with the best suppliers. Every morning, our chefs hand-select the finest catch from sustainable fisheries along the coast.</p>
+                    <p class="text-gray-700 text-lg mb-6 leading-relaxed">Our commitment to freshness and sustainability means you're not just eating great food—you're supporting responsible fishing practices that protect our oceans for generations to come.</p>
+                    <ul class="space-y-3 text-gray-700">
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-600 mt-1"></i> <span>100% Sustainable Sourcing</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Daily Fresh Deliveries</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Expert Fish Selection</span></li>
+                        <li class="flex gap-3"><i class="fas fa-check text-blue-600 mt-1"></i> <span>Oceanside Ambiance</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 px-4 bg-blue-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-4">The Menu</h2>
+            <p class="text-center text-gray-600 mb-12 text-lg">All items change daily based on fresh catch availability</p>
+
+            <div class="grid md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="text-3xl font-bold text-blue-600 mb-6 pb-3 border-b-2 border-blue-600">Raw & Chilled</h3>
+                    <div class="space-y-5">
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Ceviche Trio</h4>
+                            <p class="text-gray-600 text-sm mb-2">Marinated fish, shrimp, scallops with citrus</p>
+                            <p class="text-blue-600 font-bold">$26</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Oyster Platter</h4>
+                            <p class="text-gray-600 text-sm mb-2">Selection of 12 fresh oysters with mignonette</p>
+                            <p class="text-blue-600 font-bold">$28</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Sashimi Selection</h4>
+                            <p class="text-gray-600 text-sm mb-2">Premium fish sliced to order</p>
+                            <p class="text-blue-600 font-bold">$32</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-3xl font-bold text-blue-600 mb-6 pb-3 border-b-2 border-blue-600">Grilled & Hot</h3>
+                    <div class="space-y-5">
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Branzino</h4>
+                            <p class="text-gray-600 text-sm mb-2">Whole grilled Mediterranean sea bass, lemon & herbs</p>
+                            <p class="text-blue-600 font-bold">$38</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Chilean Salmon</h4>
+                            <p class="text-gray-600 text-sm mb-2">Wood-fired with seasonal vegetables</p>
+                            <p class="text-blue-600 font-bold">$32</p>
+                        </div>
+                        <div class="bg-white p-4 rounded shadow-sm border-l-4 border-blue-500">
+                            <h4 class="text-xl font-bold text-gray-900 mb-1">Lobster Tail</h4>
+                            <p class="text-gray-600 text-sm mb-2">Butter-poached, market price</p>
+                            <p class="text-blue-600 font-bold">$MP</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Daily Specials -->
+    <section id="specials" class="py-20 px-4 bg-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold text-gray-900 mb-12">Daily Specials</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
+                    <i class="fas fa-calendar text-3xl text-blue-600 mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Monday</h3>
+                    <p class="text-gray-600">Tuna Steaks</p>
+                    <p class="text-blue-600 font-bold mt-2">20% OFF</p>
+                </div>
+                <div class="p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
+                    <i class="fas fa-calendar text-3xl text-blue-600 mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Wednesday</h3>
+                    <p class="text-gray-600">Shrimp Night</p>
+                    <p class="text-blue-600 font-bold mt-2">15% OFF</p>
+                </div>
+                <div class="p-6 bg-blue-50 rounded-lg border-2 border-blue-200">
+                    <i class="fas fa-calendar text-3xl text-blue-600 mb-4 block"></i>
+                    <h3 class="text-xl font-bold text-gray-900 mb-2">Friday</h3>
+                    <p class="text-gray-600">Chef's Selection</p>
+                    <p class="text-blue-600 font-bold mt-2">Special</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 px-4 bg-blue-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-5xl font-bold text-center text-gray-900 mb-12">Guest Reviews</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-white p-6 rounded shadow-md border-t-4 border-blue-600">
+                    <div class="flex gap-1 mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-3 leading-relaxed">"Freshest seafood I've ever had. Every bite tastes like the ocean. The oysters are incredible!"</p>
+                    <p class="font-bold text-gray-900">John Martinez</p>
+                </div>
+                <div class="bg-white p-6 rounded shadow-md border-t-4 border-blue-600">
+                    <div class="flex gap-1 mb-3">
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                        <i class="fas fa-star text-yellow-400"></i>
+                    </div>
+                    <p class="text-gray-700 mb-3 leading-relaxed">"Coastal Catch is our favorite date night spot. The ambiance and food are unmatched!"</p>
+                    <p class="font-bold text-gray-900">Sarah & Michael</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-blue-600 to-blue-800 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-5xl font-bold mb-4">Reserve Your Oceanside Table</h2>
+            <p class="text-lg mb-8 max-w-2xl mx-auto">Experience the finest fresh seafood with views of the coast</p>
+            <button onclick="openBook()" class="bg-yellow-500 text-gray-900 px-8 py-3 rounded font-bold text-lg hover:bg-yellow-400 transition">Book Now</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="bookModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <h3 class="text-2xl font-bold text-gray-900 mb-6">Reserve Table</h3>
+            <form onsubmit="submitBook(event)" class="space-y-4">
+                <input type="text" placeholder="Name" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-blue-600">
+                <input type="email" placeholder="Email" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-blue-600">
+                <input type="date" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-blue-600">
+                <input type="time" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-blue-600">
+                <input type="number" min="1" max="12" placeholder="Guests" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-blue-600">
+                <button type="submit" class="w-full bg-blue-600 text-white py-2 rounded font-bold hover:bg-blue-700">Reserve</button>
+                <button type="button" onclick="closeBook()" class="w-full border border-gray-300 py-2 rounded font-semibold text-gray-700 hover:bg-gray-50">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-300 py-8 px-4 text-center">
+        <p>&copy; 2024 Coastal Catch. Sustainable Seafood. Uncompromising Freshness.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() { const menu = document.getElementById('navMenu'); menu ? menu.classList.toggle('hidden') : null; }
+        function openBook() { document.getElementById('bookModal').classList.remove('hidden'); }
+        function closeBook() { document.getElementById('bookModal').classList.add('hidden'); }
+        function submitBook(e) { e.preventDefault(); alert('Reservation confirmed!'); closeBook(); }
+    </script>
+</body>
+</html>

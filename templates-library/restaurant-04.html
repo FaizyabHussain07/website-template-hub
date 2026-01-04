@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Luna Bella - Authentic Italian Fine Dining">
+    <meta name="keywords" content="italian restaurant, fine dining, pasta, rome">
+    <title>Luna Bella - Italian Fine Dining</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Cormorant Garamond', serif; }
+        .nav-fixed { position: fixed; top: 0; width: 100%; z-index: 50; background: white; box-shadow: 0 2px 10px rgba(0,0,0,0.08); }
+        .hero-text { font-family: 'Cormorant Garamond', serif; }
+        .menu-section { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .dish-card { background: white; border: 1px solid #e5e7eb; padding: 2rem; border-left: 4px solid #991b1b; transition: all 0.3s; }
+        .dish-card:hover { box-shadow: 0 10px 25px rgba(153, 27, 27, 0.1); transform: translateY(-5px); }
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+        .gallery-item { aspect-ratio: 1; background: linear-gradient(135deg, #c41e3a, #8b1428); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-size: 3rem; }
+    </style>
+</head>
+<body class="bg-white">
+    <!-- Navigation -->
+    <nav class="nav-fixed">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-wine-bottle text-red-700 text-2xl"></i>
+                <span class="text-2xl font-bold text-gray-900" style="font-family: 'Cormorant Garamond';">LUNA BELLA</span>
+            </div>
+            <button id="menuToggle" class="md:hidden text-gray-700">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+            <ul class="hidden md:flex gap-8 items-center">
+                <li><a href="#about" class="text-gray-700 hover:text-red-700 font-medium transition">About</a></li>
+                <li><a href="#menu" class="text-gray-700 hover:text-red-700 font-medium transition">Menu</a></li>
+                <li><a href="#gallery" class="text-gray-700 hover:text-red-700 font-medium transition">Gallery</a></li>
+                <li><a href="#reviews" class="text-gray-700 hover:text-red-700 font-medium transition">Reviews</a></li>
+                <li><button onclick="openReservation()" class="bg-red-700 text-white px-6 py-2 rounded hover:bg-red-800 transition font-medium">Reserve</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="pt-20 pb-16 px-4" style="background: linear-gradient(135deg, rgba(254, 242, 242, 0.9) 0%, rgba(255, 247, 237, 0.9) 100%), url('https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?w=1200&h=600&fit=crop') center/cover;">
+        <div class="max-w-6xl mx-auto text-center py-20">
+            <h1 class="text-6xl md:text-7xl font-bold text-gray-900 mb-4 hero-text">Luna Bella</h1>
+            <p class="text-2xl text-gray-600 mb-4 hero-text font-light">Authentic Italian Elegance</p>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-8">Experience the heart of Rome in our intimate dining sanctuary, where generations-old recipes meet modern refinement</p>
+            <div class="flex gap-4 justify-center flex-wrap">
+                <button onclick="openReservation()" class="bg-red-700 text-white px-8 py-3 rounded text-lg font-semibold hover:bg-red-800 transition">Make Reservation</button>
+                <button onclick="document.getElementById('menu').scrollIntoView()" class="border-2 border-red-700 text-red-700 px-8 py-3 rounded text-lg font-semibold hover:bg-red-50 transition">View Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="gallery-grid">
+                    <div class="gallery-item"><i class="fas fa-utensils"></i></div>
+                    <div class="gallery-item"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="gallery-item"><i class="fas fa-leaf"></i></div>
+                    <div class="gallery-item"><i class="fas fa-heart"></i></div>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold text-gray-900 mb-6 hero-text">A Roman Love Story</h2>
+                    <p class="text-gray-600 text-lg mb-4 leading-relaxed">Luna Bella was born from a dream to bring the authentic essence of Rome to your table. Our chef trained under Michelin-starred masters in Florence, bringing decades of tradition to every dish.</p>
+                    <p class="text-gray-600 text-lg mb-6 leading-relaxed">Every ingredient is sourced directly from Italy—our pasta makers in Bologna, our tomato farmers in Campania, our olive oil producers in Tuscany. When you dine with us, you're experiencing Italy itself.</p>
+                    <ul class="space-y-3">
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-red-700"></i> <span class="text-gray-700">Michelin-trained chefs</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-red-700"></i> <span class="text-gray-700">Imported Italian ingredients</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-red-700"></i> <span class="text-gray-700">Sommelier-selected wines</span></li>
+                        <li class="flex items-center gap-3"><i class="fas fa-check text-red-700"></i> <span class="text-gray-700">Private dining available</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu -->
+    <section id="menu" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-5xl font-bold text-gray-900 mb-4 hero-text">Italian Menu</h2>
+                <p class="text-gray-600 text-lg">Carefully curated dishes from across Italy</p>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 hero-text border-b-2 border-red-700 pb-4">Pasta Specialties</h3>
+                <div class="menu-section">
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Cacio e Pepe</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Fresh egg pasta with Pecorino Romano and black pepper</p>
+                        <p class="text-red-700 text-lg font-bold">$32</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Tagliatelle al Ragù</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Ribbon pasta with slow-cooked Bolognese sauce</p>
+                        <p class="text-red-700 text-lg font-bold">$28</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Risotto ai Funghi</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Creamy arborio rice with wild mushrooms</p>
+                        <p class="text-red-700 text-lg font-bold">$34</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-12">
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 hero-text border-b-2 border-red-700 pb-4">Main Courses</h3>
+                <div class="menu-section">
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Ossobuco alla Milanese</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Braised veal shank with saffron risotto</p>
+                        <p class="text-red-700 text-lg font-bold">$58</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Branzino al Forno</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Whole sea bass baked with herbs and lemon</p>
+                        <p class="text-red-700 text-lg font-bold">$48</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Saltimbocca di Vitello</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Veal with sage and prosciutto, wine reduction</p>
+                        <p class="text-red-700 text-lg font-bold">$52</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-3xl font-bold text-gray-900 mb-8 hero-text border-b-2 border-red-700 pb-4">Dolci</h3>
+                <div class="menu-section">
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Tiramisu</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Classic layered mascarpone and espresso dessert</p>
+                        <p class="text-red-700 text-lg font-bold">$12</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Panna Cotta</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Silky cream with berry compote</p>
+                        <p class="text-red-700 text-lg font-bold">$11</p>
+                    </div>
+                    <div class="dish-card">
+                        <h4 class="text-xl font-bold text-gray-900 mb-2 hero-text">Gelato Selection</h4>
+                        <p class="text-gray-600 mb-3 text-sm">Artisanal Italian gelato, choice of three flavors</p>
+                        <p class="text-red-700 text-lg font-bold">$9</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section id="gallery" class="py-20 px-4 bg-white">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 hero-text">Dining Experience</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item"><i class="fas fa-camera"></i></div>
+                <div class="gallery-item"><i class="fas fa-image"></i></div>
+                <div class="gallery-item"><i class="fas fa-photo-film"></i></div>
+                <div class="gallery-item"><i class="fas fa-images"></i></div>
+                <div class="gallery-item"><i class="fas fa-palette"></i></div>
+                <div class="gallery-item"><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews -->
+    <section id="reviews" class="py-20 px-4 bg-gray-50">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-4xl font-bold text-center text-gray-900 mb-12 hero-text">Guest Reviews</h2>
+            <div class="space-y-8">
+                <div class="bg-white p-8 rounded border-l-4 border-red-700">
+                    <div class="flex items-center mb-3">
+                        <div class="text-red-700">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-3 font-bold text-gray-900">Marco Rossi</span>
+                    </div>
+                    <p class="text-gray-600">"Luna Bella transported me back to my grandmother's kitchen in Rome. Every dish was a masterpiece. The service was impeccable."</p>
+                </div>
+                <div class="bg-white p-8 rounded border-l-4 border-red-700">
+                    <div class="flex items-center mb-3">
+                        <div class="text-red-700">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-3 font-bold text-gray-900">Sophie Laurent</span>
+                    </div>
+                    <p class="text-gray-600">"The most authentic Italian food I've had outside of Italy. The sommelier's wine pairings were perfect. Worth every cent."</p>
+                </div>
+                <div class="bg-white p-8 rounded border-l-4 border-red-700">
+                    <div class="flex items-center mb-3">
+                        <div class="text-red-700">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="ml-3 font-bold text-gray-900">David Chen</span>
+                    </div>
+                    <p class="text-gray-600">"An elegant dining experience. The attention to detail, from the ambiance to the plating, was extraordinary."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-20 px-4 bg-gradient-to-r from-red-700 to-red-900 text-white">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-4 hero-text">Experience Italian Romance</h2>
+            <p class="text-xl mb-8 text-red-100">Reserve your table for an unforgettable evening</p>
+            <button onclick="openReservation()" class="bg-white text-red-700 px-8 py-3 rounded text-lg font-bold hover:bg-gray-100 transition">Reserve Now</button>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="reservationModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-md w-full p-8">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold text-gray-900 hero-text">Reserve Your Table</h3>
+                <button onclick="closeReservation()" class="text-gray-400 hover:text-gray-600"><i class="fas fa-times text-2xl"></i></button>
+            </div>
+            <form onsubmit="handleSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Name</label>
+                    <input type="text" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-700">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Email</label>
+                    <input type="email" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-700">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Date</label>
+                    <input type="date" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-700">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Time</label>
+                    <input type="time" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-700">
+                </div>
+                <div>
+                    <label class="block text-gray-700 font-medium mb-2">Guests</label>
+                    <input type="number" min="1" max="12" required class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:border-red-700">
+                </div>
+                <button type="submit" class="w-full bg-red-700 text-white py-2 rounded font-bold hover:bg-red-800 transition">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h4 class="text-white font-bold mb-4">Luna Bella</h4>
+                    <p class="text-sm">Authentic Italian fine dining experience in the heart of the city.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Navigation</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#about" class="hover:text-white transition">About</a></li>
+                        <li><a href="#menu" class="hover:text-white transition">Menu</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition">Gallery</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition">Reviews</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Contact</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><i class="fas fa-phone text-red-700 w-4"></i> +1 (555) 678-9012</li>
+                        <li><i class="fas fa-envelope text-red-700 w-4"></i> hello@lunabella.com</li>
+                        <li><i class="fas fa-map-marker text-red-700 w-4"></i> 789 Italian Lane</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-4">Hours</h4>
+                    <ul class="text-sm space-y-2">
+                        <li>Tue-Thu: 5PM - 11PM</li>
+                        <li>Fri-Sat: 5PM - 12AM</li>
+                        <li>Sun: 5PM - 10PM</li>
+                        <li>Monday: Closed</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-8 text-center text-sm">
+                <p>&copy; 2024 Luna Bella. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('mobileMenu').classList.toggle('hidden'); }
+        function openReservation() { document.getElementById('reservationModal').classList.remove('hidden'); }
+        function closeReservation() { document.getElementById('reservationModal').classList.add('hidden'); }
+        function handleSubmit(e) { e.preventDefault(); alert('Your reservation has been received!'); closeReservation(); }
+        document.getElementById('menuToggle').addEventListener('click', function() {
+            const menu = document.querySelector('ul');
+            menu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html>

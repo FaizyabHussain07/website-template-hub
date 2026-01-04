@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Taste Haven - Premium Fine Dining Experience">
+    <meta name="keywords" content="restaurant, fine dining, gourmet cuisine">
+    <title>Taste Haven - Fine Dining</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Lora', serif; line-height: 1.8; color: #2c2c2c; background: #fafaf8; }
+        h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; font-weight: 700; color: #1a1a1a; }
+        h1 { font-size: 4rem; line-height: 1.1; font-weight: 800; letter-spacing: -1px; }
+        h2 { font-size: 3rem; margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 1rem; }
+        p { font-size: 1.05rem; line-height: 1.8; color: #555; }
+        a { text-decoration: none; }
+        
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.98); z-index: 1000; box-shadow: 0 2px 8px rgba(0,0,0,0.05); padding: 1rem 0; }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 24px; font-weight: 800; color: #d4af37; font-family: 'Montserrat'; letter-spacing: 1.5px; }
+        .nav-menu { display: flex; gap: 3rem; list-style: none; align-items: center; }
+        .nav-menu a { font-family: 'Montserrat'; font-size: 0.95rem; font-weight: 500; color: #333; transition: color 0.3s; padding-bottom: 3px; border-bottom: 2px solid transparent; }
+        .nav-menu a:hover { color: #d4af37; border-bottom-color: #d4af37; }
+        .toggle-btn { display: none; background: none; border: none; font-size: 24px; cursor: pointer; color: #333; }
+        .nav-menu.mobile { position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; gap: 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); width: 100%; }
+        .nav-menu.mobile li { width: 100%; border-bottom: 1px solid #eee; }
+        .nav-menu.mobile a { padding: 1rem 2rem; display: block; }
+        .nav-menu.mobile .btn-reserve { width: 90%; margin: 1rem auto; }
+        .btn-reserve { background: linear-gradient(135deg, #d4af37, #b8860b); color: white; padding: 10px 28px; border-radius: 50px; border: none; font-weight: 600; cursor: pointer; transition: all 0.3s; }
+        .btn-reserve:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3); }
+        
+        /* Hero */
+        .hero { margin-top: 70px; background: linear-gradient(135deg, rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect fill="%23d4af37" width="1200" height="800"/></svg>'); background-size: cover; background-position: center; padding: 120px 2rem; text-align: center; color: white; min-height: 650px; display: flex; align-items: center; justify-content: center; }
+        .hero-content { max-width: 800px; }
+        .hero h1 { color: white; margin-bottom: 1.5rem; text-shadow: 0 2px 10px rgba(0,0,0,0.3); }
+        .hero-subtitle { font-size: 1.3rem; margin-bottom: 2.5rem; color: rgba(255,255,255,0.95); }
+        .hero-buttons { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; }
+        .btn-primary { background: white; color: #d4af37; padding: 16px 45px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat'; }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.2); }
+        .btn-secondary { background: transparent; color: white; padding: 16px 45px; border: 2px solid white; border-radius: 50px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat'; }
+        .btn-secondary:hover { background: white; color: #d4af37; }
+        
+        /* Sections */
+        .section { padding: 100px 2rem; }
+        .section-light { background: white; }
+        .section-dark { background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; margin-bottom: 4rem; }
+        .section-title h2 { margin-bottom: 1rem; }
+        .section-title p { font-size: 1.1rem; color: #666; max-width: 600px; margin: 0 auto; }
+        
+        /* About Section */
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .about-image { height: 450px; background: linear-gradient(135deg, #d4af37, #b8860b), url('https://images.unsplash.com/photo-1504674900152-b8b35e7fc369?w=600&h=500&fit=crop') center/cover; border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.3rem; font-weight: 600; }
+        .about-content h2 { color: #1a1a1a; }
+        .about-content p { margin-bottom: 1.5rem; }
+        .about-list { list-style: none; margin: 2rem 0; }
+        .about-list li { padding: 0.8rem 0; display: flex; align-items: center; gap: 1rem; }
+        .about-list li::before { content: '✓'; color: #d4af37; font-weight: bold; font-size: 1.3rem; }
+        
+        /* Features Grid */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .feature-card { background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); text-align: center; border: 1px solid transparent; transition: all 0.3s; }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: 0 15px 35px rgba(212, 175, 55, 0.15); border-color: #d4af37; }
+        .feature-icon { width: 70px; height: 70px; background: linear-gradient(135deg, #d4af37, #b8860b); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 32px; margin: 0 auto 1.5rem; }
+        .feature-card h3 { color: #1a1a1a; }
+        .feature-card p { color: #666; }
+        
+        /* Menu Section */
+        .tabs { display: flex; gap: 2rem; margin-bottom: 3rem; border-bottom: 2px solid #eee; justify-content: center; flex-wrap: wrap; }
+        .tab-btn { background: none; border: none; font-size: 1.1rem; font-family: 'Montserrat'; font-weight: 600; color: #999; cursor: pointer; padding: 1rem 0; position: relative; transition: color 0.3s; }
+        .tab-btn.active { color: #d4af37; }
+        .tab-btn.active::after { content: ''; position: absolute; bottom: -2px; left: 0; right: 0; height: 3px; background: #d4af37; }
+        .tab-content { display: none; }
+        .tab-content.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; animation: fadeIn 0.3s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .menu-item { background: white; padding: 2rem; border-radius: 8px; border: 1px solid #f0f0f0; transition: all 0.3s; }
+        .menu-item:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .menu-item-header { display: flex; justify-content: space-between; align-items: start; margin-bottom: 0.8rem; }
+        .menu-item-name { font-size: 1.2rem; font-weight: 600; color: #1a1a1a; font-family: 'Montserrat'; }
+        .menu-item-price { font-size: 1.3rem; color: #d4af37; font-weight: 700; font-family: 'Montserrat'; }
+        .menu-item-desc { font-size: 0.95rem; color: #666; line-height: 1.7; }
+        
+        /* Testimonials */
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 2rem; margin-top: 3rem; }
+        .testimonial-card { background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.08); border-left: 5px solid #d4af37; position: relative; }
+        .testimonial-card::before { content: '"'; position: absolute; top: 1rem; left: 1.5rem; font-size: 3rem; color: #d4af37; opacity: 0.2; }
+        .stars { color: #fbbf24; font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 1rem; }
+        .testimonial-text { color: #666; line-height: 1.8; margin-bottom: 1.5rem; font-style: italic; }
+        .testimonial-author { font-weight: 600; color: #1a1a1a; }
+        .testimonial-role { font-size: 0.85rem; color: #999; }
+        
+        /* CTA Section */
+        .cta { background: linear-gradient(135deg, #d4af37, #b8860b); padding: 80px 2rem; text-align: center; color: white; }
+        .cta h2 { color: white; margin-bottom: 1.5rem; }
+        .cta p { color: rgba(255,255,255,0.95); font-size: 1.1rem; margin-bottom: 2.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-btn { background: white; color: #d4af37; padding: 14px 40px; border-radius: 50px; font-weight: 700; border: none; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat'; }
+        .cta-btn:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(0,0,0,0.2); }
+        
+        /* Modal */
+        .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); align-items: center; justify-content: center; animation: fadeIn 0.3s; }
+        .modal.active { display: flex; }
+        .modal-content { background: white; padding: 2.5rem; border-radius: 10px; max-width: 500px; width: 90%; box-shadow: 0 10px 50px rgba(0,0,0,0.3); animation: slideUp 0.3s; }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .close-btn { float: right; font-size: 28px; font-weight: bold; color: #999; background: none; border: none; cursor: pointer; }
+        .close-btn:hover { color: #d4af37; }
+        .form-group { margin-bottom: 1.5rem; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 0.5rem; color: #333; }
+        .form-group input, .form-group textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; font-family: 'Lora'; font-size: 1rem; transition: border-color 0.3s; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: #d4af37; }
+        .form-group textarea { resize: vertical; min-height: 100px; }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, #d4af37, #b8860b); color: white; padding: 14px; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat'; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3); }
+        
+        /* Footer */
+        footer { background: #1a1a1a; color: #ccc; padding: 60px 2rem 30px; }
+        .footer-container { max-width: 1200px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-col h4 { color: #d4af37; font-size: 1.1rem; margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 0.8rem; }
+        .footer-col ul li a { color: #999; transition: color 0.3s; font-size: 0.95rem; }
+        .footer-col ul li a:hover { color: #d4af37; }
+        .footer-col p { color: #999; font-size: 0.95rem; }
+        .footer-bottom { border-top: 1px solid #333; padding-top: 2rem; text-align: center; color: #666; font-size: 0.9rem; }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .toggle-btn { display: block; }
+            .nav-menu { display: none; position: absolute; top: 70px; left: 0; right: 0; background: white; flex-direction: column; gap: 0; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+            .nav-menu.active { display: flex; }
+            .nav-menu a { padding: 1rem 2rem; border-bottom: 1px solid #eee; }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .hero { padding: 60px 1.5rem; min-height: 400px; }
+            .hero-buttons { gap: 1rem; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .about-image { height: 300px; }
+            .tabs { gap: 1rem; }
+            .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo"><i class="fas fa-utensils"></i> TASTE HAVEN</div>
+            <button class="toggle-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#about">About</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><button class="btn-reserve" onclick="openModal()">Reserve</button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Culinary Perfection Awaits</h1>
+            <p class="hero-subtitle">Experience exquisite fine dining with world-class cuisine and impeccable service in an elegant setting</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="openModal()">Reserve Table</button>
+                <button class="btn-secondary" onclick="document.getElementById('menu').scrollIntoView()">View Menu</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section section-light">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">Fine Dining Excellence Since 1998</div>
+                <div class="about-content">
+                    <h2>A Legacy of Excellence</h2>
+                    <p>Taste Haven represents the pinnacle of culinary artistry, where traditional techniques meet innovative creativity. For over two decades, we've been crafting unforgettable dining experiences for discerning palates.</p>
+                    <p>Our Michelin-starred chefs collaborate with premium suppliers worldwide, sourcing only the finest ingredients to create dishes that transcend expectations.</p>
+                    <ul class="about-list">
+                        <li>Award-Winning Chefs</li>
+                        <li>Farm-to-Table Sourcing</li>
+                        <li>Custom Wine Pairings</li>
+                        <li>Private Dining Rooms</li>
+                        <li>Seasonal Menus</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>Exceptional dining experiences that engage all your senses</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-utensils"></i></div>
+                    <h3>Premium Cuisine</h3>
+                    <p>Innovative dishes crafted with the finest ingredients, showcasing culinary mastery</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <h3>Wine Collection</h3>
+                    <p>Curated selection from renowned vineyards, expertly paired with each course</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-concierge-bell"></i></div>
+                    <h3>Service Excellence</h3>
+                    <p>Highly trained staff dedicated to ensuring every moment is perfect</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-leaf"></i></div>
+                    <h3>Fresh Ingredients</h3>
+                    <p>Direct partnerships with local farms guarantee freshness and quality</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-crown"></i></div>
+                    <h3>Luxury Ambiance</h3>
+                    <p>Elegantly designed spaces with refined décor and sophisticated atmosphere</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-calendar-check"></i></div>
+                    <h3>Special Events</h3>
+                    <p>Exclusive private dining spaces for your celebrations and corporate events</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="section section-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Signature Menu</h2>
+                <p>Culinary masterpieces from our award-winning kitchen</p>
+            </div>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab(event, 'appetizers')">Appetizers</button>
+                <button class="tab-btn" onclick="switchTab(event, 'mains')">Main Courses</button>
+                <button class="tab-btn" onclick="switchTab(event, 'desserts')">Desserts</button>
+            </div>
+
+            <div id="appetizers" class="tab-content active">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Foie Gras Terrine</span>
+                        <span class="menu-item-price">$45</span>
+                    </div>
+                    <p class="menu-item-desc">Smooth foie gras with aged balsamic reduction and brioche</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Pan-Seared Scallops</span>
+                        <span class="menu-item-price">$38</span>
+                    </div>
+                    <p class="menu-item-desc">Perfectly cooked scallops with saffron foam and microgreens</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Truffle Soup</span>
+                        <span class="menu-item-price">$32</span>
+                    </div>
+                    <p class="menu-item-desc">Creamy mushroom soup infused with black truffle oil</p>
+                </div>
+            </div>
+
+            <div id="mains" class="tab-content">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Prime Ribeye Steak</span>
+                        <span class="menu-item-price">$72</span>
+                    </div>
+                    <p class="menu-item-desc">28-day aged cut, grilled perfectly, served with herb butter</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Pan-Roasted Branzino</span>
+                        <span class="menu-item-price">$58</span>
+                    </div>
+                    <p class="menu-item-desc">Mediterranean sea bass with lemon beurre blanc and asparagus</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Duck Confit</span>
+                        <span class="menu-item-price">$64</span>
+                    </div>
+                    <p class="menu-item-desc">Slow-cooked duck leg with cherry gastrique and wild mushrooms</p>
+                </div>
+            </div>
+
+            <div id="desserts" class="tab-content">
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Chocolate Soufflé</span>
+                        <span class="menu-item-price">$18</span>
+                    </div>
+                    <p class="menu-item-desc">Warm dark chocolate soufflé with vanilla bean ice cream</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Crème Brûlée</span>
+                        <span class="menu-item-price">$16</span>
+                    </div>
+                    <p class="menu-item-desc">Classic custard tart with caramelized sugar and fresh berries</p>
+                </div>
+                <div class="menu-item">
+                    <div class="menu-item-header">
+                        <span class="menu-item-name">Passion Fruit Panna Cotta</span>
+                        <span class="menu-item-price">$14</span>
+                    </div>
+                    <p class="menu-item-desc">Silky panna cotta with passion fruit coulis and crispy meringue</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="section section-dark">
+        <div class="container">
+            <div class="section-title">
+                <h2>Guest Testimonials</h2>
+                <p>What our distinguished guests say about their experiences</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"An absolutely unforgettable evening. Each course was a work of art, and the attention to detail was extraordinary. Truly fine dining at its best."</p>
+                    <p class="testimonial-author">Michael Chen</p>
+                    <p class="testimonial-role">Food Critic</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"We celebrated our anniversary here and it was magical. The service was impeccable, and the food was absolutely incredible. Already planning our return!"</p>
+                    <p class="testimonial-author">Sarah & James Mitchell</p>
+                    <p class="testimonial-role">Diners</p>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The wine pairing service exceeded expectations. The sommelier understood our preferences perfectly and created incredible pairings for each course."</p>
+                    <p class="testimonial-author">David Patel</p>
+                    <p class="testimonial-role">Wine Enthusiast</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <h2>Ready for an Unforgettable Experience?</h2>
+        <p>Reserve your table today and embark on a culinary journey you'll never forget</p>
+        <button class="cta-btn" onclick="openModal()">Book Your Table</button>
+    </section>
+
+    <!-- Modal -->
+    <div id="reservationModal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+            <h3 style="margin-bottom: 1.5rem; color: #1a1a1a;">Reserve Your Table</h3>
+            <form onsubmit="handleFormSubmit(event)">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required>
+                </div>
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" required>
+                </div>
+                <div class="form-group">
+                    <label>Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group">
+                    <label>Time</label>
+                    <input type="time" required>
+                </div>
+                <div class="form-group">
+                    <label>Number of Guests</label>
+                    <input type="number" min="1" max="12" required>
+                </div>
+                <button type="submit" class="submit-btn">Confirm Reservation</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Taste Haven</h4>
+                    <p>Premier fine dining since 1998, dedicated to culinary excellence and unforgettable experiences.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#menu">Menu</a></li>
+                        <li><a href="#reviews">Reviews</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li><a href="tel:+1234567890">+1 (234) 567-890</a></li>
+                        <li><a href="mailto:hello@tastehaven.com">hello@tastehaven.com</a></li>
+                        <li><a href="#">123 Culinary Lane, Gourmet City</a></li>
+                        <li><a href="#">Tue-Sun: 5PM - 11PM</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow</h4>
+                    <ul>
+                        <li><a href="#">Instagram</a></li>
+                        <li><a href="#">Facebook</a></li>
+                        <li><a href="#">Twitter</a></li>
+                        <li><a href="#">LinkedIn</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Taste Haven. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }
+        function openModal() { document.getElementById('reservationModal').classList.add('active'); }
+        function closeModal() { document.getElementById('reservationModal').classList.remove('active'); }
+        function handleFormSubmit(e) { e.preventDefault(); alert('Thank you! Your reservation request has been received. We will confirm shortly.'); closeModal(); }
+        function switchTab(e, tabName) {
+            document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            e.target.classList.add('active');
+        }
+        window.onclick = function(e) { 
+            const modal = document.getElementById('reservationModal');
+            if (e.target === modal) closeModal();
+        }
+    </script>
+</body>
+</html>
