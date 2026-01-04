@@ -980,6 +980,146 @@
     "thumbnail": "assets/images/realestate-10.png"
   },
   {
+    "id": "restaurant-01",
+    "name": "Restaurant Template 01",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-01.html",
+    "zipUrl": "zips/restaurant-01.zip",
+    "thumbnail": "assets/images/restaurant-01.png"
+  },
+  {
+    "id": "restaurant-02",
+    "name": "Restaurant Template 02",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-02.html",
+    "zipUrl": "zips/restaurant-02.zip",
+    "thumbnail": "assets/images/restaurant-02.png"
+  },
+  {
+    "id": "restaurant-03",
+    "name": "Restaurant Template 03",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-03.html",
+    "zipUrl": "zips/restaurant-03.zip",
+    "thumbnail": "assets/images/restaurant-03.png"
+  },
+  {
+    "id": "restaurant-04",
+    "name": "Restaurant Template 04",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-04.html",
+    "zipUrl": "zips/restaurant-04.zip",
+    "thumbnail": "assets/images/restaurant-04.png"
+  },
+  {
+    "id": "restaurant-05",
+    "name": "Restaurant Template 05",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-05.html",
+    "zipUrl": "zips/restaurant-05.zip",
+    "thumbnail": "assets/images/restaurant-05.png"
+  },
+  {
+    "id": "restaurant-06",
+    "name": "Restaurant Template 06",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-06.html",
+    "zipUrl": "zips/restaurant-06.zip",
+    "thumbnail": "assets/images/restaurant-06.png"
+  },
+  {
+    "id": "restaurant-07",
+    "name": "Restaurant Template 07",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-07.html",
+    "zipUrl": "zips/restaurant-07.zip",
+    "thumbnail": "assets/images/restaurant-07.png"
+  },
+  {
+    "id": "restaurant-08",
+    "name": "Restaurant Template 08",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-08.html",
+    "zipUrl": "zips/restaurant-08.zip",
+    "thumbnail": "assets/images/restaurant-08.png"
+  },
+  {
+    "id": "restaurant-09",
+    "name": "Restaurant Template 09",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-09.html",
+    "zipUrl": "zips/restaurant-09.zip",
+    "thumbnail": "assets/images/restaurant-09.png"
+  },
+  {
+    "id": "restaurant-10",
+    "name": "Restaurant Template 10",
+    "industry": "Restaurant",
+    "category": "Landing Page",
+    "tech": [
+      "HTML",
+      "Tailwind",
+      "JS"
+    ],
+    "previewUrl": "templates-library/restaurant-10.html",
+    "zipUrl": "zips/restaurant-10.zip",
+    "thumbnail": "assets/images/restaurant-10.png"
+  },
+  {
     "id": "saas-01",
     "name": "CloudSync",
     "industry": "SaaS",
