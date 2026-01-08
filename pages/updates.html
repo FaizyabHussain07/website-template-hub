@@ -32,14 +32,14 @@
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Custom Style -->
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <!-- Page Loader -->
-    <script src="assets/js/loader.js"></script>
-    <link rel="icon" type="image/svg+xml" href="assets/images/logo.svg">
+    <script src="../assets/js/loader.js"></script>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
 </head>
 
 <body class="bg-slate-50">
@@ -48,7 +48,7 @@
     <header class="fixed top-0 left-0 right-0 z-50 glass">
         <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <a href="index.html" class="flex items-center gap-2">
+                <a href="../index.html" class="flex items-center gap-2">
                     <div class="w-10 h-10 flex items-center justify-center">
                         <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -66,11 +66,13 @@
             </div>
 
             <nav class="hidden md:flex items-center gap-8">
-                <a href="index.html"
+                <a href="templates-library.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Templates</a>
                 <a href="categories.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Categories</a>
                 <a href="updates.html" class="text-sm font-medium text-blue-600">Updates</a>
+                <a href="contributors.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contributors</a>
                 <a href="pricing.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a>
                 <a href="contact.html"
@@ -91,7 +93,7 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 flex-col gap-4 animate-in slide-in-from-top-4 duration-300">
-            <a href="index.html"
+            <a href="templates-library.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Templates</a>
             <a href="categories.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Categories</a>
@@ -166,20 +168,23 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Product</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="index.html" class="hover:text-white transition-colors">Our Library</a></li>
+                        <li><a href="templates-library.html" class="hover:text-white transition-colors">Templates</a>
+                        </li>
+                        <li><a href="../legal/terms.html" class="hover:text-white transition-colors">Terms</a></li>
                         <li><a href="updates.html" class="hover:text-white transition-colors">Updates</a></li>
-                        <li><a href="docs.html" class="hover:text-white transition-colors">Documentation</a></li>
-                        <li><a href="categories.html" class="hover:text-white transition-colors">Categories</a></li>
-                        <li><a href="license.html" class="hover:text-white transition-colors">License</a></li>
+                        <li><a href="docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                        <li><a href="contribution-guide.html" class="hover:text-white transition-colors">Contribute
+                                Guide</a>
+                        </li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-white font-bold mb-6">Support</h4>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="help.html" class="hover:text-white transition-colors">Help Center</a></li>
-                        <li><a href="contact.html" class="hover:text-white transition-colors">Contact Us</a></li>
-                        <li><a href="terms.html" class="hover:text-white transition-colors">Terms of Service</a></li>
-                        <li><a href="privacy.html" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="../legal/terms.html" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="../legal/privacy.html" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="../legal/help.html" class="hover:text-white transition-colors">Help</a></li>
+                        <li><a href="../legal/license.html" class="hover:text-white transition-colors">License</a></li>
                     </ul>
                 </div>
             </div>
@@ -192,14 +197,14 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="assets/js/main.js"></script>
+    <script src="../assets/js/main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', async () => {
             const container = document.getElementById('updates-container');
 
             try {
                 // Fetch the JSON data
-                const response = await fetch('data/updates.json');
+                const response = await fetch('../data/updates.json');
                 const updates = await response.json();
 
                 // Clear loading spinner

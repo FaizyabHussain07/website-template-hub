@@ -1,5 +1,49 @@
 [
     {
+        "date": "Jan 8, 2026",
+        "type": "New",
+        "title": "Major File Structure Reorganization",
+        "description": [
+            "Moved all library pages to /pages/ directory",
+            "Moved all legal documents to /legal/ directory",
+            "Improved global navigation with relative path support",
+            "Added SECURITY.md and LICENSE.md to root"
+        ]
+    },
+    {
+        "date": "Jan 7, 2026",
+        "type": "Templates",
+        "title": "10 New Real Estate Templates",
+        "description": [
+            "Added modern property listing layouts",
+            "Included agent profile sections",
+            "Fully responsive property grid designs",
+            "Integrated map placeholders for locations"
+        ]
+    },
+    {
+        "date": "Jan 5, 2026",
+        "type": "New",
+        "title": "Contributor Program Launch",
+        "description": [
+            "Launched Github-first contribution workflow",
+            "Added Hall of Fame for community members",
+            "Created comprehensive contribution guide",
+            "Enabled 'ZIP' download for all templates"
+        ]
+    },
+    {
+        "date": "Jan 2, 2026",
+        "type": "Fixes",
+        "title": "Asset Path & Search Optimization",
+        "description": [
+            "Fixed broken thumbnail paths in template cards",
+            "Optimized live search for faster filtering",
+            "Improved mobile menu responsiveness",
+            "Updated SEO meta tags for all pages"
+        ]
+    },
+    {
         "date": "January 4, 2026",
         "type": "New",
         "title": "Platform Update",

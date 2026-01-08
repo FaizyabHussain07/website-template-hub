@@ -34,8 +34,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch templates from JSON
     async function fetchTemplates() {
         try {
-            const response = await fetch('data/templates.json');
-            allTemplates = await response.json();
+            // Robust path detection for local file:// and server environments
+            const path = window.location.pathname.toLowerCase();
+            const isSubfolder = path.includes('/pages/') || path.includes('/legal/') || path.includes('\\pages\\') || path.includes('\\legal\\');
+            const dataPath = isSubfolder ? '../data/templates.json' : 'data/templates.json';
+
+            const response = await fetch(dataPath);
+            if (!response.ok) throw new Error('Failed to load templates');
+            const templates = await response.json();
+            allTemplates = templates;
             populateIndustries(allTemplates);
             populateCategories(allTemplates);
 
@@ -66,8 +73,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const meta = industryMeta[ind] || { icon: 'layout', color: 'blue', desc: `Professional templates for the ${ind} industry.` };
             const count = templates.filter(t => t.industry === ind).length;
 
+            const isPagesDir = window.location.pathname.includes('/pages/') || window.location.pathname.includes('/legal/');
+            const linkPrefix = isPagesDir ? 'templates-library.html' : 'pages/templates-library.html';
+
             const card = document.createElement('a');
-            card.href = `index.html?industry=${encodeURIComponent(ind)}`;
+            // Check if we are already on templates-library.html to avoid unnecessary reload/redirects or correct relative path
+            // Actually, if we are on templates-library.html, the prefix is empty (same dir).
+            // If we are on index.html (root), prefix is pages/.
+
+            card.href = `${linkPrefix}?industry=${encodeURIComponent(ind)}`;
             card.className = 'bg-white p-8 rounded-3xl border border-slate-100 shadow-lg hover:shadow-2xl hover:border-blue-200 transition-all group fade-in';
             card.style.animationDelay = `${index * 50}ms`;
 
@@ -100,12 +114,15 @@ document.addEventListener('DOMContentLoaded', () => {
             card.className = 'bg-white rounded-2xl overflow-hidden border border-gray-100 card-hover fade-in';
             card.style.animationDelay = `${index * 50}ms`;
 
+            const isPagesDir = window.location.pathname.includes('/pages/') || window.location.pathname.includes('/legal/');
+            const previewPrefix = isPagesDir ? '../preview-page.html' : 'preview-page.html';
+
             card.innerHTML = `
                 <div class="relative group aspect-video bg-slate-100 overflow-hidden">
                     <img src="${template.thumbnail}" alt="${template.name} - Free ${template.industry} Template" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
-                        onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-8\\'><div class=\\'text-center space-y-2\\'><div class=\\'text-white/20 font-black text-3xl uppercase tracking-tighter mb-1\\'>${template.industry}</div><div class=\\'text-white font-bold text-lg\\'>${template.name}</div></div><div class=\\'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100\\'><a href=\\'template.html?id=${template.id}\\' class=\\'bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl\\'>Preview Template</a></div></div>'">
+                        onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-8\\'><div class=\\'text-center space-y-2\\'><div class=\\'text-white/20 font-black text-3xl uppercase tracking-tighter mb-1\\'>${template.industry}</div><div class=\\'text-white font-bold text-lg\\'>${template.name}</div></div><div class=\\'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100\\'><a href=\\'${previewPrefix}?id=${template.id}\\' class=\\'bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl\\'>Preview Template</a></div></div>'">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                        <a href="template.html?id=${template.id}" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl" aria-label="Preview ${template.name} Template">
+                        <a href="${previewPrefix}?id=${template.id}" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl" aria-label="Preview ${template.name} Template">
                             Preview Template
                         </a>
                     </div>
@@ -120,7 +137,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <h3 class="text-lg font-bold text-gray-900 mb-1">${template.name}</h3>
                     <p class="text-sm text-gray-500 line-clamp-1 mb-4">${template.category}</p>
                     <div class="flex items-center justify-between pt-4 border-t border-gray-50">
-                        <a href="template.html?id=${template.id}" class="text-blue-600 font-semibold text-sm hover:underline">View Details</a>
+                        <a href="${previewPrefix}?id=${template.id}" class="text-blue-600 font-semibold text-sm hover:underline">View Details</a>
                         <a href="${template.zipUrl}" class="flex items-center gap-2 text-gray-900 font-semibold text-sm bg-gray-50 hover:bg-gray-100 px-3 py-1.5 rounded-lg transition-colors" download>
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/></svg>
                             ZIP
