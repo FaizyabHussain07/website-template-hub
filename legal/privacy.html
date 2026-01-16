@@ -1,5 +1,16 @@
 <title>Privacy Policy | Web Templates Hub</title>
 <meta name="description" content="Review the Privacy Policy for Web Templates Hub. Learn how we handle your data.">
+<!-- Google Analytics (GA4) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G18X0L604F"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-G18X0L604F', {
+        'enhanced_measurement': true
+    });
+</script>
 <link rel="canonical" href="https://web-template-hub.netlify.app/privacy.html">
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="../assets/css/style.css">
@@ -31,16 +42,14 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-8">
-                <a href="../pages/templates-library.html"
+                <a href="../pages/library.html?tab=components"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Components</a>
+                <a href="../pages/library.html?tab=templates"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Templates</a>
-                <a href="../pages/categories.html"
-                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Categories</a>
                 <a href="../pages/updates.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Updates</a>
                 <a href="../pages/contributors.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contributors</a>
-                <a href="../pages/pricing.html"
-                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a>
                 <a href="../pages/contact.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contact</a>
             </nav>
@@ -59,14 +68,14 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 flex-col gap-4 animate-in slide-in-from-top-4 duration-300">
-            <a href="../pages/templates-library.html"
+            <a href="../pages/library.html?tab=components"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Components</a>
+            <a href="../pages/library.html?tab=templates"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Templates</a>
-            <a href="../pages/categories.html"
-                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Categories</a>
             <a href="../pages/updates.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Updates</a>
-            <a href="../pages/pricing.html"
-                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Pricing</a>
+            <a href="../pages/contributors.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Contributors</a>
             <a href="../pages/contact.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Contact</a>
             <a href="../index.html"
@@ -130,16 +139,16 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Product</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="../pages/templates-library.html"
-                                class="hover:text-white transition-colors">Templates</a>
-                        </li>
-                        <li><a href="../pages/categories.html" class="hover:text-white transition-colors">Categories</a>
-                        </li>
+                        <li><a href="../pages/library.html?tab=components"
+                                class="hover:text-white transition-colors">Components</a></li>
+                        <li><a href="../pages/library.html?tab=templates"
+                                class="hover:text-white transition-colors">Templates</a></li>
                         <li><a href="../pages/updates.html" class="hover:text-white transition-colors">Updates</a></li>
                         <li><a href="../pages/docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                        <li><a href="../pages/contributors.html"
+                                class="hover:text-white transition-colors">Contributors</a></li>
                         <li><a href="../pages/contribution-guide.html"
-                                class="hover:text-white transition-colors">Contribute Guide</a>
-                        </li>
+                                class="hover:text-white transition-colors">Contribute Guide</a></li>
                     </ul>
                 </div>
                 <div>
@@ -160,6 +169,7 @@
     </footer>
 
     <script src="../assets/js/main.js"></script>
+    <script src="../assets/js/analytics.js"></script>
     <script>lucide.createIcons();</script>
 </body>
 

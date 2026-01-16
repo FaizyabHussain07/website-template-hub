@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass Card - Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ef4444 0%, #f97316 50%, #eab308 100%);
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="glass max-w-sm p-10 rounded-[2.5rem] shadow-2xl text-white mx-6">
+        <div class="w-12 h-12 bg-white/20 rounded-xl mb-6 flex items-center justify-center">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M11 3a1 1 0 10-2 0v1a1 1 0 102 0V3zM15.657 5.757a1 1 0 00-1.414-1.414l-.707.707a1 1 0 001.414 1.414l.707-.707zM18 10a1 1 0 01-1 1h-1a1 1 0 110-2h1a1 1 0 011 1zM5.05 6.464A1 1 0 106.464 5.05l-.707-.707a1 1 0 00-1.414 1.414l.707.707zM5 10a1 1 0 01-1 1H3a1 1 0 110-2h1a1 1 0 011 1zM8 16v-1a1 1 0 112 0v1a1 1 0 11-2 0zM13.536 14.243a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707zM16.243 5.05a1 1 0 011.414 1.414l-.707.707a1 1 0 01-1.414-1.414l.707-.707z">
+                </path>
+            </svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-4">Premium Membership</h3>
+        <p class="text-white/80 leading-relaxed mb-8">Access all premium templates, priority support, and exclusive
+            Discord community.</p>
+        <button class="bg-white text-orange-500 w-full py-3 rounded-xl font-bold active:scale-95 transition-all">Upgrade
+            Now</button>
+    </div>
+</body>
+
+</html>

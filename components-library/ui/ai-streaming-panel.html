@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Agent Streaming Panel | Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #d4d4d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .enterprise-glass {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(63, 63, 70, 0.4);
+        }
+
+        @keyframes stream {
+            0% {
+                opacity: 0.2;
+            }
+
+            50% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0.2;
+            }
+        }
+
+        .animate-stream {
+            animation: stream 1.5s infinite;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w-full max-w-2xl mx-auto enterprise-glass rounded-3xl overflow-hidden border border-zinc-800">
+        <div class="p-4 bg-zinc-900/50 flex items-center justify-between border-b border-zinc-800">
+            <div class="flex items-center gap-3">
+                <div class="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+                <span class="text-xs font-bold text-zinc-300">Agent: CodeArchitect-v4</span>
+            </div>
+            <span class="text-[10px] text-zinc-500 font-mono">ID: xA-2490-LLM</span>
+        </div>
+        <div class="p-6 h-80 overflow-y-auto font-mono text-sm leading-relaxed text-zinc-300">
+            <div class="mb-6 opacity-60">Initializing neural framework... [OK]</div>
+            <div class="mb-6 opacity-60">Scanning codebase for structural patterns... [OK]</div>
+            <div class="mb-4 flex gap-3">
+                <span class="text-indigo-400 font-bold shrink-0">>></span>
+                <div class="animate-stream">I have identified a performance bottleneck in your recursive rendering
+                    logic. Generating a refactored implementation using React.memo and useMemo for optimal memory
+                    allocation. Standing by for execution...</div>
+            </div>
+            <div class="flex gap-1 mt-4">
+                <div class="w-2 h-4 bg-indigo-500 animate-pulse"></div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-zinc-800 grid grid-cols-2 gap-3">
+            <button
+                class="py-3 px-4 rounded-xl bg-zinc-800 hover:bg-zinc-700 text-white text-xs font-bold transition-all">Reject
+                Changes</button>
+            <button
+                class="py-3 px-4 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold transition-all shadow-lg shadow-indigo-500/20">Apply
+                Refactor</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const originalText = btn.innerText;
+                if (originalText === 'PROCESSING...' || originalText === 'SUCCESS') return;
+                btn.innerText = 'PROCESSING...';
+                btn.classList.add('opacity-50');
+                setTimeout(() => {
+                    btn.innerText = 'SUCCESS';
+                    btn.classList.remove('opacity-50');
+                    setTimeout(() => btn.innerText = originalText, 1500);
+                }, 800);
+            });
+        });
+    </script>
+</body>
+
+</html>

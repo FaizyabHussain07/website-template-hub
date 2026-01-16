@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Version History Sidebar | Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #d4d4d8;
+            display: flex;
+            align-items: stretch;
+            justify-content: flex-end;
+            min-height: 100vh;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w-80 h-full bg-zinc-900 border-l border-zinc-800 flex flex-col font-sans">
+        <div class="p-6 border-b border-zinc-800 bg-zinc-900/50">
+            <h3 class="text-sm font-bold text-white uppercase tracking-widest italic">Version History</h3>
+        </div>
+        <div class="flex-1 overflow-y-auto p-4 space-y-4">
+            <div class="p-4 rounded-xl border border-indigo-500/50 bg-indigo-500/5 cursor-pointer relative">
+                <div class="absolute left-[-2px] top-4 w-1 h-8 bg-indigo-500 rounded-full"></div>
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-white">v4.0.2-prod</span>
+                    <span class="text-[10px] text-zinc-500">Current</span>
+                </div>
+                <p class="text-[10px] text-zinc-400 leading-relaxed mb-3">Re-indexed 4.2M vector embeddings using the
+                    new Titan-v2 model.</p>
+                <div class="flex items-center gap-2 text-[9px] text-zinc-500">
+                    <div class="w-4 h-4 rounded-full bg-indigo-400/20"></div>
+                    <span>Modified by Alex R. • 2h ago</span>
+                </div>
+            </div>
+            <div
+                class="p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:bg-zinc-800 transition-all cursor-pointer">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-zinc-300">v4.0.1-staging</span>
+                </div>
+                <p class="text-[10px] text-zinc-500 leading-relaxed mb-3">Experimental noise reduction filters applied
+                    to historical logs.</p>
+                <div class="flex items-center gap-2 text-[9px] text-zinc-600">
+                    <div class="w-4 h-4 rounded-full bg-zinc-800"></div>
+                    <span>Modified by Bot-4 • 1d ago</span>
+                </div>
+            </div>
+            <div
+                class="p-4 rounded-xl border border-zinc-800 bg-zinc-950/50 hover:bg-zinc-800 transition-all cursor-pointer">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-xs font-bold text-zinc-300">v3.9.8-prod</span>
+                </div>
+                <p class="text-[10px] text-zinc-500 leading-relaxed mb-3">Stable release with legacy tokenizer support.
+                </p>
+                <div class="flex items-center gap-2 text-[9px] text-zinc-600">
+                    <div class="w-4 h-4 rounded-full bg-zinc-800"></div>
+                    <span>Modified by Alex R. • 4d ago</span>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 border-t border-zinc-800 bg-zinc-950/50">
+            <button
+                class="w-full py-2 bg-zinc-800 text-white rounded text-xs font-bold hover:bg-zinc-700 transition-all">Create
+                New Snapshot</button>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const originalText = btn.innerText;
+                if (originalText === 'PROCESSING...' || originalText === 'SUCCESS') return;
+                btn.innerText = 'PROCESSING...';
+                btn.classList.add('opacity-50');
+                setTimeout(() => {
+                    btn.innerText = 'SUCCESS';
+                    btn.classList.remove('opacity-50');
+                    setTimeout(() => btn.innerText = originalText, 1500);
+                }, 800);
+            });
+        });
+    </script>
+</body>
+
+</html>

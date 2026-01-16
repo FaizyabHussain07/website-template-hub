@@ -1,0 +1,746 @@
+[
+    {
+        "name": "Glass Notification Badge",
+        "category": "badges",
+        "file": "components-library/badges/glass-notification-badge.html",
+        "preview": "assets/previews/glass-notification-badge.png"
+    },
+    {
+        "name": "Glowing Indicator Badge",
+        "category": "badges",
+        "file": "components-library/badges/glowing-indicator-badge.html",
+        "preview": "assets/previews/glowing-indicator-badge.png"
+    },
+    {
+        "name": "Notification Red Badge",
+        "category": "badges",
+        "file": "components-library/badges/notification-red-badge.html",
+        "preview": "assets/previews/notification-red-badge.png"
+    },
+    {
+        "name": "Price Tag Badge",
+        "category": "badges",
+        "file": "components-library/badges/price-tag-badge.html",
+        "preview": "assets/previews/price-tag-badge.png"
+    },
+    {
+        "name": "Shiny Gradient Badge",
+        "category": "badges",
+        "file": "components-library/badges/shiny-gradient-badge.html",
+        "preview": "assets/previews/shiny-gradient-badge.png"
+    },
+    {
+        "name": "Soft Pastel Badge",
+        "category": "badges",
+        "file": "components-library/badges/soft-pastel-badge.html",
+        "preview": "assets/previews/soft-pastel-badge.png"
+    },
+    {
+        "name": "Status Pulse Badge",
+        "category": "badges",
+        "file": "components-library/badges/status-pulse-badge.html",
+        "preview": "assets/previews/status-pulse-badge.png"
+    },
+    {
+        "name": "Success Pill Badge",
+        "category": "badges",
+        "file": "components-library/badges/success-pill-badge.html",
+        "preview": "assets/previews/success-pill-badge.png"
+    },
+    {
+        "name": "3D Push Button",
+        "category": "buttons",
+        "file": "components-library/buttons/3d-push-button.html",
+        "preview": "assets/previews/3d-push-button.png"
+    },
+    {
+        "name": "Border Beam Button",
+        "category": "buttons",
+        "file": "components-library/buttons/border-beam-button.html",
+        "preview": "assets/previews/border-beam-button.png"
+    },
+    {
+        "name": "CTA Glow Button",
+        "category": "buttons",
+        "file": "components-library/buttons/cta-glow-button.html",
+        "preview": "assets/previews/cta-glow-button.png"
+    },
+    {
+        "name": "Cyberpunk Neon Button",
+        "category": "buttons",
+        "file": "components-library/buttons/cyberpunk-neon-button.html",
+        "preview": "assets/previews/cyberpunk-neon-button.png"
+    },
+    {
+        "name": "Dark Zinc Button",
+        "category": "buttons",
+        "file": "components-library/buttons/dark-zinc-button.html",
+        "preview": "assets/previews/dark-zinc-button.png"
+    },
+    {
+        "name": "Ghost Skew Button",
+        "category": "buttons",
+        "file": "components-library/buttons/ghost-skew-button.html",
+        "preview": "assets/previews/ghost-skew-button.png"
+    },
+    {
+        "name": "Glass Button",
+        "category": "buttons",
+        "file": "components-library/buttons/glass-button.html",
+        "preview": "assets/previews/glass-button.png"
+    },
+    {
+        "name": "Gradient Button",
+        "category": "buttons",
+        "file": "components-library/buttons/gradient-button.html",
+        "preview": "assets/previews/gradient-button.png"
+    },
+    {
+        "name": "Icon Only Button",
+        "category": "buttons",
+        "file": "components-library/buttons/icon-only-button.html",
+        "preview": "assets/previews/icon-only-button.png"
+    },
+    {
+        "name": "Liquid Gradient Button",
+        "category": "buttons",
+        "file": "components-library/buttons/liquid-gradient-button.html",
+        "preview": "assets/previews/liquid-gradient-button.png"
+    },
+    {
+        "name": "Minimal Text Button",
+        "category": "buttons",
+        "file": "components-library/buttons/minimal-text-button.html",
+        "preview": "assets/previews/minimal-text-button.png"
+    },
+    {
+        "name": "Modern Pill Shadow Button",
+        "category": "buttons",
+        "file": "components-library/buttons/modern-pill-shadow-button.html",
+        "preview": "assets/previews/modern-pill-shadow-button.png"
+    },
+    {
+        "name": "Outline Button",
+        "category": "buttons",
+        "file": "components-library/buttons/outline-button.html",
+        "preview": "assets/previews/outline-button.png"
+    },
+    {
+        "name": "Primary Button",
+        "category": "buttons",
+        "file": "components-library/buttons/primary-button.html",
+        "preview": "assets/previews/primary-button.png"
+    },
+    {
+        "name": "Rounded Duo-tone Button",
+        "category": "buttons",
+        "file": "components-library/buttons/rounded-duo-tone-button.html",
+        "preview": "assets/previews/rounded-duo-tone-button.png"
+    },
+    {
+        "name": "Rounded Icon Button",
+        "category": "buttons",
+        "file": "components-library/buttons/rounded-icon-button.html",
+        "preview": "assets/previews/rounded-icon-button.png"
+    },
+    {
+        "name": "Secondary Button",
+        "category": "buttons",
+        "file": "components-library/buttons/secondary-button.html",
+        "preview": "assets/previews/secondary-button.png"
+    },
+    {
+        "name": "Social Floating Buttons",
+        "category": "buttons",
+        "file": "components-library/buttons/social-floating-buttons.html",
+        "preview": "assets/previews/social-floating-buttons.png"
+    },
+    {
+        "name": "Soft Neumorphic Button",
+        "category": "buttons",
+        "file": "components-library/buttons/soft-neumorphic-button.html",
+        "preview": "assets/previews/soft-neumorphic-button.png"
+    },
+    {
+        "name": "Underline Animation Button",
+        "category": "buttons",
+        "file": "components-library/buttons/underline-animation-button.html",
+        "preview": "assets/previews/underline-animation-button.png"
+    },
+    {
+        "name": "Blog News Card",
+        "category": "cards",
+        "file": "components-library/cards/blog-news-card.html",
+        "preview": "assets/previews/blog-news-card.png"
+    },
+    {
+        "name": "Course Card",
+        "category": "cards",
+        "file": "components-library/cards/course-card.html",
+        "preview": "assets/previews/course-card.png"
+    },
+    {
+        "name": "Event Pass Card",
+        "category": "cards",
+        "file": "components-library/cards/event-pass-card.html",
+        "preview": "assets/previews/event-pass-card.png"
+    },
+    {
+        "name": "Feature Grid Dark Card",
+        "category": "cards",
+        "file": "components-library/cards/feature-grid-dark-card.html",
+        "preview": "assets/previews/feature-grid-dark-card.png"
+    },
+    {
+        "name": "Feature Icon Card",
+        "category": "cards",
+        "file": "components-library/cards/feature-icon-card.html",
+        "preview": "assets/previews/feature-icon-card.png"
+    },
+    {
+        "name": "Glass Card",
+        "category": "cards",
+        "file": "components-library/cards/glass-card.html",
+        "preview": "assets/previews/glass-card.png"
+    },
+    {
+        "name": "Glassy Stats Card",
+        "category": "cards",
+        "file": "components-library/cards/glassy-stats-card.html",
+        "preview": "assets/previews/glassy-stats-card.png"
+    },
+    {
+        "name": "Horizontal News Card",
+        "category": "cards",
+        "file": "components-library/cards/horizontal-news-card.html",
+        "preview": "assets/previews/horizontal-news-card.png"
+    },
+    {
+        "name": "Minimalist Shadow Card",
+        "category": "cards",
+        "file": "components-library/cards/minimalist-shadow-card.html",
+        "preview": "assets/previews/minimalist-shadow-card.png"
+    },
+    {
+        "name": "Pricing 3-Tier Card",
+        "category": "cards",
+        "file": "components-library/cards/pricing-3-tier-card.html",
+        "preview": "assets/previews/pricing-3-tier-card.png"
+    },
+    {
+        "name": "Pricing Compact Card",
+        "category": "cards",
+        "file": "components-library/cards/pricing-compact-card.html",
+        "preview": "assets/previews/pricing-compact-card.png"
+    },
+    {
+        "name": "Product E-commerce Card",
+        "category": "cards",
+        "file": "components-library/cards/product-ecommerce-card.html",
+        "preview": "assets/previews/product-ecommerce-card.png"
+    },
+    {
+        "name": "Profile Stats Card",
+        "category": "cards",
+        "file": "components-library/cards/profile-stats-card.html",
+        "preview": "assets/previews/profile-stats-card.png"
+    },
+    {
+        "name": "Project Grid Card",
+        "category": "cards",
+        "file": "components-library/cards/project-grid-card.html",
+        "preview": "assets/previews/project-grid-card.png"
+    },
+    {
+        "name": "Step By Step Card",
+        "category": "cards",
+        "file": "components-library/cards/step-by-step-card.html",
+        "preview": "assets/previews/step-by-step-card.png"
+    },
+    {
+        "name": "Testimonial Bubble Card",
+        "category": "cards",
+        "file": "components-library/cards/testimonial-bubble-card.html",
+        "preview": "assets/previews/testimonial-bubble-card.png"
+    },
+    {
+        "name": "Testimonial Card",
+        "category": "cards",
+        "file": "components-library/cards/testimonial-card.html",
+        "preview": "assets/previews/testimonial-card.png"
+    },
+    {
+        "name": "Progress Circle Data",
+        "category": "data",
+        "file": "components-library/data/progress-circle-data.html",
+        "preview": "assets/previews/progress-circle-data.png"
+    },
+    {
+        "name": "App Store Dark Footer",
+        "category": "footers",
+        "file": "components-library/footers/app-store-dark-footer.html",
+        "preview": "assets/previews/app-store-dark-footer.png"
+    },
+    {
+        "name": "Dark Corporate Footer",
+        "category": "footers",
+        "file": "components-library/footers/dark-corporate-footer.html",
+        "preview": "assets/previews/dark-corporate-footer.png"
+    },
+    {
+        "name": "Minimalist One-Line Footer",
+        "category": "footers",
+        "file": "components-library/footers/minimalist-one-line-footer.html",
+        "preview": "assets/previews/minimalist-one-line-footer.png"
+    },
+    {
+        "name": "Newsletter CTA Footer",
+        "category": "footers",
+        "file": "components-library/footers/newsletter-cta-footer.html",
+        "preview": "assets/previews/newsletter-cta-footer.png"
+    },
+    {
+        "name": "SaaS Full Footer",
+        "category": "footers",
+        "file": "components-library/footers/saas-full-footer.html",
+        "preview": "assets/previews/saas-full-footer.png"
+    },
+    {
+        "name": "Vertical Brand Footer",
+        "category": "footers",
+        "file": "components-library/footers/vertical-brand-footer.html",
+        "preview": "assets/previews/vertical-brand-footer.png"
+    },
+    {
+        "name": "Contact Grid Form",
+        "category": "forms",
+        "file": "components-library/forms/contact-grid-form.html",
+        "preview": "assets/previews/contact-grid-form.png"
+    },
+    {
+        "name": "Dark Settings Form",
+        "category": "forms",
+        "file": "components-library/forms/dark-settings-form.html",
+        "preview": "assets/previews/dark-settings-form.png"
+    },
+    {
+        "name": "Feedback Rating Form",
+        "category": "forms",
+        "file": "components-library/forms/feedback-rating-form.html",
+        "preview": "assets/previews/feedback-rating-form.png"
+    },
+    {
+        "name": "File Dropzone Form",
+        "category": "forms",
+        "file": "components-library/forms/file-dropzone-form.html",
+        "preview": "assets/previews/file-dropzone-form.png"
+    },
+    {
+        "name": "Inline Newsletter Form",
+        "category": "forms",
+        "file": "components-library/forms/inline-newsletter-form.html",
+        "preview": "assets/previews/inline-newsletter-form.png"
+    },
+    {
+        "name": "Login Simple Form",
+        "category": "forms",
+        "file": "components-library/forms/login-simple-form.html",
+        "preview": "assets/previews/login-simple-form.png"
+    },
+    {
+        "name": "Multi-Step Progress Form",
+        "category": "forms",
+        "file": "components-library/forms/multi-step-progress-form.html",
+        "preview": "assets/previews/multi-step-progress-form.png"
+    },
+    {
+        "name": "Pill Waitlist Form",
+        "category": "forms",
+        "file": "components-library/forms/pill-waitlist-form.html",
+        "preview": "assets/previews/pill-waitlist-form.png"
+    },
+    {
+        "name": "Simple Newsletter Form",
+        "category": "forms",
+        "file": "components-library/forms/simple-newsletter-form.html",
+        "preview": "assets/previews/simple-newsletter-form.png"
+    },
+    {
+        "name": "Split Signup Form",
+        "category": "forms",
+        "file": "components-library/forms/split-signup-form.html",
+        "preview": "assets/previews/split-signup-form.png"
+    },
+    {
+        "name": "3D Isometric Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/3d-isometric-hero.html",
+        "preview": "assets/previews/3d-isometric-hero.png"
+    },
+    {
+        "name": "AI SaaS Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/ai-saas-hero.html",
+        "preview": "assets/previews/ai-saas-hero.png"
+    },
+    {
+        "name": "App Showcase Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/app-showcase-hero.html",
+        "preview": "assets/previews/app-showcase-hero.png"
+    },
+    {
+        "name": "Crypto Dark Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/crypto-dark-hero.html",
+        "preview": "assets/previews/crypto-dark-hero.png"
+    },
+    {
+        "name": "Cyber Space Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/cyber-space-hero.html",
+        "preview": "assets/previews/cyber-space-hero.png"
+    },
+    {
+        "name": "Mobile App Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/mobile-app-hero.html",
+        "preview": "assets/previews/mobile-app-hero.png"
+    },
+    {
+        "name": "Product Split Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/product-split-hero.html",
+        "preview": "assets/previews/product-split-hero.png"
+    },
+    {
+        "name": "Split Image Glass Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/split-image-glass-hero.html",
+        "preview": "assets/previews/split-image-glass-hero.png"
+    },
+    {
+        "name": "Startup Launch Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/startup-launch-hero.html",
+        "preview": "assets/previews/startup-launch-hero.png"
+    },
+    {
+        "name": "Ultra Minimalist Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/ultra-minimalist-hero.html",
+        "preview": "assets/previews/ultra-minimalist-hero.png"
+    },
+    {
+        "name": "Video Background Hero",
+        "category": "heroes",
+        "file": "components-library/heroes/video-background-hero.html",
+        "preview": "assets/previews/video-background-hero.png"
+    },
+    {
+        "name": "Bottom Drawer Modal",
+        "category": "modals",
+        "file": "components-library/modals/bottom-drawer-modal.html",
+        "preview": "assets/previews/bottom-drawer-modal.png"
+    },
+    {
+        "name": "Fullscreen Search Modal",
+        "category": "modals",
+        "file": "components-library/modals/fullscreen-search-modal.html",
+        "preview": "assets/previews/fullscreen-search-modal.png"
+    },
+    {
+        "name": "Simple Center Modal",
+        "category": "modals",
+        "file": "components-library/modals/simple-center-modal.html",
+        "preview": "assets/previews/simple-center-modal.png"
+    },
+    {
+        "name": "Success Toast Modal",
+        "category": "modals",
+        "file": "components-library/modals/success-toast-modal.html",
+        "preview": "assets/previews/success-toast-modal.png"
+    },
+    {
+        "name": "Brutalist Grid Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/brutalist-grid-navbar.html",
+        "preview": "assets/previews/brutalist-grid-navbar.png"
+    },
+    {
+        "name": "Centered Links Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/centered-links-navbar.html",
+        "preview": "assets/previews/centered-links-navbar.png"
+    },
+    {
+        "name": "Dark Mode Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/dark-mode-navbar.html",
+        "preview": "assets/previews/dark-mode-navbar.png"
+    },
+    {
+        "name": "Dual Level Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/dual-level-navbar.html",
+        "preview": "assets/previews/dual-level-navbar.png"
+    },
+    {
+        "name": "Floating Glass Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/floating-glass-navbar.html",
+        "preview": "assets/previews/floating-glass-navbar.png"
+    },
+    {
+        "name": "Glassmorphic Mobile Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/glassmorphic-mobile-navbar.html",
+        "preview": "assets/previews/glassmorphic-mobile-navbar.png"
+    },
+    {
+        "name": "SaaS Main Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/saas-main-navbar.html",
+        "preview": "assets/previews/saas-main-navbar.png"
+    },
+    {
+        "name": "Search Integrated Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/search-integrated-navbar.html",
+        "preview": "assets/previews/search-integrated-navbar.png"
+    },
+    {
+        "name": "Sidebar Pro Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/sidebar-pro-navbar.html",
+        "preview": "assets/previews/sidebar-pro-navbar.png"
+    },
+    {
+        "name": "Startup Minimal Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/startup-minimal-navbar.html",
+        "preview": "assets/previews/startup-minimal-navbar.png"
+    },
+    {
+        "name": "Tabbed Sticky Navbar",
+        "category": "navbars",
+        "file": "components-library/navbars/tabbed-sticky-navbar.html",
+        "preview": "assets/previews/tabbed-sticky-navbar.png"
+    },
+    {
+        "name": "Metric Grid Statistics",
+        "category": "statistics",
+        "file": "components-library/statistics/metric-grid-stats.html",
+        "preview": "assets/previews/metric-grid-stats.png"
+    },
+    {
+        "name": "404 Illustration UI",
+        "category": "ui",
+        "file": "components-library/ui/404-illustration-ui.html",
+        "preview": "assets/previews/404-illustration-ui.png"
+    },
+    {
+        "name": "Alert Banner UI",
+        "category": "ui",
+        "file": "components-library/ui/alert-banner-ui.html",
+        "preview": "assets/previews/alert-banner-ui.png"
+    },
+    {
+        "name": "Cookie Banner UI",
+        "category": "ui",
+        "file": "components-library/ui/cookie-banner-ui.html",
+        "preview": "assets/previews/cookie-banner-ui.png"
+    },
+    {
+        "name": "FAQ Accordion UI",
+        "category": "ui",
+        "file": "components-library/ui/faq-accordion-ui.html",
+        "preview": "assets/previews/faq-accordion-ui.png"
+    },
+    {
+        "name": "Full Width Feature UI",
+        "category": "ui",
+        "file": "components-library/ui/full-width-feature-ui.html",
+        "preview": "assets/previews/full-width-feature-ui.png"
+    },
+    {
+        "name": "Mobile Tab Bar UI",
+        "category": "ui",
+        "file": "components-library/ui/mobile-tab-bar-ui.html",
+        "preview": "assets/previews/mobile-tab-bar-ui.png"
+    },
+    {
+        "name": "Modern Breadcrumbs UI",
+        "category": "ui",
+        "file": "components-library/ui/modern-breadcrumbs-ui.html",
+        "preview": "assets/previews/modern-breadcrumbs-ui.png"
+    },
+    {
+        "name": "Notification Slide UI",
+        "category": "ui",
+        "file": "components-library/ui/notification-slide-ui.html",
+        "preview": "assets/previews/notification-slide-ui.png"
+    },
+    {
+        "name": "Pricing Comparison UI",
+        "category": "ui",
+        "file": "components-library/ui/pricing-comparison-ui.html",
+        "preview": "assets/previews/pricing-comparison-ui.png"
+    },
+    {
+        "name": "Pricing Popup UI",
+        "category": "ui",
+        "file": "components-library/ui/pricing-popup-ui.html",
+        "preview": "assets/previews/pricing-popup-ui.png"
+    },
+    {
+        "name": "Simple Accordion UI",
+        "category": "ui",
+        "file": "components-library/ui/simple-accordion-ui.html",
+        "preview": "assets/previews/simple-accordion-ui.png"
+    },
+    {
+        "name": "Stats Card Row UI",
+        "category": "ui",
+        "file": "components-library/ui/stats-card-row-ui.html",
+        "preview": "assets/previews/stats-card-row-ui.png"
+    },
+    {
+        "name": "Step Timeline UI",
+        "category": "ui",
+        "file": "components-library/ui/step-timeline-ui.html",
+        "preview": "assets/previews/step-timeline-ui.png"
+    },
+    {
+        "name": "Team Grid Circular UI",
+        "category": "ui",
+        "file": "components-library/ui/team-grid-circular-ui.html",
+        "preview": "assets/previews/team-grid-circular-ui.png"
+    },
+    {
+        "name": "User Dropdown UI",
+        "category": "ui",
+        "file": "components-library/ui/user-dropdown-ui.html",
+        "preview": "assets/previews/user-dropdown-ui.png"
+    },
+    {
+        "name": "AI Prompt Editor",
+        "category": "ui",
+        "file": "components-library/ui/ai-prompt-editor.html",
+        "preview": "assets/previews/ai-prompt-editor.png"
+    },
+    {
+        "name": "API Key Manager",
+        "category": "ui",
+        "file": "components-library/ui/api-key-manager.html",
+        "preview": "assets/previews/api-key-manager.png"
+    },
+    {
+        "name": "Workflow Node",
+        "category": "ui",
+        "file": "components-library/ui/workflow-node.html",
+        "preview": "assets/previews/workflow-node.png"
+    },
+    {
+        "name": "RBAC Matrix",
+        "category": "ui",
+        "file": "components-library/ui/rbac-matrix.html",
+        "preview": "assets/previews/rbac-matrix.png"
+    },
+    {
+        "name": "Experiment Banner",
+        "category": "ui",
+        "file": "components-library/ui/experiment-banner.html",
+        "preview": "assets/previews/experiment-banner.png"
+    },
+    {
+        "name": "AI Streaming Panel",
+        "category": "ui",
+        "file": "components-library/ui/ai-streaming-panel.html",
+        "preview": "assets/previews/ai-streaming-panel.png"
+    },
+    {
+        "name": "Token Radial Meter",
+        "category": "ui",
+        "file": "components-library/ui/token-radial-meter.html",
+        "preview": "assets/previews/token-radial-meter.png"
+    },
+    {
+        "name": "Feature Flag Toggle",
+        "category": "ui",
+        "file": "components-library/ui/feature-flag-toggle.html",
+        "preview": "assets/previews/feature-flag-toggle.png"
+    },
+    {
+        "name": "Webhook Inspector",
+        "category": "ui",
+        "file": "components-library/ui/webhook-inspector.html",
+        "preview": "assets/previews/webhook-inspector.png"
+    },
+    {
+        "name": "Onboarding Checklist",
+        "category": "ui",
+        "file": "components-library/ui/onboarding-checklist.html",
+        "preview": "assets/previews/onboarding-checklist.png"
+    },
+    {
+        "name": "Activity Feed",
+        "category": "ui",
+        "file": "components-library/ui/activity-feed.html",
+        "preview": "assets/previews/activity-feed.png"
+    },
+    {
+        "name": "Command Sheet",
+        "category": "ui",
+        "file": "components-library/ui/command-sheet.html",
+        "preview": "assets/previews/command-sheet.png"
+    },
+    {
+        "name": "Pricing Quota Slider",
+        "category": "cards",
+        "file": "components-library/cards/pricing-quota-slider.html",
+        "preview": "assets/previews/pricing-quota-slider.png"
+    },
+    {
+        "name": "Data Diff Viewer",
+        "category": "ui",
+        "file": "components-library/ui/data-diff-viewer.html",
+        "preview": "assets/previews/data-diff-viewer.png"
+    },
+    {
+        "name": "Command Palette",
+        "category": "modals",
+        "file": "components-library/modals/command-palette.html",
+        "preview": "assets/previews/command-palette.png"
+    },
+    {
+        "name": "Audit Log Viewer",
+        "category": "ui",
+        "file": "components-library/ui/audit-log-viewer.html",
+        "preview": "assets/previews/audit-log-viewer.png"
+    },
+    {
+        "name": "Model Selector",
+        "category": "ui",
+        "file": "components-library/ui/model-selector.html",
+        "preview": "assets/previews/model-selector.png"
+    },
+    {
+        "name": "Server Health Grid",
+        "category": "ui",
+        "file": "components-library/ui/server-health-grid.html",
+        "preview": "assets/previews/server-health-grid.png"
+    },
+    {
+        "name": "CRM Mini-Panel",
+        "category": "cards",
+        "file": "components-library/cards/crm-mini-panel.html",
+        "preview": "assets/previews/crm-mini-panel.png"
+    },
+    {
+        "name": "Version History Sidebar",
+        "category": "ui",
+        "file": "components-library/ui/version-history-sidebar.html",
+        "preview": "assets/previews/version-history-sidebar.png"
+    }
+]

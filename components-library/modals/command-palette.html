@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Palette Modal | Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0c0c0e;
+            color: #d4d4d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        .enterprise-glass {
+            background: rgba(24, 24, 27, 0.8);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(63, 63, 70, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div
+        class="w-full max-w-xl enterprise-glass rounded-2xl shadow-[0_30px_60px_rgba(0,0,0,0.5)] border border-zinc-700 overflow-hidden font-sans">
+        <div class="relative">
+            <svg class="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" fill="none"
+                stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-width="2.5"></path>
+            </svg>
+            <input type="text" placeholder="Type a command or search..."
+                class="w-full bg-zinc-950/50 border-none px-14 py-6 text-lg text-white placeholder-zinc-500 focus:ring-0 outline-none">
+            <kbd
+                class="absolute right-5 top-1/2 -translate-y-1/2 px-2 py-1 bg-zinc-800 rounded text-[10px] font-bold text-zinc-400">ESC</kbd>
+        </div>
+        <div class="p-2 border-t border-zinc-800 bg-zinc-900/50">
+            <div class="px-4 py-3">
+                <span class="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Popular Commands</span>
+            </div>
+            <div class="space-y-1">
+                <div
+                    class="flex items-center gap-4 px-4 py-3 rounded-lg bg-indigo-600/10 text-white cursor-pointer group transition-all">
+                    <div class="w-8 h-8 rounded bg-indigo-600/20 flex items-center justify-center text-indigo-400">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+                                stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold">Open Deployment Settings</span>
+                    <span class="ml-auto text-xs text-zinc-500 group-hover:text-indigo-400">⌘S</span>
+                </div>
+                <div
+                    class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-zinc-800 text-zinc-400 cursor-pointer transition-all">
+                    <div class="w-8 h-8 rounded bg-zinc-800 flex items-center justify-center text-zinc-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold">Generate new API key</span>
+                    <span class="ml-auto text-xs text-zinc-600 tracking-widest font-mono">G K</span>
+                </div>
+                <div
+                    class="flex items-center gap-4 px-4 py-3 rounded-lg hover:bg-zinc-800 text-zinc-400 cursor-pointer transition-all">
+                    <div class="w-8 h-8 rounded bg-zinc-800 flex items-center justify-center text-zinc-500">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-width="2"></path>
+                        </svg>
+                    </div>
+                    <span class="text-sm font-semibold">View usage history</span>
+                    <span class="ml-auto text-xs text-zinc-600 tracking-widest font-mono">H I</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

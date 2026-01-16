@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Settings Form - Web Template Hub Vol. 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #020617;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        class="max-w-xl w-full mx-auto p-10 rounded-[3rem] bg-slate-900 border border-slate-800 shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl"></div>
+        <h3 class="text-2xl font-bold text-white mb-10 tracking-tight">Account Privacy</h3>
+        <div class="space-y-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-bold text-white tracking-wide uppercase">Public Profile</p>
+                    <p class="text-xs text-slate-500 mt-1">Allow everyone to see your shared activity.</p>
+                </div>
+                <div class="w-14 h-7 bg-indigo-600 rounded-full relative cursor-pointer shadow-lg shadow-indigo-900/40">
+                    <div class="absolute right-1 top-1 w-5 h-5 bg-white rounded-full transition-all"></div>
+                </div>
+            </div>
+            <div class="flex items-center justify-between">
+                <div>
+                    <p class="text-sm font-bold text-white tracking-wide uppercase">Two-Factor Auth</p>
+                    <p class="text-xs text-slate-500 mt-1">Extra security code required for login attempts.</p>
+                </div>
+                <div class="w-14 h-7 bg-slate-800 rounded-full relative cursor-pointer">
+                    <div class="absolute left-1 top-1 w-5 h-5 bg-white/20 rounded-full transition-all"></div>
+                </div>
+            </div>
+            <div class="pt-6">
+                <button
+                    class="w-full py-5 bg-indigo-600 text-white rounded-2xl font-black text-xs uppercase tracking-[0.2em] hover:bg-indigo-700 transition-all active:scale-95 shadow-xl shadow-indigo-900">Update
+                    Preferences</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

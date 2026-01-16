@@ -77,8 +77,13 @@
     </div>
     `;
 
+    let loaderRemoved = false;
+
     // Ensure the HTML has the 'loaded' class state managed
     function showContent() {
+        if (loaderRemoved) return;
+        loaderRemoved = true;
+
         document.documentElement.classList.add('loaded');
         if (document.body) {
             document.body.classList.add('loaded');
@@ -92,6 +97,9 @@
             }, 250);
         }
     }
+
+    // Expose globally
+    window.finishPageLoading = showContent;
 
     function hideContent() {
         document.documentElement.classList.remove('loaded');

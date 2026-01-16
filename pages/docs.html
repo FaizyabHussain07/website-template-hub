@@ -4,6 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G18X0L604F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G18X0L604F', {
+            'enhanced_measurement': true
+        });
+    </script>
     <title>Template Documentation & Guide | Web Templates Hub</title>
     <meta name="description"
         content="Learn how to use, customize, and deploy our free one-page HTML templates. Detailed guide on Tailwind CSS integration and licensing.">
@@ -43,25 +54,23 @@
             </a>
 
             <nav class="hidden md:flex items-center gap-8">
-                <a href="templates-library.html"
+                <a href="library.html?tab=components"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Components</a>
+                <a href="library.html?tab=templates"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Templates</a>
-                <a href="categories.html"
-                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Categories</a>
                 <a href="updates.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Updates</a>
                 <a href="contributors.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contributors</a>
-                <a href="pricing.html"
-                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Pricing</a>
                 <a href="contact.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors">Contact</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="../index.html"
+                <a href="library.html"
                     class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">
                     Download Free
-                </a>
+                </a> </a>
                 <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-600 transition-colors">
                     <i data-lucide="menu" class="w-6 h-6"></i>
                 </button>
@@ -71,17 +80,17 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu"
             class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-2xl border border-slate-100 p-6 flex-col gap-4 animate-in slide-in-from-top-4 duration-300">
-            <a href="templates-library.html"
+            <a href="library.html?tab=components"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Components</a>
+            <a href="library.html?tab=templates"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Templates</a>
-            <a href="categories.html"
-                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Categories</a>
             <a href="updates.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Updates</a>
-            <a href="pricing.html"
-                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Pricing</a>
+            <a href="contributors.html"
+                class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Contributors</a>
             <a href="contact.html"
                 class="text-base font-semibold text-slate-900 px-4 py-3 bg-slate-50 rounded-xl hover:text-blue-600 transition-colors">Contact</a>
-            <a href="../index.html"
+            <a href="library.html"
                 class="w-full bg-blue-600 text-white py-4 rounded-xl font-bold mt-2 shadow-lg shadow-blue-500/25 text-center">
                 Download Free
             </a>
@@ -174,11 +183,13 @@
                 <div>
                     <h4 class="text-white font-bold mb-6">Product</h4>
                     <ul class="space-y-4 text-slate-400 text-sm">
-                        <li><a href="templates-library.html" class="hover:text-white transition-colors">Templates</a>
-                        </li>
-                        <li><a href="categories.html" class="hover:text-white transition-colors">Categories</a></li>
+                        <li><a href="library.html?tab=components"
+                                class="hover:text-white transition-colors">Components</a></li>
+                        <li><a href="library.html?tab=templates"
+                                class="hover:text-white transition-colors">Templates</a></li>
                         <li><a href="updates.html" class="hover:text-white transition-colors">Updates</a></li>
                         <li><a href="docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                        <li><a href="contributors.html" class="hover:text-white transition-colors">Contributors</a></li>
                         <li><a href="contribution-guide.html" class="hover:text-white transition-colors">Contribute
                                 Guide</a></li>
                     </ul>
@@ -201,6 +212,7 @@
         </div>
     </footer>
 
+    <script src="../assets/js/analytics.js"></script>
     <script>lucide.createIcons();</script>
 </body>
 

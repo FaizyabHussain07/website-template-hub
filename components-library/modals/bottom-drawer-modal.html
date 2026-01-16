@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bottom Drawer Modal - Web Template Hub Vol. 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f1f5f9;
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body class="flex items-end justify-center h-screen overflow-hidden">
+    <div
+        class="w-full max-w-lg bg-white rounded-t-[3.5rem] p-10 shadow-[0_-20px_100px_rgba(0,0,0,0.1)] border-t border-slate-100 transform translate-y-0 transition-transform duration-500">
+        <div class="w-12 h-1.5 bg-slate-100 rounded-full mx-auto mb-10"></div>
+        <h4 class="text-3xl font-black text-slate-900 mb-4 tracking-tight">Share this project</h4>
+        <p class="text-slate-500 mb-10 text-sm font-medium">Invite your team to collaborate in real-time.</p>
+        <div class="grid grid-cols-4 gap-6 mb-12">
+            <div class="flex flex-col items-center gap-3 cursor-pointer group">
+                <div
+                    class="w-14 h-14 bg-indigo-50 text-indigo-600 rounded-2xl flex items-center justify-center group-hover:bg-indigo-600 group-hover:text-white transition-all shadow-lg shadow-indigo-50">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                </div>
+                <span class="text-[9px] font-black uppercase text-slate-400">FB</span>
+            </div>
+            <div class="flex flex-col items-center gap-3 cursor-pointer group">
+                <div
+                    class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-all shadow-lg shadow-emerald-50">
+                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12.5 12.5L10 15M12.5 12.5L15 10M12.5 12.5L10 10M12.5 12.5L15 15M20 12.5C20 16.6421 16.6421 20 12.5 20C8.35786 20 5 16.6421 5 12.5C5 8.35786 8.35786 5 12.5 5C16.6421 5 20 8.35786 20 12.5Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <span class="text-[9px] font-black uppercase text-slate-400">Copy</span>
+            </div>
+        </div>
+        <button
+            class="w-full py-5 bg-slate-900 text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-xl shadow-slate-200">Close
+            Drawer</button>
+    </div>
+</body>
+
+</html>

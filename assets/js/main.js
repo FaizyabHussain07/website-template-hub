@@ -117,10 +117,40 @@ document.addEventListener('DOMContentLoaded', () => {
             const isPagesDir = window.location.pathname.includes('/pages/') || window.location.pathname.includes('/legal/');
             const previewPrefix = isPagesDir ? '../preview-page.html' : 'preview-page.html';
 
+            // Define aesthetic placeholders for consistency
+            const getAestheticPlaceholder = (ind) => {
+                const key = (ind || 'General').toLowerCase();
+                const config = {
+                    'saas': { bg: 'bg-blue-600', icon: 'cloud' },
+                    'crypto': { bg: 'bg-amber-500', icon: 'bitcoin' },
+                    'healthcare': { bg: 'bg-cyan-500', icon: 'stethoscope' },
+                    'medical': { bg: 'bg-cyan-500', icon: 'stethoscope' },
+                    'real estate': { bg: 'bg-amber-600', icon: 'home' },
+                    'education': { bg: 'bg-emerald-500', icon: 'graduation-cap' },
+                    'digital agency': { bg: 'bg-purple-600', icon: 'briefcase' },
+                    'agency': { bg: 'bg-purple-600', icon: 'briefcase' },
+                    'fitness': { bg: 'bg-rose-500', icon: 'activity' },
+                    'e-commerce': { bg: 'bg-pink-500', icon: 'shopping-cart' },
+                    'ecommerce': { bg: 'bg-pink-500', icon: 'shopping-cart' },
+                    'portfolio': { bg: 'bg-rose-400', icon: 'user' },
+                    'creative': { bg: 'bg-orange-400', icon: 'palette' },
+                    'general': { bg: 'bg-slate-500', icon: 'layout' }
+                };
+                const { bg, icon } = config[key] || config['general'];
+                return `
+                    <div class="w-full h-full ${bg} flex flex-col items-center justify-center text-white/90 gap-3 group-hover:scale-105 transition-transform duration-700">
+                        <div class="p-4 bg-white/10 rounded-2xl backdrop-blur-md border border-white/20">
+                            <i data-lucide="${icon}" class="w-10 h-10"></i>
+                        </div>
+                        <span class="text-[10px] font-black uppercase tracking-[0.2em] opacity-60">${key}</span>
+                    </div>
+                `;
+            };
+
             card.innerHTML = `
                 <div class="relative group aspect-video bg-slate-100 overflow-hidden">
                     <img src="${template.thumbnail}" alt="${template.name} - Free ${template.industry} Template" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy"
-                        onerror="this.parentElement.innerHTML='<div class=\\'w-full h-full bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center p-8\\'><div class=\\'text-center space-y-2\\'><div class=\\'text-white/20 font-black text-3xl uppercase tracking-tighter mb-1\\'>${template.industry}</div><div class=\\'text-white font-bold text-lg\\'>${template.name}</div></div><div class=\\'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100\\'><a href=\\'${previewPrefix}?id=${template.id}\\' class=\\'bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl\\'>Preview Template</a></div></div>'">
+                        onerror="this.parentElement.innerHTML='${getAestheticPlaceholder(template.industry).replace(/'/g, "\\'")}<div class=\\'absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100\\'><a href=\\'${previewPrefix}?id=${template.id}\\' class=\\'bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl\\'>Preview Template</a></div>'; setTimeout(() => { if(window.lucide) lucide.createIcons(); }, 10);">
                     <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
                         <a href="${previewPrefix}?id=${template.id}" class="bg-white text-gray-900 px-6 py-2 rounded-full font-semibold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-xl" aria-label="Preview ${template.name} Template">
                             Preview Template

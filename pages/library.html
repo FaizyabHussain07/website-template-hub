@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Google Analytics (GA4) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-G18X0L604F"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-G18X0L604F', {
+            'enhanced_measurement': true
+        });
+    </script>
+    <title>Library | Web Templates Hub</title>
+    <meta name="description" content="Browse our extensive collection of free HTML templates, pages, and components.">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Library | Web Templates Hub">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Page Loader -->
+    <script src="../assets/js/loader.js"></script>
+    <link rel="icon" type="image/svg+xml" href="../assets/images/logo.svg">
+</head>
+
+<body class="bg-slate-50">
+
+    <!-- Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-2">
+                <div class="w-10 h-10 flex items-center justify-center">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                            stroke="#2563eb" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.3" />
+                        <path d="M4 6L9 18L12 12L15 18L20 6" stroke="#2563eb" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                        <path d="M9 18L12 12L15 18" stroke="#2563eb" stroke-width="3" stroke-linecap="round"
+                            stroke-linejoin="round" opacity="0.4" />
+                    </svg>
+                </div>
+                <span class="text-xl font-bold tracking-tight text-slate-900">WebTemplates<span
+                        class="text-blue-600">Hub</span></span>
+            </a>
+
+            <nav class="hidden md:flex items-center gap-8">
+                <a href="library.html" class="text-sm font-medium text-blue-600 transition-colors nav-link">Library</a>
+                <a href="updates.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Updates</a>
+                <a href="contributors.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Contributors</a>
+                <a href="pricing.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Pricing</a>
+                <a href="contact.html"
+                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Contact</a>
+            </nav>
+
+            <div class="flex items-center gap-4">
+                <a href="library.html"
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">Download
+                    Free</a>
+                <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-600"><i
+                        data-lucide="menu"></i></button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden default) -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-20 left-4 right-4 bg-white rounded-2xl shadow-xl border border-slate-100 p-4">
+            <a href="library.html" class="block py-2 text-slate-700 font-semibold">Library</a>
+            <a href="updates.html" class="block py-2 text-slate-700 font-semibold">Updates</a>
+            <a href="contributors.html" class="block py-2 text-slate-700 font-semibold">Contributors</a>
+            <a href="pricing.html" class="block py-2 text-slate-700 font-semibold">Pricing</a>
+            <a href="contact.html" class="block py-2 text-slate-700 font-semibold">Contact</a>
+        </div>
+    </header>
+
+    <!-- Library Content -->
+    <main class="pt-32 pb-20 max-w-7xl mx-auto px-4">
+
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4" id="page-title">Library</h1>
+            <p class="text-slate-500 text-lg max-w-2xl mx-auto">Browse our collection of professional resources.</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row gap-10 items-start">
+            <!-- Sidebar (Desktop) -->
+            <aside class="hidden lg:block w-72 sticky top-24 space-y-8">
+                <!-- Search -->
+                <div class="relative group">
+                    <i data-lucide="search"
+                        class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 group-focus-within:text-blue-600 transition-colors"></i>
+                    <input type="text" id="search-input" placeholder="Search resources..."
+                        class="w-full bg-white border border-slate-200 rounded-2xl py-3 pl-11 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-sm">
+                </div>
+
+                <!-- Active Filters -->
+                <div id="active-filters-container" class="hidden">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider">Active Filters</h4>
+                        <button id="clear-filters" class="text-[10px] font-bold text-blue-600 hover:underline">Clear
+                            All</button>
+                    </div>
+                    <div id="active-filters-list" class="flex flex-wrap gap-2"></div>
+                </div>
+
+                <!-- Dynamic Filter Categories -->
+                <div id="dynamic-filters" class="space-y-8">
+                    <!-- Categories will be injected here (e.g., Industry, Category, Type) -->
+                </div>
+            </aside>
+
+            <!-- Main Content Area -->
+            <div class="flex-1 w-full">
+                <!-- Top Bar (Mobile Search + Tabs + Filter Toggle) -->
+                <div
+                    class="flex flex-col md:flex-row items-center justify-between gap-4 mb-8 sticky top-24 lg:top-auto z-30 bg-slate-50/90 backdrop-blur-md pb-4 md:py-2">
+                    <!-- Tabs -->
+                    <div
+                        class="bg-white p-1.5 rounded-xl flex items-center gap-1 shadow-sm border border-slate-100 w-full md:w-auto">
+                        <button
+                            class="library-tab flex-1 md:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-all"
+                            data-tab="templates">Templates</button>
+                        <button
+                            class="library-tab flex-1 md:flex-none px-6 py-2 rounded-lg text-sm font-bold transition-all"
+                            data-tab="components">Components</button>
+                    </div>
+
+                    <div class="flex items-center gap-3 w-full md:w-auto">
+                        <!-- Mobile Search -->
+                        <div class="relative flex-1 lg:hidden">
+                            <i data-lucide="search"
+                                class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400"></i>
+                            <input type="text" id="mobile-search-input" placeholder="Search..."
+                                class="w-full bg-white border border-slate-200 rounded-xl py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-sm font-medium">
+                        </div>
+
+                        <!-- Filter Toggle (Mobile Only) -->
+                        <button id="filter-drawer-toggle"
+                            class="lg:hidden flex items-center gap-2 bg-white border border-slate-200 px-4 py-2 rounded-xl text-sm font-bold text-slate-700 hover:bg-slate-50 shadow-sm whitespace-nowrap">
+                            <i data-lucide="filter" class="w-4 h-4"></i>
+                            Filters
+                            <span id="mobile-filter-count"
+                                class="hidden w-5 h-5 bg-blue-600 text-white text-[10px] items-center justify-center rounded-full">0</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Grid Info -->
+                <div class="flex items-center justify-between mb-6">
+                    <div class="text-slate-500 text-sm">Showing <span id="item-count"
+                            class="font-bold text-slate-900">0</span> results</div>
+                    <div class="flex items-center gap-2">
+                        <span class="text-xs font-bold text-slate-400 uppercase tracking-widest hidden sm:block">Sort
+                            by:</span>
+                        <select id="sort-select"
+                            class="bg-transparent text-sm font-bold text-slate-900 focus:outline-none cursor-pointer">
+                            <option value="newest">Newest First</option>
+                            <option value="name-asc">A to Z</option>
+                            <option value="name-desc">Z to A</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Grid -->
+                <div id="library-grid"
+                    class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 min-h-[400px] transition-all duration-300">
+                    <!-- Content Injected via JS -->
+                    <div class="col-span-full text-center py-20">
+                        <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
+                    </div>
+                </div>
+
+                <!-- Empty State Template (Hidden) -->
+                <template id="empty-state-template">
+                    <div
+                        class="col-span-full text-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
+                        <div class="bg-slate-50 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="search-x" class="w-10 h-10 text-slate-300"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 mb-2">No results found</h3>
+                        <p class="text-slate-500 max-w-sm mx-auto">Try adjusting your keywords or filters to find what
+                            you're looking for.</p>
+                        <button onclick="document.getElementById('clear-filters').click()"
+                            class="mt-8 text-blue-600 font-bold hover:underline">Reset all filters</button>
+                    </div>
+                </template>
+            </div>
+        </div>
+    </main>
+
+    <!-- Filter Drawer (Mobile Only) -->
+    <div id="filter-drawer" class="fixed inset-0 z-[100] hidden lg:hidden overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" id="filter-drawer-overlay"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex">
+            <div class="w-screen max-w-xs bg-white shadow-2xl flex flex-col animate-slide-in-right">
+                <div class="px-6 py-5 border-b border-slate-100 flex items-center justify-between">
+                    <h2 class="text-xl font-bold text-slate-900">Filters</h2>
+                    <button id="filter-drawer-close" class="p-2 text-slate-400 hover:text-slate-900"><i
+                            data-lucide="x"></i></button>
+                </div>
+                <div class="flex-1 overflow-y-auto p-6 space-y-10" id="mobile-filters-container">
+                    <!-- Filters will be cloned here from dynamic-filters -->
+                </div>
+                <div class="p-6 border-t border-slate-100">
+                    <button id="filter-drawer-apply"
+                        class="w-full bg-blue-600 text-white py-4 rounded-2xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25">Apply
+                        Filters</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 py-20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+                <div class="col-span-1 md:col-span-2 space-y-6">
+                    <div class="flex items-center gap-2">
+                        <div class="w-10 h-10 flex items-center justify-center">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+                                    stroke="#2563eb" stroke-width="0.5" stroke-dasharray="2 2" opacity="0.3" />
+                                <path d="M4 6L9 18L12 12L15 18L20 6" stroke="#2563eb" stroke-width="3"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+                                <path d="M9 18L12 12L15 18" stroke="#2563eb" stroke-width="3" stroke-linecap="round"
+                                    stroke-linejoin="round" opacity="0.4" />
+                            </svg>
+                        </div>
+                        <span class="text-xl font-bold tracking-tight text-white">WebTemplatesHub</span>
+                    </div>
+                    <p class="text-slate-400 max-w-sm">
+                        Curating the world's best single-page HTML templates for developers and entrepreneurs. 100% Free
+                        Forever.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="https://github.com/FaizyabHussain07" target="_blank"
+                            class="text-slate-400 hover:text-white transition-colors"><i data-lucide="github"></i></a>
+                        <a href="https://www.linkedin.com/in/faizyabhussain/" target="_blank"
+                            class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Product</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="templates-library.html" class="hover:text-white transition-colors">Templates</a>
+                        </li>
+                        <li><a href="../legal/terms.html" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="updates.html" class="hover:text-white transition-colors">Updates</a></li>
+                        <li><a href="docs.html" class="hover:text-white transition-colors">Docs</a></li>
+                        <li><a href="contribution-guide.html" class="hover:text-white transition-colors">Contribute
+                                Guide</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Legal</h4>
+                    <ul class="space-y-4 text-slate-400 text-sm">
+                        <li><a href="../legal/terms.html" class="hover:text-white transition-colors">Terms</a></li>
+                        <li><a href="../legal/privacy.html" class="hover:text-white transition-colors">Privacy</a></li>
+                        <li><a href="../legal/help.html" class="hover:text-white transition-colors">Help</a></li>
+                        <li><a href="../legal/license.html" class="hover:text-white transition-colors">License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-800 text-center text-slate-500 text-sm">
+                &copy; 2026 Web Templates Hub. All rights reserved. Built by <a
+                    href="https://faizyab-hussain.vercel.app/" target="_blank"
+                    class="text-blue-500 hover:text-white transition-colors">Faizyab Hussain</a>.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="../assets/js/v2.js"></script>
+    <script src="../assets/js/analytics.js"></script>
+    <script>lucide.createIcons();</script>
+</body>
+
+</html>

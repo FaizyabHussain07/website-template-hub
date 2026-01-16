@@ -1,0 +1,8 @@
+<svg width="800" height="600" viewBox="0 0 800 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect width="800" height="600" fill="#F1F5F9"/>
+    <rect x="200" y="180" width="400" height="240" rx="20" fill="#E2E8F0"/>
+    <path d="M360 300C360 322.091 377.909 340 400 340C422.091 340 440 322.091 440 300C440 277.909 422.091 260 400 260C377.909 260 360 277.909 360 300Z" fill="#94A3B8"/>
+    <path d="M200 420H600V380L480 260L200 420Z" fill="#CBD5E1"/>
+    <path d="M500 420H600V280L500 420Z" fill="#94A3B8" fill-opacity="0.5"/>
+    <text x="400" y="500" font-family="system-ui, sans-serif" font-size="24" fill="#64748B" text-anchor="middle">Preview Not Available</text>
+</svg>

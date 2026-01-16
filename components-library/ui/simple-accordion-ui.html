@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Accordion UI - Web Template Hub Vol. 2</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8fafc;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="max-w-2xl w-full bg-white rounded-[3rem] p-10 shadow-2xl border border-slate-100">
+        <div class="space-y-4">
+            <div class="p-8 rounded-[2.5rem] bg-indigo-50 border border-indigo-100 group cursor-pointer">
+                <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-indigo-950 text-lg">What is your refund policy?</h4>
+                    <span
+                        class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center font-black transition-transform group-hover:rotate-180">-</span>
+                </div>
+                <p class="text-indigo-800/60 mt-6 text-sm leading-relaxed font-medium">We offer a 30-day money-back
+                    guarantee for all our pro plans. No questions asked.</p>
+            </div>
+            <div
+                class="p-8 rounded-[2.5rem] bg-slate-50 border border-slate-100 group cursor-pointer hover:bg-slate-100/50 transition-all">
+                <div class="flex items-center justify-between">
+                    <h4 class="font-bold text-slate-900 text-lg">Can I cancel anytime?</h4>
+                    <span
+                        class="w-8 h-8 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center font-black transition-transform group-hover:bg-slate-900 group-hover:text-white">+</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

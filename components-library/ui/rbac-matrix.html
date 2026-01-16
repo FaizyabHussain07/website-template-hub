@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RBAC Matrix | Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #d4d4d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div
+        class="w-full max-w-4xl mx-auto overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900 shadow-xl font-sans">
+        <table class="w-full text-left border-collapse">
+            <thead>
+                <tr class="bg-zinc-950/50">
+                    <th class="p-6 text-xs font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-800">
+                        Permission</th>
+                    <th
+                        class="p-6 text-xs font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-800 text-center">
+                        Admin</th>
+                    <th
+                        class="p-6 text-xs font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-800 text-center">
+                        Editor</th>
+                    <th
+                        class="p-6 text-xs font-bold text-zinc-400 uppercase tracking-widest border-b border-zinc-800 text-center">
+                        Viewer</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-zinc-800">
+                <tr class="hover:bg-zinc-800/30 transition-colors">
+                    <td class="p-6">
+                        <div class="font-semibold text-white text-sm">Delete Infrastructure</div>
+                        <div class="text-xs text-zinc-500">Ability to permanently remove cloud resources.</div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded border-2 border-zinc-700"></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded border-2 border-zinc-700"></div>
+                    </td>
+                </tr>
+                <tr class="hover:bg-zinc-800/30 transition-colors">
+                    <td class="p-6">
+                        <div class="font-semibold text-white text-sm">Edit API Settings</div>
+                        <div class="text-xs text-zinc-500">Change endpoint configurations and key rotation.</div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded border-2 border-zinc-700"></div>
+                    </td>
+                </tr>
+                <tr class="hover:bg-zinc-800/30 transition-colors">
+                    <td class="p-6">
+                        <div class="font-semibold text-white text-sm">View Analytics</div>
+                        <div class="text-xs text-zinc-500">Read-only access to usage and cost dashboards.</div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                    <td class="p-6 text-center">
+                        <div class="mx-auto w-5 h-5 rounded bg-indigo-500 flex items-center justify-center"><svg
+                                class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path d="M5 13l4 4L19 7" stroke-width="3"></path>
+                            </svg></div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const originalText = btn.innerText;
+                if (originalText === 'PROCESSING...' || originalText === 'SUCCESS') return;
+                btn.innerText = 'PROCESSING...';
+                btn.classList.add('opacity-50');
+                setTimeout(() => {
+                    btn.innerText = 'SUCCESS';
+                    btn.classList.remove('opacity-50');
+                    setTimeout(() => btn.innerText = originalText, 1500);
+                }, 800);
+            });
+        });
+    </script>
+</body>
+
+</html>

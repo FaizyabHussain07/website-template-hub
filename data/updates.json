@@ -1,5 +1,18 @@
 [
     {
+        "date": "Jan 16, 2026",
+        "type": "New",
+        "title": "Version 1.2: The Ultimate UI & Library Evolution",
+        "description": [
+            "MAJOR: Introduced a dedicated Components Library, evolving beyond just a template hub.",
+            "Complete UI Polish: Every page has been refined for a world-class, premium aesthetic.",
+            "Full Perfection: 100% responsive and optimized across all mobile and desktop devices.",
+            "Integrated a robust global loader for smooth and professional page transitions.",
+            "Enhanced Component View: Integrated split-view for side-by-side preview and code exploration.",
+            "Improved asset organization and overall site performance for a faster experience."
+        ]
+    },
+    {
         "date": "Jan 8, 2026",
         "type": "New",
         "title": "Major File Structure Reorganization",

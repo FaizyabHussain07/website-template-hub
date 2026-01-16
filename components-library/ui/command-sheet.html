@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Sheet | Web Template Hub</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a0a0a;
+            color: #d4d4d8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="w-full max-w-xl mx-auto p-8 rounded-3xl bg-zinc-950 border border-zinc-900 text-zinc-400 font-sans">
+        <h4 class="text-white font-bold mb-8 flex items-center gap-3">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path
+                    d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                    stroke-width="2"></path>
+            </svg>
+            Command Palette Shortcuts
+        </h4>
+        <div class="grid grid-cols-1 gap-6">
+            <div class="flex justify-between items-center group">
+                <span class="text-sm font-medium group-hover:text-white transition-colors">Search entire codebase</span>
+                <div class="flex gap-1">
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">⌘</kbd>
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">K</kbd>
+                </div>
+            </div>
+            <div class="flex justify-between items-center group">
+                <span class="text-sm font-medium group-hover:text-white transition-colors">Toggle system prompt
+                    view</span>
+                <div class="flex gap-1">
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">⇧</kbd>
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">P</kbd>
+                </div>
+            </div>
+            <div class="flex justify-between items-center group">
+                <span class="text-sm font-medium group-hover:text-white transition-colors">Switch environment</span>
+                <div class="flex gap-1">
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">G</kbd>
+                    <kbd
+                        class="px-2 py-1 bg-zinc-800 rounded border border-zinc-700 text-[10px] font-bold text-zinc-300 shadow-lg shadow-black/20">E</kbd>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

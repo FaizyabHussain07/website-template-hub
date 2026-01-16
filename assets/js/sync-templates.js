@@ -2,9 +2,9 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const TEMPLATES_DIR = path.join(__dirname, 'templates-library');
-const ZIPS_DIR = path.join(__dirname, 'zips');
-const DATA_FILE = path.join(__dirname, 'data', 'templates.json');
+const TEMPLATES_DIR = path.join(__dirname, '../../templates-library');
+const ZIPS_DIR = path.join(__dirname, '../../zips');
+const DATA_FILE = path.join(__dirname, '../../data', 'templates.json');
 
 // Ensure directories exist
 if (!fs.existsSync(ZIPS_DIR)) fs.mkdirSync(ZIPS_DIR);
