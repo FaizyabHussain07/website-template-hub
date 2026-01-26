@@ -4,15 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="seo-title">Template Preview | Web Templates Hub</title>
+    <title id="seo-title">Free Template Preview | Web Templates Hub</title>
     <meta name="description" id="seo-description"
-        content="Preview and download this professional one-page HTML template from Web Templates Hub. MIT licensed and fully responsive.">
+        content="Preview and download professional free HTML templates and UI components. MIT licensed, fully responsive, and production-ready for developers.">
     <link rel="canonical" id="seo-canonical" href="https://web-template-hub.netlify.app/preview-page.html">
 
     <!-- OG / Twitter placeholders -->
-    <meta property="og:title" id="og-title" content="Template Preview | Web Templates Hub">
-    <meta property="og:description" id="og-description" content="Preview this free professional HTML template.">
-    <meta property="twitter:title" id="tw-title" content="Template Preview | Web Templates Hub">
+    <meta property="og:title" id="og-title" content="Free Template Preview | Web Templates Hub">
+    <meta property="og:description" id="og-description"
+        content="Preview this free professional HTML template for your next project.">
+    <meta property="twitter:title" id="tw-title" content="Free Template Preview | Web Templates Hub">
 
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -21,7 +22,7 @@
     <link rel="stylesheet" href="assets/css/style.css">
 
     <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
 
     <!-- Page Loader -->
     <script src="assets/js/loader.js"></script>
@@ -34,7 +35,7 @@
     <header
         class="h-16 bg-white flex items-center justify-between px-4 md:px-6 z-50 shadow-sm transition-all duration-300">
         <div class="flex items-center gap-3 md:gap-6">
-            <a href="pages/templates-library.html" class="flex items-center gap-2 group" title="Back to Library">
+            <a href="pages/library.html?tab=templates" class="flex items-center gap-2 group" title="Back to Library">
                 <i data-lucide="arrow-left"
                     class="w-5 h-5 text-gray-500 group-hover:text-blue-600 transition-colors"></i>
                 <span class="hidden sm:block text-sm font-semibold text-gray-700 group-hover:text-blue-600">Back to
@@ -52,12 +53,13 @@
 
         <div class="flex items-center gap-2 md:gap-4">
             <div class="hidden lg:flex items-center gap-2 mr-6 text-gray-400">
-                <button id="view-mobile" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Mobile Mode"><i
-                        data-lucide="smartphone" class="w-5 h-5"></i></button>
-                <button id="view-tablet" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Tablet Mode"><i
-                        data-lucide="tablet" class="w-5 h-5"></i></button>
+                <button id="view-mobile" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Mobile Mode"
+                    aria-label="Switch to Mobile View"><i data-lucide="smartphone" class="w-5 h-5"></i></button>
+                <button id="view-tablet" class="p-2 hover:bg-gray-100 rounded transition-colors" title="Tablet Mode"
+                    aria-label="Switch to Tablet View"><i data-lucide="tablet" class="w-5 h-5"></i></button>
                 <button id="view-desktop" class="p-2 bg-blue-50 text-blue-600 rounded transition-colors"
-                    title="Desktop Mode"><i data-lucide="monitor" class="w-5 h-5"></i></button>
+                    title="Desktop Mode" aria-label="Switch to Desktop View"><i data-lucide="monitor"
+                        class="w-5 h-5"></i></button>
                 <div class="h-4 w-px bg-gray-200 mx-2"></div>
                 <button id="reload-btn"
                     class="p-2 hover:bg-gray-100 rounded transition-colors text-gray-400 hover:text-blue-600"
