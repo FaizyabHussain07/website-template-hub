@@ -455,12 +455,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const idParam = item.id;
             const previewLink = item.id ? `../preview-page.html?type=${state.tab}&id=${idParam}` : '#';
             actionHtml = `
-                <div class="grid grid-cols-2 gap-3">
+                <div class="grid grid-cols-1 gap-3">
                     <a href="${previewLink}" class="flex items-center justify-center gap-2 py-3 rounded-xl border border-slate-200 font-bold text-slate-700 hover:bg-slate-50 hover:border-slate-300 transition-all text-center">
                         <i data-lucide="eye" class="w-4 h-4"></i> Preview
                     </a>
-                    <button onclick="downloadFile('${fileUrl}', '${state.tab}', this)" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95">
-                        <i data-lucide="download" class="w-4 h-4"></i> Download
+                    <button onclick="openContactModal()" class="flex items-center justify-center gap-2 py-3 rounded-xl bg-blue-600 text-white font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/25 active:scale-95">
+                        <i data-lucide="message-circle" class="w-4 h-4"></i> Talk to Us
                     </button>
                 </div>`;
         }
@@ -508,6 +508,43 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>`;
     }
 });
+
+// -- Modal Functions --
+function openContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        // Re-initialize lucide icons for modal content
+        setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 50);
+    }
+}
+
+function closeContactModal() {
+    const modal = document.getElementById('contact-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+}
+
+function openAIModal() {
+    const modal = document.getElementById('ai-modal');
+    if (modal) {
+        modal.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+        // Re-initialize lucide icons for modal content
+        setTimeout(() => { if (window.lucide) lucide.createIcons(); }, 50);
+    }
+}
+
+function closeAIModal() {
+    const modal = document.getElementById('ai-modal');
+    if (modal) {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+    }
+}
 
 // -- Global Helpers (Keep original download functionality) --
 async function downloadFile(fileUrl, type, btnElement) {

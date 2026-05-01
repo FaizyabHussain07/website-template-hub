@@ -62,16 +62,15 @@
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Updates</a>
                 <a href="contributors.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Contributors</a>
-                <a href="pricing.html"
-                    class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Pricing</a>
-                <a href="contact.html"
+                                <a href="contact.html"
                     class="text-sm font-medium text-slate-600 hover:text-blue-600 transition-colors nav-link">Contact</a>
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="library.html"
-                    class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">Download
-                    Free</a>
+                <button onclick="openContactModal()"
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-full text-sm font-semibold transition-all shadow-lg shadow-blue-500/25">
+                    Talk to Us
+                </button>
                 <button id="mobile-menu-btn" class="md:hidden p-2 text-slate-600 hover:text-blue-600"><i
                         data-lucide="menu"></i></button>
             </div>
@@ -83,8 +82,7 @@
             <a href="library.html" class="block py-2 text-slate-700 font-semibold">Library</a>
             <a href="updates.html" class="block py-2 text-slate-700 font-semibold">Updates</a>
             <a href="contributors.html" class="block py-2 text-slate-700 font-semibold">Contributors</a>
-            <a href="pricing.html" class="block py-2 text-slate-700 font-semibold">Pricing</a>
-            <a href="contact.html" class="block py-2 text-slate-700 font-semibold">Contact</a>
+                        <a href="contact.html" class="block py-2 text-slate-700 font-semibold">Contact</a>
         </div>
     </header>
 
@@ -285,6 +283,139 @@
             </div>
         </div>
     </footer>
+
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="fixed inset-0 z-[200] hidden overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeContactModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-slate-900">Get in Touch</h3>
+                        <button onclick="closeContactModal()" class="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-slate-50 transition-all">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                Interested in our templates? We'd love to hear from you! Our team is ready to help you find the perfect solution for your project.
+                            </p>
+                            <p class="text-sm text-slate-600">
+                                Whether you need customization, have questions about licensing, or want to discuss your specific requirements - we're here to help.
+                            </p>
+                        </div>
+                        
+                        <div class="space-y-4">
+                            <a href="tel:+923352811970" class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-all group">
+                                <div class="w-12 h-12 bg-blue-600 text-white rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i data-lucide="phone" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900">Phone</div>
+                                    <div class="text-slate-600">+92 335 281 1970</div>
+                                </div>
+                            </a>
+                            
+                            <a href="mailto:syedfaizyabhussain07@gmail.com" class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-all group">
+                                <div class="w-12 h-12 bg-emerald-600 text-white rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                    <i data-lucide="mail" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900">Email</div>
+                                    <div class="text-slate-600">syedfaizyabhussain07@gmail.com</div>
+                                </div>
+                            </a>
+                            
+                            <div class="flex items-center gap-4 p-4 bg-slate-50 rounded-xl">
+                                <div class="w-12 h-12 bg-purple-600 text-white rounded-xl flex items-center justify-center">
+                                    <i data-lucide="share-2" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <div class="font-bold text-slate-900 mb-2">Follow Us</div>
+                                    <div class="flex gap-3">
+                                        <a href="https://github.com/FaizyabHussain07" target="_blank" class="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center hover:bg-slate-300 transition-all">
+                                            <i data-lucide="github" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="https://www.linkedin.com/in/faizyabhussain/" target="_blank" class="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center hover:bg-slate-300 transition-all">
+                                            <i data-lucide="linkedin" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="https://x.com/FaizyabHus74391" target="_blank" class="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center hover:bg-slate-300 transition-all">
+                                            <i data-lucide="twitter" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/syedfaizyabhussain07/" target="_blank" class="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center hover:bg-slate-300 transition-all">
+                                            <i data-lucide="instagram" class="w-5 h-5"></i>
+                                        </a>
+                                        <a href="https://faizyab-hussain.vercel.app/" target="_blank" class="w-10 h-10 bg-slate-200 rounded-lg flex items-center justify-center hover:bg-slate-300 transition-all">
+                                            <i data-lucide="globe" class="w-5 h-5"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Modal -->
+    <div id="ai-modal" class="fixed inset-0 z-[200] hidden overflow-hidden">
+        <div class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" onclick="closeAIModal()"></div>
+        <div class="absolute inset-0 flex items-center justify-center p-4">
+            <div class="bg-white rounded-3xl shadow-2xl max-w-md w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+                <div class="p-8">
+                    <div class="flex items-center justify-between mb-6">
+                        <h3 class="text-2xl font-bold text-slate-900">AI-Powered Templates</h3>
+                        <button onclick="closeAIModal()" class="p-2 text-slate-400 hover:text-slate-900 rounded-xl hover:bg-slate-50 transition-all">
+                            <i data-lucide="x" class="w-6 h-6"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <div class="bg-gradient-to-br from-purple-50 to-indigo-50 rounded-2xl p-6 border border-purple-100">
+                            <div class="w-16 h-16 bg-purple-600 text-white rounded-2xl flex items-center justify-center mb-4">
+                                <i data-lucide="cpu" class="w-8 h-8"></i>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-900 mb-3">Next-Generation AI Templates</h4>
+                            <p class="text-slate-700 leading-relaxed mb-4">
+                                Discover our cutting-edge AI-powered templates that integrate seamlessly with modern AI technologies. Perfect for AI startups, machine learning projects, and intelligent applications.
+                            </p>
+                            <ul class="space-y-2 text-sm text-slate-600">
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                                    <span>ChatGPT & OpenAI integrations</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                                    <span>Machine learning dashboard layouts</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                                    <span>Data visualization components</span>
+                                </li>
+                                <li class="flex items-center gap-2">
+                                    <i data-lucide="check-circle" class="w-4 h-4 text-emerald-600"></i>
+                                    <span>API documentation templates</span>
+                                </li>
+                            </ul>
+                        </div>
+                        
+                        <div class="bg-slate-50 rounded-2xl p-6">
+                            <h4 class="font-bold text-slate-900 mb-3">Ready to get started?</h4>
+                            <p class="text-slate-600 text-sm mb-4">
+                                Contact us to learn more about our AI template collection and how we can help accelerate your AI project development.
+                            </p>
+                            <button onclick="closeAIModal(); openContactModal();" class="w-full bg-purple-600 text-white py-3 rounded-xl font-bold hover:bg-purple-700 transition-all shadow-lg shadow-purple-500/25">
+                                Get Started with AI Templates
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
